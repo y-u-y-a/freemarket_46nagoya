@@ -40,10 +40,12 @@ Things you may want to cover:
 |category_id|integer|null: false|
 
 ### Association
-- has_many   comments
+- has_many   comments  ,dependent: :delete_all
 - belongs_to category
 - belongs_to user
 - belongs_to brand
+- has_many   messages
+
 
 
 ## item_imagesテーブル
@@ -66,24 +68,35 @@ Things you may want to cover:
 |last_name|string|null: false|              <!-- 苗字 -->
 |first_name_kana|string|null: false|        <!-- 名前（カナ） -->
 |last_name_kana|string|null: false|         <!-- 苗字（カナ） -->
-|full_name|string|null: false,index: true|  <!-- フルネーム -->
 |nickname|string|null: false,index: true|   <!-- ニックネーム -->
-|profile_text|text||                        <!-- 自己紹介文 -->
-|phone_number|integer|null: false|          <!-- 電話番号 -->
+|phone_number|integer|null: false,unique: true|          <!-- 電話番号 -->
 |year_birth_at|date|null: false|            <!-- 誕生日（年） -->
 |month_birth_at|date|null: false|           <!-- 誕生日（月） -->
 |day_birth_at|date|null: false|             <!-- 誕生日（日） -->
-|icon_image|string||                        <!-- ユーザー画像 -->
-|address_id|integer|null: false|            <!-- 住所ID -->
 
 
 ### Association
-- has_many  items
-- has_many  comments
-- has_many  lates
-- has_many  messages
-- has_many  address
+- has_many  items,    dependent: :destroy
+- has_many  comments  dependent: :destroy
+- has_many  lates     dependent: :destroy
+- has_many  messages  dependent: :destroy
 - has_many  orders
+- has_one   address   dependent: :destroy
+- has_one   profiels  dependent: :delete
+- has_one   socialprofiles dependent: :delete
+
+
+
+## profielsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|icon_image|string||                        <!-- ユーザー画像 -->
+|profile_text|text||                        <!-- 自己紹介文 -->
+|user_id|integer|null: false|
+
+### Association
+- belongs_to user
 
 
 ## ordersテーブル
@@ -96,8 +109,8 @@ Things you may want to cover:
 |businnes_stats|integer|null: false|
 
 ### Association
-- belongs_to user
-- belongs_to item
+- belongs_to  user
+- belongs_to  item
 
 
 ## commentsテーブル
@@ -108,10 +121,9 @@ Things you may want to cover:
 |item_id|integer|null: false|
 |text|text|null: false|
 
-
 ### Association
-- belongs_to user
-- belongs_to item
+- belongs_to  user
+- belongs_to  item
 
 
 ## latesテーブル    <!-- 評価テーブル -->
@@ -124,7 +136,7 @@ Things you may want to cover:
 |item_id|integer|null: false|
 
 ### Association
-- belongs_to user
+- belongs_to  user
 
 
 ## brandsテーブル   <!-- ブランドテーブル -->
@@ -134,8 +146,8 @@ Things you may want to cover:
 |name|string|null: false|
 
 ### Association
-- has_many items
-- has_many category through :bland-categorie
+- has_many  items
+- has_many  category through :bland-categorie
 
 
 ## categoriesテーブル
@@ -147,8 +159,8 @@ Things you may want to cover:
 
 ### Association
 - belongs_to :parent, class_name: :Category
-- has_many :children, class_name: :Category, foreign_key: :parent_id
-- has_many blands through :bland-categorie
+- has_many   :children, class_name: :Category, foreign_key: :parent_id
+- has_many   blands through :bland-categorie
 
 
 ## bland-categorieテーブル
@@ -159,11 +171,12 @@ Things you may want to cover:
 |category_id|references|forgin_key: true,index: true|
 
 ### Association
-  belongs_to bland
-  belongs_to category
+- belongs_to  bland
+- belongs_to  category
 
 
 ## messagesテーブル
+
 |Column|Type|Options|
 |------|----|-------|
 |seller_id|integer|null: false|
@@ -171,7 +184,19 @@ Things you may want to cover:
 |text|text|null: false|
 
 ### Association
-- belongs_to user
+- belongs_to  user
+- belongs_to  item
+
+
+
+## prefecturesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|prefecture|string|null: false|                 <!--  都道府県 -->
+
+### Association
+- has_many  address
 
 
 ## addressテーブル
@@ -180,13 +205,14 @@ Things you may want to cover:
 |------|----|-------|
 |user_id|integer|null: false|
 |post_number|integer|null: false,index: false|    <!-- 住所 -->
-|prefecture|string|null: false|                   <!--  都道府県 -->
 |city|string|null: false|                         <!-- 市区町村 -->
 |town|string|null: false|                         <!-- 番地 -->
 |building|string||                                <!-- 建物名 -->
+|prefecture_id|integenull: false|
 
 ### Association
-- belongs_to user
+- belongs_to  user
+- belongs_to  prefectures
 
 
 ## socialprofilesテーブル
@@ -199,6 +225,7 @@ Things you may want to cover:
 |google_name|string|null: false,index: false|
 |facebook_email|string|null: false|
 |google_email|string|null: false|
+|user_id|integer|null: false|
 
 
 ### Association
