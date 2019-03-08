@@ -177,7 +177,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|seller_id|integer|null: false|
+|user_id|integer|null: false|
 |buyer_id|integer|null: false|
 |text|text|null: false|
 
@@ -191,7 +191,7 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|prefecture|string|null: false|                 <!--  都道府県 -->
+|name|string|null: false|                 <!--  都道府県 -->
 
 ### Association
 - has_many  address
