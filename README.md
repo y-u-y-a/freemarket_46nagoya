@@ -64,16 +64,9 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|first_name|string|null: false|             <!-- 名前 -->
-|last_name|string|null: false|              <!-- 苗字 -->
-|first_name_kana|string|null: false|        <!-- 名前（カナ） -->
-|last_name_kana|string|null: false|         <!-- 苗字（カナ） -->
 |nickname|string|null: false,index: true|   <!-- ニックネーム -->
-|phone_number|integer|null: false,unique: true|          <!-- 電話番号 -->
-|year_birth_at|date|null: false|            <!-- 誕生日（年） -->
-|month_birth_at|date|null: false|           <!-- 誕生日（月） -->
-|day_birth_at|date|null: false|             <!-- 誕生日（日） -->
-
+|avatar|string||                            <!-- ユーザー画像 -->
+|profile_text|text||                        <!-- 自己紹介文 -->
 
 ### Association
 - has_many  items,    dependent: :destroy
@@ -86,13 +79,18 @@ Things you may want to cover:
 - has_one   socialprofiles dependent: :delete
 
 
-
 ## profielsテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|icon_image|string||                        <!-- ユーザー画像 -->
-|profile_text|text||                        <!-- 自己紹介文 -->
+|first_name|string|null: false|             <!-- 名前 -->
+|last_name|string|null: false|              <!-- 苗字 -->
+|first_name_kana|string|null: false|        <!-- 名前（カナ） -->
+|last_name_kana|string|null: false|         <!-- 苗字（カナ） -->
+|phone_number|integer|null: false,unique: true|          <!-- 電話番号 -->
+|year_birth_at|date|null: false|            <!-- 誕生日（年） -->
+|month_birth_at|date|null: false|           <!-- 誕生日（月） -->
+|day_birth_at|date|null: false|             <!-- 誕生日（日） -->
 |user_id|integer|null: false|
 
 ### Association
