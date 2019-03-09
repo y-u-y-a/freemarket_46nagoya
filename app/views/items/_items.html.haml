@@ -1,0 +1,63 @@
+.swiper-container
+  .swiper-wrapper
+    .swiper-slide
+      = image_tag("/assets/mercari2.png", class: "slide-pc")
+%section.pickup-container
+  %h2.pickup-container__title
+    ピックアップカテゴリー
+  %section.items-box-container
+    %h3.text-center
+      = link_to root_path, class: "new-item" do
+        新着アイテム
+    .items-box-container__list.clearfix
+      %section.items-boxes
+        = link_to root_path, class: "item-link decoration-none" do
+          %figure.items-boxes__photo
+            = image_tag("/assets/item-sample.jpg")
+          .items-box-explain
+            %h3.items-box-explain__item-name
+              スプリングコート
+            .items-box-num.clearfix
+              .items-box-num__price
+                ¥17,000
+              %p.item-box-num__tax
+                (税込)
+      %section.items-boxes
+        = link_to root_path, class: "item-link decoration-none" do
+          %figure.items-boxes__photo
+            = image_tag("/assets/item-sample.jpg")
+          .items-box-explain
+            %h3.items-box-explain__item-name
+              スプリングコート
+            .items-box-num.clearfix
+              .items-box-num__price
+                ¥17,000
+              %p.item-box-num__tax
+                (税込)
+      %section.items-boxes
+        = link_to root_path, class: "item-link decoration-none" do
+          %figure.items-boxes__photo
+            = image_tag("/assets/item-sample.jpg")
+          .items-box-explain
+            %h3.items-box-explain__item-name
+              スプリングコート
+            .items-box-num.clearfix
+              .items-box-num__price
+                ¥17,000
+              %p.item-box-num__tax
+                (税込)
+      %section.items-boxes
+        = link_to root_path, class: "item-link decoration-none" do
+          %figure.items-boxes__photo
+            = image_tag("/assets/item-sample.jpg")
+          .items-box-explain
+            %h3.items-box-explain__item-name
+              スプリングコート
+            .items-box-num.clearfix
+              .items-box-num__price
+                ¥17,000
+              %p.item-box-num__tax
+                (税込)
+    .view-all.l-right
+      = link_to root_path do
+        すべての商品を見る

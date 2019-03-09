@@ -1,0 +1,128 @@
+header {
+  height: 90px;
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 8px 0 0;
+  .logo-and-search {
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    &__logo {
+    width: 134px;
+      img {
+        width: 134px;
+      }
+    }
+    &__search {
+      position: relative;
+      width: calc(100% - (134px + 16px));
+      a {
+        color: black;
+      }
+      input {
+        width: 100%;
+        height: 36px;
+        padding: 9px 32px 9px 8px;
+        background: #fafafa;
+        border-radius: 4px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+      }
+      i {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 36px;
+        line-height: 36px;
+        cursor: pointer;
+        text-align: center;
+      }
+    }
+  }
+  .lists {
+    height: 32px;
+    margin: 8px 0 0 0;
+    &__left {
+      ul{
+        margin: 0;
+        padding: 0;
+        .categories {
+          position: relative;
+          display: inline-block;
+          h2 {
+            font-size: 13px;
+            font-weight: 400;
+            margin: 0;
+            a {
+              display: block;
+              color: #333;
+              text-decoration: none;
+            }
+          }
+        }
+        .brands {
+          position: relative;
+          display: inline-block;
+          padding: 0 0 0 16px;
+          h2 {
+            font-size: 13px;
+            font-weight: 400;
+            a {
+              display: block;
+              color: #333;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+    &__right {
+      .signin-signup {
+        margin: 0;
+        list-style: none;
+        position: relative;
+        .signin-btn {
+          float: left;
+          margin: 0;
+          height: 32px;
+          width: 78px;
+          line-height: 32px;
+          text-align: center;
+          &__text {
+            display: block;
+            background: #ea352d;
+            border: 1px solid #ea352d;
+            color: white;
+            font-size: 13px;
+            text-decoration: none;
+            padding: 0 12px;
+            border-radius: 4px;
+          }
+        }
+        .signup-btn {
+          float: right;
+          display: inline-block;
+          height: 32px;
+          width: 106px;
+          margin: 0 0 0 11px;
+          border-radius: 4px;
+          &__text {
+            display: block;
+            border: 1px solid #0099e8;
+            background: #fff;
+            color: #0099e8;
+            font-size: 14px;
+            text-decoration: none;
+            padding: 7px 16px;
+            text-align: center;
+            border-radius: 4px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.account {
+  margin: 0;
+}

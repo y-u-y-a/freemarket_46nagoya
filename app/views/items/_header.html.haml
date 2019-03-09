@@ -1,0 +1,41 @@
+.default-container
+  %header
+    .logo-and-search.clearfix
+      =link_to root_path do
+        = image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2845599746", class: "logo-and-search__logo left-float")
+      .search
+        %form.logo-and-search__search.right-float
+          %input{value:"", placeholder:"キーワードから探す" }
+          = link_to root_path do
+            %i.fa.fa-search
+    .lists.clearfix
+      .lists__left.left-float
+        %ul.lists-menu
+          %li.categories
+            %h2
+              = link_to root_path do
+                カテゴリーから探す
+          %li.brands
+            %h2
+              = link_to root_path do
+                ブランドから探す
+      .lists__right.right-float
+        - if user_signed_in?
+          %ul.account
+            %li.account__mypage
+              = image_tag("//static.mercdn.net/thumb/members/674401716.jpg?1421835153", class: "", style: "width:32px;border-radius:50%;")
+              = link_to "マイページ", class: ""
+            %li.account__bell
+              %i.far.fa-bell
+                = link_to "お知らせ", class: ""
+            %li.account__bell
+              %i.fal.fa-check
+                = link_to "やることリスト", class: ""
+        - else
+          %ul.signin-signup
+            %li.signin-btn
+              = link_to root_path ,class: "signin-btn__text" do
+                ログイン
+            %li.signup-btn
+              = link_to root_path ,class: "signup-btn__text" do
+                新規登録

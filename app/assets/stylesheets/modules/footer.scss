@@ -1,0 +1,110 @@
+.app-banner {
+  background-color: #212121; // 画像サイズの関係で隙間ができているのでフッターと背景色を合わせて隙間がないように見せてます。
+  .app-banner-pc{
+    .footer-app-bar {
+      height: 260px;
+      width: 100vw;
+    }
+  }
+}
+
+.global-fotter{
+  padding: 60px 0;
+  background: #212121;
+  color: #fff;
+  text-align: center;
+  nav {
+    margin: 0 auto;
+    width: 1020px;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      .footer-cell {
+        display: inline-block;
+        width: 23%;
+        margin: 0 2% 0 0;
+        vertical-align: top;
+        .footer-head{
+          font-size: 16px;
+        }
+        a {
+          text-decoration: none;
+          color: #fff;
+        }
+        li:first-child {
+          margin: 24px 0 0;
+          font-size: 13px;
+        }
+        li {
+          margin: 16px 0 0;
+          font-size: 13px;
+        }
+      }
+      .footer-cell-last {
+        display: inline-block;
+        width: 23%;
+        margin: 0;
+        vertical-align: top;
+        .footer-head{
+          font-size: 16px;
+        }
+        a {
+          text-decoration: none;
+          color: #fff;
+        }
+        li:first-child {
+          margin: 24px 0 0;
+          font-size: 13px;
+        }
+        li {
+          margin: 16px 0 0;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+.footer-nav-lang {
+  .non-active {
+    opacity: 0.3;
+  }
+  a {
+    display: block;
+  }
+}
+
+.footer-logo {
+  display: block;
+  margin: 40px 0 0;
+  text-align: center;
+}
+
+.footer-copyright {
+  margin: 8px 0 0;
+  text-align: center;
+  line-height: 1;
+}
+
+
+.footer-sell-btn {
+  bottom: 32px;
+  right: 32px;
+  width: 160px;
+  height: 160px;
+  position: fixed;
+  z-index: 1;
+  border-radius: 50%;
+  background: #ea352d;
+  text-align: center;
+  &__text {
+    font-size: 22px;
+    margin: 32px 0 0;
+    color: #fff;
+  }
+  .icon-camera {
+    margin: 8px 0 0;
+    font-size: 60px;
+    color: #fff;
+  }
+}

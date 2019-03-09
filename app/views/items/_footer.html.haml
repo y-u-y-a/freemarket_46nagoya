@@ -1,0 +1,125 @@
+%aside.app-banner
+  .app-banner-pc
+    = image_tag("/assets/mercari-sample.jpg", class: "footer-app-bar")
+
+.global-fotter
+  %nav
+    %ul
+      %li.footer-cell
+        %h2.footer-head
+          メルカリについて
+        %ul
+          %li
+            = link_to "https://about.mercari.com/" do
+              会社概要（運営会社）
+          %li
+            = link_to "https://www.mercari.com/jp/privacy/" do
+              プライバシーポリシー
+          %li
+            = link_to "https://www.mercari.com/jp/tos/" do
+              メルカリ利用規約
+          %li
+            = link_to "https://www.mercari.com/jp/tos_paid_point/" do
+              有償ポイントに関する特約
+          %li
+            = link_to "https://www.mercari.com/jp/tos_smartphone_support/" do
+              あんしんスマホサポート制度に関する利用特約
+          %li
+            = link_to "https://www.mercari.com/jp/compliance/" do
+              コンプライアンスポリシー
+          %li
+            = link_to "https://www.mercari.com/jp/data_security/" do
+              個人データの安全管理に係る基本方針
+          %li
+            = link_to "https://www.mercari.com/jp/tokutei/" do
+              特定商取引に関する表記
+          %li
+            = link_to "https://www.mercari.com/jp/shikin_kessai/" do
+              資金決済法に基づく表示
+          %li
+            = link_to "https://about.mercari.com/csr/safety/" do
+              法令順守と犯罪抑止のために
+          %li
+            = link_to "https://www.mercari.com/jp/jobs/" do
+              採用情報
+      %li.footer-cell
+        %h2.footer-head
+          メルカリを見る
+        %ul
+          %li
+            = link_to "https://www.mercari.com/jp/category/" do
+              カテゴリー一覧
+          %li
+            = link_to "https://www.mercari.com/jp/brand/" do
+              ブランド一覧
+          %li
+            = link_to "https://www.mercari.com/jp/area/" do
+              出品地域一覧
+          %li
+            = link_to "https://jp-news.mercari.com/", target: "_blank" do
+              公式ブログ
+          %li
+            = link_to "https://twitter.com/mercari_jp", target: "_blank" do
+              公式Twitter
+          %li
+            = link_to "https://www.facebook.com/mercarijp", target: "_blank" do
+              公式Facebook
+      %li.footer-cell
+        %h2.footer-head
+          ヘルプ＆ガイド
+        %ul
+          %li
+            = link_to "https://www.mercari.com/jp/help_center/" do
+              メルカリガイド
+          %li
+            = link_to "https://www.mercari.com/jp/logo-guidelines/" do
+              メルカリロゴ利用ガイドライン
+          %li
+            = link_to "https://about.mercari.com/press/news/" do
+              お知らせ
+          %li
+            = link_to "https://www.mercari.com/jp/rakuraku-mercari/" do
+              らくらくメルカリ便とは
+          %li
+            = link_to "https://www.mercari.com/jp/yuyu-mercari/" do
+              ゆうゆうメルカリ便とは
+          %li
+            = link_to "https://www.mercari.com/jp/rakuraku-ogata/" do
+              大型らくらくメルカリ便とは
+          %li
+            = link_to "https://www.mercari.com/jp/guide/car/" do
+              車体取引ガイド
+          %li
+            = link_to "https://www.mercari.com/jp/refund-returns/" do
+              返品・返金ポリシー
+          %li
+            = link_to "https://www.mercari.com/jp/safe/description/", target: "_blank" do
+              メルカリあんしん・あんぜん宣言！
+          %li
+            = link_to "https://www.mercari.com/jp/authenticity/" do
+              偽ブランド品撲滅への取り組み
+          %li
+            = link_to "https://www.mercari.com/jp/box/" do
+              メルカリボックス
+      %li.footer-cell-last
+        %h2.footer-head
+          国
+        %ul.footer-nav-lang
+          %li
+            = link_to "https://www.mercari.com/", class: "non-active" do
+              = image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/flag_us.png?2845599746", alt: "", width: "22")
+              United States
+          %li
+            = link_to "https://www.mercari.com/uk/", class: "non-active" do
+              = image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/flag_uk.png?2845599746", alt: "", width: "22")
+              United Kingdom
+          %li
+            = link_to "https://www.mercari.com/jp/", class: "active" do
+              = image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/flag_jp.png?2845599746", alt: "", width: "22")
+              日本
+
+  = link_to "https://www.mercari.com/jp/", class: "footer-logo" do
+    = image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo-white.svg?2845599746", width: "124", height: "33", alt: "mercari")
+  %p.footer-copyright
+    %small
+      &copy; 2019 Mercari
