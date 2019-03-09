@@ -2,59 +2,59 @@
 %section.pickup-container
   %h2.pickup-container__title
     ピックアップカテゴリー
-  %section.items-box-container
-    %h3.text-center
+  %section.items-boxes
+    %h3.items-boxes__category.text-center
       = link_to root_path, class: "new-item" do
         新着アイテム
-    .items-box-container__list
-      %section.items-boxes
-        = link_to root_path, class: "item-link decoration-none" do
-          %figure.items-boxes__photo
+    .items-boxes__lists
+      %section.items-card
+        = link_to root_path, class: "item-link" do
+          %figure.items-card__photo
             = image_tag("/assets/item-sample.jpg")
-          .items-box-explain
-            %h3.items-box-explain__item-name
+          .items-card-intro
+            %h3.items-card-intro__item-name
               スプリングコート
-            .items-box-num
-              .items-box-num__price
+            .items-card-num
+              .items-card-num__price
                 ¥17,000
-              %p.item-box-num__tax
+              %p.item-card-num__tax
                 (税込)
-      %section.items-boxes
-        = link_to root_path, class: "item-link decoration-none" do
-          %figure.items-boxes__photo
+      %section.items-card
+        = link_to root_path, class: "item-link" do
+          %figure.items-card__photo
             = image_tag("/assets/item-sample.jpg")
-          .items-box-explain
-            %h3.items-box-explain__item-name
+          .items-card-intro
+            %h3.items-card-intro__item-name
               スプリングコート
-            .items-box-num
-              .items-box-num__price
+            .items-card-num
+              .items-card-num__price
                 ¥17,000
-              %p.item-box-num__tax
+              %p.item-card-num__tax
                 (税込)
-      %section.items-boxes
-        = link_to root_path, class: "item-link decoration-none" do
-          %figure.items-boxes__photo
+      %section.items-card
+        = link_to root_path, class: "item-link" do
+          %figure.items-card__photo
             = image_tag("/assets/item-sample.jpg")
-          .items-box-explain
-            %h3.items-box-explain__item-name
+          .items-card-intro
+            %h3.items-card-intro__item-name
               スプリングコート
-            .items-box-num
-              .items-box-num__price
+            .items-card-num
+              .items-card-num__price
                 ¥17,000
-              %p.item-box-num__tax
+              %p.item-card-num__tax
                 (税込)
-      %section.items-boxes
-        = link_to root_path, class: "item-link decoration-none" do
-          %figure.items-boxes__photo
+      %section.items-card
+        = link_to root_path, class: "item-link" do
+          %figure.items-card__photo
             = image_tag("/assets/item-sample.jpg")
-          .items-box-explain
-            %h3.items-box-explain__item-name
+          .items-card-intro
+            %h3.items-card-intro__item-name
               スプリングコート
-            .items-box-num
-              .items-box-num__price
+            .items-card-num
+              .items-card-num__price
                 ¥17,000
-              %p.item-box-num__tax
+              %p.item-card-num__tax
                 (税込)
-    .view-all.l-right
+    .items-boxes__view-all.l-right
       = link_to root_path do
         すべての商品を見る
