@@ -1,93 +1,70 @@
-.app-banner {
+.footer-app-bar {
   background-color: #212121; // 画像サイズの関係で隙間ができているのでフッターと背景色を合わせて隙間がないように見せてます。
-  .app-banner-pc{
-    .footer-app-bar {
-      height: 260px;
-      width: 100vw;
-    }
+  &__image {
+    height: 260px;
+    width: 100vw;
   }
 }
 
-.main-fotter{
+footer {
   padding: 60px 0;
   background: #212121;
   color: #fff;
   text-align: center;
-  nav {
+  .footer-nav {
     margin: 0 auto;
     width: 1020px;
-    .global-footer {
-      margin: 0;
-      padding: 0;
-      &__cell {
+    .footer-container {
+      .footer-menu {
         display: inline-block;
         width: 23%;
         margin: 0 2% 0 0;
         vertical-align: top;
-        .footer-head{
+        &__title {
           font-size: 16px;
           font-weight: bold;
         }
         a {
-          text-decoration: none;
           color: #fff;
         }
-        li:first-child {
+        &__list:first-child {
           margin: 24px 0 0;
           font-size: 13px;
         }
-        li {
+        &__list {
           margin: 16px 0 0;
           font-size: 13px;
+          .lang-menu-non-active {
+            opacity: 0.3;
+          }
+          a {
+            display: block;
+          }
+          img {
+            margin: 0 3px 0 0;
+          }
         }
       }
-      &__cell-last {
+      .footer-menu:last-child {
         display: inline-block;
         width: 23%;
         margin: 0;
         vertical-align: top;
-        .footer-head{
-          font-size: 16px;
-          font-weight: bold;
-        }
-        a {
-          text-decoration: none;
-          color: #fff;
-        }
-        li:first-child {
-          margin: 24px 0 0;
-          font-size: 13px;
-        }
-        li {
-          margin: 16px 0 0;
-          font-size: 13px;
-        }
       }
     }
   }
-}
-.footer-nav-lang {
-  .non-active {
-    opacity: 0.3;
-  }
-  a {
+  .footer-logo {
     display: block;
+    margin: 40px 0 0;
+    text-align: center;
+  }
+  .footer-copyright {
+    margin: 8px 0 0;
+    text-align: center;
+    line-height: 1;
+    font-size: 12px;
   }
 }
-
-.footer-logo {
-  display: block;
-  margin: 40px 0 0;
-  text-align: center;
-}
-
-.footer-copyright {
-  margin: 8px 0 0;
-  text-align: center;
-  line-height: 1;
-  font-size: 12px;
-}
-
 
 .footer-sell-btn {
   bottom: 32px;

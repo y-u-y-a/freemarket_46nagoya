@@ -89,7 +89,7 @@ header {
           margin: 0;
           height: 32px;
           width: 78px;
-          line-height: 32px;
+          line-height: 28px;
           text-align: center;
           &__text {
             display: block;
@@ -124,8 +124,4 @@ header {
       }
     }
   }
-}
-
-.account {
-  margin: 0;
 }
