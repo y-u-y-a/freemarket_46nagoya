@@ -4,6 +4,7 @@ header {
   margin: 0 auto;
   padding: 8px 0 0;
   .logo-and-search {
+    @include clearfix;
     height: 36px;
     margin: 0;
     padding: 0;
@@ -53,6 +54,7 @@ header {
             font-size: 13px;
             font-weight: 400;
             margin: 0;
+            line-height: 32px;
             a {
               display: block;
               color: #333;
@@ -67,6 +69,7 @@ header {
           h2 {
             font-size: 13px;
             font-weight: 400;
+            line-height: 32px;
             a {
               display: block;
               color: #333;
@@ -113,7 +116,7 @@ header {
             color: #0099e8;
             font-size: 14px;
             text-decoration: none;
-            padding: 7px 16px;
+            padding: 7px 10px;
             text-align: center;
             border-radius: 4px;
           }

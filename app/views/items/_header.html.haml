@@ -1,6 +1,6 @@
 .default-container
   %header
-    .logo-and-search.clearfix
+    .logo-and-search
       =link_to root_path do
         = image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2845599746", class: "logo-and-search__logo left-float")
       .search
@@ -38,4 +38,4 @@
                 ログイン
             %li.signup-btn
               = link_to root_path ,class: "signup-btn__text" do
-                新規登録
+                新規会員登録

@@ -29,6 +29,7 @@
       }
     }
     &__list {
+      @include clearfix;
       width: auto;
       margin: 0 auto;
       .items-boxes {
@@ -72,6 +73,7 @@
             margin: 0;
           }
           .items-box-num {
+            @include clearfix;
             margin: 8px 0 0;
             p {
               margin: 0;

@@ -2,10 +2,10 @@
   .app-banner-pc
     = image_tag("/assets/mercari-sample.jpg", class: "footer-app-bar")
 
-.global-fotter
+.main-fotter
   %nav
-    %ul
-      %li.footer-cell
+    %ul.global-fotter
+      %li.global-footer__cell
         %h2.footer-head
           メルカリについて
         %ul
@@ -42,7 +42,7 @@
           %li
             = link_to "https://www.mercari.com/jp/jobs/" do
               採用情報
-      %li.footer-cell
+      %li.global-footer__cell
         %h2.footer-head
           メルカリを見る
         %ul
@@ -64,7 +64,7 @@
           %li
             = link_to "https://www.facebook.com/mercarijp", target: "_blank" do
               公式Facebook
-      %li.footer-cell
+      %li.global-footer__cell
         %h2.footer-head
           ヘルプ＆ガイド
         %ul
@@ -101,7 +101,7 @@
           %li
             = link_to "https://www.mercari.com/jp/box/" do
               メルカリボックス
-      %li.footer-cell-last
+      %li.global-footer__cell-last
         %h2.footer-head
           国
         %ul.footer-nav-lang

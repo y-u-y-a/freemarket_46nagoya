@@ -2,41 +2,8 @@
 @import "mixins/mixin";
 @import "mixins/vendor_prefix";
 @import "font-awesome";
+@import "modules/class";
 @import "modules/items";
 @import "modules/main";
 @import "modules/footer";
 @import "modules/header";
-
-* {
-  box-sizing: border-box;
-}
-
-.left-float {
-  float: left;
-}
-
-.right-float {
-  float: right;
-}
-
-.l-left {
-  text-align: left;
-}
-
-.l-right {
-  text-align: right;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.decoration-none {
-  text-decoration: none;
-}
-
-.clearfix:after {
-    content: '';
-    display: block;
-    clear: both;
-}
