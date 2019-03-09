@@ -1,21 +1,38 @@
-%h2 Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      %em
-        (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+%body
+  .single-container
+
+  = render "devise/shared/header"
+
+    %main.single-main
+      %section.l-single-container
+        %h2.l-single-head 新規会員登録
+        .l-single-inner
+          .l-single-content
+            %a.btn-default.btn-mail{:href => ""}
+              %i= fa_icon "envelope lg"
+              メールアドレスで登録
+            %a#facebook-login.btn-default.btn-sns.btn-sns-facebook{:href => ""}
+              %i= fa_icon "facebook-square lg"
+              Facebookで登録
+            %a#google-login.btn-default.btn-sns.btn-sns-google{:href => ""}
+              %img{:src => ""}/
+              Googleで登録
+      %form#login_form_facebook{:action => "/jp/signup/facebook/", :method => "POST", :novalidate => "novalidate"}
+        %input{:name => "__csrf_value", :type => "hidden", :value => ""}/
+        %input{:name => "nickname", :type => "hidden", :value => ""}/
+        %input{:name => "email", :type => "hidden", :value => ""}/
+        %input{:name => "facebook_user_id", :type => "hidden", :value => ""}/
+        %input{:name => "facebook_access_token", :type => "hidden", :value => ""}/
+        %input{:name => "login_type", :type => "hidden", :value => "facebook"}/
+      %form#login_form_google{:action => "/jp/signup/google/", :method => "POST", :novalidate => "novalidate"}
+        %input{:name => "__csrf_value", :type => "hidden", :value => ""}/
+        %input{:name => "nickname", :type => "hidden", :value => ""}/
+        %input{:name => "email", :type => "hidden", :value => ""}/
+        %input{:name => "google_user_id", :type => "hidden", :value => ""}/
+        %input{:name => "google_access_token", :type => "hidden", :value => ""}/
+        %input{:name => "login_type", :type => "hidden", :value => "google"}/
+      %input#google_client_id{:type => "hidden", :value => ""}/
+      %input#facebook_app_id{:type => "hidden", :value => ""}/
+
+  = render "devise/shared/footer"
+

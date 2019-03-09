@@ -1,17 +1,48 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+%body
+  .single-container
+
+  = render "devise/shared/header"
+
+    %main.single-main
+      .login-panel
+        .login-no-account
+          %p アカウントをお持ちでない方はこちら
+          %a{:href => "https://www.mercari.com/jp/signup/?after_save_callback=https%3A%2F%2Fwww.mercari.com%2Fjp%2F"} 新規会員登録
+        .login-form-inner
+          %button#facebook-login.btn-default.btn-sns.btn-sns-facebook
+            %i.icon-facebook
+            Facebookでログイン
+          %button#google-login.btn-default.btn-sns.btn-sns-google
+            Googleでログイン
+        %form{:action => "https://www.mercari.com/jp/login/", :method => "POST", :novalidate => "novalidate"}
+          .login-form-inner
+            .form-group
+              %input.login-input-text.input-default{:name => "email", :placeholder => "メールアドレス", :type => "email", :value => ""}/
+            .form-group
+              %input.login-input-text.input-default{:name => "password", :placeholder => "パスワード", :type => "password"}/
+            .form-group
+              .g-recaptcha.login-captcha{"data-sitekey" => "6LfZGCYTAAAAAHoK-s7Lg5OdYg5Fq4susvALmZoc"}
+            %button.login-submit.btn-default.btn-red{:type => "submit"} ログイン
+            %input{:name => "login_callback", :type => "hidden", :value => "https://www.mercari.com/jp/"}/
+            %input{:name => "__csrf_value", :type => "hidden", :value => ""}/
+            %a{:href => "https://www.mercari.com/jp/password/reset/start/"} パスワードをお忘れの方
+      %form#login_form_facebook{:action => "/jp/login/", :method => "POST", :novalidate => "novalidate"}
+        %input{:name => "__csrf_value", :type => "hidden", :value => ""}/
+        %input{:name => "nickname", :type => "hidden", :value => ""}/
+        %input{:name => "email", :type => "hidden", :value => ""}/
+        %input{:name => "facebook_user_id", :type => "hidden", :value => ""}/
+        %input{:name => "facebook_access_token", :type => "hidden", :value => ""}/
+        %input{:name => "login_type", :type => "hidden", :value => "facebook"}/
+        %input{:name => "login_callback", :type => "hidden", :value => "https://www.mercari.com/jp/"}/
+      %form#login_form_google{:action => "/jp/login/", :method => "POST", :novalidate => "novalidate"}
+        %input{:name => "__csrf_value", :type => "hidden", :value => ""}/
+        %input{:name => "nickname", :type => "hidden", :value => ""}/
+        %input{:name => "email", :type => "hidden", :value => ""}/
+        %input{:name => "google_user_id", :type => "hidden", :value => ""}/
+        %input{:name => "google_access_token", :type => "hidden", :value => ""}/
+        %input{:name => "login_type", :type => "hidden", :value => "google"}/
+        %input{:name => "login_callback", :type => "hidden", :value => "https://www.mercari.com/jp/"}/
+      %input#google_client_id{:type => "hidden", :value => ""}/
+      %input#facebook_app_id{:type => "hidden", :value => ""}/
+
+  = render "devise/shared/footer"
