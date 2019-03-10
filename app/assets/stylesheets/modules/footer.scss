@@ -1,5 +1,5 @@
 .footer-app-bar {
-  background-color: #212121; // 画像サイズの関係で隙間ができているのでフッターと背景色を合わせて隙間がないように見せてます。
+  background-color: $footer-back; // 画像サイズの関係で隙間ができているのでフッターと背景色を合わせて隙間がないように見せてます。
   &__image {
     height: 260px;
     width: 100vw;
@@ -8,8 +8,8 @@
 
 .footer {
   padding: 60px 0;
-  background: #212121;
-  color: #fff;
+  background: $footer-back;
+  color: $white;
   text-align: center;
   &__nav {
     margin: 0 auto;
@@ -17,7 +17,7 @@
     .footer-container {
       .footer-menu {
         display: inline-block;
-        width: 23%;
+        width: $footer-menu-width;
         margin: 0 2% 0 0;
         vertical-align: top;
         &__title {
@@ -25,17 +25,20 @@
           font-weight: bold;
         }
         a {
-          color: #fff;
+          color: $white;
         }
         &__list:first-child {
           margin: 24px 0 0;
-          font-size: 13px;
+          font-size: $footer-list-size;
         }
         &__list {
           margin: 16px 0 0;
-          font-size: 13px;
+          font-size: $footer-list-size;
           .lang-menu-non-active {
             opacity: 0.3;
+          }
+          .lang-menu-icon {
+            width: 22px;
           }
           a {
             display: block;
@@ -47,7 +50,7 @@
       }
       .footer-menu:last-child {
         display: inline-block;
-        width: 23%;
+        width: $footer-menu-width;
         margin: 0;
         vertical-align: top;
       }
@@ -57,6 +60,10 @@
     display: block;
     margin: 40px 0 0;
     text-align: center;
+    .footer__logo--image {
+     width: 124px;
+     height: 33px;
+    }
   }
   &__copyright {
     margin: 8px 0 0;
@@ -79,11 +86,11 @@
   &__text {
     font-size: 22px;
     margin: 32px 0 0;
-    color: #fff;
+    color: $white;
   }
   .icon-camera {
     margin: 8px 0 0;
     font-size: 60px;
-    color: #fff;
+    color: $white;
   }
 }
