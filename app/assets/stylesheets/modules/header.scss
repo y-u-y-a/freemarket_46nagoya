@@ -40,14 +40,12 @@ header {
       }
     }
   }
-  .lists {
+  .header-lists {
     height: 32px;
     margin: 8px 0 0 0;
     &__left {
-      ul{
-        margin: 0;
-        padding: 0;
-        .categories {
+      .lists-menu {
+        &__categories {
           position: relative;
           display: inline-block;
           h2 {
@@ -62,7 +60,7 @@ header {
             }
           }
         }
-        .brands {
+        &__brands {
           position: relative;
           display: inline-block;
           padding: 0 0 0 16px;

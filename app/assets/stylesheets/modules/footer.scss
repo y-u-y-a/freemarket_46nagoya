@@ -6,12 +6,12 @@
   }
 }
 
-footer {
+.footer {
   padding: 60px 0;
   background: #212121;
   color: #fff;
   text-align: center;
-  .footer-nav {
+  &__nav {
     margin: 0 auto;
     width: 1020px;
     .footer-container {
@@ -53,12 +53,12 @@ footer {
       }
     }
   }
-  .footer-logo {
+  &__logo {
     display: block;
     margin: 40px 0 0;
     text-align: center;
   }
-  .footer-copyright {
+  &__copyright {
     margin: 8px 0 0;
     text-align: center;
     line-height: 1;
