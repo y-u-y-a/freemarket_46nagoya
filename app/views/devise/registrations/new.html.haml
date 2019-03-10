@@ -5,21 +5,22 @@
 
 
     // regisrtration_main
-    %main.single-main
+    .single-main
 
-      %section.l-single__container
-        %h2.l-single__head 新規会員登録
-        .l-single__inner
-          .l-single__content
-            %a.btn__default.btn-mail{:href => ""}
+      .single-main__container
+        .single-main__container__head 新規会員登録
+        .single-main__container__inner
+          .single-main__container__inner__content
+
+            %a.btn-default.btn-mail{:href => ""}
               %i= fa_icon "envelope lg"
               メールアドレスで登録
 
-            %a#facebook__login.btn-default.btn__sns.btn-sns-facebook{:href => ""}
+            %a#facebook-login.btn-default.btn-sns.btn-sns-facebook{:href => ""}
               %i= fa_icon "facebook-square lg"
               Facebookで登録
 
-            %a#google__login.btn-default.btn-sns.btn-sns-google{:href => ""}
+            %a#google-login.btn-default.btn-sns.btn-sns-google{:href => ""}
               %img{:src => "/jp/assets/img/common/common/google.svg"}/
               Googleで登録
 
