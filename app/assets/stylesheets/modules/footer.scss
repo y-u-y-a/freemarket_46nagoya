@@ -20,6 +20,12 @@
         width: $footer-menu-width;
         margin: 0 2% 0 0;
         vertical-align: top;
+        &:last-child {
+          display: inline-block;
+          width: $footer-menu-width;
+          margin: 0;
+          vertical-align: top;
+        }
         &__title {
           font-size: 16px;
           font-weight: bold;
@@ -27,13 +33,13 @@
         a {
           color: $white;
         }
-        &__list:first-child {
-          margin: 24px 0 0;
-          font-size: $footer-list-size;
-        }
         &__list {
           margin: 16px 0 0;
           font-size: $footer-list-size;
+          &:first-child {
+            margin: 24px 0 0;
+            font-size: $footer-list-size;
+          }
           .lang-menu-non-active {
             opacity: 0.3;
           }
@@ -47,12 +53,6 @@
             margin: 0 3px 0 0;
           }
         }
-      }
-      .footer-menu:last-child {
-        display: inline-block;
-        width: $footer-menu-width;
-        margin: 0;
-        vertical-align: top;
       }
     }
   }
