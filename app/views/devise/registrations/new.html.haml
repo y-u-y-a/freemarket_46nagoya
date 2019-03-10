@@ -3,20 +3,29 @@
 
     = render "devise/shared/header"
 
+
+    // regisrtration_main
     %main.single-main
-      %section.l-single-container
-        %h2.l-single-head 新規会員登録
-        .l-single-inner
-          .l-single-content
-            %a.btn-default.btn-mail{:href => ""}
+
+      %section.l-single__container
+        %h2.l-single__head 新規会員登録
+        .l-single__inner
+          .l-single__content
+            %a.btn__default.btn-mail{:href => ""}
               %i= fa_icon "envelope lg"
               メールアドレスで登録
-            %a#facebook-login.btn-default.btn-sns.btn-sns-facebook{:href => ""}
+
+            %a#facebook__login.btn-default.btn__sns.btn-sns-facebook{:href => ""}
               %i= fa_icon "facebook-square lg"
               Facebookで登録
-            %a#google-login.btn-default.btn-sns.btn-sns-google{:href => ""}
-              %img{:src => ""}/
+
+            %a#google__login.btn-default.btn-sns.btn-sns-google{:href => ""}
+              %img{:src => "/jp/assets/img/common/common/google.svg"}/
               Googleで登録
+
+
+
+      // hiddenされている部分
       %form#login_form_facebook{:action => "/jp/signup/facebook/", :method => "POST", :novalidate => "novalidate"}
         %input{:name => "__csrf_value", :type => "hidden", :value => ""}/
         %input{:name => "nickname", :type => "hidden", :value => ""}/

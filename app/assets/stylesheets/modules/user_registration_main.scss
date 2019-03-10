@@ -1,75 +1,83 @@
-.single-main{
-  display:block;
-  height:54%;
-  width:100%;
-  .l-single-container{
-    background-color:#ffffff;
-    margin:0 9%;
+.single-container{
+  background-color:#f5f5f5;
+  width:100vw;
+  height:100vh;
 
-    h2{
-      margin:0;
-    }
-    .l-single-head{
-      font-size:22px;
-      padding:36px 16px;
-      text-align:center;
-    }
 
-    .l-single-inner{
-      border-top:1px solid #f5f5f5;
-      width:700px;
-      height:310px;
-      padding:64px;
-      .l-single-content{
-        max-width: 320px;
-        margin:0 auto;
+  // registration_main
+  .single-main{
+    display:block;
+    height:54%;
+    width:100%;
+    .l-single-container{
+      background-color:#ffffff;
+      margin:0 9%;
 
-        .btn-default{
-          position: relative;
-          display: block;
-          width: 100%;
-          line-height: 48px;
-          font-size: 14px;
-          border: 1px solid transparent;
-          cursor: pointer;
-          text-align: center;
-          // -webkit-transition: all ease-out .3s;
-          // transition: all ease-out .3s;
-        }
-        .btn-mail{
-          text-decoration:none;
-          background-color: #eeeeee;
-          color: #000000;
-          i{
-            color:#CCCCCC;
-            position:absolute;
-            top:10px;
-            left:10px;
+      h2{
+        margin:0;
+      }
+      .l-single-head{
+        font-size:22px;
+        padding:36px 16px;
+        text-align:center;
+      }
+
+      .l-single-inner{
+        border-top:1px solid #f5f5f5;
+        width:700px;
+        height:310px;
+        padding:64px;
+        .l-single-content{
+          max-width: 320px;
+          margin:0 auto;
+
+          // 全てのボタン
+          .btn-default{
+            text-decoration:none;
+            position: relative;
+            display: block;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            text-align: center;
+
           }
-
-        }
-        .btn-sns{
-          text-decoration:none;
-          i{
-            position:absolute;
-            top:10px;
-            left:10px;
+          // mailボタンのみ
+          .btn-mail{
+            background-color: #eeeeee;
+            color: #000000;
+            i{
+              color:#CCCCCC;
+              position:absolute;
+              top:10px;
+              left:10px;
+            }
           }
-          img{
-            position:absolute;
-            top:10px;
-            left:10px;
+          // SNSボタンの２つ
+          .btn-sns{
+            i{
+              position:absolute;
+              top:10px;
+              left:10px;
+            }
+            img{
+              position:absolute;
+              top:10px;
+              left:10px;
+            }
           }
-        }
-        .btn-sns-facebook{
-          margin: 16px 0 0;
-          background: #385185;
-          color: #ffffff;
-        }
-        .btn-sns-google{
-          border: #979797 solid 1px;
-          margin: 16px 0 0;
-          color: #333333;
+          .btn-sns-facebook{
+            margin: 16px 0 0;
+            background: #385185;
+            color: #ffffff;
+          }
+          .btn-sns-google{
+            border: #979797 solid 1px;
+            margin: 16px 0 0;
+            color: #333333;
+          }
         }
       }
     }

@@ -3,6 +3,8 @@
 
     = render "devise/shared/header"
 
+    // session_main
+
     %main.single-main
       .login-panel
         .login-no-account
@@ -14,6 +16,8 @@
             Facebookでログイン
           %button#google-login.btn-default.btn-sns.btn-sns-google
             Googleでログイン
+
+        // メールアドレスの入力フォーム
         %form{:action => "https://www.mercari.com/jp/login/", :method => "POST", :novalidate => "novalidate"}
           .login-form-inner
             .form-group
