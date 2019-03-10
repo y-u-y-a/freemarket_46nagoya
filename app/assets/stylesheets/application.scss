@@ -1,8 +1,13 @@
+@import "config/border";
+@import "config/colors";
 @import "reset";
 @import "mixins/mixin";
 @import "mixins/vendor_prefix";
 @import "font-awesome";
+@import "main";
+@import "modules/mypages";
+@import "modules/users";
 
-* {
-  box-sizing: border-box;
-}
+
+
+
