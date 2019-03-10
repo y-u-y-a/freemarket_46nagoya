@@ -2,12 +2,16 @@
 @import "mixins/mixin";
 @import "mixins/vendor_prefix";
 @import "font-awesome";
+
+
 @import "modules/user_registration_main";
 @import "modules/user_session_main";
 @import "modules/_user_header";
 @import "modules/_user_footer";
 
 
-* {
-  box-sizing: border-box;
-}
+@import "modules/valiable";
+@import "modules/class";
+@import "modules/items";
+@import "modules/footer";
+@import "modules/header";
