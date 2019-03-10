@@ -83,6 +83,9 @@
   border-radius: 50%;
   background: #ea352d;
   text-align: center;
+  &__link {
+    text-decoration: none;
+  }
   &__text {
     font-size: 22px;
     margin: 32px 0 0;
