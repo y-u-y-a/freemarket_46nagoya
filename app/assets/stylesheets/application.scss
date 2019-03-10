@@ -2,6 +2,7 @@
 @import "mixins/mixin";
 @import "mixins/vendor_prefix";
 @import "font-awesome";
+<<<<<<< HEAD
 @import "modules/new_item";
 
 * {
@@ -19,3 +20,10 @@ body {
   line-height: 1;
   background: rgb(245, 245, 245);
 }
+=======
+@import "modules/valiable";
+@import "modules/class";
+@import "modules/items";
+@import "modules/footer";
+@import "modules/header";
+>>>>>>> tsurutadesu/master
