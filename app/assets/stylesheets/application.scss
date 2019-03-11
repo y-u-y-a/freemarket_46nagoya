@@ -1,0 +1,28 @@
+@import "config/border";
+@import "config/colors";
+@import "reset";
+@import "modules/slider";
+@import "mixins/mixin";
+@import "mixins/vendor_prefix";
+@import "font-awesome";
+<<<<<<< HEAD
+
+
+@import "modules/user_registration_main";
+@import "modules/user_session_main";
+@import "modules/_user_header";
+@import "modules/_user_footer";
+
+
+
+=======
+@import "main";
+@import "modules/mypages";
+@import "modules/users";
+>>>>>>> tsurutadesu/master
+@import "modules/valiable";
+@import "modules/class";
+@import "modules/items";
+@import "modules/footer";
+@import "modules/header";
+
