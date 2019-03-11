@@ -23,8 +23,8 @@
                     %h3.sell-form__upload-box-head
                       出品画像
                       %span.form-require 必須
-                    %p.max-10-upload 最大10枚までアップロードできます
-                    .sell-dropbox-container.clearfix.state-image-number-10
+                    %p.sell-form__max-10-upload 最大10枚までアップロードできます
+                    .sell-form__dropbox-container.clearfix.state-image-number-10
                       .sell-upload-items-container
                         .sell-upload-items.have-item-0
                           %ul
@@ -35,7 +35,7 @@
                             ドラッグアンドドロップ
                             またはクリックしてファイルをアップロード
                         %i.icon-camera
-                  .sell-content
+                  .sell-form__content
                     .form-group
                       %label
                         商品名
@@ -47,7 +47,7 @@
                         商品の説明
                         %span.form-require 必須
                       %textarea.textarea-default{:placeholder => "商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)      　 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", :rows => "5"}
-                  .sell-content.item-detail.clearfix
+                  .sell-form__content.item-detail.clearfix
                     %h3.sell-sub-head 商品の詳細
                     .sell-form-box
                       .form-group
@@ -86,7 +86,7 @@
                             %option{:value => "5"} 傷や汚れあり
                             %option{:value => "6"} 全体的に状態が悪い
                           %i.fa.fa-angle-down
-                  .sell-content.item-delivery.clearfix
+                  .sell-form__content.item-delivery.clearfix
                     %h3.sell-sub-head 配送について
                     %a.form-question{:href => "#", :target => "_blank"} ?
                     .sell-form-box
@@ -167,7 +167,7 @@
                             %option{:value => "2"} 2~3日で発送
                             %option{:value => "3"} 4~7日で発送
                           %i.fa.fa-angle-down
-                  .sell-content.item-price.clearfix
+                  .sell-form__content.item-price.clearfix
                     %h3.sell-sub-head 販売価格(300~9,999,999)
                     %a.form-question{:href => "", :target => "_blank"} ?
                     .sell-form-box
@@ -191,7 +191,7 @@
                           .l-right -
                   .modal{:role => "dialog", :tabindex => "-1"}
                     .modal-inner
-                  .sell-content.sell-btn-box
+                  .sell-form__content.sell-btn-box
                     %div
                       %p
                         %a.blue-font{:href => "", :target => "_blank"} 禁止されている出品

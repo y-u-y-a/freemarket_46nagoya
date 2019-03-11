@@ -61,16 +61,16 @@ body {
               font-size: 16px;
               font-weight: bold;
             }
-            .max-10-upload {
+            .sell-form__max-10-upload {
               margin: 8px 0 0;
               line-height: 1.5;
               font-size: 14px;
             }
-            .sell-dropbox-container {
+            .sell-form__dropbox-container {
               display: block;
               width: 620px;
             }
-            .sell-dropbox-container.state-image-number-10 {
+            .sell-form__dropbox-container.state-image-number-10 {
                 display: block;
                 width: 620px;
                 margin: 16px auto 0;
@@ -133,6 +133,10 @@ body {
             overflow: auto;
             margin-top: 5px;
           }
+          &__content {
+            padding: 40px;
+            border-top: 1px solid #eee;
+          }
           .item-detail {
             height: 265px;
           }
@@ -158,6 +162,9 @@ body {
             .clearfix-commission {
               border-bottom: 1px solid #ccc;
               padding: 25px 0;
+              .l-right-commission {
+                transform: translateY(-20px);
+              }
             }
             .bold {
               font-weight: bold;
@@ -259,11 +266,6 @@ body {
 
 .sell-form-box ul {
   list-style: none;
-}
-
-.sell-content {
-  padding: 40px;
-  border-top: 1px solid #eee;
 }
 
 .form-group:first-child {
@@ -374,8 +376,4 @@ body {
 .sell-price .bold .l-right {
     font-size: 34px;
     transform: translateY(-20px);
-}
-
-.l-right-commission {
-  transform: translateY(-20px);
 }
