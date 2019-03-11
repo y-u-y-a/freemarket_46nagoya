@@ -1,0 +1,39 @@
+.swiper-container{
+  width: 100vw;
+  .swiper-slide {
+    &__image {
+      height: 390px;
+      width: 100vw;
+    }
+  }
+  /* 全体のスタイル */
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    opacity: .5; /* 半透明（デフォルトでは0.2） */
+  }
+  /* 現在のスライドのスタイル */
+  .swiper-pagination-bullet-active {
+    width: 12px;
+    height: 12px;
+    opacity: .8;
+    background: rgba(0,0,0,0.5);
+  }
+  .swiper-button-prev {
+    left: 80px;
+    height: 46px;
+    background-image: url(/assets/carousel-prev.png) !important;
+  }
+  .swiper-button-next {
+    right: 80px;
+    height: 46px;
+    background-image: url(/assets/carousel-next.png) !important;
+  }
+}
+#pagination{
+  bottom: 20px;
+  span {
+    margin-right: 15px;
+  }
+}
