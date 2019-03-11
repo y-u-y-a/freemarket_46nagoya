@@ -8,19 +8,19 @@
     %title 出品 - メルカリ　スマホでかんたん　フリマアプリ
   %body
     .single-container
-      %header.single-header
+      %header.single-container__header
         %h1
           %a{:href => ""}
             %img{:alt => "mercari", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2845599746"}/
       %main.single-main
-        %section.l-single-container.buy-item-container
+        %section.single-main__l-container.buy-item-container
           #sell-container
             %div{"data-reactroot" => ""}
               .sell-container-inner
                 %h2.l-single-head 商品の情報を入力
                 %form.sell-form
-                  .sell-upload-box
-                    %h3.sell-upload-head
+                  .sell-form__upload-box
+                    %h3.sell-form__upload-box-head
                       出品画像
                       %span.form-require 必須
                     %p.max-10-upload 最大10枚までアップロードできます
@@ -34,6 +34,7 @@
                           :preserve
                             ドラッグアンドドロップ
                             またはクリックしてファイルをアップロード
+                        %i.icon-camera
                   .sell-content
                     .form-group
                       %label
@@ -70,7 +71,7 @@
                               %option{:value => "1027"} チケット
                               %option{:value => "1318"} 自動車・オートバイ
                               %option{:value => "10"} その他
-                            %i.fas.fa-angle-down
+                            %i.fa.fa-angle-down
                       .form-group
                         %label
                           商品の状態
@@ -84,7 +85,7 @@
                             %option{:value => "4"} やや傷や汚れなし
                             %option{:value => "5"} 傷や汚れあり
                             %option{:value => "6"} 全体的に状態が悪い
-                          %i.fas.fa-angle-down
+                          %i.fa.fa-angle-down
                   .sell-content.item-delivery.clearfix
                     %h3.sell-sub-head 配送について
                     %a.form-question{:href => "#", :target => "_blank"} ?
@@ -98,7 +99,7 @@
                             %option{:value => ""} ---
                             %option{:value => "2"} 送料込み(出品者負担)
                             %option{:value => "1"} 着払い(購入者負担)
-                          %i.fas.fa-angle-down
+                          %i.fa.fa-angle-down
                       .form-group
                         %label
                           未発送の地域
@@ -154,7 +155,7 @@
                             %option{:value => "46"} 鹿児島県
                             %option{:value => "47"} 沖縄県
                             %option{:value => "99"} 未定
-                          %i.fas.fa-angle-down
+                          %i.fa.fa-angle-down
                       .form-group
                         %label
                           発送までの日数
@@ -165,7 +166,7 @@
                             %option{:value => "1"} 1~2日で発送
                             %option{:value => "2"} 2~3日で発送
                             %option{:value => "3"} 4~7日で発送
-                          %i.fas.fa-angle-down
+                          %i.fa.fa-angle-down
                   .sell-content.item-price.clearfix
                     %h3.sell-sub-head 販売価格(300~9,999,999)
                     %a.form-question{:href => "", :target => "_blank"} ?
