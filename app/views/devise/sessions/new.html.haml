@@ -1,7 +1,7 @@
 %body
   .single-container
-
     = render "devise/shared/header"
+
 
     .login-main
       .login-panel
@@ -10,16 +10,28 @@
           %p アカウントをお持ちでない方はこちら
           = link_to "新規会員登録", new_user_registration_path
 
-
         // SNSでログイン
         .login-panel__sns-account
-          %a#facebook-login.sns-account__btn.btn-facebook{href: ""}
-            %i= fa_icon "facebook-square lg"
-            Facebookでログイン
+          %button#facebook-login.btn-sns.btn-facebook
+            = link_to do
+              %span Facebookで登録
+              = fa_icon "facebook-square lg", class: "icon-facebook"
 
-          %a#google-login.sns-account__btn.btn-google{href: ""}
-            %img{src: "/assets/google.png"}
-            Googleでログイン
+          %button#google-login.btn-sns.btn-google
+            = link_to do
+              %span Googleで登録
+              = image_tag("/assets/google.png", class: "image-google")
+
+
+        / // SNSでログイン
+        / .login-panel__sns-account
+        /   %a#facebook-login.sns-account__btn.btn-facebook{href: ""}
+        /     %i= fa_icon "facebook-square lg"
+        /     Facebookでログイン
+
+        /   %a#google-login.sns-account__btn.btn-google{href: ""}
+        /     %img{src: "/assets/google.png"}
+        /     Googleでログイン
 
 
         // メールアドレスでログイン

@@ -1,5 +1,6 @@
 .single-container{
-  // registration_main
+  padding: 0 0 220px;
+  // 新規登録画面
   .signup-main{
     display:block;
 
@@ -27,7 +28,6 @@
           // 全てのボタン
           .btn-default{
             text-decoration:none;
-            position: relative;
             display: block;
             width: 100%;
             line-height: 48px;
@@ -35,27 +35,25 @@
             border: 1px solid transparent;
             cursor: pointer;
             text-align: center;
-
           }
           // mailボタンのみ
           .btn-mail{
+            position: relative;
             background-color: #eeeeee;
-            color: #000000;
-            i{
-              color:#CCCCCC;
-              position:absolute;
-              top:10px;
-              left:10px;
+            span{
+              color:black;
             }
           }
           // SNSボタンの２つ
           .btn-sns{
-            i{
+            position: relative;
+            .icon-facebook{
               position:absolute;
-              top:10px;
-              left:10px;
+              top:20px;
+              left:20px;
+              color:white;
             }
-            img{
+            .image-google{
               position:absolute;
               top: 14px;
               left: 16px;
@@ -66,15 +64,25 @@
           .btn-facebook{
             margin: 16px 0 0;
             background: #385185;
-            color: #ffffff;
+            span{
+              color:white;
+            }
           }
           .btn-google{
             border: #979797 solid 1px;
             margin: 16px 0 0;
-            color: #333333;
+            span{
+              color:black;
+            }
           }
         }
       }
     }
   }
+}
+.icon-mail{
+  color:#CCCCCC;
+  position:absolute;
+  top:20px;
+  left:20px;
 }
