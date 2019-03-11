@@ -1,3 +1,69 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.l-container {
+  width: 1020px;
+  margin: 40px auto 0;
+  padding-bottom: 40px;
+  display: block;
+  @include clearfix;
+  .l-side {
+    width: 280px;
+    margin: 0 40px 0 0;
+    float: left;
+    .mypage-nav {
+      &__head {
+        font-size: 16px;
+        margin-top: 40px;
+        font-weight: bold;
+      }
+      &__list {
+        li {
+          border-top: $border_light_gray;
+        }
+        li:first-child {
+          border: none;
+        }
+        &--margin-top {
+          margin-top: 8px;
+          li {
+            border-top: $border_light_gray;
+          }
+          li:first-child {
+            border: none;
+          }
+        }
+        &__item:active {
+          background-color: $light_gray;
+          font-weight: 600;
+        }
+        &__item {
+          position: relative;
+          color: $light_black;
+          display: block;
+          min-height: 48px;
+          padding: 16px;
+          background-color: $white;
+          .mypage-nav-number {
+            position: absolute;
+            top: 50%;
+            right: 32px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #ea352d;
+            text-align: center;
+            line-height: 24px;
+            color: $white;
+            transform: translate(0, -50%);
+          }
+          .mypage-icon {
+            position: absolute;
+            float: right;
+            font-size: 1.5rem;
+            right: 16px;
+            color: #ccc;
+            transform: translate(0, -15%);
+          }
+        }
+      }
+    }
+  }
+}
