@@ -23,17 +23,6 @@
               = image_tag("/assets/google.png", class: "image-google")
 
 
-        / // SNSでログイン
-        / .login-panel__sns-account
-        /   %a#facebook-login.sns-account__btn.btn-facebook{href: ""}
-        /     %i= fa_icon "facebook-square lg"
-        /     Facebookでログイン
-
-        /   %a#google-login.sns-account__btn.btn-google{href: ""}
-        /     %img{src: "/assets/google.png"}
-        /     Googleでログイン
-
-
         // メールアドレスでログイン
         %form{ action: "https://www.mercari.com/jp/login/", method: "POST", novalidate: "novalidate"}
           // 入力フォーム
