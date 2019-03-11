@@ -86,7 +86,7 @@ checked program was:
 "clang -o conftest -I/Users/yuya/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin18 -I/Users/yuya/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/yuya/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/yuya/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -D_GNU_SOURCE   -O3 -Wno-error=shorten-64-to-32  -pipe conftest.c  -L. -L/Users/yuya/.rbenv/versions/2.3.1/lib -L. -L/Users/yuya/.rbenv/versions/2.3.1/lib  -fstack-protector -L/usr/local/lib     -lruby-static -framework CoreFoundation  -lpthread -ldl -lobjc "
 Undefined symbols for architecture x86_64:
   "_mremap", referenced from:
-      _t in conftest-0313cb.o
+      _t in conftest-de8c43.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:
@@ -287,7 +287,7 @@ checked program was:
 "clang -o conftest -I/Users/yuya/.rbenv/versions/2.3.1/include/ruby-2.3.0/x86_64-darwin18 -I/Users/yuya/.rbenv/versions/2.3.1/include/ruby-2.3.0/ruby/backward -I/Users/yuya/.rbenv/versions/2.3.1/include/ruby-2.3.0 -I. -I/Users/yuya/.rbenv/versions/2.3.1/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT   -D_GNU_SOURCE  -D_BSD_SOURCE   -O3 -Wno-error=shorten-64-to-32  -pipe conftest.c  -L. -L/Users/yuya/.rbenv/versions/2.3.1/lib -L. -L/Users/yuya/.rbenv/versions/2.3.1/lib  -fstack-protector -L/usr/local/lib     -lruby-static -framework CoreFoundation  -lpthread -ldl -lobjc "
 Undefined symbols for architecture x86_64:
   "_rb_thread_blocking_region", referenced from:
-      _t in conftest-a40eef.o
+      _t in conftest-ddf0bc.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 checked program was:

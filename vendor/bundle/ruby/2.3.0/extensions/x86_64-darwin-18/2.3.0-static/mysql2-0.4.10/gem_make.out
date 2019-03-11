@@ -1,5 +1,5 @@
 current directory: /Users/yuya/freemarket_46nagoya/vendor/bundle/ruby/2.3.0/gems/mysql2-0.4.10/ext/mysql2
-/Users/yuya/.rbenv/versions/2.3.1/bin/ruby -r ./siteconf20190308-72086-pje6jd.rb extconf.rb
+/Users/yuya/.rbenv/versions/2.3.1/bin/ruby -r ./siteconf20190311-20791-dpdszt.rb extconf.rb
 checking for rb_absint_size()... yes
 checking for rb_absint_singlebit_p()... yes
 checking for ruby/thread.h... yes
@@ -49,4 +49,4 @@ linking shared-object mysql2/mysql2.bundle
 
 current directory: /Users/yuya/freemarket_46nagoya/vendor/bundle/ruby/2.3.0/gems/mysql2-0.4.10/ext/mysql2
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 mysql2.bundle ./.gem.20190308-72086-1nee399/mysql2
+/usr/bin/install -c -m 0755 mysql2.bundle ./.gem.20190311-20791-py87xn/mysql2
