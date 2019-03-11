@@ -5,17 +5,15 @@
 @import "mixins/mixin";
 @import "mixins/vendor_prefix";
 @import "font-awesome";
-<<<<<<< HEAD
-
-
-=======
 @import "main";
 @import "modules/mypages";
 @import "modules/users";
->>>>>>> tsurutadesu/master
 @import "modules/valiable";
 @import "modules/class";
 @import "modules/items";
 @import "modules/footer";
 @import "modules/header";
-
+@import "modules/user_header";
+@import "modules/user_footer";
+@import "modules/user_registration_main";
+@import "modules/user_session_main";
