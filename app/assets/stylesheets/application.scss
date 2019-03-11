@@ -1,10 +1,16 @@
+@import "config/border";
+@import "config/colors";
 @import "reset";
 @import "modules/slider";
 @import "mixins/mixin";
 @import "mixins/vendor_prefix";
 @import "font-awesome";
+@import "main";
+@import "modules/mypages";
+@import "modules/users";
 @import "modules/valiable";
 @import "modules/class";
 @import "modules/items";
 @import "modules/footer";
 @import "modules/header";
+
