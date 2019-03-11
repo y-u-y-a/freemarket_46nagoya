@@ -1,2 +1,0 @@
-class ItemImage < ApplicationRecord
-end
