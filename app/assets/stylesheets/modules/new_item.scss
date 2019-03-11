@@ -1,15 +1,13 @@
-
 .single-container {
   padding: 0 0 220px;
   background-color: #f5f5f5;
   &__header {
     height: 128px;
     text-align: center;
-    transform: translateY(-8px);
     h1 {
       margin: 40px 0 0;
       display: inline-block;
-      a {
+      .single-container__header-icon {
         width: 185px;
         height: 49px;
         line-height: 49px;
@@ -232,7 +230,7 @@
         }
       }
     }
-    .single-footer-logo {
+    &__logo {
       width: 80px;
       height: 65px;
       margin: 40px auto 0;
@@ -324,7 +322,7 @@
   height: 14px;
   border-radius: 50%;
   background: #0099e8;
-  color: #fff;
+  color: white;
   line-height: 19px;
   font-size: 12px;
   text-align: center;

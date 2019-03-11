@@ -1,8 +1,10 @@
 .single-container
   %header.single-container__header
     %h1
-      %a{:href => ""}
-        %img{:alt => "mercari", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2845599746"}/
+      %figure.single-container__header-icon
+        = link_to root_path do
+          %figure.single-container__header-icon-image
+            = image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2845599746")
   %main.single-main
     %section.single-main__l-container.buy-item-container
       #sell-container
@@ -79,7 +81,7 @@
                       %i.fa.fa-angle-down
               .sell-form__content.item-delivery.clearfix
                 %h3.sell-sub-head 配送について
-                %a.form-question{:href => "#", :target => "_blank"} ?
+                %figure.form-question ?
                 .sell-form-box
                   .form-group
                     %label
@@ -160,7 +162,7 @@
                       %i.fa.fa-angle-down
               .sell-form__content.item-price.clearfix
                 %h3.sell-sub-head 販売価格(300~9,999,999)
-                %a.form-question{:href => "", :target => "_blank"} ?
+                %figure.form-question ?
                 .sell-form-box
                   %ul.sell-price
                     %li.form-group.form-group-price
@@ -185,32 +187,38 @@
               .sell-form__content.sell-btn-box
                 %div
                   %p
-                    %a.blue-font{:href => "", :target => "_blank"} 禁止されている出品
-                    %a 、
-                    %a.blue-font{:href => "", :target => "_blank"} 行為
-                    %a を必ずご確認ください。
+                    %span.blue-font< 禁止されている出品
+                    %span.black-font 、
+                    %span.blue-font 行為
+                    %span.black-font を必ずご確認ください。
                   %p
-                    %a またブランド品でシリアルナンバー等がある場合はご記載ください。
-                    %a.blue-font{:href => "", :target => "_blank"} 偽ブランドの販売
-                    %a は犯罪であり処罰される可能性があります。
+                    %span.black-font またブランド品でシリアルナンバー等がある場合はご記載ください。
+                    %span.blue-font 偽ブランドの販売
+                    %span.black-font は犯罪であり処罰される可能性があります。
                   %p
-                    %a また、出品をもちまして
-                    %a.blue-font{:href => ""} 加盟店規約
-                    %a に同意したことになります
+                    %span.black-font また、出品をもちまして
+                    %span.blue-font 加盟店規約
+                    %span.black-font に同意したことになります
                 %button.btn-default.btn-red{:type => "submit"}
                   出品する
-                %a.btn-default.btn-gray もどる
+                %figure.btn-default.btn-gray
+                  = link_to "もどる", root_path, class: "btn-gray"
             .overlay
   %footer.single-footer
     %nav
       %ul.clearfix.footer-contract
         %li
-          %a.li-privacy{:href => ""} プライバシーポリシー
+          .li-privacy
+            = link_to "プライバシーポリシー"
         %li
-          %a.li-contract{:href => ""} メルカリ利用規約
+          .li-contract
+            = link_to "メルカリ利用規約"
         %li
-          %a{:href => ""} 特定商取引に関する表記
-    %a.single-footer-logo{:href => ""}
-      %img{:alt => "mercari", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?2845599746"}/
+          .li-transaction
+            = link_to "特定商取引に関する表記"
+    .single-footer__logo
+      = link_to root_path do
+        %figure.single-footer__logo-img
+          = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?2845599746"
     %p
       %small © 2019 Mercari
