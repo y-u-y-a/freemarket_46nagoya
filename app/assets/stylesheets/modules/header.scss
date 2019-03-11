@@ -1,104 +1,138 @@
-header {
-  height: 90px;
-  max-width: 1020px;
-  margin: 0 auto;
-  padding: 8px 0 0;
-  .logo-and-search {
-    @include clearfix;
-    height: 36px;
-    &__logo {
-      width: 134px;
-    }
-    &__form {
-      width: 100%;
+.default-container {
+  background-color: $white;
+  header {
+    height: 90px;
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 8px 0 0;
+    .logo-and-search {
+      @include clearfix;
       height: 36px;
-      padding: 9px 32px 9px 8px;
-      background: #fafafa;
-      border-radius: 4px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
+      &__logo {
+        width: 134px;
+      }
+      &__form {
+        width: 100%;
+        height: 36px;
+        padding: 9px 32px 9px 8px;
+        background: #fafafa;
+        border-radius: 4px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+      }
+      &__icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 36px;
+        line-height: 36px;
+        cursor: pointer;
+        text-align: center;
+      }
+      &__search {
+        position: relative;
+        width: calc(100% - (134px + 16px));
+        a {
+          color: black;
+        }
+      }
     }
-    &__icon {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 36px;
-      line-height: 36px;
-      cursor: pointer;
-      text-align: center;
-    }
-    &__search {
-      position: relative;
-      width: calc(100% - (134px + 16px));
-      a {
-        color: black;
+    .header-lists {
+      height: 32px;
+      margin: 8px 0 0 0;
+      &__left {
+        .lists-menu {
+          &__categories {
+            position: relative;
+            display: inline-block;
+          }
+          &__text {
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 32px;
+          }
+          &__link {
+            display: block;
+            color: #333;
+            text-decoration: none;
+          }
+          &__brands {
+            position: relative;
+            display: inline-block;
+            padding: 0 0 0 16px;
+          }
+        }
+      }
+      &__right {
+        .signin-signup {
+          list-style: none;
+          position: relative;
+          .signin-btn {
+            float: left;
+            height: $header-btn-size;
+            width: 78px;
+            line-height: 28px;
+            text-align: center;
+            &__text {
+              display: block;
+              background: $signin-btn-color;
+              border: 1px solid $signin-btn-color;
+              color: white;
+              font-size: 13px;
+              text-decoration: none;
+              padding: 0 12px;
+              border-radius: $header-btn-radius;
+            }
+          }
+          .signup-btn {
+            float: right;
+            display: inline-block;
+            height: $header-btn-size;
+            width: 106px;
+            margin: 0 0 0 11px;
+            &__text {
+              display: block;
+              border: 1px solid $signup-btn-color;
+              background: $white;
+              color: $signup-btn-color;
+              font-size: 14px;
+              text-decoration: none;
+              padding: 7px 10px;
+              text-align: center;
+              border-radius: $header-btn-radius;
+            }
+          }
+        }
       }
     }
   }
-  .header-lists {
-    height: 32px;
-    margin: 8px 0 0 0;
-    &__left {
-      .lists-menu {
-        &__categories {
-          position: relative;
-          display: inline-block;
+  .bread-crumbs {
+    position: relative;
+    border-top: $border_light_gray;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.16);
+    background-color: $white;
+    clear: both;
+    ul {
+      width: 1020px;
+      padding: 17px 16px 16px;
+      font-size: 0;
+      white-space: nowrap;
+      overflow: auto;
+      li {
+        white-space: nowrap;
+        display: inline-block;
+        font-size: 14px;
+        line-height: 1.2;
+        a {
+          color: $light_black;
         }
-        &__text {
-          font-size: 13px;
-          font-weight: 400;
-          line-height: 32px;
+        li:last-child {
+          font-weight: 600;
         }
-        &__link {
-          display: block;
-          color: #333;
-          text-decoration: none;
-        }
-        &__brands {
-          position: relative;
-          display: inline-block;
-          padding: 0 0 0 16px;
-        }
-      }
-    }
-    &__right {
-      .signin-signup {
-        list-style: none;
-        position: relative;
-        .signin-btn {
-          float: left;
-          height: $header-btn-size;
-          width: 78px;
-          line-height: 28px;
-          text-align: center;
-          &__text {
-            display: block;
-            background: $signin-btn-color;
-            border: 1px solid $signin-btn-color;
-            color: white;
-            font-size: 13px;
-            text-decoration: none;
-            padding: 0 12px;
-            border-radius: $header-btn-radius;
-          }
-        }
-        .signup-btn {
-          float: right;
-          display: inline-block;
-          height: $header-btn-size;
-          width: 106px;
-          margin: 0 0 0 11px;
-          &__text {
-            display: block;
-            border: 1px solid $signup-btn-color;
-            background: $white;
-            color: $signup-btn-color;
-            font-size: 14px;
-            text-decoration: none;
-            padding: 7px 10px;
-            text-align: center;
-            border-radius: $header-btn-radius;
-          }
+        .fa-angle-right {
+          margin: 0 8px;
+          font-size: 16px;
+          color: #888;
         }
       }
     }

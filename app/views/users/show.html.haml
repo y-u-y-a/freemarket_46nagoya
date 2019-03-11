@@ -1,3 +1,5 @@
+= render 'items/header'
+
 %main.l-container.clearfix
   = render 'l-side'
   .l-content
@@ -115,3 +117,7 @@
         %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
           %li.mypage-item-not-found.bold
             取引中の商品がありません
+
+= render 'items/sell-button'
+
+= render 'items/footer'
