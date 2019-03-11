@@ -1,0 +1,172 @@
+.l-content {
+  width: 700px;
+  float: right;
+  .mypage-user-icon {
+    background-image: image-url("mypage/mypage.jpg");
+    padding: 20px;
+    background-size: cover;
+    text-align: center;
+    height: 200px;
+    position: relative;
+    a {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      color: $light_black;
+      transform: translate(0, -50%);
+      figure {
+        overflow: hidden;
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        border-radius: 50%;
+        display: block;
+      }
+      h2 {
+        display: block;
+        margin-top: 0.83em;
+        font-weight: bold;
+      }
+      .mypage-number {
+        margin-top: 0.83em;
+        div {
+          display: inline-block;
+          font-weight: 14px;
+        }
+        div:last-child {
+          margin-left: 16px;
+        }
+        .bold {
+          margin-left: 8px;
+          font-size: 16px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .mypage-tab-container {
+    background: $white;
+    &__tabs {
+      background: $light_gray;
+      font-size: 0;
+      font-weight: bold;
+      border: 0;
+      .active {
+        background: $white;
+        border-top: $border_red;
+      }
+      li {
+        width: 50%;
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+
+        h3 {
+          font-size: 22px;
+          a {
+            display: block;
+            color: $light_black;
+            font-size: 16px;
+            line-height: 72px;
+          }
+        }
+      }
+    }
+  }
+  .tab-content {
+    &__mypage-item {
+      display: block;
+      li {
+        position: relative;
+        border-bottom: $border_light_gray;
+      }
+      li:last-child {
+        border: 0;
+      }
+      &__link {
+        display: block;
+        min-height: 80px;
+        padding: 16px;
+        color: $light_black;
+        figure {
+          position: relative;
+          overflow: hidden;
+          float: left;
+          width: 48px;
+          height: 48px;
+          img {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+          }
+        }
+        &__body {
+          margin: 0 40px 0 68px;
+          &__text {
+            line-height: 1.5;
+          }
+          time {
+            display: inline-block;
+            color: #888;
+            .fa-clock-o {
+              margin-right: 8px;
+            }
+            span {
+              vertical-align: middle;
+            }
+          }
+        }
+        .fa-angle-right {
+          font-size: 25px;
+          position: absolute;
+          top: 50%;
+          right: 16px;
+          -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+        }
+      }
+      .mypage-go-list {
+        border: 0;
+        padding: 16px;
+        a {
+          display: block;
+          height: 56px;
+          margin: 0 auto;
+          background: $light_gray;
+          color: $light_black;
+          line-height: 56px;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .mypage-tab-container-bottom {
+    margin-top: 40px;
+    background: $white;
+    &__head {
+      padding: 0 4%;
+      background: #fafafa;
+      font-size: 16px;
+      line-height: 72px;
+    }
+    .tab-content {
+      .mypage-item-not-found {
+        padding: 160px 0 60px;
+        background: url("https://www.mercari.com/jp/assets/img/common/common/logo-gray-icon.svg?82208132");
+        background-repeat: no-repeat;
+        background-position: center 40px;
+        background-size: 78px 85px;
+        text-align: center;
+        font-size: 16px;
+        color: #ccc;
+        font-weight: bold;
+      }
+    }
+  }
+}
