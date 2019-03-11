@@ -19,5 +19,8 @@ $(function(){
       reverseDirection: false
     },
   });
+  $('.swiper-pagination-bullet').hover( function() {
+    $(this).click();
+  })
 });
 
