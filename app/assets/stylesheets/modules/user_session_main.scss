@@ -1,6 +1,6 @@
 .single-container{
   padding: 0 0 220px;
-  .single-main{
+  .login-main{
     display:block;
 
     .login-panel{
@@ -10,7 +10,7 @@
       max-width: none;
 
 // 新規会員登録画面へ
-      .login-panel__no-account{
+      &__no-account{
         padding: 40px 64px;
         text-align: center;
         p{
@@ -29,7 +29,7 @@
       }
 
 // SNSでログイン
-      .login-panel__sns-account{
+      &__sns-account{
         border-top: 1px solid #eee;
         padding: 32px 64px;
         text-align: center;

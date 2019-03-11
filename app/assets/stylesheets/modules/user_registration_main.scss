@@ -1,20 +1,20 @@
 .single-container{
   // registration_main
-  .single-main{
+  .signup-main{
     display:block;
 
-    .single-main__container{
+    .signup-container{
       background-color:#ffffff;
       width: 700px;
       margin: 0 auto;
 
-      .container__header{
+      &__header{
         font-size:22px;
         padding:36px 16px;
         text-align:center;
       }
 
-      .container__inner{
+      &__inner{
         border-top:1px solid #f5f5f5;
         width:700px;
         padding:40px;
