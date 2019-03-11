@@ -11,7 +11,7 @@
           %span マイページ
         %i.fa.fa-angle-right
       %li
-        = link_to card_users_path do
+        = link_to payment_method_users_path do
           %span 支払い方法
 
 %main.l-container
@@ -26,7 +26,7 @@
           %ul.settings-payment-list
         %section.add-credit-card
           .right-single-content
-            = link_to card_create_users_path,class: "btn-default btn-red add-credit-card__link" do
+            = link_to card_registration_users_path,class: "btn-default btn-red add-credit-card__link" do
               %i.fa.fa-credit-card.add-credit-card__icon
               クレジットカードを追加する
         .payment-method

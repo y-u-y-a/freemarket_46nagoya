@@ -5,10 +5,10 @@ class UsersController < ApplicationController
   def show
   end
 
-  def card
+  def payment_method
   end
 
-  def card_create
+  def card_registration
   end
 
 end
