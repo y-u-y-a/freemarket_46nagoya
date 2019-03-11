@@ -1,4 +1,15 @@
-= image_tag("/assets/mercari2.png", class: "mainpage__slide-image")
+.swiper-container
+  .swiper-wrapper
+    .swiper-slide
+      = image_tag("/assets/mercari1.jpg", class: "swiper-slide__image")
+    .swiper-slide
+      = image_tag("/assets/mercari2.png", class: "swiper-slide__image")
+    .swiper-slide
+      = image_tag("/assets/mercari3.jpg", class: "swiper-slide__image")
+  .swiper-button-prev
+  .swiper-button-next
+  .swiper-pagination#pagination
+
 %section.pickup-container
   %h2.pickup-container__title
     ピックアップカテゴリー
