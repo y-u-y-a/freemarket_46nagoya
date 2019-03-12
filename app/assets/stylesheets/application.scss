@@ -1,5 +1,6 @@
 @import "config/border";
 @import "config/colors";
+@import "config/size";
 @import "reset";
 @import "modules/slider";
 @import "mixins/mixin";
@@ -9,13 +10,16 @@
 @import "main";
 @import "modules/mypages";
 @import "modules/users";
-@import "modules/valiable";
 @import "modules/class";
 @import "modules/items";
 @import "modules/footer";
 @import "modules/header";
+<<<<<<< HEAD
 @import "modules/user_header";
 @import "modules/user_footer";
 @import "modules/user_signup_main";
 @import "modules/user_login_main";
 
+=======
+@import "modules/card";
+>>>>>>> tsurutadesu/master
