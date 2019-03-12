@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   end
 
 
-  def registration
+  def signup
   end
 
-  def session
+  def login
   end
 end
