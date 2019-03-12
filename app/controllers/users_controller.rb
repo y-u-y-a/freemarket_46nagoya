@@ -22,5 +22,8 @@ class UsersController < ApplicationController
   def card_registration
   end
 
+  def indentification
+  end
+
 
 end
