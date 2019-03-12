@@ -103,6 +103,75 @@
             }
           }
         }
+        .pc-header-nav {
+          font-size: 0;
+          li:first-child {
+            padding: 0;
+          }
+          li {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            padding: 0 0 0 16px;
+            a {
+              display: inline-block;
+              font-size: 14px;
+              color: $light_black;
+            }
+          }
+          &__user-icon {
+            margin: 0;
+            figure {
+              line-height: 0;
+              display: inline-block;
+              position: relative;
+              height: 32px;
+              margin: 0 auto;
+              vertical-align: middle;
+              div {
+                overflow: hidden;
+                border-radius: 50%;
+              }
+            }
+            div {
+              display: inline-block;
+              margin: 0 0 0 8px;
+              font-size: 14px;
+              vertical-align: middle;
+            }
+          }
+          &__root {
+            position: relative;
+            height: 38px;
+            line-height: 32px;
+            .fa-bell {
+              font-size: 15px;
+              vertical-align: middle;
+            }
+            .fa-check {
+              vertical-align: middle;
+              font-size: 16px;
+              border-style: solid;
+            }
+            span {
+              margin: 0 0 0 8px;
+              vertical-align: middle;
+            }
+            &__count {
+              position: absolute;
+              top: -2px;
+              left: 6px;
+              width: 20px;
+              height: 20px;
+              border-radius: 50%;
+              background-color: $red;
+              text-align: center;
+              line-height: 20px;
+              font-size: 12px;
+              color: $white;
+            }
+          }
+        }
       }
     }
   }
