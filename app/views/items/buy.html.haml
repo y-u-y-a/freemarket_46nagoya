@@ -1,0 +1,104 @@
+.single-container
+  %header.single-container__header
+    %h1
+      %figure.single-container__header-icon
+        = link_to root_path do
+          %figure.single-container__header-icon-image
+            = image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2845599746")
+  %main.single-main
+    %section.l-single-container.buy-item-container
+      %h2.l-single-head 購入を確定しますか？
+      %section.buy-content.buy-item
+        .buy-content-inner
+          %h3.buy-item-image
+            %img.is-higher-width.lazyloaded{:alt => "", "data-src" => "https://static.mercdn.net/thumb/photos/m78002095847_1.jpg?1552029623", :src => "https://static.mercdn.net/thumb/photos/m78002095847_1.jpg?1552029623"}/
+          %p.buy-item-name.bold 【champion】ニット帽
+          %form.buy-form{:action => "https://www.mercari.com/jp/transaction/buy/done/m78002095847/", :method => "POST", :novalidate => "novalidate"}
+            %p.buy-price-ja.bold
+              ¥ 1,200
+              %span.item-shipping-fee.f14.bold 送料込み
+            %ul.buy-accordion.not-have
+              %li.accordion-parent
+                .accordion-toggle
+                  ポイントはありません
+            %ul.buy-price-table
+              %li.buy-price-row.buy-you-pay.bold
+                .buy-price-cell 支払い金額
+                .buy-price-cell
+                  %span{"data-buy-pay" => "1200"} ¥ 1,200
+            %input{:name => "seller_id", :type => "hidden", :value => "713123603"}/
+            %input{:name => "payment_fee", :type => "hidden", :value => "0"}/
+            %input{:name => "payment_amount", :type => "hidden", :value => "1200"}/
+            %input{:name => "price", :type => "hidden", :value => "1200"}/
+            %input{:name => "category_id", :type => "hidden", :value => "371"}/
+            %input{:name => "item_condition", :type => "hidden", :value => "1"}/
+            %input{:name => "shipping_payer", :type => "hidden", :value => "2"}/
+            %input{:name => "shipping_method", :type => "hidden", :value => "9"}/
+            %input{:name => "shipping_duration", :type => "hidden", :value => "1"}/
+            %input{:name => "shipping_class", :type => "hidden", :value => "0"}/
+            %input{:name => "zip_code1", :type => "hidden", :value => "451"}/
+            %input{:name => "zip_code2", :type => "hidden", :value => "0053"}/
+            %input{:name => "paid_method", :type => "hidden", :value => "card"}/
+            %input{:name => "checksum", :type => "hidden", :value => "8a977337ce69814b1b93175013523daf"}/
+            %input{:name => "payment_card_sequence_no", :type => "hidden", :value => "2vJfL3nPEVgobr5rFNBtkgcc"}/
+            %input{:name => "payment_use_last_card_base64", :type => "hidden", :value => "eWVz"}/
+            %input{:name => "item_name_base64", :type => "hidden", :value => "44CQY2hhbXBpb27jgJHjg4vjg4Pjg4jluL0="}/
+            %input{:name => "description_base64", :type => "hidden", :value => "44K544Kt44O855So44Gr6LO85YWl44GX44G+44GX44Gf44GM44CB5Yil44Gu44KC44Gu44KS6LO85YWl44GX44Gf44Gf44KB5Ye65ZOB44GE44Gf44GX44G+44GZ44CCCgrjgr/jgrDjga/lj5bjgaPjgabjgZfjgb7jgYTjgb7jgZfjgZ/jgYzjgIHmlrDlk4Hjgafoh6rlroXkv53nrqHjgZfjgabjgYTjgb7jgZfjgZ/jgIIKCuOCteOCpOOCuiA1Ni41LTU4LjUKCuOCouOCr+ODquODqzEwMOODkeODvOOCu+ODs+ODiA=="}/
+            %input{:name => "brand_name_base64", :type => "hidden", :value => "MTY3Nw=="}/
+            %input{:name => "shipping_from_area_base64", :type => "hidden", :value => "MjM="}/
+            %input{:name => "family_name_base64", :type => "hidden", :value => "5LqV5Ye6"}/
+            %input{:name => "first_name_base64", :type => "hidden", :value => "6b6N5LmL5LuL"}/
+            %input{:name => "family_name_kana_base64", :type => "hidden", :value => "44Kk44OH"}/
+            %input{:name => "first_name_kana_base64", :type => "hidden", :value => "44Oq44Ol44Km44OO44K544Kx"}/
+            %input{:name => "prefecture_base64", :type => "hidden", :value => "5oSb55+l55yM"}/
+            %input{:name => "city_base64", :type => "hidden", :value => "5ZCN5Y+k5bGL5biC6KW/5Yy6"}/
+            %input{:name => "address1_base64", :type => "hidden", :value => "5p6H5p235bO2NS0yNy0yMw=="}/
+            %input{:name => "address2_base64", :type => "hidden", :value => ""}/
+            %input{:name => "telephone_base64", :type => "hidden", :value => ""}/
+            %input{:name => "__csrf_value", :type => "hidden", :value => "a7a8f04cc1e628208c5b5510b732d6dfc836bd95b62d585d5697ffc9f863a8e259f863010900f824197dbc70ac408d81da122d5661c45564dcb049a4b5e904196"}/
+            %input{:name => "_s", :type => "hidden", :value => "U2FsdGVkX18aip1cp3M85nexbRAeAk83BDLAJ7KzqUn_qmYX9qA3FibkVuEI_QlSa5Il8z4J5GhjIjH9v41HqQk6Hf0UO_zIa6Qsq-cm7_qa4ZvpQkaHRWS-do4eCM5p"}/
+            %button.btn-default.btn-red.bold{:type => "submit"} 購入する
+      %section.buy-content.buy-user-info
+        .buy-content-inner
+          %h3 配送先
+          %address.buy-user-info-text
+            〒451-0053
+            %br/
+            愛知県 名古屋市西区
+            枇杷島5-27-23
+            %br/
+            井出 龍之介
+          %p.buy-user-info-text
+          %a.buy-user-info-fix{:href => "https://www.mercari.com/jp/transaction/address/m78002095847/?_s=U2FsdGVkX18aip1cp3M85nexbRAeAk83BDLAJ7KzqUn_qmYX9qA3FibkVuEI_QlSa5Il8z4J5GhjIjH9v41HqQk6Hf0UO_zIa6Qsq-cm7_qa4ZvpQkaHRWS-do4eCM5p"}
+            %span 変更する
+            %i.icon-arrow-right
+      %section.buy-content.buy-user-info{"data-buy" => "pay-method"}
+        .buy-content-inner
+          %h3 支払い方法
+          %p.buy-user-info-text
+            ************8639
+            %br/
+            09 / 22
+          %figure
+            %img{:alt => "visa", :height => "15", :src => "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?2845599746", :width => "49"}/
+          %p
+          %a.buy-user-info-fix{:href => "https://www.mercari.com/jp/transaction/select_card/m78002095847/?_s=U2FsdGVkX18aip1cp3M85nexbRAeAk83BDLAJ7KzqUn_qmYX9qA3FibkVuEI_QlSa5Il8z4J5GhjIjH9v41HqQk6Hf0UO_zIa6Qsq-cm7_qa4ZvpQkaHRWS-do4eCM5p"}
+            %span 変更する
+            %i.icon-arrow-right
+  %footer.single-footer
+    %nav
+      %ul.clearfix
+        %li
+          .li-privacy
+            = link_to "プライバシーポリシー", "https://www.mercari.com/jp/privacy/"
+        %li
+          .li-contract
+            = link_to "メルカリ利用規約", "https://www.mercari.com/jp/tos/"
+        %li
+          .li-transaction
+            = link_to "特定商取引に関する表記", "https://www.mercari.com/jp/tokutei/"
+    %a.single-footer__logo
+      = link_to root_path do
+        %img{:alt => "mercari", :height => "65", :src => "//www-mercari-jp.akamaized.net/assets/img/common/common/logo-gray.svg?2845599746", :width => "80"}/
+    %p
+      %small © 2019 Mercari

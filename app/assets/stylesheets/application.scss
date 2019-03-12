@@ -7,6 +7,7 @@
 @import "mixins/vendor_prefix";
 @import "font-awesome";
 @import "modules/new_item";
+@import "modules/buy_item";
 @import "main";
 @import "modules/mypages";
 @import "modules/users";
@@ -14,12 +15,8 @@
 @import "modules/items";
 @import "modules/footer";
 @import "modules/header";
-<<<<<<< HEAD
 @import "modules/user_header";
 @import "modules/user_footer";
 @import "modules/user_signup_main";
 @import "modules/user_login_main";
-
-=======
 @import "modules/card";
->>>>>>> tsurutadesu/master
