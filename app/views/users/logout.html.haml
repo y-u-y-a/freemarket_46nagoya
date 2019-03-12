@@ -1,0 +1,16 @@
+= render 'items/header'
+= render 'header_nav'
+
+%main.l-container
+  = render 'l-side'
+
+  .l-content
+    .chapter-container
+      %form.chapter-container__single-inner
+        .chapter-container__single-inner__content
+          %button{ type: 'submit', class: 'btn-default btn-red' }
+            ログアウト
+          %input{ type: 'hidden', name: '__csrf_value'}
+
+= render 'items/footer'
+= render 'items/sell-button'
