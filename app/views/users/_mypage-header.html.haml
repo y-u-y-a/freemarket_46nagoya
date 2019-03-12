@@ -1,0 +1,31 @@
+%nav.bread-crumbs
+  %ul
+    %li
+      = link_to root_path do
+        %span メルカリ
+      %i.fa.fa-angle-right
+    %li
+      = link_to '' do
+        %span マイページ
+      - if request.path_info != '/users'
+        %i.fa.fa-angle-right
+    - if request.path_info == '/users/indentification'
+      %li
+        = link_to indentification_users_path do
+          %span 本人情報の確認
+    - if request.path_info == '/users/payment_method'
+      %li
+        = link_to  payment_method_users_path do
+          %span 支払い方法
+    - if request.path_info == '/users/card_registration'
+      %li
+        = link_to  payment_method_users_path do
+          %span 支払い方法
+        %i.fa.fa-angle-right
+      %li
+        = link_to  card_registration_users_path do
+          %span クレジットカード情報入力
+    - if request.path_info == '/users/\d+/'
+      %li
+        = link_to '' do
+          %span プロフィール
