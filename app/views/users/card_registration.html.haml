@@ -1,23 +1,6 @@
 .default-container
   = render 'items/header'
-
-  %nav.bread-crumbs
-    %ul
-      %li
-        = link_to root_path do
-          %span メルカリ
-        %i.fa.fa-angle-right
-      %li
-        = link_to '' do
-          %span マイページ
-        %i.fa.fa-angle-right
-      %li
-        = link_to  payment_method_users_path do
-          %span 支払い方法
-        %i.fa.fa-angle-right
-      %li
-        = link_to  card_registration_users_path do
-          %span クレジットカード情報入力
+  = render 'mypage-header'
 
 %main.l-container
   = render 'l-side'
