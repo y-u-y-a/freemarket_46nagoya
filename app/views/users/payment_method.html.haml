@@ -1,0 +1,38 @@
+.default-container
+  = render 'items/header'
+  %nav.bread-crumbs
+    %ul
+      %li
+        = link_to root_path do
+          %span メルカリ
+        %i.fa.fa-angle-right
+      %li
+        = link_to '#' do
+          %span マイページ
+        %i.fa.fa-angle-right
+      %li
+        = link_to payment_method_users_path do
+          %span 支払い方法
+
+%main.l-container
+  = render 'l-side'
+  .right-content
+    %section.right-container
+      %h2.right-container__title 支払い方法
+      .right-container__inner
+        %section
+          .right-single-content
+            %h3.right-container__sub-title クレジットカード一覧
+          %ul.settings-payment-list
+        %section.add-credit-card
+          .right-single-content
+            = link_to card_registration_users_path,class: "btn-default btn-red add-credit-card__link" do
+              %i.fa.fa-credit-card.add-credit-card__icon
+              クレジットカードを追加する
+        .payment-method
+          = link_to "https://www.mercari.com/jp/help_center/category/6/",target: "_blank", class: "payment-method__link" do
+            %span.payment-method__text 支払い方法について
+            %i.fa.fa-angle-right.payment-method__icon
+
+= render 'items/sell-button'
+= render 'items/footer'
