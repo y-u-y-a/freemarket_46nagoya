@@ -1,17 +1,13 @@
 .single-container
-  %header.single-container__header
-    %h1
-      %figure.single-container__header-icon
-        = link_to root_path do
-          %figure.single-container__header-icon-image
-            = image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2845599746")
-  %main.single-main
+  = render 'single-container'
+  %main.single-container__main
     %section.l-single-container.buy-item-container
       %h2.l-single-head 購入を確定しますか？
       %section.buy-content.buy-item
         .buy-content-inner
           %h3.buy-item-image
-            %img.is-higher-width.lazyloaded{:alt => "", "data-src" => "https://static.mercdn.net/thumb/photos/m78002095847_1.jpg?1552029623", :src => "https://static.mercdn.net/thumb/photos/m78002095847_1.jpg?1552029623"}/
+            %figure.is-higher-width.lazyloaded
+              = image_tag "https://static.mercdn.net/thumb/photos/m78002095847_1.jpg?1552029623" "https://static.mercdn.net/thumb/photos/m78002095847_1.jpg?1552029623"
           %p.buy-item-name.bold 【champion】ニット帽
           %form.buy-form{:action => "https://www.mercari.com/jp/transaction/buy/done/m78002095847/", :method => "POST", :novalidate => "novalidate"}
             %p.buy-price-ja.bold
@@ -62,40 +58,28 @@
         .buy-content-inner
           %h3 配送先
           %address.buy-user-info-text
-            〒451-0053
+            〒453-0013
             %br/
-            愛知県 名古屋市西区
-            枇杷島5-27-23
+            愛知県 名古屋市中村区
+            ○○-○○-○○
             %br/
-            井出 龍之介
+            苗字 名前
           %p.buy-user-info-text
-          %a.buy-user-info-fix{:href => "https://www.mercari.com/jp/transaction/address/m78002095847/?_s=U2FsdGVkX18aip1cp3M85nexbRAeAk83BDLAJ7KzqUn_qmYX9qA3FibkVuEI_QlSa5Il8z4J5GhjIjH9v41HqQk6Hf0UO_zIa6Qsq-cm7_qa4ZvpQkaHRWS-do4eCM5p"}
-            %span 変更する
-            %i.icon-arrow-right
+          %i.buy-user-info-fix.edit-shipping-address
+            = link_to "変更する", 'https://www.mercari.com/jp/transaction/address/m78002095847/?_s=U2FsdGVkX18aip1cp3M85nexbRAeAk83BDLAJ7KzqUn_qmYX9qA3FibkVuEI_QlSa5Il8z4J5GhjIjH9v41HqQk6Hf0UO_zIa6Qsq-cm7_qa4ZvpQkaHRWS-do4eCM5p', class: 'edit-shipping-address'
+            %i.icon-arrow-right.fa.fa-angle-right
       %section.buy-content.buy-user-info{"data-buy" => "pay-method"}
         .buy-content-inner
           %h3 支払い方法
           %p.buy-user-info-text
+            ************1111
             %br/
+            01 / 23
           %figure
-            %img{:alt => "visa", :height => "15", :src => "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?2845599746", :width => "49"}/
+            %img-visa
+              = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?2845599746", class: "img-visa"
           %p
-          %a.buy-user-info-fix{:href => "https://www.mercari.com/jp/transaction/select_card/m78002095847/?_s=U2FsdGVkX18aip1cp3M85nexbRAeAk83BDLAJ7KzqUn_qmYX9qA3FibkVuEI_QlSa5Il8z4J5GhjIjH9v41HqQk6Hf0UO_zIa6Qsq-cm7_qa4ZvpQkaHRWS-do4eCM5p"}
-            %span 変更する
-            %i.icon-arrow-right
-  %footer.single-footer
-    %nav
-      %ul.clearfix
-        %li
-          .li-privacy
-            = link_to "プライバシーポリシー", "https://www.mercari.com/jp/privacy/"
-        %li
-          .li-contract
-            = link_to "メルカリ利用規約", "https://www.mercari.com/jp/tos/"
-        %li
-          .li-transaction
-            = link_to "特定商取引に関する表記", "https://www.mercari.com/jp/tokutei/"
-    %a.single-footer__logo
-      = link_to root_path do
-    %p
-      %small © 2019 Mercari
+          %i.buy-user-info-fix.edit-shipping-address
+            = link_to "変更する", 'https://www.mercari.com/jp/transaction/select_card/m78002095847/?_s=U2FsdGVkX18aip1cp3M85nexbRAeAk83BDLAJ7KzqUn_qmYX9qA3FibkVuEI_QlSa5Il8z4J5GhjIjH9v41HqQk6Hf0UO_zIa6Qsq-cm7_qa4ZvpQkaHRWS-do4eCM5p', class: 'edit-shipping-address'
+            %i.icon-arrow-right.fa.fa-angle-right
+  = render 'single-footer'
