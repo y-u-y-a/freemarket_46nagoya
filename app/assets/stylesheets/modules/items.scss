@@ -1,0 +1,105 @@
+.mainpage {
+  background: #f5f5f5;
+  &__slide-image {
+    height: 390px;
+    width: 100vw;
+  }
+  .pickup-container {
+    padding: 40px 0;
+    width: 940px;
+    margin: 0 auto;
+    &__title {
+      margin: 0;
+      font-size: 28px;
+      text-align: center;
+      p {
+        margin: 0;
+      }
+    }
+    .items-boxes {
+      margin: 0 auto;
+      @include clearfix;
+      &__category {
+        font-size: 22px;
+        margin: 26px 11px;
+        a {
+          text-decoration: none;
+        }
+      }
+      &__lists {
+        @include clearfix;
+        width: auto;
+        margin: 0 auto;
+        .items-card {
+          margin: 0 0 0 20px;
+          width: 213px;
+          position: relative;
+          float: left;
+          a {
+            display: block;
+            color: #333;
+            background-color: white;
+          }
+          &__photo {
+            width: 213px;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            margin: 0;
+            img {
+              position: absolute;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              z-index: 1;
+              width: 100%;
+            }
+          }
+          .items-card-intro {
+            padding: 16px;
+            height: 110px;
+            &__item-name {
+              font-size: 16px;
+              overflow: hidden;
+              position: relative;
+              font-weight: 400;
+              height: 3em;
+              line-height: 1.5;
+              word-break: break-word;
+              white-space: normal;
+              margin: 0;
+            }
+            .items-card-num {
+              @include clearfix;
+              margin: 8px 0 0;
+              p {
+                margin: 0;
+              }
+              &__price {
+                font-size: 16px;
+                font-weight: 600;
+                color: #333;
+              }
+              p {
+                font-size: 10px;
+                clear: both;
+              }
+            }
+          }
+        }
+      }
+    &__view-all {
+      padding: 20px 0 30px;
+      width: 99.5%;
+      font-size: 15px;
+      a {
+        color: #0099e8;
+        text-decoration: none;
+      }
+    }
+    }
+  }
+}
+
+
