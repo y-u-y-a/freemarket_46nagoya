@@ -1,0 +1,64 @@
+%body
+  .single-container
+    = render "users/user_header"
+
+
+    .login-main
+      .login-panel
+        // 新規会員登録画面へ
+        .login-panel__no-account
+          %p アカウントをお持ちでない方はこちら
+          = link_to "新規会員登録", root_path
+
+        // SNSでログイン
+        .login-panel__sns-account
+          %button#facebook-login.btn-sns.btn-facebook
+            = link_to do
+              %span Facebookで登録
+              = fa_icon "facebook-square lg", class: "icon-facebook"
+
+          %button#google-login.btn-sns.btn-google
+            = link_to do
+              %span Googleで登録
+              = image_tag("/assets/google.png", class: "image-google")
+
+
+        // メールアドレスでログイン
+        %form{ action: "https://www.mercari.com/jp/login/", method: "POST", novalidate: "novalidate"}
+          // 入力フォーム
+          .mail-account__field
+            .mail-account__field--address
+              %input.address__input{name: "email", placeholder: "メールアドレス", type: "email", value: ""}
+            .mail-account__field--password
+              %input.password__input{name: "password", placeholder: "パスワード", type: "password"}
+            .mail-account__field--RECAPCHA
+            // ログインボタン
+            %button.mail-account__field--login-btn{type: "submit"} ログイン
+            %input{name: "", type: "hidden", value: ""}
+            %input{name: "", type: "hidden", value: ""}
+            = link_to "パスワードをお忘れの方"
+
+
+      // facebookのhiddenの部分
+      %form#form-facebook{action: "/jp/login/", method: "POST", novalidate: "novalidate"}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+      // googleのhiddenの部分
+      %form#form-google{action: "/jp/login/", method: "POST", novalidate: "novalidate"}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+
+      %input#google_client_id{:type => "hidden", :value => ""}
+      %input#facebook_app_id{:type => "hidden", :value => ""}
+
+    = render "users/user_footer"
