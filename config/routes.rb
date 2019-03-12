@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :items,only: [:index,:new]
   resources :users,only: [:index,:show] do
-    member do
+    collection do
       get :registration
       get :session
     end
