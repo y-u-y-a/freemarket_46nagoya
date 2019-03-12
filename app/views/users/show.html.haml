@@ -1,4 +1,14 @@
-= render 'items/header'
+.default-container
+  = render 'items/header'
+  %nav.bread-crumbs
+    %ul
+      %li
+        = link_to root_path do
+          %span メルカリ
+        %i.fa.fa-angle-right
+      %li
+        = link_to '#' do
+          %span マイページ
 
 %main.l-container.clearfix
   = render 'l-side'

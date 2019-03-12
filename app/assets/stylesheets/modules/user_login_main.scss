@@ -1,0 +1,130 @@
+.single-container{
+  padding: 0 0 220px;
+  // ログイン画面
+  .login-main{
+    display:block;
+
+    .login-panel{
+      background-color:#ffffff;
+      width: 456px;
+      margin: 0 auto;
+      max-width: none;
+
+// 新規会員登録画面へ
+      .login-panel__no-account{
+        padding: 40px 64px;
+        text-align: center;
+        p{
+          font-size: 14px;
+        }
+        a{
+          display: block;
+          margin: 8px 0 0;
+          border: 1px solid #0099e8;
+          background: #0099e8;
+          color: #fff;
+          line-height: 40px;
+          text-decoration: none;
+          cursor:pointer;
+        }
+      }
+
+// SNSでログイン
+      .login-panel__sns-account{
+        border-top: 1px solid #eee;
+        padding: 32px 64px;
+        text-align: center;
+        .btn-sns{
+          text-decoration:none;
+          position: relative;
+          display: block;
+          width: 100%;
+          line-height: 48px;
+          font-size: 14px;
+          border: 1px solid transparent;
+          cursor: pointer;
+          text-align: center;
+          .icon-facebook{
+            position:absolute;
+            top:20px;
+            left:20px;
+            color:white;
+          }
+          .image-google{
+            position:absolute;
+            top: 14px;
+            left: 16px;
+            height: 22px;
+            width: auto;
+          }
+        }
+        .btn-facebook{
+          position: relative;
+          background: #385185;
+          span{
+            color:white;
+          }
+        }
+        .btn-google{
+          position: relative;
+          border: #979797 solid 1px;
+          margin: 16px 0 0;
+          span{
+            color:black;
+          }
+        }
+      }
+// メールアドレスでログイン
+      form{
+        .mail-account__field{
+          padding: 24px 64px 32px;
+          .mail-account__field--address{
+            .address__input{
+              width:100%;
+              padding: 10px 16px 8px;
+              border-radius: 4px;
+              border: 1px solid #cccccc;
+              background: #ffffff;
+              line-height: 1.5;
+              font-size: 16px;
+            }
+          }
+          .mail-account__field--password{
+            margin-top:24px;
+            .password__input{
+              width:100%;
+              padding: 10px 16px 8px;
+              border-radius: 4px;
+              border: 1px solid #cccccc;
+              background: #ffffff;
+              line-height: 1.5;
+              font-size: 16px;
+            }
+          }
+          .mail-account__field--RECAPCHA{
+          }
+          .mail-account__field--login-btn{
+            margin-top: 24px;
+            background: #ea352d;
+            border: 1px solid #ea352d;
+            color: #fff;
+            display: block;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            text-align: center;
+          }
+          a{
+            display: block;
+            margin: 40px 0 0;
+            color: #0099e8;
+            text-decoration: none;
+            font-size:13px;
+          }
+        }
+      }
+    }
+  }
+}
