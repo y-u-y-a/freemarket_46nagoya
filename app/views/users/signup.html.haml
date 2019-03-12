@@ -1,0 +1,49 @@
+%body
+  .single-container
+    = render "users/user_header"
+
+
+    .signup-main
+      .signup-container
+        .signup-container__header 新規会員登録
+        .signup-container__inner
+          .inner__content
+
+            %button.btn-default.btn-mail
+              = link_to do
+                %span メールアドレスで登録
+                = fa_icon "envelope lg", class: "icon-mail"
+
+            %button.btn-default.btn-sns.btn-facebook
+              = link_to do
+                %span Facebookで登録
+                = fa_icon "facebook-square lg", class: "icon-facebook"
+
+            %button.btn-default.btn-sns.btn-google
+              = link_to do
+                %span Googleで登録
+                = image_tag("/assets/google.png", class: "image-google")
+
+
+
+      // hiddenされている部分
+      %form#single-main__form-facebook{action: "", :method => "POST", novalidate: "novalidate"}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: "facebook"}
+
+      %form#single-main__form-google{action: "", method: "POST", novalidate: "novalidate"}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: ""}
+        %input{name: "", type: "hidden", value: "google"}
+
+      %input#google_client_id{:type => "hidden", :value => ""}
+      %input#facebook_app_id{:type => "hidden", :value => ""}
+
+    = render "users/user_footer"
