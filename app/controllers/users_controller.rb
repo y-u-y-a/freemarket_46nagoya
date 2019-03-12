@@ -4,4 +4,11 @@ class UsersController < ApplicationController
 
   def show
   end
+
+
+  def registration
+  end
+
+  def session
+  end
 end
