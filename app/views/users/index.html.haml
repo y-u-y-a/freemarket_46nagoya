@@ -1,0 +1,120 @@
+.default-container
+  = render 'items/header'
+  = render 'mypage-header'
+
+%main.l-container.clearfix
+  = render 'l-side'
+  .l-content
+    %section.mypage-user-icon
+      = link_to '#' do
+        %figure
+          = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: "", width: 60,height: "60"
+        %h2.bold
+          ニックネーム
+        .mypage-number
+          %div
+            評価
+            %span.bold
+              0
+          %div
+            出品数
+            %span.bold
+              0
+
+    %section.mypage-tab-container
+      %ul.mypage-tab-container__tabs
+        %li.active
+          %h3
+            = link_to 'お知らせ','#','data-toggle':'tab'
+        %li
+          %h3
+            = link_to 'やることリスト','#','data-toggle':'tab'
+      .tab-content
+        %ul#mypage-tab-notification.tab-content__mypage-item.tab-name.active
+          %li
+            = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+              %i.fa.fa-angle-right
+              %figure
+                = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+              .tab-content__mypage-item__link__body
+                .tab-content__mypage-item__link__body__text
+                  明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+                %time
+                  %i.fa.fa-clock-o
+                  %span
+                    1 時間前
+          %li
+            = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+              %i.fa.fa-angle-right
+              %figure
+                = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+              .tab-content__mypage-item__link__body
+                .tab-content__mypage-item__link__body__text
+                  明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+                %time
+                  %i.fa.fa-clock-o
+                  %span
+                    1 時間前
+
+          %li
+            = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+              %i.fa.fa-angle-right
+              %figure
+                = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+              .tab-content__mypage-item__link__body
+                .tab-content__mypage-item__link__body__text
+                  明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+                %time
+                  %i.fa.fa-clock-o
+                  %span
+                    1 時間前
+
+          %li
+            = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+              %i.fa.fa-angle-right
+              %figure
+                = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+              .tab-content__mypage-item__link__body
+                .tab-content__mypage-item__link__body__text
+                  明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+                %time
+                  %i.fa.fa-clock-o
+                  %span
+                    1 時間前
+
+          %li
+            = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+              %i.fa.fa-angle-right
+              %figure
+                = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+              .tab-content__mypage-item__link__body
+                .tab-content__mypage-item__link__body__text
+                  明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+                %time
+                  %i.fa.fa-clock-o
+                  %span
+                    1 時間前
+
+          %li.mypage-go-list
+            = link_to '一覧を見る','#'
+
+    %section.mypage-tab-container-bottom
+      %h2.mypage-tab-container-bottom__head
+        購入した商品
+
+      %ul.mypage-tab-container__tabs
+        %li.active
+          %h3
+            = link_to '取引中','#',id: 'mypage-tab-transaction-now','data-toggle':'tab'
+        %li
+          %h3
+            = link_to '過去の取引','#',id: 'mypage-tab-transaction-old','data-toggle':'tab'
+
+      .tab-content
+        %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
+          %li.mypage-item-not-found.bold
+            取引中の商品がありません
+
+= render 'items/footer'
+
+= render 'items/sell-button'

@@ -13,10 +13,16 @@ class UsersController < ApplicationController
   def login
   end
 
+  def logout
+  end
+
   def payment_method
   end
 
   def card_registration
+  end
+
+  def indentification
   end
 
 

@@ -5,11 +5,6 @@
 %main.mainpage
   = render 'items'
 
-= render 'footer'
+= render 'sell-button'
 
-/ 商品出品ボタン(右下固定)
-.footer-sell-btn
-  = link_to root_path, class: "footer-sell-btn__link" do
-    .footer-sell-btn__text
-      出品
-    %i.fa.fa-camera.icon-camera
+= render 'footer'

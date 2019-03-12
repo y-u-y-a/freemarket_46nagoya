@@ -1,0 +1,92 @@
+.l-chapter-container {
+  background-color: $white;
+  margin: 0;
+  &__btn {
+    background: $red;
+    border: 1px solid $red;
+    color: $white;
+    margin: 40px 0 0 0;
+    display: block;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    text-align: center;
+  }
+  &__head {
+    font-size: 24px;
+    padding: 8px 24px;
+    border-bottom: 1px solid $head_black;
+    text-align: center;
+    line-height: 1.4;
+    font-weight: bold;
+  }
+  &__inner {
+    padding: 64px;
+    border-top: 1px solid $head_black;
+    &--icon {
+      font-weight: bold;
+      font-size: 22px;
+    }
+    &--right {
+      text-align: right;
+    }
+    &--text {
+      color: #0099e8;
+    }
+    &--info {
+      margin: 8px 0 0;
+      line-height: 1.5;
+    }
+  }
+  .setting-profile-icon {
+    padding: 72px 16px 24px;
+    background: url("mypage/mypage.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    font-size: 0;
+    figure {
+      display: inline-block;
+      overflow: hidden;
+      border-radius: 50%;
+      vertical-align: middle;
+    }
+    .input-default {
+      width: 220px;
+      margin: 0 0 0 8px;
+      vertical-align: middle;
+      line-height: 1.5;
+      font-size: 16px;
+      border-radius: 4px;
+    }
+  }
+  .setting-profile-content {
+    padding: 40px 16px;
+    &__textarea-default {
+      font-family: inherit;
+      min-height: 216px;
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background: #fff;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .btn-red {
+      margin: 16px 0 0;
+      background: $red;
+      border: 1px solid $red;
+      color: $white;
+    }
+    .btn-default {
+      display: block;
+      width: 100%;
+      line-height: 48px;
+      font-size: 14px;
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+}
