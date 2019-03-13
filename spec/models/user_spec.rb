@@ -50,15 +50,15 @@ describe User do
     end
 
     # passwordが7文字以下だとエラーが出るか？
-    it "is invalid with a password that has less than 7 characters " do
-      user = FactoryBot.build(:user, password: "1234567", password_confirmation: "1234567")
+    it "is invalid with a password that has less than 5 characters " do
+      user = FactoryBot.build(:user, password: "12345", password_confirmation: "12345")
       user.valid?
-      expect(user.errors[:password][0]).to include("is too short (minimum is 8 characters)")
+      expect(user.errors[:password][0]).to include("is too short (minimum is 6 characters)")
     end
 
     # passwordが8文字以上だと有効になるか？
-    it "is invalid a password that has more than 8 characters" do
-      user = FactoryBot.build(:user, password: "12345678", password_confirmation: "12345678")
+    it "is invalid a password that has more than 6 characters" do
+      user = FactoryBot.build(:user, password: "123456", password_confirmation: "123456")
       user.valid?
       expect(user).to be_valid
     end
