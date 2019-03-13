@@ -16,10 +16,3 @@ end
 #     end
 #   end
 # end
-
-
-
-describe UsersController do
-  describe '#create' do
-  end
-end
