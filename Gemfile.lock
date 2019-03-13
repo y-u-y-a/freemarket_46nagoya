@@ -24,6 +24,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
+    active_hash (2.2.1)
+      activesupport (>= 5.0.0)
     activejob (5.0.7.1)
       activesupport (= 5.0.7.1)
       globalid (>= 0.3.6)
@@ -97,6 +99,11 @@ GEM
     erubis (2.7.0)
     excon (0.62.0)
     execjs (2.7.0)
+    factory_bot (5.0.2)
+      activesupport (>= 4.2.0)
+    factory_bot_rails (5.0.1)
+      factory_bot (~> 5.0.0)
+      railties (>= 4.2.0)
     faker (1.9.3)
       i18n (>= 0.7)
     faraday (0.15.4)
@@ -123,6 +130,8 @@ GEM
     formatador (0.2.5)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gretel (3.0.9)
+      rails (>= 3.1.0)
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
@@ -318,6 +327,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_hash
   byebug
   capistrano
   capistrano-bundler
@@ -330,9 +340,11 @@ DEPENDENCIES
   devise
   devise-i18n
   erb2haml
+  factory_bot_rails
   faker
   fog-aws
   font-awesome-rails
+  gretel
   haml-rails
   jbuilder (~> 2.5)
   jquery-rails
