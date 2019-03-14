@@ -40,12 +40,12 @@ Things you may want to cover:
 |category_id|integer|null: false|
 
 ### Association
-- has_many   comments  ,dependent: :delete_all
+- has_many   comments    ,dependent: :delete_all
 - belongs_to category
 - belongs_to user
 - belongs_to brand
 - has_many   messages
-
+- has_many   item_images ,dependent: :destroy_all
 
 
 ## item_imagesテーブル

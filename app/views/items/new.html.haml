@@ -17,7 +17,11 @@
                     .sell-upload-items.have-item-0
                       %ul
                   .sell-upload-drop-box.have-item-0
-                    %input.sell-upload-drop-file{:multiple => "multiple", :name => "image1", :style => "display: none;", :type => "file"}/
+                    = f.fields_for :item_images do |image|
+                      = image.file_field :image
+                      -# 仮置きのコード
+                      -# = image_tag(image.object.content)
+                    -# %input.sell-upload-drop-file{:multiple => "multiple", :name => "image1", :style => "display: none;", :type => "file"}/
                     %pre.visible-pc
                       :preserve
                         ドラッグアンドドロップ
