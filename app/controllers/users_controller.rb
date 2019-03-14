@@ -7,10 +7,7 @@ class UsersController < ApplicationController
 
 
 
-  def signup
-  end
-
-  def login
+  def to_signup
   end
 
   def logout
