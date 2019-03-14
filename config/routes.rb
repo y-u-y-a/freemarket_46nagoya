@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   resources :items do
     get :buy, on: :collection
   end
-  resources :items,only: [:index,:new,:create]
-  resources :items,only: [:index,:new,:show]
+  resources :items,only: [:index,:new,:create,:show]
   resources :users,only: [:index,:show]
 end

@@ -6,7 +6,7 @@
         %div{"data-reactroot" => ""}
           .sell-container-inner
             %h2.l-single-head 商品の情報を入力
-            %form.sell-form
+            = form_for (@item), html: {class: 'sell-form'} do |f|
               .sell-form__upload-box
                 %h3.sell-form__upload-box-head
                   出品画像
@@ -29,12 +29,12 @@
                     商品名
                     %span.form-require 必須
                   %div
-                    %input.input-default{:placeholder => "商品名(必須 40文字まで)", :value => ""}/
+                    = f.text_field :name, class: 'input-default', placeholder: '商品名(必須 40文字まで)'
                 .form-group
                   %label
                     商品の説明
                     %span.form-require 必須
-                  %textarea.textarea-default{:placeholder => "商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)      　 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。", :rows => "5"}
+                  = f.text_area :explain, class: 'textarea-default', placeholder: '商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)      　 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。', rows: '5'
               .sell-form__content.item-detail.clearfix
                 %h3.sell-sub-head 商品の詳細
                 .sell-form-box
@@ -44,21 +44,22 @@
                       %span.form-require 必須
                     %div
                       .select-wrap
+                        = f.select :category_id, [['---', '0'],['レディース', '1'],['メンズ', '2'],['ベビー・キッズ', '3'],['インテリア・住まい・小物', '4'],['本・音楽・ゲーム', '5'],['おもちゃ・ホビー・グッズ', '6'],['コスメ・香水・美容', '7'],['家電・スマホ・カメラ', '8'],['スポーツ・レジャー', '9'],['ハンドメイド', '10'],['チケット', '11'],['自動車・オートバイ', '12'],['その他', '13']], class: "select-default"
                         %select.select-default
-                          %option{:value => ""} ---
+                          %option{:value => "0"} ---
                           %option{:value => "1"} レディース
                           %option{:value => "2"} メンズ
                           %option{:value => "3"} ベビー・キッズ
                           %option{:value => "4"} インテリア・住まい・小物
                           %option{:value => "5"} 本・音楽・ゲーム
-                          %option{:value => "1328"} おもちゃ・ホビー・グッズ
-                          %option{:value => "6"} コスメ・香水・美容
-                          %option{:value => "7"} 家電・スマホ・カメラ
-                          %option{:value => "8"} スポーツ・レジャー
-                          %option{:value => "9"} ハンドメイド
-                          %option{:value => "1027"} チケット
-                          %option{:value => "1318"} 自動車・オートバイ
-                          %option{:value => "10"} その他
+                          %option{:value => "6"} おもちゃ・ホビー・グッズ
+                          %option{:value => "7"} コスメ・香水・美容
+                          %option{:value => "8"} 家電・スマホ・カメラ
+                          %option{:value => "9"} スポーツ・レジャー
+                          %option{:value => "10"} ハンドメイド
+                          %option{:value => "11"} チケット
+                          %option{:value => "12"} 自動車・オートバイ
+                          %option{:value => "13"} その他
                         %i.fa.fa-angle-down
                   .form-group
                     %label
@@ -120,7 +121,7 @@
                           %p.price-mark
                             ¥
                           .price-input-field
-                            %input.input-default{:placeholder => "例)300", :value => ""}/
+                            = f.text_field :price, class: 'input-default', placeholder: '例) 300'
                     %li.clearfix.clearfix-commission
                       .l-left
                         販売手数料（10%）
@@ -145,8 +146,7 @@
                     %span.black-font また、出品をもちまして
                     %span.blue-font 加盟店規約
                     %span.black-font に同意したことになります
-                %button.btn-default.btn-red{:type => "submit"}
-                  出品する
+                = f.submit '出品する', class: 'btn-default btn-red'
                 %figure.btn-default.btn-gray
                   = link_to "もどる", root_path, class: "btn-gray"
             .overlay

@@ -3,11 +3,12 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @item = Item.new
+    @item_image = Item.new
   end
 
   def create
-    @item = Item.new(item_params)
-    @item.save
+    @item = Item.create(item_params)
     @item_image = Item.new(item_image_params)
     @item_image.save
     redirect_to root_path(@item)
