@@ -1,0 +1,445 @@
+= render 'header'
+= render 'users/header_nav'
+
+%section.item-box-container.l-single-container
+  %h1.item-box-container__item-name
+    正規品！COACH【コーチ】★★大きめ ミニシグネチャー ショルダーバッグ
+  .item-box-container__main-content.clearfix
+    .item-box-container__main-content__photo
+      .owl-carousel.owl-loaded.owl-drag
+        .owl-stage-outer
+          .owl-stage{ style: 'left:0px',width: '1200px'}
+            .owl-item{ style: 'width:300px'}
+              .owl-item__inner.is-higher-width
+                = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m70068440240_2.jpg?1539045823',{alt: '', style: 'opacity:1'}
+
+        .owl-dots
+          .owl-dot.active
+            %span
+            .owl-dot-inner
+              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m70068440240_1.jpg?1539045823'
+
+          .owl-dot
+            %span
+            .owl-dot-inner
+              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m70068440240_2.jpg?1539045823',class: 'white'
+
+          .owl-dot
+            %span
+            .owl-dot-inner
+              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m70068440240_2.jpg?1539045823',class: 'white'
+
+          .owl-dot
+            %span
+            .owl-dot-inner
+              = image_tag 'https://static.mercdn.net/item/detail/orig/photos/m70068440240_2.jpg?1539045823',class: 'white'
+
+
+        .item-sold-out-badge
+          %div SOLD
+
+
+    %table.item-box-container__main-content__item-detail-table
+      %tbody
+        %tr
+          %th 出品者
+          %td
+            = link_to '#' do
+              DPS(ぶーん)@コスパNo1優良店
+            %div
+              .item-user-ratings
+                %i.fa.fa-facebook-square
+                %span 873
+              .item-user-ratings
+                %i.fa.fa-twitter
+                %span 26
+              .item-user-ratings
+                %i.fa.fa-apple
+                %span 3
+
+        %tr
+          %th カテゴリー
+          %td
+            = link_to '#' do
+              %div レディース
+            = link_to '#' do
+              .item-detail-table-sub-category
+                %i.fa.fa-angle-right
+                バッグ
+            = link_to '#' do
+              .item-detail-table-sub-sub-category
+                %i.fa.fa-angle-right
+                ショルダーバッグ
+
+        %tr
+          %th ブランド
+          %td
+            = link_to '#' do
+              %div コーチ
+
+        %tr
+          %th 商品の状態
+          %td やや傷や汚れあり
+
+        %tr
+          %th 配送料の負担
+          %td 送料込み（出品者負担）
+
+        %tr
+          %th 配送の方法
+          %td らくらくメルカリ便
+
+        %tr
+          %th 配送元地域
+          %td
+            = link_to '兵庫県', '#'
+
+        %tr
+          %th 発送の目安
+          %td 1~2日で発送
+
+  .item-price-box.text-center
+    %span.item-price.bold   ￥ 3,380
+    %span.item-tax          (税込)
+    %span.item-shipping-fee 送料込み
+
+  .item-buy-btn.disabled
+    売り切れました
+
+  .item-description
+    %p.item-description__inner
+      ■商品ご覧頂き、誠にありがとうございます。
+      ※今だけ、フォロワーになって下さった方に、300円のお値引きサービス中！！<br>
+
+      私の商品検索は、<br>#Boon・バッグ<br>検索してください。<br>
+      質問がありましたらコメントでよろしくお願いします！
+      ■ 商品説明 ■
+      まずはプロフを確認してください☆<br>
+      ■ 商品詳細 ■
+      シンプルな落ち着いたお色味でどんな場面にも合い、
+      どんな服にも合わせやすいお鞄です。使用感有！角擦れはございませんが
+      多少の汚れはあります。内側はとても綺麗です☆
+      使わなくなったのでどなたか使っていただける方お願いします。
+      製造番号 H2K-9294<br>
+      【ブランド】
+      COACH　コーチ<br>
+      【商品名】
+      コーチ大き目シンプル<br>
+      【仕様】
+      外ポケット１　内ポケット４<br>
+      【サイズ】
+      縦：32
+      横：31
+      幅：7
+      紐：130 多少調節可能<br>
+      ＊他にも数多くの商品を出品しているので、ぜひご覧ください。
+      ＊複数購入、お取り置き(５日まで)もできるので、お気軽にお声がけくださいませ。
+      ＊中古品になりますので、予めご理解いただきますよう、お願い致します^_^
+      ※自宅保管、素人検品、素人寸法の誤差などにご理解がない方、神経質な方、完璧な物が欲しい方は購入お控えください。
+      、お願い致します^_^
+      ※自宅保管、素人検品、素人寸法の誤差などにご理解がない方、神経質な方、完璧な物が欲しい方は購入お控えください。<br><br>#シンプル #かわいい #大き目 #かばん #バッグ
+
+  .item-button-container.clearfix
+    .item-button-left
+      %button{ type: 'button', name: 'like','data-toggle':'like',class: 'item-button item-button-like'}
+
+        %i.fa.fa-heart
+        %span いいね
+        %span.fade-in-down 7
+
+      = link_to '#',class: 'item-button item-button-report clearfix' do
+        %i.fa.fa-flag
+        %span 適切な商品の報告
+
+    .item-button-right
+      = link_to '#' do
+        %i.fa.fa-unlock
+        %span あんしん・あんぜんへの取り組み
+
+.item-detail-message
+  .message-container
+    .message-content
+      %ul.message-items
+        %li.clearfix
+          .message-user
+            %figure
+              .message-user-unknown
+                = image_tag '//www-mercari-jp.akamaized.net/assets/img/common/common/user-icon.svg?2845599746'
+              %figcaption.bold
+          .message-body
+            .message-body-text 出品者がコメントを削除しました
+            .message-icons.clearfix
+              %time.message-icon-left
+                %i.fa.fa-clock-o
+                %span 135 日前
+            %i.fa.fa-caret-left
+
+        %li.clearfix
+          .message-user
+            %figure
+              .message-user-unknown
+                = image_tag '//www-mercari-jp.akamaized.net/assets/img/common/common/user-icon.svg?2845599746'
+              %figcaption.bold
+          .message-body
+            .message-body-text 出品者がコメントを削除しました
+            .message-icons.clearfix
+              %time.message-icon-left
+                %i.fa.fa-clock-o
+                %span 135 日前
+            %i.fa.fa-caret-left
+
+        %li.clearfix
+          .message-user
+            %figure
+              .message-user-unknown
+                = image_tag '//www-mercari-jp.akamaized.net/assets/img/common/common/user-icon.svg?2845599746'
+              %figcaption.bold
+          .message-body
+            .message-body-text 出品者がコメントを削除しました
+            .message-icons.clearfix
+              %time.message-icon-left
+                %i.fa.fa-clock-o
+                %span 135 日前
+            %i.fa.fa-caret-left
+
+        %li.clearfix
+          = link_to '#', class: 'message-user' do
+            %figure
+              %div
+                = image_tag '//static.mercdn.net/images/member_photo_noimage_thumb.png'
+              %figcaption.bold ほげほげ
+          .message-body
+            .message-body-text はじめまして。ずっと、気になっているのですが・・・こちらのバッグの『多少の汚れ』とは、パッと見る限り、目立たない程度なのですか？皮の白いところは画像でわかるのですが、全体の感じがわからなかったので、質問してみました。
+            .message-icons.clearfix
+              %time.message-icon-left
+                %i.fa.fa-clock-o
+                %span 115 日前
+              .message-icon-right
+                %form
+                  %button{ type: 'submit'}
+                    %i.fa.fa-flag
+            %i.fa.fa-caret-left
+
+        %li.clearfix
+          = link_to '#', class: 'message-user' do
+            %figure
+              %div
+                = image_tag '//static.mercdn.net/thumb/members/387561164.jpg?1522509091'
+              %figcaption.bold DPS(ぶーん)@コスパNo1優良店
+            .message-is-seller 出品者
+          .message-body
+            .message-body-text はじめまして。ずっと、気になっているのですが・・・こちらのバッグの『多少の汚れ』とは、パッと見る限り、目立たない程度なのですか？皮の白いところは画像でわかるのですが、全体の感じがわからなかったので、質問してみました。
+            .message-icons.clearfix
+              %time.message-icon-left
+                %i.fa.fa-clock-o
+                %span 113 日前
+              .message-icon-right
+                %form
+                  %button{ type: 'submit'}
+                    %i.fa.fa-flag
+            %i.fa.fa-caret-left
+
+        %li.clearfix
+          = link_to '#', class: 'message-user' do
+            %figure
+              %div
+                = image_tag '//static.mercdn.net/images/member_photo_noimage_thumb.png'
+              %figcaption.bold ほげほげ
+          .message-body
+            .message-body-text
+              ありがとうございます<br>購入したいなと思います
+
+            .message-icons.clearfix
+              %time.message-icon-left
+                %i.fa.fa-clock-o
+                %span 113 日前
+              .message-icon-right
+                %form
+                  %button{ type: 'submit'}
+                    %i.fa.fa-flag
+            %i.fa.fa-caret-left
+
+    .message-content
+      %form.message-form
+        %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
+        %input{ type: 'hidden',name: 'item_id',value: ''}
+        %input{ type: 'hidden',name: 'redirect_url_key',value: '',class: 'item_detail'}
+        %textarea{ type: 'text',name: 'body',class: 'textarea-default disabled'}
+        %button{ type: 'submit', class: 'message-submit btn-default btn-gray'}
+          %span 売り切れのためコメントできません
+
+%ul.nav-item-link-prev-next.clearfix
+  %li.nav-item-link-prev
+    = link_to '#' do
+      %i.fa.fa-angle-left
+      ディズニーヴィランズ 2個セット バッジ バッチ Villains 2018
+
+  %li.nav-item-link-next
+    = link_to '#' do
+      バーにかかってきた電話/東 直己
+      %i.fa.fa-angle-right
+
+.item-social-media-box
+  .text-center
+    %ul.social-media-box
+      %li
+        = link_to '#', class: 'share-btn','target':'_blank' do
+          %i.fa.fa-facebook-square.icon-facebook
+        = link_to '#', class: 'share-btn','target':'_blank' do
+          %i.fa.fa-twitter.icon-twitter
+        = link_to '#', class: 'share-btn','target':'_blank' do
+          %i.fa.fa-google.icon-google
+
+.items-in-user-profile
+  %section.items-box-container.items-box-overflow.items-in-user-profile.clearfix
+    %h2.item-box-head
+      = link_to 'DPS(ぶーん)@コスパNo1優良店さんのその他の出品','#'
+    .items-box-content.clearfix
+      %section.items-box
+        = link_to '#' do
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m65471139405_1.jpg?1548298453'
+          .items-box-body
+            %h3.items-box-name 配信用（300）
+            .items-box-num.clearfix
+              .items-box-price ¥ 12,600
+              .items-box-likes
+                %i.fa.fa-heart.icon-like-border
+                %span 8
+              %p.items-box-tax (税込)
+
+      %section.items-box
+        = link_to '#' do
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m65471139405_1.jpg?1548298453'
+          .items-box-body
+            %h3.items-box-name 配信用（300）
+            .items-box-num.clearfix
+              .items-box-price ¥ 12,600
+              .items-box-likes
+                %i.fa.fa-heart.icon-like-border
+                %span 8
+              %p.items-box-tax (税込)
+
+      %section.items-box
+        = link_to '#' do
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m65471139405_1.jpg?1548298453'
+          .items-box-body
+            %h3.items-box-name 配信用（300）
+            .items-box-num.clearfix
+              .items-box-price ¥ 12,600
+              .items-box-likes
+                %i.fa.fa-heart.icon-like-border
+                %span 8
+              %p.items-box-tax (税込)
+
+      %section.items-box
+        = link_to '#' do
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m65471139405_1.jpg?1548298453'
+          .items-box-body
+            %h3.items-box-name 配信用（300）
+            .items-box-num.clearfix
+              .items-box-price ¥ 12,600
+              .items-box-likes
+                %i.fa.fa-heart.icon-like-border
+                %span 8
+              %p.items-box-tax (税込)
+
+      %section.items-box
+        = link_to '#' do
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m65471139405_1.jpg?1548298453'
+          .items-box-body
+            %h3.items-box-name 配信用（300）
+            .items-box-num.clearfix
+              .items-box-price ¥ 12,600
+              .items-box-likes
+                %i.fa.fa-heart.icon-like-border
+                %span 8
+              %p.items-box-tax (税込)
+
+      %section.items-box
+        = link_to '#' do
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m65471139405_1.jpg?1548298453'
+          .items-box-body
+            %h3.items-box-name 配信用（300）
+            .items-box-num.clearfix
+              .items-box-price ¥ 12,600
+              .items-box-likes
+                %i.fa.fa-heart.icon-like-border
+                %span 8
+              %p.items-box-tax (税込)
+
+  %section.items-box-container.items-box-overflow.items-in-user-profile.clearfix
+    %h2.item-box-head
+      = link_to 'コーチのショルダーバッグ その他の商品','#'
+    .items-box-content.clearfix
+      %section.items-box
+        = link_to '#' do
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m65471139405_1.jpg?1548298453'
+          .items-box-body
+            %h3.items-box-name 配信用（300）
+            .items-box-num.clearfix
+              .items-box-price ¥ 12,600
+              .items-box-likes
+                %i.fa.fa-heart.icon-like-border
+                %span 8
+              %p.items-box-tax (税込)
+
+      %section.items-box
+        = link_to '#' do
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m65471139405_1.jpg?1548298453'
+          .items-box-body
+            %h3.items-box-name 配信用（300）
+            .items-box-num.clearfix
+              .items-box-price ¥ 12,600
+              .items-box-likes
+                %i.fa.fa-heart.icon-like-border
+                %span 8
+              %p.items-box-tax (税込)
+
+      %section.items-box
+        = link_to '#' do
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m65471139405_1.jpg?1548298453'
+          .items-box-body
+            %h3.items-box-name 配信用（300）
+            .items-box-num.clearfix
+              .items-box-price ¥ 12,600
+              .items-box-likes
+                %i.fa.fa-heart.icon-like-border
+                %span 8
+              %p.items-box-tax (税込)
+
+      %section.items-box
+        = link_to '#' do
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m65471139405_1.jpg?1548298453'
+          .items-box-body
+            %h3.items-box-name 配信用（300）
+            .items-box-num.clearfix
+              .items-box-price ¥ 12,600
+              .items-box-likes
+                %i.fa.fa-heart.icon-like-border
+                %span 8
+              %p.items-box-tax (税込)
+
+      %section.items-box
+        = link_to '#' do
+          %figure.items-box-photo
+            = image_tag 'https://static.mercdn.net/thumb/photos/m65471139405_1.jpg?1548298453'
+          .items-box-body
+            %h3.items-box-name 配信用（300）
+            .items-box-num.clearfix
+              .items-box-price ¥ 12,600
+              .items-box-likes
+                %i.fa.fa-heart.icon-like-border
+                %span 8
+              %p.items-box-tax (税込)
+
+= render 'footer'
