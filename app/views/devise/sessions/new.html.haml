@@ -1,17 +1,69 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.single-container
+  = render "users/user_header"
+
+
+  .login-main
+    .login-panel
+      // 新規会員登録画面へ
+      .login-panel__no-account
+        %p アカウントをお持ちでない方はこちら
+        = link_to "新規会員登録", to_signup_users_path
+
+
+      // SNSでログイン
+      .login-panel__sns-account
+        %button#facebook-login.btn-sns.btn-facebook
+          = link_to do
+            %span Facebookで登録
+            = fa_icon "facebook-square lg", class: "icon-facebook"
+
+        %button#google-login.btn-sns.btn-google
+          = link_to do
+            %span Googleで登録
+            = image_tag("/assets/google.png", class: "image-google")
+
+
+      // メールアドレスでログイン
+      = form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'l-single-inner'}) do |f|
+        // アドレス・パスワード入力
+        .mail-account__field
+          .mail-account__field--address
+            = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "address__input"
+
+          .mail-account__field--password
+            = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "password__input"
+
+          .mail-account__field--RECAPCHA
+            .g-recaptcha.signup-recaptcha{"data-sitekey" => "6LfZGCYTAAAAAHoK-s7Lg5OdYg5Fq4susvALmZoc"}
+              %div{style: "width: 304px; height: 78px;"}
+                %div
+                  %iframe{frameborder: "0", height: "78", :name => "a-2ae415r8hle0", role: "presentation", sandbox: "allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox", scrolling: "no", src: "https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LfZGCYTAAAAAHoK-s7Lg5OdYg5Fq4susvALmZoc&co=aHR0cHM6Ly93d3cubWVyY2FyaS5jb206NDQz&hl=ja&v=v1551681158638&size=normal&cb=wnfs2dcp0fyz", width: "304"}
+                %textarea#g-recaptcha-response.g-recaptcha-response{name: "g-recaptcha-response", style: "width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"}
+          // ログインボタン
+          = f.submit "ログイン", class: "mail-account__field--login-btn"
+          = link_to "パスワードをお忘れの方"
+
+
+    // facebookのhiddenの部分
+    %form#form-facebook{action: "/jp/login/", method: "POST", novalidate: "novalidate"}
+      %input{name: "", type: "hidden", value: ""}
+      %input{name: "", type: "hidden", value: ""}
+      %input{name: "", type: "hidden", value: ""}
+      %input{name: "", type: "hidden", value: ""}
+      %input{name: "", type: "hidden", value: ""}
+      %input{name: "", type: "hidden", value: ""}
+      %input{name: "", type: "hidden", value: ""}
+    // googleのhiddenの部分
+    %form#form-google{action: "/jp/login/", method: "POST", novalidate: "novalidate"}
+      %input{name: "", type: "hidden", value: ""}
+      %input{name: "", type: "hidden", value: ""}
+      %input{name: "", type: "hidden", value: ""}
+      %input{name: "", type: "hidden", value: ""}
+      %input{name: "", type: "hidden", value: ""}
+      %input{name: "", type: "hidden", value: ""}
+      %input{name: "", type: "hidden", value: ""}
+
+    %input#google_client_id{:type => "hidden", :value => ""}
+    %input#facebook_app_id{:type => "hidden", :value => ""}
+
+  = render "users/user_footer"
