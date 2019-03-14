@@ -77,6 +77,6 @@ gem 'mini_magick'
 gem 'fog-aws'
 gem 'rails4-autocomplete'
 gem 'gretel'
+gem 'pry-rails'
 gem 'active_hash'
 gem 'rspec-rails', '~> 3.5'
-
