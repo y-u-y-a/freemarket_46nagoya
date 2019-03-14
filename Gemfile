@@ -38,8 +38,8 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'rspec-rails', '~> 3.5'
   gem 'factory_bot_rails'
+  gem 'rspec-rails', '~> 3.5'
   gem 'faker'
   gem 'rails-controller-testing'
   gem 'capybara'
@@ -79,5 +79,7 @@ gem 'rails4-autocomplete'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
-gem 'active_hash'
 gem 'gretel'
+gem 'active_hash'
+gem 'rspec-rails', '~> 3.5'
+
