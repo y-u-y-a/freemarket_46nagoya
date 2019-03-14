@@ -37,28 +37,34 @@
           .form-group
             = f.label :ニックネーム
             %span.form-require 必須
-            %input.input-default{name: "nickname", placeholder: "例) メルカリ太郎", type: "text", value: ""}
+            = f.text_field :nickname, placeholder: "例) メルカリ太郎", class: 'input-default'
+
 
           .form-group
             = f.label :メールアドレス
             %span.form-require 必須
-            %input.input-default{name: "email", placeholder: "PC・携帯どちらでも可", type: "email", value: ""}
+            = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "PC・携帯どちらでも可", class: "input-default"
           %input{name: "login_type", type: "hidden", value: ""}
+
 
           .form-group
             = f.label :パスワード
             %span.form-require 必須
-            %input.input-default{"aria-autocomplete" => "list", name: "password", placeholder: "6文字以上", type: "password"}
+            = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "input-default"
+
 
           .form-group
-            / = f.label :パスワード (確認)
+            = f.label :パスワード確認
             %span.form-require 必須
-            %input.input-default{name: "password2", placeholder: "6文字以上", type: "password"}
+            = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上", class: "input-default"
 
+// ここまで完了
           .form-group
             %h3.text-left.l-chapter-sub-head 本人確認
             %p.l-single-text
               安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
+
+
           .form-group
             %label{for: "family_name_kanji"} 姓 (全角)
             %span.form-require 必須
