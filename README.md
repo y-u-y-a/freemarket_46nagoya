@@ -83,14 +83,14 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-|first_name|string|null: false|             <!-- 名前 -->
-|last_name|string|null: false|              <!-- 苗字 -->
-|first_name_kana|string|null: false|        <!-- 名前（カナ） -->
-|last_name_kana|string|null: false|         <!-- 苗字（カナ） -->
-|phone_number|integer|null: false,unique: true|          <!-- 電話番号 -->
-|year_birth_at|date|null: false|            <!-- 誕生日（年） -->
-|month_birth_at|date|null: false|           <!-- 誕生日（月） -->
-|day_birth_at|date|null: false|             <!-- 誕生日（日） -->
+|first_name|string|null: false|                  <!-- 苗字 -->
+|last_name|string|null: false|                   <!-- 名前 -->
+|first_name_kana|string|null: false|             <!-- 苗字（カナ） -->
+|last_name_kana|string|null: false|              <!-- 名前（カナ） -->
+|year_birth_at|date|null: false|                 <!-- 誕生日（年） -->
+|month_birth_at|date|null: false|                <!-- 誕生日（月） -->
+|day_birth_at|date|null: false|                  <!-- 誕生日（日） -->
+|phone_number|integer|null: false,unique: true|  <!-- 電話番号 -->
 |user_id|integer|null: false|
 
 ### Association
