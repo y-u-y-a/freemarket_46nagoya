@@ -1,17 +1,15 @@
 class ItemsController < ApplicationController
   def index
+    @items = Item.all
   end
 
   def new
     @item = Item.new
-    @item_image = Item.new
   end
 
   def create
-    @item = Item.new(item_params)
-    binding.pry
-    @item.save
-    redirect_to root_path(@item)
+    Item.create(item_params)
+    redirect_to root_path
   end
 
   def show
@@ -23,6 +21,6 @@ class ItemsController < ApplicationController
 
   private
     def item_params
-      params.permit(:name, :explain, :category_id, :state, :postage, :region, :shipping_date, :price)
+      params.require(:item).permit(:image, :name, :explain, :category_id, :state, :postage, :region, :shipping_date, :price)
     end
 end
