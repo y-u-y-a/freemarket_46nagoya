@@ -9,7 +9,7 @@
       %form.chapter-container__single-inner
         .chapter-container__single-inner__content
           %button{ type: 'submit', class: 'btn-default btn-red' }
-            ログアウト
+            = link_to "ログアウト", destroy_user_session_path, method: :delete
           %input{ type: 'hidden', name: '__csrf_value'}
 
 = render 'items/footer'
