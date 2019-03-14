@@ -1,0 +1,217 @@
+.single-container {
+  padding: 0 0 220px;
+  background-color: #f5f5f5;
+  &__header {
+    height: 128px;
+    text-align: center;
+    h1 {
+      margin: 40px 0 0;
+      display: inline-block;
+      .single-container__header-icon {
+        width: 185px;
+        height: 49px;
+        line-height: 49px;
+        display: inline-block;
+        margin: 0 8px 0 0;
+        img {
+          width: 185px;
+          height: 49px;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  &__main {
+    display: block;
+    .l-single-container {
+      background: #fff;
+      width: 700px;
+      margin: 0 auto;
+      .l-single-head {
+        padding: 32px 16px;
+        font-size: 22px;
+        line-height: 1.5;
+        text-align: center;
+        font-weight: bold;
+      }
+      .buy-content:first-of-type {
+        margin: 0;
+      }
+      .buy-item {
+        text-align: center;
+      }
+      .buy-content {
+        padding: 24px 12.5% 0;
+        .buy-content-inner {
+          max-width: 320px;
+          margin: 0 auto;
+          h3 {
+            font-size: 22px;
+            img {
+              width: 148px;
+            }
+            .lazyloaded {
+              opacity: 1;
+              transition: opacity .3s;
+            }
+          }
+          .buy-item-name {
+            margin: 8px 0 0;
+            font-size: 16px;
+            line-height: 1.5;
+          }
+          .bold {
+            font-weight: 600;
+          }
+          form {
+            display: block;
+          }
+          p {
+            margin: 8px 0 0;
+            line-height: 1.5;
+          }
+          .buy-price-ja {
+            font-size: 28px;
+            .item-shipping-fee {
+              margin: 0 0 0 8px;
+              font-size: 14px;
+              font-weight: 400;
+              display: inline-block;
+            }
+          }
+          .buy-accordion {
+            margin: 16px 0 0;
+          }
+          .not-have {
+            background: #ccc;
+          }
+          ul {
+            list-style: none;
+            li {
+              display: list-item;
+              .accordion-toggle {
+                cursor: default;
+                padding: 16px;
+                border: 1px solid #ccc;
+                position: relative;
+              }
+            }
+          }
+          .buy-price-table {
+            display: table;
+            border-collapse: collapse;
+            width: 100%;
+          }
+          ul {
+            list-style: none;
+            .buy-price-row:first-child {
+              border: 0;
+            }
+            .buy-you-pay {
+              font-size: 28px;
+            }
+            .buy-price-row {
+              display: table-row;
+              .buy-price-cell:first-child {
+                text-align: left;
+              }
+              .buy-price-cell {
+                display: table-cell;
+                padding: 16px 0;
+                text-align: right;
+              }
+            }
+          }
+          .btn-red {
+            margin: 16px 0 0;
+            background: #ea352d;
+            border: 1px solid #ea352d;
+            color: #fff;
+          }
+          .btn-default {
+            display: block;
+            width: 100%;
+            line-height: 48px;
+            font-size: 14px;
+            transition: all ease-out .3s;
+            cursor: pointer;
+            text-align: center;
+          }
+          .bold {
+            font-weight: 600;
+          }
+          button {
+            min-height: 1.5em;
+            outline: 0;
+            touch-action: manipulation;
+            -webkit-appearance: button;
+            overflow: visible;
+          }
+        }
+      }
+      .buy-user-info {
+        transition: all ease-out .3s;
+      }
+      .buy-content {
+        margin: 40px 0 0;
+        padding: 24px 12.5% 0;
+        border-top: 1px solid #f5f5f5;
+        .buy-content-inner {
+          max-width: 320px;
+          margin: 0 auto;
+          display: block;
+          h3:first-child {
+            margin: 0;
+          }
+          h3 {
+            font-size: 14px;
+            font-weight: bold;
+          }
+          .buy-user-info-text {
+            margin: 8px 0 0;
+            font-size: 14px;
+            line-height: 1.4;
+          }
+          p {
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+          }
+          .img-visa {
+            width: 49px;
+            height: 15px;
+          }
+          .buy-user-info-fix {
+            display: block;
+            text-align: right;
+          }
+          .edit-shipping-address {
+            color: #0099e8;
+            vertical-align: middle;
+            i {
+              vertical-align: middle;
+              margin: 0 0 0 8px;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+      .buy-content:last-of-type {
+        padding: 40px 12.5%;
+      }
+      .buy-user-info {
+        transition: all ease-out .3s;
+      }
+      .buy-content {
+        margin: 40px 0 0;
+        border-top: 1px solid #f5f5f5;
+        .buy-content-inner {
+          max-width: 320px;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}

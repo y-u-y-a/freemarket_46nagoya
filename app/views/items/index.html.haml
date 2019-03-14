@@ -1,15 +1,14 @@
-.header-wrapper
+.default-container
   = render 'header'
+
+// ログアウトの仮置き
+.informal
+= link_to "ログアウト", destroy_user_session_path, method: :delete
 
 / トップページの商品一覧(カテゴリー別新着アイテム最大4点)今はカテゴリーは考えず作っています
 %main.mainpage
   = render 'items'
 
-= render 'footer'
+= render 'sell-button'
 
-/ 商品出品ボタン(右下固定)
-.footer-sell-btn
-  = link_to root_path, class: "footer-sell-btn__link" do
-    .footer-sell-btn__text
-      出品
-    %i.fa.fa-camera.icon-camera
+= render 'footer'
