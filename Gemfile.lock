@@ -327,6 +327,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_hash
   byebug
   capistrano
   capistrano-bundler
