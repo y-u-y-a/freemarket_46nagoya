@@ -79,7 +79,7 @@ gem 'rails4-autocomplete'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
-gem 'active_hash'
 gem 'gretel'
+gem 'active_hash'
 gem 'rspec-rails', '~> 3.5'
 
