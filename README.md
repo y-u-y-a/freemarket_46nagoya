@@ -87,9 +87,9 @@ Things you may want to cover:
 |last_name|string|null: false|                   <!-- 名前 -->
 |first_name_kana|string|null: false|             <!-- 苗字（カナ） -->
 |last_name_kana|string|null: false|              <!-- 名前（カナ） -->
-|year_birth_at|date|null: false|                 <!-- 誕生日（年） -->
-|month_birth_at|date|null: false|                <!-- 誕生日（月） -->
-|day_birth_at|date|null: false|                  <!-- 誕生日（日） -->
+|birth_year|date|null: false|                 <!-- 誕生日（年） -->
+|birth_month|date|null: false|                <!-- 誕生日（月） -->
+|birth_day|date|null: false|                  <!-- 誕生日（日） -->
 |phone_number|integer|null: false,unique: true|  <!-- 電話番号 -->
 |user_id|integer|null: false|
 
