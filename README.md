@@ -79,7 +79,7 @@ Things you may want to cover:
 - has_one   socialprofiles dependent: :delete
 
 
-## profielsテーブル
+## profilesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
