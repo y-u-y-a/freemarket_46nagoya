@@ -28,27 +28,33 @@
   %main.single-main
     %section.l-single-container
       %h2.l-single-head 会員情報入力
-      %form.l-single-inner{action: "https://www.mercari.com/jp/signup/sms_confirmation/", method: "POST", novalidate: "novalidate"}
-        %input{name: "__csrf_value", type: "hidden", value: "38acfcc41a5139b464c4b5e25e1288222bb2c1393ae141fc581b1d2bb84f1b6a956d7592c5d25b140df467226160a8b03a0accbda9cfeba1f2d5142f26da1750d"}
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: 'l-single-inner'}) do |f|
+        = render "devise/shared/error_messages", resource: resource
+        %input{name: "__csrf_value", type: "hidden", value: ""}
+
 
         .l-single-content
           .form-group
-            %label{for: "nickname"} ニックネーム
+            = f.label :ニックネーム
             %span.form-require 必須
             %input.input-default{name: "nickname", placeholder: "例) メルカリ太郎", type: "text", value: ""}
+
           .form-group
-            %label{for: "email"} メールアドレス
+            = f.label :メールアドレス
             %span.form-require 必須
             %input.input-default{name: "email", placeholder: "PC・携帯どちらでも可", type: "email", value: ""}
           %input{name: "login_type", type: "hidden", value: ""}
+
           .form-group
-            %label{for: "password"} パスワード
+            = f.label :パスワード
             %span.form-require 必須
             %input.input-default{"aria-autocomplete" => "list", name: "password", placeholder: "6文字以上", type: "password"}
+
           .form-group
-            %label{for: "password"} パスワード (確認)
+            / = f.label :パスワード (確認)
             %span.form-require 必須
             %input.input-default{name: "password2", placeholder: "6文字以上", type: "password"}
+
           .form-group
             %h3.text-left.l-chapter-sub-head 本人確認
             %p.l-single-text
