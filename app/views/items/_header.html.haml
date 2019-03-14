@@ -20,7 +20,7 @@
         - if user_signed_in?
           %ul.pc-header-nav
             %li
-              = link_to '#', class: "pc-header-nav__user-icon pc-header-nav__root" do
+              = link_to users_path, class: "pc-header-nav__user-icon pc-header-nav__root" do
                 %figure
                   %div
                     = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", width: '32'
@@ -45,3 +45,5 @@
             %li.signup-btn
               = link_to "新規会員登録",new_user_registration_path ,class: "signup-btn__text"
 
+  %nav.nav-var
+    = breadcrumbs separator: " #{content_tag(:i, '', :class=>'fa fa-angle-right')} "
