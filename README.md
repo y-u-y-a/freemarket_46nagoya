@@ -38,6 +38,7 @@ Things you may want to cover:
 |size|integer||
 |brand_id|integer||
 |category_id|integer|null: false|
+|way_of_delivery|integer|null: false|
 
 ### Association
 - has_many   comments    ,dependent: :delete_all
