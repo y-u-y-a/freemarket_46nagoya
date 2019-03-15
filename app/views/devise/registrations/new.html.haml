@@ -242,11 +242,9 @@
         .l-single-content
           %input{name: "after_save_callback", type: "hidden", value: ""}
           .form-group
-            .g-recaptcha.signup-recaptcha{"data-sitekey" => "6LfZGCYTAAAAAHoK-s7Lg5OdYg5Fq4susvALmZoc"}
-              %div{style: "width: 304px; height: 78px;"}
-                %div
-                  %iframe{frameborder: "0", height: "78", :name => "a-2ae415r8hle0", role: "presentation", sandbox: "allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox", scrolling: "no", src: "https://www.google.com/recaptcha/api2/anchor?ar=1&k=6LfZGCYTAAAAAHoK-s7Lg5OdYg5Fq4susvALmZoc&co=aHR0cHM6Ly93d3cubWVyY2FyaS5jb206NDQz&hl=ja&v=v1551681158638&size=normal&cb=wnfs2dcp0fyz", width: "304"}
-                %textarea#g-recaptcha-response.g-recaptcha-response{name: "g-recaptcha-response", style: "width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"}
+            .mail-account__field--RECAPCHA
+              = recaptcha_tags
+
           .form-group
             %p.l-single-text.text-center
               「次へ進む」のボタンを押すことにより、
