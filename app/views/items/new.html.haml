@@ -70,7 +70,7 @@
                       発送元の地域
                       %span.form-require 必須
                     .select-wrap
-                      = collection_select :address,:prefecture_id,Prefecture.all,:id,:name,{} ,{class: "select-default"}
+                      = collection_select :item, :region,Prefecture.all,:id,:name,{} ,{class: "select-default"}
                       %i.fa.fa-angle-down
                   .form-group
                     %label
