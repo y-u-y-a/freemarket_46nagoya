@@ -16,3 +16,8 @@
 # Ignore Byebug command history file.
 .byebug_history
 /vendor/bundle
+<<<<<<< HEAD
+=======
+/config/secrets.yml
+.env.swp
+>>>>>>> parent of 9dde575... Revert "Merge branch 'tsurutadesu/master' into make-item-up-function"
