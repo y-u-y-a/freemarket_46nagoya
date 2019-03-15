@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   root 'items#index'
-  devise_for :users, :controllers => {
-    :registrations => 'users/registrations',
-    :sessions => 'users/sessions'
-  }
+  devise_for :users
   resources :users do
     get :to_signup,            on: :collection
     get :logout,               on: :collection
