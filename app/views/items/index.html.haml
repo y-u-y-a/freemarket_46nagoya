@@ -1,9 +1,4 @@
-.default-container
-  = render 'header'
-
-// ログアウトの仮置き
-.informal
-= link_to "ログアウト", destroy_user_session_path, method: :delete
+= render 'header'
 
 / トップページの商品一覧(カテゴリー別新着アイテム最大4点)今はカテゴリーは考えず作っています
 %main.mainpage

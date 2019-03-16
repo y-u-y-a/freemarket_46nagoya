@@ -7,6 +7,11 @@ crumb :users do
   parent :root
 end
 
+crumb :logout do
+  link 'ログアウト', logout_users_path
+  parent :users
+end
+
 crumb :user do
   link 'プロフィール', user_path(current_user)
   parent :users
