@@ -47,6 +47,7 @@ Things you may want to cover:
 - belongs_to brand
 - has_many   messages
 - has_many   item_images ,dependent: :destroy_all
+- has_one    order
 
 
 ## item_imagesテーブル
