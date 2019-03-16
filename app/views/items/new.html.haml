@@ -18,12 +18,12 @@
                       %ul
                   .sell-upload-drop-box.have-item-0
                     = f.fields_for :item_images do |image|
-                      = image.file_field :image
-                    %pre.visible-pc
-                      :preserve
-                        ドラッグアンドドロップ
-                        またはクリックしてファイルをアップロード
-                    %i.icon-camera
+                      = image.label :image, class: 'sell-upload-drop-box' do
+                        = image.file_field :image, class: 'hidden'
+                        %pre.visible-pc
+                          ドラッグアンドドロップ
+                          またはクリックしてファイルをアップロード
+                        %i.icon-camera
               .sell-form__content
                 .form-group
                   %label

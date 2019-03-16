@@ -81,7 +81,9 @@
               width: 100%;
               margin-left: 0;
               float: right;
-              padding: 40px;
+              .hidden {
+                display: none;
+              }
               pre {
                 position: absolute;
                 top: 50%;
