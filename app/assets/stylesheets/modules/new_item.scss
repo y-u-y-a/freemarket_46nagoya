@@ -131,7 +131,7 @@
           height: 265px;
         }
         .item-delivery {
-          height: 375px;
+          height: 500px;
         }
         .item-price {
           height: 300px;
@@ -368,6 +368,23 @@
 }
 
 #item_shipping_date {
+  position: relative;
+  z-index: 2;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  cursor: pointer;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+#item_way_of_delivery {
   position: relative;
   z-index: 2;
   height: 48px;
