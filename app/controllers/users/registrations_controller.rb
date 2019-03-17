@@ -4,14 +4,39 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-  prepend_before_action :check_captcha, only: [:create]
+  # prepend_before_action :check_captcha, only: [:create]
   prepend_before_action :customize_sign_up_params, only: [:create]
+
+  # def new
+  #   super
+  # end
+
+  def create
+    super
+    # resource.build_profile
+    # resource.profile = params[profiles_attributes: [:first_name,:user_id]]
+    # binding.pry
+    # resource.profile.save
+    profile = User.create(user_params)
+    profile.save
+  end
 
 
   private
   def customize_sign_up_params
     devise_parameter_sanitizer.permit :sign_up, keys: [:username, :email, :password, :password_confirmation, :remember_me]
   end
+
+  def user_params
+    params.require(resource_name).permit(profiles_attributes: [:first_name,:user_id])
+  end
+
+  # def configure_sign_up_params
+  #   devise_parameter_sanitizer.permit(:sign_up) do |params|
+  #     params.permit(:sign_up, keys: [:nickname, profile_attributes: [:first_name]])
+  #   end
+  # end
+
 
   def check_captcha
     self.resource = resource_class.new sign_up_params
