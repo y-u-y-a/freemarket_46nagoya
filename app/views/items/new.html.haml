@@ -24,6 +24,8 @@
                           ドラッグアンドドロップ
                           またはクリックしてファイルをアップロード
                         %i.icon-camera
+                    = f.fields_for :orders do |o|
+                      = o.select :businnes_stats, [['---', '0']]
               .sell-form__content
                 .form-group
                   %label
