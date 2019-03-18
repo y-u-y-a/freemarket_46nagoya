@@ -39,6 +39,9 @@ Things you may want to cover:
 |brand_id|integer||
 |category_id|integer|null: false|
 |way_of_delivery|integer|null: false|
+|user_id|integer|null: false|
+|buyer_id|integer||
+|business_stats|integer|null: false|
 
 ### Association
 - has_many   comments    ,dependent: :delete_all
@@ -47,7 +50,6 @@ Things you may want to cover:
 - belongs_to brand
 - has_many   messages
 - has_many   item_images ,dependent: :destroy_all
-- has_one    order
 
 
 ## item_imagesテーブル
@@ -75,7 +77,6 @@ Things you may want to cover:
 - has_many  comments  dependent: :destroy
 - has_many  lates     dependent: :destroy
 - has_many  messages  dependent: :destroy
-- has_many  orders
 - has_one   address   dependent: :destroy
 - has_one   profiels  dependent: :delete
 - has_one   socialprofiles dependent: :delete
@@ -97,20 +98,6 @@ Things you may want to cover:
 
 ### Association
 - belongs_to user
-
-
-## ordersテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|item_id|integer|null: false|
-|user_id|integer|null: false|
-|buyer_id|integer||
-|businnes_stats|integer|null: false|
-
-### Association
-- belongs_to  user
-- belongs_to  item
 
 
 ## commentsテーブル
