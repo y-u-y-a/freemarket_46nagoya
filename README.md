@@ -97,20 +97,6 @@ Things you may want to cover:
 - belongs_to user
 
 
-## ordersテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|item_id|integer|null: false|
-|user_id|integer|null: false|
-|buyer_id|integer||
-|businnes_stats|integer|null: false|
-
-### Association
-- belongs_to  user
-- belongs_to  item
-
-
 ## commentsテーブル
 
 |Column|Type|Options|
@@ -184,17 +170,6 @@ Things you may want to cover:
 ### Association
 - belongs_to  user
 - belongs_to  item
-
-
-
-## prefecturesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|                 <!--  都道府県 -->
-
-### Association
-- has_many  address
 
 
 ## addressテーブル

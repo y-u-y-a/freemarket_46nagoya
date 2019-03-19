@@ -32,8 +32,8 @@ crumb :card_registration do
   parent :payment_method
 end
 
-crumb :item_show do
-  link "正規品！COACH【コーチ】★★大きめ ミニシグネチャー ショルダーバッグ", item_path
+crumb :item_show do |item|
+  link item.name, item_path
   parent :root
 end
 # crumb :projects do
