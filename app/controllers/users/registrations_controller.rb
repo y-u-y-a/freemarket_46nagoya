@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # prepend_before_action :check_captcha, only: [:create]
-  prepend_before_action :customize_sign_up_params, only: [:create]
+  # prepend_before_action :customize_sign_up_params, only: [:create]
 
   def new
     super
@@ -15,7 +15,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # devise内製の処理＋profilesテーブルに保存する処理
   def create
-    binding.pry
     super
     # resource.build_profile
     # resource.profile = params[profiles_attributes: [:first_name,:user_id]]
@@ -26,21 +25,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
   # デフォルトのキーのストロングパラメーター化
-  def customize_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :email, :password, :password_confirmation, :remember_me, :nickname])
-  end
+  # def customize_sign_up_params
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
+  # end
 
-  # profilesテーブルのみのキーのストロングパラメータ化
-  def user_profile_params
-    params.require(:user).permit(:sign_up, keys: [:username, :email, :password, :password_confirmation, :remember_me, profile_attributes: [:id, :first_name, :last_name, :first_name_kana, :last_name_kana, :user_id]])
-  end
+  # # profilesテーブルのみのキーのストロングパラメータ化
+  # def user_profile_params
+  #   params.require(:user).permit(:sign_up, keys: [:username, :email, :password, :password_confirmation, :remember_me, profile_attributes: [:id, :first_name, :last_name, :first_name_kana, :last_name_kana, :user_id]])
+  # end
 
   #  全てをまとめた
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up) do |params|
-  #     params.require(:user).permit(:sign_up, keys: [:username, :email, :password, :password_confirmation, :remember_me, :nickname, profile_attributes: [:first_name, :last_name, :first_name_kana, :last_name_kana]])
-  #   end
-  # end
+  def user_profile_params
+    devise_parameter_sanitizer.permit(:sign_up) do |params|
+      params.require(:user).permit(:sign_up, keys: [:username, :email, :password, :password_confirmation, :remember_me, :nickname, profile_attributes: [:first_name, :last_name, :first_name_kana, :last_name_kana]])
+    end
+  end
 
 
   def check_captcha
