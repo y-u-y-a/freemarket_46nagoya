@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
+  has_many :items
 
   validates :nickname, presence: true
   validates :password, length: { minimum: 6 }   # 6文字以上で有効

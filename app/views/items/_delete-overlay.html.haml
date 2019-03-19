@@ -1,0 +1,15 @@
+%aside.modal.is-show.is-animate
+  .modal-inner.modal-banner
+    .modal-body
+      .modal-head.bold
+        確認
+
+      削除すると二度と復活できません。<br>削除する代わりに停止することもできます。<br>
+      <br>
+      本当に削除しますか？
+
+    .clearfix
+      .modal-btn.modal-btn-cancel
+        キャンセル
+      = form_for @item, method: :delete do |f|
+        = f.submit '削除する', class: 'modal-btn modal-btn-submit'
