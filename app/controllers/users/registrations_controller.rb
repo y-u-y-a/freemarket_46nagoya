@@ -8,32 +8,36 @@ class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :customize_sign_up_params, only: [:create]
 
   # def new
-  #   super
+  #   build_resource({})
+  #   resource.build_profile
+  #   respond_with self.resource
   # end
 
+  # devise内製の処理＋profilesテーブルに保存する処理
   def create
     super
     # resource.build_profile
     # resource.profile = params[profiles_attributes: [:first_name,:user_id]]
-    # binding.pry
     # resource.profile.save
-    profile = User.create(user_params)
-    profile.save
+    Profile.create(user_profiles_params)
   end
 
 
   private
+  # デフォルトのキーのストロングパラメーター化
   def customize_sign_up_params
-    devise_parameter_sanitizer.permit :sign_up, keys: [:username, :email, :password, :password_confirmation, :remember_me]
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :email, :password, :password_confirmation, :remember_me])
   end
 
-  def user_params
-    params.require(resource_name).permit(profiles_attributes: [:first_name,:user_id])
+  # profilesテーブルのみのキーのストロングパラメータ化
+  def user_profiles_params
+    params.require(:user).permit(profiles_attributes: [:id, :first_name, :last_name, :first_name_kana, :last_name_kana, :user_id])
   end
 
+  #  全てをまとめた
   # def configure_sign_up_params
   #   devise_parameter_sanitizer.permit(:sign_up) do |params|
-  #     params.permit(:sign_up, keys: [:nickname, profile_attributes: [:first_name]])
+  #     params.require(:user).permit(:sign_up, keys: [:username, :email, :password, :password_confirmation, :remember_me, :nickname, profile_attributes: [:first_name, :last_name, :first_name_kana, :last_name_kana]])
   #   end
   # end
 
