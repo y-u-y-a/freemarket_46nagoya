@@ -175,17 +175,6 @@ Things you may want to cover:
 - belongs_to  item
 
 
-
-## prefecturesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|                 <!--  都道府県 -->
-
-### Association
-- has_many  address
-
-
 ## addressテーブル
 
 |Column|Type|Options|

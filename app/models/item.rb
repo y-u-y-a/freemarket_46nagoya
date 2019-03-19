@@ -3,7 +3,10 @@ class Item < ApplicationRecord
   has_many :item_images,dependent: :delete_all
   accepts_nested_attributes_for :item_images
   belongs_to :user
+<<<<<<< HEAD
   # mount_uploader :image, ImageUploader
+=======
+>>>>>>> tsurutadesu/master
 
   validates :name, presence: true
   validates :price, presence: true
