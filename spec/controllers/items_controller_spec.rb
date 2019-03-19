@@ -52,8 +52,6 @@ RSpec.describe ItemsController, type: :controller do
     it "renders the :edit template" do
     end
   end
-<<<<<<< HEAD
-=======
 
   describe 'DELETE #destroy' do
     let(:item) { FactoryBot.build(:item) }
@@ -67,5 +65,4 @@ RSpec.describe ItemsController, type: :controller do
       }.to change(Item,:count).by(-1)
     end
   end
->>>>>>> tsurutadesu/master
 end
