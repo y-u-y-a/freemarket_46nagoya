@@ -16,10 +16,30 @@ RSpec.describe ItemsController, type: :controller do
     end
   end
 
+<<<<<<< HEAD
   describe "POST #create" do
     it "returns http success" do
       post :create
       expect(response).to have_http_status(:success)
     end
   end
+=======
+  describe "GET #show" do
+    it "renders the :show template" do
+      get :show, params: { id: 1 }
+      expect(response).to render_template :show
+    end
+  end
+
+  describe "GET #edit" do
+    it "assigns the requested item to @item" do
+      item = create(:item)
+      get :edit, params: { id: item}
+      expect(assigns(:item)).to eq item
+    end
+    it "renders the :edit template" do
+    end
+  end
+
+>>>>>>> tsurutadesu/master
 end

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20190318031016) do
+=======
+ActiveRecord::Schema.define(version: 20190319061331) do
+>>>>>>> tsurutadesu/master
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -34,6 +38,7 @@ ActiveRecord::Schema.define(version: 20190318031016) do
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "price"
+<<<<<<< HEAD
     t.text     "explain",         limit: 65535
     t.integer  "postage"
     t.string   "region"
@@ -48,6 +53,20 @@ ActiveRecord::Schema.define(version: 20190318031016) do
     t.integer  "user_id"
     t.integer  "buyer_id"
     t.integer  "business_stats"
+=======
+    t.text     "explain",       limit: 65535
+    t.integer  "postage",                     default: 0
+    t.string   "region"
+    t.integer  "state",                       default: 0
+    t.integer  "shipping_date",               default: 0
+    t.integer  "size"
+    t.integer  "brand_id"
+    t.integer  "category_id"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "user_id"
+    t.integer  "shipping_way",                default: 0
+>>>>>>> tsurutadesu/master
     t.index ["name"], name: "index_items_on_name", using: :btree
     t.index ["price"], name: "index_items_on_price", using: :btree
   end
