@@ -41,8 +41,13 @@
                   transition: opacity 400ms;
                 }
                 img {
+                  position: absolute;
+                  top: 0;
+                  left:0;
+                  bottom: 0;
+                  right: 0;
                   width: 100%;
-                  vertical-align: bottom;
+                  margin: auto;
                 }
               }
             }
@@ -152,6 +157,9 @@
         text-decoration: none;
       }
       div {
+        .item-user-ratings:first-child {
+          margin: 0;
+        }
         .item-user-ratings {
           display: inline-block;
           margin: 8px 0 0 16px;
@@ -194,6 +202,16 @@
     text-align: center;
     font-weight: 600;
     font-size: 24px;
+  }
+  .item-btn-client {
+    color: $white;
+    display: block;
+    width: 100%;
+    margin: 24px 0 0;
+    background: $red;
+    line-height: 60px;
+    text-align: center;
+    font-weight: 600;
   }
   .item-description {
     padding: 32px 0 0;
@@ -249,6 +267,36 @@
         text-decoration: none;
       }
     }
+  }
+}
+
+.listening-item-change-box {
+  background: $white;
+  padding: 8px 16px;
+  width: 700px;
+  margin: 24px auto;
+  .btn-default {
+    margin: 16px 0;
+    display: block;
+    width: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .btn-red {
+    background: $red;
+    border: $border_red;
+    color: $white;
+  }
+  .text-center {
+    font-size: 16px;
+    text-align: center;
+  }
+  .btn-gray {
+    background: #aaa;
+    border: 1px solid #aaa;
+    color: $white;
   }
 }
 
