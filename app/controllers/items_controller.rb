@@ -22,7 +22,7 @@ class ItemsController < ApplicationController
 
   def create
     Item.create(item_params)
-    redirect_to root_path
+    redirect_to root_path(@item)
   end
 
   def show
@@ -59,7 +59,7 @@ class ItemsController < ApplicationController
 
   private
     def item_params
-      params.require(:item).permit(:name, :explain, :category_id, :state, :postage, :region, :shipping_date, :price, :shipping_way, item_images_attributes: [:item_id, :image]).merge(user_id: current_user.id, business_stats: '1')
+      params.require(:item).permit(:name,:price,:explain,:postage,:region,:state,:shipping_date,:shipping_way,:category_id, item_images_attributes: [:item_id, :image]).merge(user_id: current_user.id, business_stats: '1')
     end
 
     def item_update_params
