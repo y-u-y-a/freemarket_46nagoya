@@ -6,8 +6,6 @@ set :default_env, {
   BASIC_AUTH_PASSWORD: ENV["BASIC_AUTH_PASSWORD"]
 }
 
-<<<<<<< HEAD
-=======
 set :default_env, {
   rbenv_root: "/usr/local/rbenv",
   path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH",
@@ -22,7 +20,6 @@ set :default_env, {
 #   RECAPTCHA_SECRET_KEY: ENV["RECAPTCHA_SECRET_KEY"]
 # }
 
->>>>>>> tsurutadesu/master
 
 set :application, "my_app_name"
 set :repo_url, "git@example.com:me/my_repo.git"

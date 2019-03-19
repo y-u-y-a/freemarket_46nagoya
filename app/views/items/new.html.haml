@@ -104,13 +104,10 @@
                     %li.clearfix.clearfix-commission
                       .l-left
                         販売手数料（10%）
-                      .l-right.l-right-commission
-                        = "¥#{thousands_separator(commission(@item.price))}"
+                      .l-right.l-right-commission -
                     %li.clearfix.bold
                       .l-left.profit 販売利益
-                      .l-right
-                        = "¥#{thousands_separator(profits(@item.price))}"
-
+                      .l-right -
               .modal{:role => "dialog", :tabindex => "-1"}
                 .modal-inner
               .sell-form__content.sell-btn-box
