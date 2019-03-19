@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   resources :items do
     get :buy, on: :collection
   end
-  resources :items,only: [:index,:new,:show]
+<<<<<<< HEAD
+  resources :items,only: [:index,:new,:create,:show]
   resources :users,only: [:index,:show]
+=======
+>>>>>>> tsurutadesu/master
 end
