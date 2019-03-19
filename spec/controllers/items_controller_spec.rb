@@ -34,8 +34,12 @@ RSpec.describe ItemsController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    let(:item) { FactoryBot.build(:item) }
+    it "itemが正常に作成できているかどうか" do
+      expect(item).to be_valid
+    end
+
     it "deletes the item" do
-      item = FactoryBot.build(:item)
       expect{
         delete :destroy, id: item
       }.to change(Item,:count).by(-1)
