@@ -33,4 +33,12 @@ RSpec.describe ItemsController, type: :controller do
     end
   end
 
+  describe 'DELETE #destroy' do
+    it "deletes the item" do
+      item = FactoryBot.build(:item)
+      expect{
+        delete :destroy, id: item
+      }.to change(Item,:count).by(-1)
+    end
+  end
 end
