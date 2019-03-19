@@ -12,8 +12,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @images = @item.item_images
-    @images = ItemImage.find(@images.ids)
+    images = @item.item_images
+    @images = ItemImage.find(images.ids)
     @item_image = @item.item_images.build
   end
 
