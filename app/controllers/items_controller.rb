@@ -3,6 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show,:edit, :update, :destroy]
 
   def index
+    @items = Item.all
     items = Item.order("created_at DESC")
     @lady_items = items.where(category_id: "1").first(4)
     @man_items = items.where(category_id: "2").first(4)
@@ -15,6 +16,13 @@ class ItemsController < ApplicationController
   end
 
   def new
+    @item = Item.new
+    @item.item_images.build
+  end
+
+  def create
+    Item.create(item_params)
+    redirect_to root_path(@item)
   end
 
   def show
@@ -45,16 +53,17 @@ class ItemsController < ApplicationController
     end
   end
 
-  def buy
 
+  def buy
   end
 
   private
-  def item_params
-    params.require(:item).permit(:name,:price,:explain,:postage,:region,:state,:shipping_date,:shipping_way,:size,:brand_id,:category_id,item_images_attributes: [:image,:item_id]).merge(user_id: current_user.id)
-  end
+    def item_params
+      params.require(:item).permit(:name,:price,:explain,:postage,:region,:state,:shipping_date,:shipping_way,:size,:brand_id,:category_id,item_images_attributes: [:image,:item_id]).merge(user_id: current_user.id, business_stats: '1')
+    end
 
-  def set_item
-    @item = Item.find(params[:id])
-  end
+    def set_item
+      @item = Item.find(params[:id])
+    end
+
 end
