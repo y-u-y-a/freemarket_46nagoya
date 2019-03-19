@@ -12,6 +12,7 @@
       margin: 0;
       font-size: 28px;
       text-align: center;
+      font-weight:bold;
       p {
         margin: 0;
       }
@@ -24,6 +25,8 @@
         margin: 26px 11px;
         a {
           text-decoration: none;
+          color:#0099e8;
+          font-weight:bold;
         }
       }
       &__lists {
@@ -78,7 +81,7 @@
               }
               &__price {
                 font-size: 16px;
-                font-weight: 600;
+                font-weight: bold;
                 color: #333;
               }
               p {
