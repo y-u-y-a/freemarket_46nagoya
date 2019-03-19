@@ -16,6 +16,7 @@ class Users::SessionsController < Devise::SessionsController
       respond_with_navigational(resource) { render :new }
     end
   end
+
   # GET /resource/sign_in
   # def new
   #   super
