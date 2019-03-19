@@ -1,4 +1,7 @@
 class Item < ApplicationRecord
+
+  has_many :item_images
+
   has_many :item_images,dependent: :delete_all
   accepts_nested_attributes_for :item_images
   belongs_to :user
@@ -37,5 +40,4 @@ class Item < ApplicationRecord
     "ゆうパック": 3,
     "ゆうメール": 4
   }
-
 end

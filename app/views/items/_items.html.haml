@@ -10,60 +10,172 @@
   .swiper-button-next
   .swiper-pagination#pagination
 
+
 %section.pickup-container
   %h2.pickup-container__title
     ピックアップカテゴリー
+  // 商品一覧表示
   %section.items-boxes
     %h3.items-boxes__category.text-center
-      = link_to "新着アイテム",root_path, class: "new-item"
+      = link_to "レディース 新着アイテム",root_path, class: "new-item"
     .items-boxes__lists
-      %section.items-card
-        = link_to root_path, class: "item-link" do
-          %figure.items-card__photo
-            = image_tag("/images/item-sample.jpg")
-          .items-card-intro
-            %h3.items-card-intro__item-name
-              スプリングコート
-            .items-card-num
-              .items-card-num__price
-                ¥17,000
-              %p.item-card-num__tax
-                (税込)
-      %section.items-card
-        = link_to root_path, class: "item-link" do
-          %figure.items-card__photo
-            = image_tag("/images/item-sample.jpg")
-          .items-card-intro
-            %h3.items-card-intro__item-name
-              スプリングコート
-            .items-card-num
-              .items-card-num__price
-                ¥17,000
-              %p.item-card-num__tax
-                (税込)
-      %section.items-card
-        = link_to root_path, class: "item-link" do
-          %figure.items-card__photo
-            = image_tag("/images/item-sample.jpg")
-          .items-card-intro
-            %h3.items-card-intro__item-name
-              スプリングコート
-            .items-card-num
-              .items-card-num__price
-                ¥17,000
-              %p.item-card-num__tax
-                (税込)
-      %section.items-card
-        = link_to root_path, class: "item-link" do
-          %figure.items-card__photo
-            = image_tag("/images/item-sample.jpg")
-          .items-card-intro
-            %h3.items-card-intro__item-name
-              スプリングコート
-            .items-card-num
-              .items-card-num__price
-                ¥17,000
-              %p.item-card-num__tax
-                (税込)
+      - @lady_items.each do |lady|
+        %section.items-card
+          = link_to root_path, class: "item-link" do
+            %figure.items-card__photo
+              = image_tag("/images/item-sample.jpg")
+            .items-card-intro
+              %h3.items-card-intro__item-name
+                = lady.name
+              .items-card-num
+                .items-card-num__price
+                = converting_to_yenSign(lady.price)
+                %p.item-card-num__tax
+                  (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
+
+
+    %h3.items-boxes__category.text-center
+      = link_to "メンズ 新着アイテム",root_path, class: "new-item"
+    .items-boxes__lists
+      - @man_items.each do |man|
+        %section.items-card
+          = link_to root_path, class: "item-link" do
+            %figure.items-card__photo
+              = image_tag man.item_images
+            .items-card-intro
+              %h3.items-card-intro__item-name
+                = man.name
+              .items-card-num
+                .items-card-num__price
+                = converting_to_yenSign(man.price)
+                %p.item-card-num__tax
+                  (税込)
+    .items-boxes__view-all.l-right
+      = link_to "すべての商品を見る",root_path
+
+
+    %h3.items-boxes__category.text-center
+      = link_to "ベビー・キッズ 新着アイテム",root_path, class: "new-item"
+    .items-boxes__lists
+      - @kids_items.each do |kid|
+        %section.items-card
+          = link_to root_path, class: "item-link" do
+            %figure.items-card__photo
+              = image_tag("")
+            .items-card-intro
+              %h3.items-card-intro__item-name
+                = kid.name
+              .items-card-num
+                .items-card-num__price
+                = converting_to_yenSign(kid.price)
+                %p.item-card-num__tax
+                  (税込)
+    .items-boxes__view-all.l-right
+      = link_to "すべての商品を見る",root_path
+
+
+    %h3.items-boxes__category.text-center
+      = link_to "コスメ・香水・美容 新着アイテム",root_path, class: "new-item"
+    .items-boxes__lists
+      - @cosmetic_items.each do |cosmetic|
+        %section.items-card
+          = link_to root_path, class: "item-link" do
+            %figure.items-card__photo
+              = image_tag("")
+            .items-card-intro
+              %h3.items-card-intro__item-name
+                = cosmetic.name
+              .items-card-num
+                .items-card-num__price
+                = converting_to_yenSign(cosmetic.price)
+                %p.item-card-num__tax
+                  (税込)
+    .items-boxes__view-all.l-right
+      = link_to "すべての商品を見る",root_path
+
+
+  %h2.pickup-container__title
+    ピックアップブランド
+  // 商品一覧表示
+  %section.items-boxes
+    %h3.items-boxes__category.text-center
+      = link_to "シャネル 新着アイテム",root_path, class: "new-item"
+    .items-boxes__lists
+      - @chanel_items.each do |chanel|
+        %section.items-card
+          = link_to root_path, class: "item-link" do
+            %figure.items-card__photo
+              = image_tag("")
+            .items-card-intro
+              %h3.items-card-intro__item-name
+                = chanel.name
+              .items-card-num
+                .items-card-num__price
+                = converting_to_yenSign(chanel.price)
+                %p.item-card-num__tax
+                  (税込)
+    .items-boxes__view-all.l-right
+      = link_to "すべての商品を見る",root_path
+
+
+    %h3.items-boxes__category.text-center
+      = link_to "ルイ ヴィトン 新着アイテム",root_path, class: "new-item"
+    .items-boxes__lists
+      - @vuitton_items.each do |vuitton|
+        %section.items-card
+          = link_to root_path, class: "item-link" do
+            %figure.items-card__photo
+              = image_tag("")
+            .items-card-intro
+              %h3.items-card-intro__item-name
+                = vuitton.name
+              .items-card-num
+                .items-card-num__price
+                = converting_to_yenSign(vuitton.price)
+                %p.item-card-num__tax
+                  (税込)
+    .items-boxes__view-all.l-right
+      = link_to "すべての商品を見る",root_path
+
+
+    %h3.items-boxes__category.text-center
+      = link_to "シュプリーム 新着アイテム",root_path, class: "new-item"
+    .items-boxes__lists
+      - @supreme_items.each do |supreme|
+        %section.items-card
+          = link_to root_path, class: "item-link" do
+            %figure.items-card__photo
+              = image_tag("")
+            .items-card-intro
+              %h3.items-card-intro__item-name
+                = supreme.name
+              .items-card-num
+                .items-card-num__price
+                = converting_to_yenSign(supreme.price)
+                %p.item-card-num__tax
+                  (税込)
+    .items-boxes__view-all.l-right
+      = link_to "すべての商品を見る",root_path
+
+
+    %h3.items-boxes__category.text-center
+      = link_to "ナイキ 新着アイテム",root_path, class: "new-item"
+    .items-boxes__lists
+      - @nike_items.each do |nike|
+        %section.items-card
+          = link_to root_path, class: "item-link" do
+            %figure.items-card__photo
+              = image_tag("")
+            .items-card-intro
+              %h3.items-card-intro__item-name
+                = nike.name
+              .items-card-num
+                .items-card-num__price
+                = converting_to_yenSign(nike.price)
+                %p.item-card-num__tax
+                  (税込)
+    .items-boxes__view-all.l-right
+      = link_to "すべての商品を見る",root_path
+
