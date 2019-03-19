@@ -13,9 +13,8 @@ FactoryBot.define do
     category_id           {"1"}
     created_at            {Faker::Time.between(99.days.ago, Time.now, :all)}     # 100日間の間ででランダム生成
   end
-end
+
 # :itemを複数形の:itemsにすると、NameError：uninitialized const Itemというエラーが出る
-=======
   factory :item do
     name {"apple"}
     price {1000}
