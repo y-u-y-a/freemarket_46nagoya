@@ -1,0 +1,143 @@
+.single-container
+  = render 'users/user_header'
+  %main.single-main
+    %section.l-single-container.buy-item-container
+      #sell-container
+        .data-reactroot
+          .sell-container-inner
+            %h2.l-single-head 商品の情報を入力
+            = form_for @item , html: {class: 'sell-form'} do |f|
+              .sell-upload-box
+                %h3.sell-upload-head
+                  出品画像
+                  %span.form-require 必須
+                %p 最大10枚までアップロードできます
+                .sell-dropbox-container.clearfix.state-image-number-10
+                  .sell-upload-items-container
+                    %div{class: "sell-upload-items have-item-1"}
+                      %ul
+                        %li.sell-upload-item
+                          %figure.sell-upload-figure.landscape
+                            = image_tag 'apple.jpg'
+                          .sell-upload-button
+                            = link_to '編集', class: 'sell-upload-edit'
+                            = link_to '削除'
+
+                  = f.fields_for :item_images , @item_image do |image|
+                    = image.label :image, class: 'form-mask-image' do
+                      .sell-upload-drop-box.have-item-1
+                        = image.file_field :image,class: 'hidden'
+                        %pre.visible-pc
+                          ドラッグアンドドロップ
+                          またはクリックしてファイルをアップロード
+              .sell-content
+                .form-group
+                  %label 商品名
+                  %span.form-require 必須
+
+                  %div
+                    = f.text_field :name,class: 'input-default',placeholder: '商品名（必須 40文字まで)'
+
+                  .form-group
+                    %label
+                      商品の説明
+                      %span.form-require 必須
+                    = f.text_area :explain, class: 'textarea-default', value: @item.explain,placeholder: '商品の説明ありません'
+
+              .sell-content.clearfix
+                %h3.sell-sub-head 商品の詳細
+                .sell-form-box
+                  .form-group
+                    %label
+                      カテゴリ
+                      %span.form-require 必須
+                  %div
+                    .select-wrap
+                      = f.select :category_id,[["---", "0"], ["レディース", "1"], ["メンズ", "2"], ["ベビー・キッズ", "3"], ["インテリア・住まい・小物", "4"], ["本・音楽・ゲーム", "5"], ["おもちゃ・ホビー・グッズ", "6"], ["コスメ・香水・美容", "7"], ["家電・スマホ・カメラ", "8"], ["スポーツ・レジャー", "9"], ["ハンドメイド", "10"], ["チケット", "11"], ["自動車・オートバイ", "12"], ["その他", "13"]],class: 'select-default'
+                      = fa_icon 'angle-down'
+                    .select-wrap
+                      = f.select :category_id, [["---", "0"], ["まとめ売り", "1"], ["ペット用品", "2"], ["食品", "3"], ["飲料/酒", "4"], ["日用品/生活雑貨/旅行", "5"], ["アンティーク/コレクション", "6"], ["文房具/事務用品", "7"], ["事務/店舗用品", "8"], ["その他", "9"]]
+                      = fa_icon 'angle-down'
+                    .select-wrap
+                      = f.select :category_id, [["---", "0"], ["筆記具", "1"], ["ノート/メモ帳", "2"], ["テープ/マスキングテープ", "3"], ["カレンダー/スケジュール", "4"],["アルバム/スクラップ", "5"], ["ファイル/バインダー", "6"], ["はさみ/カッター", "7"],["カードホルダー/名刺管理", "8"],["のり/ホッチキス", "9"],["その他", "10"]]
+                      = fa_icon 'angle-down'
+
+
+                    .form-group
+                      %label
+                        商品の状態
+                        %span.form-require 必須
+                      .select-wrap
+                        = f.select :state, Item.states_i18n.invert,{}
+                        = fa_icon 'angle-down'
+
+              .sell-content.clearfix
+                %h3.sell-sub-head 配送について
+                %figure.form-question ?
+                .sell-form-box
+                  .form-group
+                    %label
+                      配送料の負担
+                      %span.form-require 必須
+                    .select-wrap
+                      = f.select :postage, Item.postages_i18n.invert, {}
+                      = fa_icon 'angle-down'
+
+                  .form-group
+                    %label
+                      発送元の地域
+                      %span.form-require 必須
+                    .select-wrap
+                      = collection_select :item, :region,Prefecture.all,:id,:name,{} ,{class: "select-default"}
+                      = fa_icon 'angle-down'
+
+                  .form-group
+                    %label
+                      配達の方法
+                      %span.form-require 必須
+                    .select-wrap
+                      = f.select :shipping_way,Item.shipping_ways_i18n.invert, {}
+                      = fa_icon 'angle-down'
+
+                  .form-group
+                    %label
+                      発送までの日数
+                      %span.form-require 必須
+                    .select-wrap
+                      = f.select :shipping_date, Item.shipping_dates_i18n.invert,{}
+                      = fa_icon 'angle-down'
+
+              .sell-content
+                %h3.sell-sub-head 販売価格(300〜9,999,999)
+                = link_to '?','#',class: 'form-question'
+                .sell-form-box
+                  %ul.sell-price
+                    %li.form-group
+                      .clearfix
+                        %label.l-left
+                          価格
+                          %span.form-require 必須
+
+                        .l-right.sell-price-input
+                          ¥
+                          .input-price
+                            = f.text_field :price,class: 'input-default',value: @item.price,placeholder: '例）300'
+
+
+                    %li.clearfix
+                      .l-left 販売手数料(10%)
+                      .l-right.commission
+                        = "¥#{thousands_separator(commission(@item.price))}"
+
+                    %li.clearfix.bold
+                      .l-left 販売利益
+                      .total-right.profits
+                        = "¥#{thousands_separator(profits(@item.price))}"
+
+              .sell-content.sell-btn-box
+                = f.submit '変更する',class: 'btn-default btn-red'
+                = link_to 'キャンセル',item_path(@item),class: 'btn-default btn-gray'
+
+  = render 'users/user_footer'
+
+

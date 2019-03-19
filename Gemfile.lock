@@ -95,6 +95,8 @@ GEM
     devise-i18n (1.8.0)
       devise (>= 4.6)
     diff-lcs (1.3)
+    enum_help (0.0.17)
+      activesupport (>= 3.0.0)
     dotenv (2.7.1)
     dotenv-rails (2.7.1)
       dotenv (= 2.7.1)
@@ -328,6 +330,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   devise-i18n
+  enum_help
   dotenv-rails
   erb2haml
   factory_bot_rails
