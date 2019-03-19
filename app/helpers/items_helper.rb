@@ -1,4 +1,5 @@
 module ItemsHelper
+
   def thousands_separator(price)
     "#{price.to_s(:delimited, delimiter: ',')}"
   end
