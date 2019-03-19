@@ -45,9 +45,9 @@ ActiveRecord::Schema.define(version: 20190319061331) do
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.integer  "user_id"
+    t.integer  "shipping_way",                 default: 0
     t.integer  "buyer_id"
     t.integer  "business_stats"
-    t.integer  "shipping_way",                 default: 0
     t.index ["name"], name: "index_items_on_name", using: :btree
     t.index ["price"], name: "index_items_on_price", using: :btree
   end
