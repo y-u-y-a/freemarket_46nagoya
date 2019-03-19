@@ -369,6 +369,122 @@
           line-height: 63px;
           cursor: pointer;
         }
+        .sell-upload-drop-box.have-item-1 {
+          float: right;
+          padding: 40px;
+          position: relative;
+          min-height: 162px;
+          background: #f5f5f5;
+          border: 1px dashed #ccc;
+          // font-size: 0;
+          text-align: center;
+          cursor: pointer;
+          margin-left: 2%;
+          width: 491px;
+          pre {
+            position: absolute;
+            top: 50%;
+            left: 16px;
+            right: 16px;
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.5;
+            transform: translate(0, -50%);
+            pointer-events: none;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            display: block;
+          }
+        }
+      }
+    }
+    .sell-content {
+      padding: 40px;
+      border-top: $border_light_gray;
+      @include clearfix;
+      .form-group:first-child {
+        margin: 0;
+      }
+      .form-group {
+        margin: 40px 0 0;
+        label {
+          font-weight: 600;
+          display: inline-block;
+          .form-require {
+            background: $red;
+            margin: 0 0 0 8px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            color: $white;
+            font-size: 12px;
+            vertical-align: top;
+          }
+        }
+        div {
+          .input-default {
+            width: 100%;
+            margin: 8px 0 0;
+            height: 48px;
+            padding: 10px 16px 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background: $white;
+            line-height: 1.5;
+            font-size: 16px;
+            display: block;
+          }
+        }
+        .textarea-default {
+          margin: 8px 0 0;
+          display: block;
+          width: 100%;
+          max-width: 100%;
+          min-height: 104px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          background: $white;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+      }
+      .sell-sub-head {
+        float: left;
+        color: #888;
+        font-size: 14px;
+      }
+      .sell-form-box {
+        float: right;
+        width: 400px;
+        margin: 0;
+      }
+      .select-wrap {
+        margin: 8px 0 0;
+        position: relative;
+        background: $white;
+        select {
+          width: 100%;
+          position: relative;
+          z-index: 2;
+          height: 48px;
+          padding: 0 16px;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+          background: 0;
+          font-size: 16px;
+          line-height: 1.5;
+          cursor: pointer;
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+        }
+        i {
+          position: absolute;
+          right: 16px;
+          top: 50%;
+          z-index: 2;
+          color: 8px;
+          transform: translate(0,-50%);
+        }
       }
     }
   }
