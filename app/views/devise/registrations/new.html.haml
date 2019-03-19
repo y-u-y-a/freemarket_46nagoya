@@ -68,7 +68,7 @@
           .form-group
             %label{for: "family_name_kanji"} 姓 (全角)
             %span.form-require 必須
-            = f.fields_for :profiles, resource.build_profile || Profile.new do |a|
+            = f.fields_for :profiles do |a|
               = a.text_field :first_name, placeholder: "例) 山田", class: "input-default"
 
           .form-group

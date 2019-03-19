@@ -7,31 +7,32 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # prepend_before_action :check_captcha, only: [:create]
   prepend_before_action :customize_sign_up_params, only: [:create]
 
-  # def new
-  #   build_resource({})
-  #   resource.build_profile
-  #   respond_with self.resource
-  # end
+  def new
+    super
+    build_resource({})
+    resource.build_profile
+  end
 
   # devise内製の処理＋profilesテーブルに保存する処理
   def create
+    binding.pry
     super
     # resource.build_profile
     # resource.profile = params[profiles_attributes: [:first_name,:user_id]]
     # resource.profile.save
-    Profile.create(user_profiles_params)
+    Profile.create(user_profile_params)
   end
 
 
   private
   # デフォルトのキーのストロングパラメーター化
   def customize_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :email, :password, :password_confirmation, :remember_me])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :email, :password, :password_confirmation, :remember_me, :nickname])
   end
 
   # profilesテーブルのみのキーのストロングパラメータ化
-  def user_profiles_params
-    params.require(:user).permit(profiles_attributes: [:id, :first_name, :last_name, :first_name_kana, :last_name_kana, :user_id])
+  def user_profile_params
+    params.require(:user).permit(:sign_up, keys: [:username, :email, :password, :password_confirmation, :remember_me, profile_attributes: [:id, :first_name, :last_name, :first_name_kana, :last_name_kana, :user_id]])
   end
 
   #  全てをまとめた
