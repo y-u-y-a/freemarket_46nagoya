@@ -18,10 +18,7 @@
                       %ul
                         %li.sell-upload-item
                           %figure.sell-upload-figure.landscape
-                            / = image_tag @images.first.image
                             = image_tag 'apple.jpg'
-                            / - @images.each do |image|
-                            /   = image_tag image
                           .sell-upload-button
                             = link_to '編集', class: 'sell-upload-edit'
                             = link_to '削除'
