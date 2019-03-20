@@ -9,8 +9,6 @@
   .swiper-button-prev
   .swiper-button-next
   .swiper-pagination#pagination
-
-
 %section.pickup-container
   %h2.pickup-container__title
     ピックアップカテゴリー
@@ -29,13 +27,11 @@
                 = lady.name
               .items-card-num
                 .items-card-num__price
-                = converting_to_yenSign(lady.price)
+                = "¥ #{thousands_separator(lady.price)}"
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
-
-
     %h3.items-boxes__category.text-center
       = link_to "メンズ 新着アイテム",root_path, class: "new-item"
     .items-boxes__lists
@@ -49,13 +45,11 @@
                 = man.name
               .items-card-num
                 .items-card-num__price
-                = converting_to_yenSign(man.price)
+                = "¥ #{thousands_separator(man.price)}"
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
-
-
     %h3.items-boxes__category.text-center
       = link_to "ベビー・キッズ 新着アイテム",root_path, class: "new-item"
     .items-boxes__lists
@@ -69,13 +63,11 @@
                 = kid.name
               .items-card-num
                 .items-card-num__price
-                = converting_to_yenSign(kid.price)
+                = "¥ #{thousands_separator(kid.price)}"
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
-
-
     %h3.items-boxes__category.text-center
       = link_to "コスメ・香水・美容 新着アイテム",root_path, class: "new-item"
     .items-boxes__lists
@@ -89,13 +81,11 @@
                 = cosmetic.name
               .items-card-num
                 .items-card-num__price
-                = converting_to_yenSign(cosmetic.price)
+                = "¥ #{thousands_separator(cosmetic.price)}"
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
-
-
   %h2.pickup-container__title
     ピックアップブランド
   // 商品一覧表示
@@ -113,13 +103,11 @@
                 = chanel.name
               .items-card-num
                 .items-card-num__price
-                = converting_to_yenSign(chanel.price)
+                = "¥ #{thousands_separator(chanel.price)}"
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
-
-
     %h3.items-boxes__category.text-center
       = link_to "ルイ ヴィトン 新着アイテム",root_path, class: "new-item"
     .items-boxes__lists
@@ -133,13 +121,11 @@
                 = vuitton.name
               .items-card-num
                 .items-card-num__price
-                = converting_to_yenSign(vuitton.price)
+                = "¥ #{thousands_separator(vuitton.price)}"
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
-
-
     %h3.items-boxes__category.text-center
       = link_to "シュプリーム 新着アイテム",root_path, class: "new-item"
     .items-boxes__lists
@@ -153,13 +139,11 @@
                 = supreme.name
               .items-card-num
                 .items-card-num__price
-                = converting_to_yenSign(supreme.price)
+                = "¥ #{thousands_separator(supreme.price)}"
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
-
-
     %h3.items-boxes__category.text-center
       = link_to "ナイキ 新着アイテム",root_path, class: "new-item"
     .items-boxes__lists
@@ -173,9 +157,8 @@
                 = nike.name
               .items-card-num
                 .items-card-num__price
-                = converting_to_yenSign(nike.price)
+                = "¥ #{thousands_separator(nike.price)}"
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
-

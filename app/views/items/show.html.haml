@@ -14,8 +14,8 @@
             .owl-stage{ style: 'left:0px',width: '1200px'}
               .owl-item{ style: 'width:300px'}
                 .owl-item__inner.is-higher-width
+                  / = image_tag @images.image
 
-                  = image_tag "apple.jpg"
 
 
           .owl-dots
@@ -153,77 +153,8 @@
     .message-container
       .message-content
         %ul.message-items
-          %li.clearfix
-            .message-user
-              %figure
-                .message-user-unknown
-                  = image_tag '//www-mercari-jp.akamaized.net/assets/img/common/common/user-icon.svg?2845599746'
-                %figcaption.bold
-            .message-body
-              .message-body-text 出品者がコメントを削除しました
-              .message-icons.clearfix
-                %time.message-icon-left
-                  %i.fa.fa-clock-o
-                  %span 135 日前
-              %i.fa.fa-caret-left
+          = render 'user_comments'
 
-          %li.clearfix
-            = link_to '#', class: 'message-user' do
-              %figure
-                %div
-                  = image_tag '//static.mercdn.net/images/member_photo_noimage_thumb.png'
-                %figcaption.bold ほげほげ
-            .message-body
-              .message-body-text はじめまして。ずっと、気になっているのですが・・・こちらのバッグの『多少の汚れ』とは、パッと見る限り、目立たない程度なのですか？皮の白いところは画像でわかるのですが、全体の感じがわからなかったので、質問してみました。
-              .message-icons.clearfix
-                %time.message-icon-left
-                  %i.fa.fa-clock-o
-                  %span 115 日前
-                .message-icon-right
-                  %form
-                    %button{ type: 'submit'}
-                      %i.fa.fa-flag
-              %i.fa.fa-caret-left
-
-          %li.clearfix
-            = link_to '#', class: 'message-user' do
-              %figure
-                %div
-                  = image_tag '//static.mercdn.net/thumb/members/387561164.jpg?1522509091'
-                %figcaption.bold
-                  = @item.user.nickname
-              .message-is-seller 出品者
-            .message-body
-              .message-body-text はじめまして。ずっと、気になっているのですが・・・こちらのバッグの『多少の汚れ』とは、パッと見る限り、目立たない程度なのですか？皮の白いところは画像でわかるのですが、全体の感じがわからなかったので、質問してみました。
-              .message-icons.clearfix
-                %time.message-icon-left
-                  %i.fa.fa-clock-o
-                  %span 113 日前
-                .message-icon-right
-                  %form
-                    %button{ type: 'submit'}
-                      %i.fa.fa-flag
-              %i.fa.fa-caret-left
-
-          %li.clearfix
-            = link_to '#', class: 'message-user' do
-              %figure
-                %div
-                  = image_tag '//static.mercdn.net/images/member_photo_noimage_thumb.png'
-                %figcaption.bold ほげほげ
-            .message-body
-              .message-body-text
-                ありがとうございます<br>購入したいなと思います
-
-              .message-icons.clearfix
-                %time.message-icon-left
-                  %i.fa.fa-clock-o
-                  %span 113 日前
-                .message-icon-right
-                  %form
-                    %button{ type: 'submit'}
-                      %i.fa.fa-flag
-              %i.fa.fa-caret-left
 
       .message-content
         %form.message-form
