@@ -16,7 +16,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
+    @item = Item.create(price: 0)
     @item.item_images.build
   end
 

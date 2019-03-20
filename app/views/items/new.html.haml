@@ -99,16 +99,18 @@
                         .l-right.sell-price-input
                           %p.price-mark
                             ¥
-                          .price-input-field
+                          .input-price
                             = f.text_field :price, class: 'input-default', value: @item.price, placeholder: '例) 300'
                     %li.clearfix.clearfix-commission
                       .l-left
                         販売手数料（10%）
-                      .l-right.l-right-commission -
+                      .l-right.l-right-commission.commission
+                        = "¥#{thousands_separator(commission(@item.price))}"
                     %li.clearfix.bold
-                      .l-left.profit 販売利益
-                      .l-right -
-              .modal{:role => "dialog", :tabindex => "-1"}
+                      .l-left.gain 販売利益
+                      .total-right.profits
+                        = "¥#{thousands_separator(profits(@item.price))}"
+
                 .modal-inner
               .sell-form__content.sell-btn-box
                 %div
