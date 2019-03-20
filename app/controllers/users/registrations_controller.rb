@@ -7,6 +7,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # prepend_before_action :check_captcha, only: [:create]
   prepend_before_action :customize_sign_up_params, only: [:create]
 
+  def create
+    super
+  end
+
+  def phone_number
+  end
+
+  def address
+  end
+
+  def payment_method
+  end
+
 
   private
   def customize_sign_up_params

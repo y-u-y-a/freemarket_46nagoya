@@ -1,20 +1,20 @@
-/ .single-container
-/   = render "users/signup_header"
+.single-container
+  = render "users/signup_header"
 
-/   %main.single-main
-/     %section.l-single-container
-/       %h2.l-single-head 会員登録完了
+  %main.single-main
+    %section.l-single-container
+      %h2.l-single-head 会員登録完了
 
-/       .l-single-content
-/         .form-group
-/           %p.form-info-text
-/             ありがとうございます。
-/             会員登録が完了しました。
+      .l-single-content
+        .form-group
+          %p.form-info-text
+            ありがとうございます。
+            会員登録が完了しました。
 
-/           .btn-default.btn-red
-/             = link_to 'メルカリを始める', root_path
+          .btn-default.btn-red
+            = link_to 'メルカリを始める', root_path
 
-/       .form-group
-/         = image_tag("/images/mercari-sample.jpg", class: "footer-app-bar__image")
+      .form-group
+        = image_tag("/images/mercari-sample.jpg", class: "footer-app-bar__image")
 
-/   = render "users/user_footer"
+  = render "users/user_footer"
