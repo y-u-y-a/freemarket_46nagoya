@@ -14,10 +14,13 @@
     .btn-red {
       background-color: $red;
       border: $border_red;
-      color: $white;
+
       font-family: inherit;
       &:first-child {
         margin: 0;
+        a {
+          color: $white;
+        }
       }
     }
     .btn-default {
