@@ -1,0 +1,2 @@
+class UserStepsController < ApplicationController
+end
