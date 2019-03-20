@@ -20,6 +20,4 @@ Rails.application.routes.draw do
   resources :items do
     get :buy, on: :collection
   end
-  resources :items,only: [:index,:new,:show]
-  resources :users,only: [:index,:show]
 end

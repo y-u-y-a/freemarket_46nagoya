@@ -29,6 +29,13 @@ RSpec.describe ItemsController, type: :controller do
     end
   end
 
+  describe "POST #create" do
+    it "returns http success" do
+      post :create
+      expect(response).to have_http_status(:success)
+    end
+  end
+
   describe "GET #show" do
     it "renders the :show template" do
       get :show, params: { id: 1 }
@@ -46,4 +53,16 @@ RSpec.describe ItemsController, type: :controller do
     end
   end
 
+  describe 'DELETE #destroy' do
+    let(:item) { FactoryBot.build(:item) }
+    it "itemが正常に作成できているかどうか" do
+      expect(item).to be_valid
+    end
+
+    it "deletes the item" do
+      expect{
+        delete :destroy, id: item
+      }.to change(Item,:count).by(-1)
+    end
+  end
 end

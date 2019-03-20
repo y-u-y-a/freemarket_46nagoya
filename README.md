@@ -34,18 +34,22 @@ Things you may want to cover:
 |postage|integer|null: false|           <!-- 発送料 -->
 |region|string|null: false|             <!-- 発送地 -->
 |state|string|null: false|              <!--  商品状態 -->
-|shipping_date|date|null: false|        <!-- 発送までの日数 -->
+|shipping_date|integer|null: false|     <!-- 発送までの日数 -->
 |size|integer||
 |brand_id|integer||
 |category_id|integer|null: false|
+|way_of_delivery|integer|null: false|
+|user_id|integer|null: false|
+|buyer_id|integer||
+|business_stats|integer|null: false|
 
 ### Association
-- has_many   comments  ,dependent: :delete_all
+- has_many   comments    ,dependent: :delete_all
 - belongs_to category
 - belongs_to user
 - belongs_to brand
 - has_many   messages
-
+- has_many   item_images ,dependent: :destroy_all
 
 
 ## item_imagesテーブル
@@ -73,7 +77,6 @@ Things you may want to cover:
 - has_many  comments  dependent: :destroy
 - has_many  lates     dependent: :destroy
 - has_many  messages  dependent: :destroy
-- has_many  orders
 - has_one   address   dependent: :destroy
 - has_one   profiels  dependent: :delete
 - has_one   socialprofiles dependent: :delete
@@ -95,20 +98,6 @@ Things you may want to cover:
 
 ### Association
 - belongs_to user
-
-
-## ordersテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|item_id|integer|null: false|
-|user_id|integer|null: false|
-|buyer_id|integer||
-|businnes_stats|integer|null: false|
-
-### Association
-- belongs_to  user
-- belongs_to  item
 
 
 ## commentsテーブル
@@ -184,17 +173,6 @@ Things you may want to cover:
 ### Association
 - belongs_to  user
 - belongs_to  item
-
-
-
-## prefecturesテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|                 <!--  都道府県 -->
-
-### Association
-- has_many  address
 
 
 ## addressテーブル
