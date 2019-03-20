@@ -4,6 +4,12 @@ Rails.application.routes.draw do
     :registrations => 'users/registrations',
     :sessions => 'users/sessions'
   }
+  devise_scope :user do
+    get 'phone_number' => 'users/registrations#phone_number'
+    get 'address' => 'users/registrations#address'
+    get 'payment_method' => 'users/registrations#pay_method'
+  end
+
   resources :users do
     get :to_signup,            on: :collection
     get :logout,               on: :collection

@@ -202,7 +202,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false|
-|post_number|integer|null: false,index: false|    <!-- 住所 -->
+|post_number|integer|null: false,index: false|    <!-- 郵便番号 -->
 |city|string|null: false|                         <!-- 市区町村 -->
 |town|string|null: false|                         <!-- 番地 -->
 |building|string||                                <!-- 建物名 -->
