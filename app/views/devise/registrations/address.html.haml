@@ -7,8 +7,8 @@
   %main.single-main
     %section.l-single-container
       %h2.l-single-head クレジットカード情報入力
-      %form#add-card-form.right-container__inner{action: "https://www.mercari.com/jp/mypage/card/add/", "data-adyen-id" => "card-form",method: "POST",novalidate: "novalidate"}
-        %input{name: "__csrf_value", type: "hidden", value: "d71a07ae2f5659008d66ece5d63be2954c6b42b38027899c518c38b7c4ba20aaf0962e1a42eda79df1f04e84f98dca470069f867ca63500ae303d6a361a633714"}
+      = form_for(:session, url:credit_path, html: {id: "add-card-form", class: "right-container__inner", method: :post}) do |f|
+        %input{name: "__csrf_value", type: "hidden", value: ""}
 
         .credit-form-content
           .card-form
