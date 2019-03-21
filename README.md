@@ -82,7 +82,7 @@ Things you may want to cover:
 - has_one   socialprofiles dependent: :delete
 
 
-## profielsテーブル
+## profilesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
@@ -90,10 +90,10 @@ Things you may want to cover:
 |last_name|string|null: false|              <!-- 苗字 -->
 |first_name_kana|string|null: false|        <!-- 名前（カナ） -->
 |last_name_kana|string|null: false|         <!-- 苗字（カナ） -->
-|phone_number|integer|null: false,unique: true|          <!-- 電話番号 -->
 |year_birth_at|date|null: false|            <!-- 誕生日（年） -->
 |month_birth_at|date|null: false|           <!-- 誕生日（月） -->
 |day_birth_at|date|null: false|             <!-- 誕生日（日） -->
+|phone_number|integer|null: false,unique: true|          <!-- 電話番号 -->
 |user_id|integer|null: false|
 
 ### Association

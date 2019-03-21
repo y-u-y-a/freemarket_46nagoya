@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do
-    get 'phone_number' => 'users/registrations#phone_number'
-    get 'address' => 'users/registrations#address'
-    get 'credit' => 'users/registrations#credit'
+    post 'phone_number' => 'users/registrations#phone_number'
+    post 'address' => 'users/registrations#address'
+    post 'credit' => 'users/registrations#credit'
   end
-  
+
   resources :users do
     get :to_signup,            on: :collection
     get :logout,               on: :collection
