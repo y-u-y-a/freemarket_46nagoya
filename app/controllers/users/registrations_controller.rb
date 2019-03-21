@@ -4,17 +4,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-  prepend_before_action :check_captcha, only: [:create]
+  # prepend_before_action :check_captcha, only: [:create]
   prepend_before_action :customize_sign_up_params, only: [:create]
 
+  def create
+    # ユーザー情報を登録する処理
+    session[:nickname] = params[:session][:nickname]
+    session[:email] = params[:session][:email]
+    session[:password] = params[:session][:password]
+    session[:password_confirmation] = params[:session][:password_confirmation]
+    # テーブルに保存する処理
+    @user = User.new(nickname: session[:nickname],email: session[:email],password: session[:password],password_confirmation: session[:password_confirmation])
+    @user.save
+  end
 
-  # def create
-  #   # ユーザー情報を登録する処理
-  # end
-
-  # def phone_number
-  #   # 電話番号を登録する処理
-  # end
+  def phone_number
+    # 電話番号を登録する処理
+    session[:phone_number] = params[:session][:phone_number]
+    @user = User.new(phone_number: session[:phon_number])
+    @user.save
+  end
 
   # def address
   #   # 住所を登録する処理
