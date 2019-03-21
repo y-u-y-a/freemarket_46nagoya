@@ -28,6 +28,10 @@
           color:#0099e8;
           font-weight:bold;
         }
+        a:hover {
+          text-decoration: underline;
+          opacity: 0.7;
+        }
       }
       &__lists {
         @include clearfix;
@@ -98,7 +102,10 @@
       font-size: 15px;
       a {
         color: #0099e8;
-        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+        opacity: 0.7;
       }
     }
     }

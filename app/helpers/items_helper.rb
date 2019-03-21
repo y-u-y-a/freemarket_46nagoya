@@ -11,4 +11,13 @@ module ItemsHelper
   def profits(price)
     profits = (price - @commission)
   end
+
+  def get_child_category(category)
+    @child_category = Category.where(main_category_id: category.id).where(sub_category_id: nil)
+  end
+
+  def get_grand_child_category(category, child_category)
+    @grand_child_category = Category.where(main_category_id: category.id).where(sub_category_id: child_category.id)
+  end
+
 end

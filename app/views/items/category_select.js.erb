@@ -1,0 +1,11 @@
+var category = $('.category select').val();
+if (category >= 1) {
+  var html = `<%= j(select :item, :child_category_id, options_from_collection_for_select(@child_category, :id, :name),{:include_blank => '---'}, {data: {remote: true, url: url_for(action: :child_category_select)}})%>
+              <%= fa_icon 'angle-down' %>`
+  $('#category-select').html(html);
+  $('#child-category-select').html('');
+}
+if (category == '') {
+  $('#category-select').html('');
+  $('#child-category-select').html('');
+}
