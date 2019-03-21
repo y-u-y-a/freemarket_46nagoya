@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190319061331) do
+ActiveRecord::Schema.define(version: 20190321033008) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -44,12 +44,26 @@ ActiveRecord::Schema.define(version: 20190319061331) do
     t.integer  "category_id"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
-    t.integer  "user_id"
     t.integer  "shipping_way",                 default: 0
     t.integer  "buyer_id"
     t.integer  "business_stats"
     t.index ["name"], name: "index_items_on_name", using: :btree
     t.index ["price"], name: "index_items_on_price", using: :btree
+  end
+
+  create_table "profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "first_name_kana"
+    t.string   "last_name_kana"
+    t.date     "birth_year"
+    t.date     "birth_month"
+    t.date     "birth_day"
+    t.integer  "phone_number"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -68,4 +82,5 @@ ActiveRecord::Schema.define(version: 20190319061331) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "profiles", "users"
 end
