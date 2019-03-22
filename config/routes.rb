@@ -4,9 +4,10 @@ Rails.application.routes.draw do
   match 'category_select', to: 'items#category_select', via: [:get, :post]
   match 'child_category_select', to: 'items#child_category_select', via: [:get, :post]
 
-  devise_for :users, :controllers => {
-    :registrations => 'users/registrations',
-    :sessions => 'users/sessions'
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   devise_scope :user do
@@ -14,7 +15,7 @@ Rails.application.routes.draw do
     get 'address' => 'users/registrations#address'
     get 'credit' => 'users/registrations#credit'
   end
-  
+
   resources :users do
     get :to_signup,            on: :collection
     get :logout,               on: :collection

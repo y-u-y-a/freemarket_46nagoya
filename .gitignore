@@ -20,4 +20,4 @@
 /config/secrets.yml
 /public/uploads/item_image/image
 .env.swp
-
+.env
