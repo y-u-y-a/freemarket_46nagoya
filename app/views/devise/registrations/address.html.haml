@@ -12,9 +12,9 @@
 
         .credit-form-content
           .card-form
-            %label{for: "payment_card_no",class: "card-form__title"} カード番号
+            = f.label :カード番号, class: "card-form__title"
             %span.form-require.card-form__label 必須
-            %input#payment_card_no.card-form__input{"data-input-type" => "card", maxlength: "19", placeholder: "半角数字のみ", type: "text", value: ""}
+            = f.text_field :card_number, id: "payment_card_no", class: "card-form__input", maxlength: "19", placeholder: "半角数字のみ"
             %ul#card-no-error-wrapper.has-error-text
             %ul.card-list
               %li
@@ -33,7 +33,7 @@
                 = image_tag("//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?2845599746",alt: "" ,class: "card-list__image--jcb-club-dis")
 
           .card-form
-            %label{for: "payment_card_expire",class: "card-form__title"} 有効期限
+            = f.label :有効期限, class: "card-form__title"
             %span.form-require.card-form__label 必須
             %br
             .select-wrap
@@ -71,9 +71,9 @@
             %ul#expire-yy-error-wrapper.has-error-text
 
           .card-form
-            %label{for: "payment_card_security_code",class: "card-form__title"} セキュリティコード
+            = f.label :セキュリティコード, class: "card-form__title"
             %span.form-require.card-form__label 必須
-            %input#payment_card_security_code.card-form__input{placeholder: "カード背面4桁もしくは3桁の番号", type: "number", value: ""}
+            = f.number_field :security_cord, placeholder: "カード背面4桁もしくは3桁の番号", id: "payment_card_security_code", class: "card-form__input"
 
             %ul#security-code-error-wrapper.has-error-text
             .card-seqcode
