@@ -57,9 +57,9 @@ ActiveRecord::Schema.define(version: 20190320040622) do
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
     t.integer  "user_id"
+    t.integer  "shipping_way",                          default: 0
     t.integer  "buyer_id"
     t.integer  "business_stats"
-    t.integer  "shipping_way",                          default: 0
     t.integer  "category_id"
     t.integer  "child_category_id"
     t.integer  "grand_child_category_id"
@@ -81,8 +81,6 @@ ActiveRecord::Schema.define(version: 20190320040622) do
     t.datetime "remember_created_at"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-    t.string   "card_token"
-    t.string   "customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
