@@ -13,21 +13,47 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session[:email] = params[:session][:email]
     session[:password] = params[:session][:password]
     session[:password_confirmation] = params[:session][:password_confirmation]
-    # テーブルに保存する処理
-    @user = User.new(nickname: session[:nickname],email: session[:email],password: session[:password],password_confirmation: session[:password_confirmation])
-    @user.save
   end
 
   def phone_number
     # 電話番号を登録する処理
     session[:phone_number] = params[:session][:phone_number]
-    @user = User.new(phone_number: session[:phon_number])
+    # テーブルに保存する処理
+    @user = User.new(
+      nickname: session[:nickname],
+      email: session[:email],
+      password: session[:password],
+      password_confirmation: session[:password_confirmation],
+      phone_number: session[:phone_number]
+    )
     @user.save
   end
 
-  # def address
-  #   # 住所を登録する処理
-  # end
+  def address
+    # 住所を登録する処理
+    session[:first_name] = params[:session][:first_name]
+    session[:last_name] = params[:session][:last_name]
+    session[:first_name_kana] = params[:session][:first_name_kana]
+    session[:last_name_kana] = params[:session][:last_name_kana]
+    session[:post_number] = params[:session][:post_number]
+    session[:prefecture] = params[:session][:prefecture]
+    session[:city] = params[:session][:ciity]
+    session[:town] = params[:session][:town]
+    session[:building] = params[:session][:building]
+    # テーブルに保存する処理
+    @address = Address.new(
+      # first_name: session[:first_name],
+      # last_name: session[:last_name],
+      # first_name_kana: session[:first_name_kana],
+      # last_name_kana: session[:last_name_kana],
+      post_number: session[:post_number],
+      prefecture: session[:prefecture],
+      city: session[:city],
+      town: session[:town],
+      building: session[:bulding],
+    )
+    @address.save
+  end
 
   # def credit
   #   # 支払い方法を登録する処理
@@ -36,7 +62,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
   def customize_sign_up_params
-    devise_parameter_sanitizer.permit :sign_up, keys: [:nickname, :email, :password, :password_confirmation, :remember_me]
+    devise_parameter_sanitizer.permit :sign_up, keys: [:nickname, :email, :password, :password_confirmation, :remember_me, :phone_number]
   end
 
   def check_captcha
