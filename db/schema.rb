@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190319061331) do
+ActiveRecord::Schema.define(version: 20190320040622) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -24,6 +24,19 @@ ActiveRecord::Schema.define(version: 20190319061331) do
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "main_category_id"
+    t.integer  "sub_category_id"
+    t.integer  "size"
+    t.integer  "brand"
+    t.string   "name",             null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "depth"
+    t.index ["main_category_id"], name: "index_categories_on_main_category_id", using: :btree
+    t.index ["sub_category_id"], name: "index_categories_on_sub_category_id", using: :btree
+  end
+
   create_table "item_images", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "image"
     t.integer  "item_id"
@@ -34,20 +47,25 @@ ActiveRecord::Schema.define(version: 20190319061331) do
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "price"
-    t.text     "explain",        limit: 65535
-    t.integer  "postage",                      default: 0
+    t.text     "explain",                 limit: 65535
+    t.integer  "postage",                               default: 0
     t.string   "region"
-    t.integer  "state",                        default: 0
-    t.integer  "shipping_date",                default: 0
+    t.integer  "state",                                 default: 0
+    t.integer  "shipping_date",                         default: 0
     t.integer  "size"
     t.integer  "brand_id"
-    t.integer  "category_id"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.integer  "user_id"
-    t.integer  "shipping_way",                 default: 0
+    t.integer  "shipping_way",                          default: 0
     t.integer  "buyer_id"
     t.integer  "business_stats"
+    t.integer  "category_id"
+    t.integer  "child_category_id"
+    t.integer  "grand_child_category_id"
+    t.index ["category_id"], name: "index_items_on_category_id", using: :btree
+    t.index ["child_category_id"], name: "index_items_on_child_category_id", using: :btree
+    t.index ["grand_child_category_id"], name: "index_items_on_grand_child_category_id", using: :btree
     t.index ["name"], name: "index_items_on_name", using: :btree
     t.index ["price"], name: "index_items_on_price", using: :btree
   end
@@ -68,4 +86,5 @@ ActiveRecord::Schema.define(version: 20190319061331) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "items", "categories"
 end
