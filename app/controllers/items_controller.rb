@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
 
   before_action :set_item, only: [:show,:edit, :update, :destroy]
+  before_action :set_category, only: [ :index, :new, :all_brands_show, :all_categories_show, :show]
 
   def index
     @items = Item.all
@@ -62,13 +63,29 @@ class ItemsController < ApplicationController
   def buy
   end
 
-  private
-    def item_params
-      params.require(:item).permit(:name,:price,:explain,:postage,:region,:state,:shipping_date,:shipping_way,:size,:brand_id,:category_id,item_images_attributes: [:item_id, :image]).merge(user_id: current_user.id, business_stats: '1')
-    end
+  def all_brands_show
+  end
 
-    def set_item
-      @item = Item.find(params[:id])
-    end
+  def all_categories_show
+  end
+
+  def category_select
+    @child_category = Category.where(main_category_id: params[:item][:category_id]).where(sub_category_id: nil)
+  end
+
+  def child_category_select
+    child_category = Category.find(params[:item][:child_category_id])
+    @grand_child_category = Category.where(main_category_id: child_category.main_category_id).where(sub_category_id: child_category.id)
+  end
+
+  private
+
+  def item_params
+    params.require(:item).permit( :name, :price, :explain, :postage, :region, :state, :shipping_date, :shipping_way,:size,:brand_id, :category_id, :child_category_id, :grand_child_category_id,item_images_attributes: [:image,:item_id]).merge(user_id: current_user.id, business_stats: '1')
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
 end

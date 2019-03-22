@@ -34,23 +34,31 @@
                     商品の説明
                     %span.form-require 必須
                   = f.text_area :explain, class: 'textarea-default', placeholder: '商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)      　 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。', rows: '5'
-              .sell-form__content.item-detail.clearfix
+              .sell-form__content.item-detail
                 %h3.sell-sub-head 商品の詳細
                 .sell-form-box
-                  .form-group
+                  .form-group.category-select
                     %label
                       カテゴリー
                       %span.form-require 必須
-                    %div
+                    .category
                       .select-wrap
-                        = f.select :category_id,[["---", "0"], ["レディース", "1"], ["メンズ", "2"], ["ベビー・キッズ", "3"], ["インテリア・住まい・小物", "4"], ["本・音楽・ゲーム", "5"], ["おもちゃ・ホビー・グッズ", "6"], ["コスメ・香水・美容", "7"], ["家電・スマホ・カメラ", "8"], ["スポーツ・レジャー", "9"], ["ハンドメイド", "10"], ["チケット", "11"], ["自動車・オートバイ", "12"], ["その他", "13"]],class: 'select-default'
+                        = f.select :category_id, options_from_collection_for_select( @category, :id, :name),
+  {:include_blank => '---'}, {data: {remote: true, url: url_for(action: :category_select)}}
                         = fa_icon 'angle-down'
+                    .child-category
+                      .select-wrap
+                        #category-select
+                    .grand-child-category
+                      .select-wrap
+                        #child-category-select
+
                   .form-group
                     %label
                       商品の状態
                       %span.form-require 必須
                     .select-wrap
-                      = f.select :state, Item.states_i18n.invert,{}
+                      = f.select :state, Item.states_i18n.invert,{:include_blank => '---'}
                       = fa_icon 'angle-down'
               .sell-form__content.item-delivery.clearfix
                 %h3.sell-sub-head 配送について
@@ -61,28 +69,28 @@
                       配送料の負担
                       %span.form-require 必須
                     .select-wrap
-                      = f.select :postage, Item.postages_i18n.invert, {}
+                      = f.select :postage, Item.postages_i18n.invert, {:include_blank => '---'}
                       = fa_icon 'angle-down'
                   .form-group
                     %label
                       配達の方法
                       %span.form-require 必須
                     .select-wrap
-                      = f.select :shipping_way,Item.shipping_ways_i18n.invert, {}
+                      = f.select :shipping_way,Item.shipping_ways_i18n.invert, {:include_blank => '---'}
                       = fa_icon 'angle-down'
                   .form-group
                     %label
                       発送元の地域
                       %span.form-require 必須
                     .select-wrap
-                      = collection_select :item, :region,Prefecture.all,:id,:name,{} ,{class: "select-default"}
+                      = collection_select :item, :region,Prefecture.all,:id,:name,{:include_blank => '---'} ,{class: "select-default"}
                       = fa_icon 'angle-down'
                   .form-group
                     %label
                       発送までの日数
                       %span.form-require 必須
                     .select-wrap
-                      = f.select :shipping_date, Item.shipping_dates_i18n.invert,{}
+                      = f.select :shipping_date, Item.shipping_dates_i18n.invert,{:include_blank => '---'}
                       = fa_icon 'angle-down'
               .sell-form__content.item-price.clearfix
                 %h3.sell-sub-head 販売価格(300~9,999,999)

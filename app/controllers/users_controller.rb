@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification]
+
   def index
   end
 
@@ -22,5 +24,6 @@ class UsersController < ApplicationController
   def indentification
   end
 
+  private
 
 end
