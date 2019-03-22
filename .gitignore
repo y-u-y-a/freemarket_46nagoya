@@ -18,6 +18,7 @@
 /vendor/bundle
 
 /config/secrets.yml
-/public/uploads/item_image/image
+/public/uploads/item_image
+/public/uploads/tmp
 .env.swp
-
+/config/initializers/settings.rb

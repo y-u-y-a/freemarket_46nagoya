@@ -3,7 +3,7 @@ crumb :root do
 end
 
 crumb :users do
-  link 'マイページ', users_path
+  link 'マイページ', users_path(current_user)
   parent :root
 end
 
@@ -24,6 +24,31 @@ end
 
 crumb :user do
   link 'プロフィール', user_path(current_user)
+  parent :users
+end
+
+crumb :exhibition do
+  link '出品した商品-出品中', exhibition_users_path(current_user)
+  parent :users
+end
+
+crumb :seller_trading do
+  link '出品した商品-取引中', seller_trading_users_path(current_user)
+  parent :users
+end
+
+crumb :sold_page do
+  link '出品した商品-売却済み', sold_page_users_path(current_user)
+  parent :users
+end
+
+crumb :trading do
+  link '購入した商品-取引中', trading_users_path(current_user)
+  parent :users
+end
+
+crumb :purchased do
+  link '購入した商品-過去の取引', purchased_users_path(current_user)
   parent :users
 end
 

@@ -7,8 +7,9 @@
         .buy-content-inner
           %h3.buy-item-image
             %figure.is-higher-width.lazyloaded
-              = image_tag "https://static.mercdn.net/thumb/photos/m78002095847_1.jpg?1552029623" "https://static.mercdn.net/thumb/photos/m78002095847_1.jpg?1552029623"
-          %p.buy-item-name.bold 【champion】ニット帽
+              = image_tag @images.first.image
+          %p.buy-item-name.bold
+            = @item.name
           %form.buy-form{:action => "https://www.mercari.com/jp/transaction/buy/done/m78002095847/", :method => "POST", :novalidate => "novalidate"}
             %p.buy-price-ja.bold
               ¥ 1,200
@@ -23,38 +24,8 @@
                 .buy-price-cell
                   -# 仮置きのコード
                   %span{"data-buy-pay" => "1200"} ¥ 1,200
-            %input{:name => "seller_id", :type => "hidden", :value => "713123603"}/
-            %input{:name => "payment_fee", :type => "hidden", :value => "0"}/
-            %input{:name => "payment_amount", :type => "hidden", :value => "1200"}/
-            %input{:name => "price", :type => "hidden", :value => "1200"}/
-            %input{:name => "category_id", :type => "hidden", :value => "371"}/
-            %input{:name => "item_condition", :type => "hidden", :value => "1"}/
-            %input{:name => "shipping_payer", :type => "hidden", :value => "2"}/
-            %input{:name => "shipping_method", :type => "hidden", :value => "9"}/
-            %input{:name => "shipping_duration", :type => "hidden", :value => "1"}/
-            %input{:name => "shipping_class", :type => "hidden", :value => "0"}/
-            %input{:name => "zip_code1", :type => "hidden", :value => "451"}/
-            %input{:name => "zip_code2", :type => "hidden", :value => "0053"}/
-            %input{:name => "paid_method", :type => "hidden", :value => "card"}/
-            %input{:name => "checksum", :type => "hidden", :value => "8a977337ce69814b1b93175013523daf"}/
-            %input{:name => "payment_card_sequence_no", :type => "hidden", :value => "2vJfL3nPEVgobr5rFNBtkgcc"}/
-            %input{:name => "payment_use_last_card_base64", :type => "hidden", :value => "eWVz"}/
-            %input{:name => "item_name_base64", :type => "hidden", :value => "44CQY2hhbXBpb27jgJHjg4vjg4Pjg4jluL0="}/
-            %input{:name => "description_base64", :type => "hidden", :value => "44K544Kt44O855So44Gr6LO85YWl44GX44G+44GX44Gf44GM44CB5Yil44Gu44KC44Gu44KS6LO85YWl44GX44Gf44Gf44KB5Ye65ZOB44GE44Gf44GX44G+44GZ44CCCgrjgr/jgrDjga/lj5bjgaPjgabjgZfjgb7jgYTjgb7jgZfjgZ/jgYzjgIHmlrDlk4Hjgafoh6rlroXkv53nrqHjgZfjgabjgYTjgb7jgZfjgZ/jgIIKCuOCteOCpOOCuiA1Ni41LTU4LjUKCuOCouOCr+ODquODqzEwMOODkeODvOOCu+ODs+ODiA=="}/
-            %input{:name => "brand_name_base64", :type => "hidden", :value => "MTY3Nw=="}/
-            %input{:name => "shipping_from_area_base64", :type => "hidden", :value => "MjM="}/
-            %input{:name => "family_name_base64", :type => "hidden", :value => "5LqV5Ye6"}/
-            %input{:name => "first_name_base64", :type => "hidden", :value => "6b6N5LmL5LuL"}/
-            %input{:name => "family_name_kana_base64", :type => "hidden", :value => "44Kk44OH"}/
-            %input{:name => "first_name_kana_base64", :type => "hidden", :value => "44Oq44Ol44Km44OO44K544Kx"}/
-            %input{:name => "prefecture_base64", :type => "hidden", :value => "5oSb55+l55yM"}/
-            %input{:name => "city_base64", :type => "hidden", :value => "5ZCN5Y+k5bGL5biC6KW/5Yy6"}/
-            %input{:name => "address1_base64", :type => "hidden", :value => "5p6H5p235bO2NS0yNy0yMw=="}/
-            %input{:name => "address2_base64", :type => "hidden", :value => ""}/
-            %input{:name => "telephone_base64", :type => "hidden", :value => ""}/
-            %input{:name => "__csrf_value", :type => "hidden", :value => "a7a8f04cc1e628208c5b5510b732d6dfc836bd95b62d585d5697ffc9f863a8e259f863010900f824197dbc70ac408d81da122d5661c45564dcb049a4b5e904196"}/
-            %input{:name => "_s", :type => "hidden", :value => "U2FsdGVkX18aip1cp3M85nexbRAeAk83BDLAJ7KzqUn_qmYX9qA3FibkVuEI_QlSa5Il8z4J5GhjIjH9v41HqQk6Hf0UO_zIa6Qsq-cm7_qa4ZvpQkaHRWS-do4eCM5p"}/
-            %button.btn-default.btn-red.bold{:type => "submit"} 購入する
+            - if @item.user_id != current_user.id
+              = link_to "購入する", pay_item_path(@item), method: :post, class:"button btn-default btn-red bold"
       %section.buy-content.buy-user-info
         .buy-content-inner
           %h3 配送先
@@ -72,15 +43,17 @@
       %section.buy-content.buy-user-info{"data-buy" => "pay-method"}
         .buy-content-inner
           %h3 支払い方法
-          %p.buy-user-info-text
-            ************1111
-            %br/
-            01 / 23
-          %figure
-            %img-visa
-              = image_tag "//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?2845599746", class: "img-visa"
-          %p
-          %i.buy-user-info-fix.edit-shipping-address
-            = link_to "変更する", 'https://www.mercari.com/jp/transaction/select_card/m78002095847/?_s=U2FsdGVkX18aip1cp3M85nexbRAeAk83BDLAJ7KzqUn_qmYX9qA3FibkVuEI_QlSa5Il8z4J5GhjIjH9v41HqQk6Hf0UO_zIa6Qsq-cm7_qa4ZvpQkaHRWS-do4eCM5p', class: 'edit-shipping-address'
-            %i.icon-arrow-right.fa.fa-angle-right
+          - if @card.present?
+            %p.buy-user-info-text
+              = "************" + @card.last4
+              %br/
+              = "0#{@card.exp_month} / #{@card.exp_year.to_s.slice(0..1).to_i}"
+            %figure
+              = render 'shared/card-images'
+            %p
+            %i.buy-user-info-fix.edit-shipping-address
+              = link_to "変更する", payment_method_users_path(current_user)
+              %i.icon-arrow-right.fa.fa-angle-right
+
+
   = render 'single-footer'
