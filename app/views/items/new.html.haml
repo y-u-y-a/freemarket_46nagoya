@@ -13,17 +13,15 @@
                   %span.form-require 必須
                 %p.sell-form__max-10-upload 最大10枚までアップロードできます
                 .sell-form__dropbox-container.clearfix.state-image-number-10
-                  .sell-upload-items-container
-                    .sell-upload-items.have-item-0
-                      %ul
-                  .sell-upload-drop-box.have-item-0
-                    = f.fields_for :item_images do |image|
-                      = image.label :image, class: 'sell-upload-drop-box' do
-                        = image.file_field :image, class: 'hidden'
-                        %pre.visible-pc
-                          ドラッグアンドドロップ
-                          またはクリックしてファイルをアップロード
-                        %i.icon-camera
+                  = f.fields_for :item_images do |image|
+                    = image.label :image, class: 'box-display-none form-mask-image' do
+                      .form-mask-image
+                        .sell-upload-drop-box
+                          = image.file_field :image, class: 'hidden'
+                      %pre.visible-pc
+                        ドラッグアンドドロップ
+                        またはクリックしてファイルをアップロード
+                      %i.icon-camera
               .sell-form__content
                 .form-group
                   %label
