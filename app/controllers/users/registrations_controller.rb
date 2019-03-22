@@ -4,31 +4,65 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-  prepend_before_action :check_captcha, only: [:create]
-  prepend_before_action :customize_sign_up_params, only: [:create]
+  # prepend_before_action :check_captcha, only: [:create]
+  # prepend_before_action :customize_sign_up_params, only: [:create]
 
+  def create
+    # ユーザー情報を登録する処理
+    session[:nickname] = params[:session][:nickname]
+    session[:email] = params[:session][:email]
+    session[:password] = params[:session][:password]
+    session[:password_confirmation] = params[:session][:password_confirmation]
+    # テーブルに保存する処理
+    @user = User.new(
+      nickname: session[:nickname],
+      email: session[:email],
+      password: session[:password],
+      password_confirmation: session[:password_confirmation],
+    )
+    @user.save
+    session[:user_id] = @user.id
+  end
 
-  # def create
-  #   # ユーザー情報を登録する処理
-  # end
+  def phone_number
+    # sessionに電話番号を格納する処理
+    session[:phone_number] = params[:session][:phone_number]
+    # テーブルに保存する処理
+  end
 
-  # def phone_number
-  #   # 電話番号を登録する処理
-  # end
+  def address
+    # sessionに住所を格納する処理
+    session[:first_name] = params[:session][:first_name]
+    session[:last_name] = params[:session][:last_name]
+    session[:first_name_kana] = params[:session][:first_name_kana]
+    session[:last_name_kana] = params[:session][:last_name_kana]
+    session[:post_number] = params[:session][:post_number]
+    session[:prefecture] = params[:session][:prefecture]
+    session[:city] = params[:session][:city]
+    session[:town] = params[:session][:town]
+    session[:building] = params[:session][:building]
+    # テーブルに保存する処理
+    @address = Address.new(
+      post_number: session[:post_number],
+      prefecture_id: session[:prefecture],
+      city: session[:city],
+      town: session[:town],
+      building: session[:building],
+      user_id: session[:user_id]
+    )
+    @address.save
+    redirect_to credit_path
+  end
 
-  # def address
-  #   # 住所を登録する処理
-  # end
-
-  # def credit
-  #   # 支払い方法を登録する処理
-  # end
+  def credit
+    # 支払い方法を登録する処理
+  end
 
 
   private
-  def customize_sign_up_params
-    devise_parameter_sanitizer.permit :sign_up, keys: [:nickname, :email, :password, :password_confirmation, :remember_me]
-  end
+  # def customize_sign_up_params
+  #   devise_parameter_sanitizer.permit :sign_up, keys: [:nickname, :email, :password, :password_confirmation, :remember_me, :phone_number]
+  # end
 
   def check_captcha
     self.resource = resource_class.new sign_up_params
