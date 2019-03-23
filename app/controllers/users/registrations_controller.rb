@@ -43,7 +43,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def credit
-    # 支払い方法を登録する処理
+    # sessionに情報を格納する処理
+    session[:number] = params[:session][:number]
+    session[:exp_month] = params[:session][:exp_year]
+    session[:exp_month] = params[:session][:exp_month]
+    session[:cvc] = params[:session][:cvc]
   end
 
 

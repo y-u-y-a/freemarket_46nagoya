@@ -13,7 +13,7 @@
           .card-form
             = f.label :カード番号, class: "card-form__title"
             %span.form-require.card-form__label 必須
-            = f.text_field :card_number, id: "payment_card_no", class: "card-form__input", maxlength: "19", placeholder: "半角数字のみ"
+            = f.number_field :number, id: "payment_card_no", class: "card-form__input", maxlength: "19", placeholder: "半角数字のみ"
             %ul#card-no-error-wrapper.has-error-text
             %ul.card-list
               %li
@@ -36,7 +36,7 @@
             %span.form-require.card-form__label 必須
             %br
             .select-wrap
-              %select#payment_card_expire_mm.select-wrap__default
+              %select#payment_card_expire_mm.select-wrap__default{name: "exp_month"}
                 %option{value: "01"} 01
                 %option{value: "02"} 02
                 %option{value: "03"} 03
@@ -53,7 +53,7 @@
             %span 月
             %ul#expire-mm-error-wrapper.has-error-text
             .select-wrap
-              %select#payment_card_expire_yy.select-wrap__default
+              %select#payment_card_expire_yy.select-wrap__default{name: "exp_year"}
                 %option{value: "19"} 19
                 %option{value: "20"} 20
                 %option{value: "21"} 21
@@ -72,7 +72,7 @@
           .card-form
             = f.label :セキュリティコード, class: "card-form__title"
             %span.form-require.card-form__label 必須
-            = f.number_field :security_cord, placeholder: "カード背面4桁もしくは3桁の番号", id: "payment_card_security_code", class: "card-form__input"
+            = f.number_field :cvc, placeholder: "カード背面4桁もしくは3桁の番号", id: "payment_card_security_code", class: "card-form__input"
 
             %ul#security-code-error-wrapper.has-error-text
             .card-seqcode
