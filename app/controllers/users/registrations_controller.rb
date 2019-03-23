@@ -5,23 +5,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   # prepend_before_action :check_captcha, only: [:create]
-  # prepend_before_action :customize_sign_up_params, only: [:create]
+  prepend_before_action :customize_sign_up_params, only: [:create]
 
   def create
-    # ユーザー情報を登録する処理
-    session[:nickname] = params[:session][:nickname]
-    session[:email] = params[:session][:email]
-    session[:password] = params[:session][:password]
-    session[:password_confirmation] = params[:session][:password_confirmation]
-    # テーブルに保存する処理
-    @user = User.new(
-      nickname: session[:nickname],
-      email: session[:email],
-      password: session[:password],
-      password_confirmation: session[:password_confirmation],
-    )
-    @user.save
-    session[:user_id] = @user.id
+    super
+    session[:user_id] = resource.id
   end
 
   def phone_number
@@ -60,9 +48,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
 
   private
-  # def customize_sign_up_params
-  #   devise_parameter_sanitizer.permit :sign_up, keys: [:nickname, :email, :password, :password_confirmation, :remember_me, :phone_number]
-  # end
+  def customize_sign_up_params
+    devise_parameter_sanitizer.permit :sign_up, keys: [:nickname, :email, :password, :password_confirmation, :remember_me,]
+  end
 
   def check_captcha
     self.resource = resource_class.new sign_up_params
