@@ -220,9 +220,9 @@
             ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
         .l-single-content
           %input{name: "after_save_callback", type: "hidden", value: ""}
-          .form-group
-            .mail-account__field--RECAPCHA
-              = recaptcha_tags
+          / .form-group
+          /   .mail-account__field--RECAPCHA
+          /     = recaptcha_tags
 
           .form-group
             %p.l-single-text.text-center
