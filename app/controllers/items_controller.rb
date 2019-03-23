@@ -31,16 +31,15 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    images = @item.item_images
-    @images = ItemImage.find(images.ids)
-    @item_image = @item.item_images.build
+    @images = @item.item_images
   end
 
   def update
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
-      render :edit
+
+      redirect_to edit_item_path(@item)
     end
   end
 
