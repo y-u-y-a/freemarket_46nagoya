@@ -1,0 +1,39 @@
+.all-show-index.l-single-container
+  .center-contents
+    .all-show-index__title
+      - if request.path_info == '/items/all_brands_show'
+        %h2
+          ブランド一覧
+      - else
+        %h2
+          カテゴリー一覧
+    - if request.path_info == '/items/all_categories_show'
+      .category-list-menu.text-center
+        - @category.each do |category|
+          = link_to root_path,class: "white category-list-menu__link-name" do
+            %div
+              = category.name
+
+    - @category.each do |category|
+      .category-lists-boxes
+        .category-lists-box.white
+          .category-lists-box__root-category-name.font-white.red
+            %h3
+              = category.name
+          .category-lists-box__inner-box
+            %p
+              = link_to 'すべて',root_path
+            - @child_category[category.id - 1].each_with_index do |child_category, i|
+              .child-category-name
+                %h4
+                  = child_category.name
+              .grand-child-category-box
+                .grand-child-category-box__grand-child-category-name
+                  %p
+                    = link_to 'すべて',root_path
+                - @grand_child_category[i].each do |grand_child_category|
+                  .grand-child-category-box__grand-child-category-name
+                    %p
+                      = link_to root_path do
+                        = grand_child_category.name
+
