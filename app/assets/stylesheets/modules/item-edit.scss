@@ -50,7 +50,7 @@
                 }
                 .sell-upload-item {
                   width: 116px;
-                  margin: 0 0 10px 10px;
+                  margin: 0 0 10px 6px;
                   position: relative;
                   display: inline-block;
                   border: $border_light_gray;
@@ -97,7 +97,7 @@
             .hidden {
               display: none;
             }
-            .sell-upload-drop-box.have-item-1 {
+            .sell-upload-drop-box {
               float: right;
               padding: 40px;
               position: relative;
@@ -173,7 +173,6 @@
             background: $white;
             font-size: 16px;
             line-height: 1.5;
-            // outline: none;
           }
         }
         .sell-sub-head {
