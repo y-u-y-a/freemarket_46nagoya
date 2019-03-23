@@ -8,22 +8,69 @@ class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :customize_sign_up_params, only: [:create]
 
 
-  # def create
-  #   # ユーザー情報を登録する処理
-  # end
+  def create
+    build_resource(sign_up_params)
 
-  # def phone_number
-  #   # 電話番号を登録する処理
-  # end
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      if resource.active_for_authentication?
+        set_flash_message! :notice, :signed_up
+        sign_up(resource_name, resource)
+        respond_with resource, location: after_sign_up_path_for(resource)
+      else
+        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        expire_data_after_sign_in!
+        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      end
+    else
+      clean_up_passwords resource
+      set_minimum_password_length
+      respond_with resource
+    end
+    # super
+    session[:user_id] = resource.id
+    # sessionにプロフィールを格納する処理
+    # session[:first_name] = params[:session][:first_name]
+    # session[:last_name] = params[:session][:last_name]
+    # session[:first_name_kana] = params[:session][:first_name_kana]
+    # session[:last_name_kana] = params[:session][:last_name_kana]
+    # session[:birth_year] = params[:session][:birth_year]
+    # session[:birth_month] = params[:session][:birth_month]
+    # session[:birth_day] = params[:session][:birth_day]
+  end
 
-  # def address
-  #   # 住所を登録する処理
-  # end
+  def phone_number
+    # sessionに電話番号を格納する処理
+    session[:phone_number] = params[:session][:phone_number]
+  end
 
-  # def credit
-  #   # 支払い方法を登録する処理
-  # end
+  def address
+    # sessionに住所を格納する処理
+    session[:post_number] = params[:session][:post_number]
+    session[:prefecture] = params[:session][:prefecture]
+    session[:city] = params[:session][:city]
+    session[:town] = params[:session][:town]
+    session[:building] = params[:session][:building]
+    # テーブルに保存する処理
+    @address = Address.new(
+      post_number: session[:post_number],
+      prefecture_id: session[:prefecture],
+      city: session[:city],
+      town: session[:town],
+      building: session[:building],
+      user_id: session[:user_id]
+    )
+    @address.save
+  end
 
+  def credit
+    # sessionに情報を格納する処理
+    session[:number] = params[:session][:number]
+    session[:exp_month] = params[:session][:exp_year]
+    session[:exp_month] = params[:session][:exp_month]
+    session[:cvc] = params[:session][:cvc]
+  end
 
   private
   def customize_sign_up_params

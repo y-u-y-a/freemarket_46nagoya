@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190320040622) do
+ActiveRecord::Schema.define(version: 20190323081410) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -56,18 +56,32 @@ ActiveRecord::Schema.define(version: 20190320040622) do
     t.integer  "brand_id"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-    t.integer  "user_id"
     t.integer  "shipping_way",                          default: 0
     t.integer  "buyer_id"
     t.integer  "business_stats"
     t.integer  "category_id"
     t.integer  "child_category_id"
     t.integer  "grand_child_category_id"
+    t.integer  "user_id"
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["child_category_id"], name: "index_items_on_child_category_id", using: :btree
     t.index ["grand_child_category_id"], name: "index_items_on_grand_child_category_id", using: :btree
     t.index ["name"], name: "index_items_on_name", using: :btree
     t.index ["price"], name: "index_items_on_price", using: :btree
+  end
+
+  create_table "profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "first_name_kana"
+    t.string   "last_name_kana"
+    t.integer  "birth_year"
+    t.integer  "birth_month"
+    t.integer  "birth_day"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -81,10 +95,15 @@ ActiveRecord::Schema.define(version: 20190320040622) do
     t.datetime "remember_created_at"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
+    t.string   "card_token"
+    t.string   "customer_id"
+    t.string   "provider"
+    t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
   add_foreign_key "addresses", "users"
   add_foreign_key "items", "categories"
+  add_foreign_key "profiles", "users"
 end
