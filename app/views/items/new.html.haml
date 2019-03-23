@@ -14,9 +14,9 @@
                 %p.sell-form__max-10-upload 最大10枚までアップロードできます
                 .sell-form__dropbox-container.clearfix.state-image-number-10
                   = f.fields_for :item_images do |image|
-                    = image.label :image, class: 'box-display-none form-mask-image' do
-                      .form-mask-image
-                        .sell-upload-drop-box
+                    = image.label :image, class: 'box-display-none-new form-mask-image-new' do
+                      .form-mask-image-new
+                        .sell-upload-drop-box-new
                           = image.file_field :image, class: 'hidden'
                       %pre.visible-pc
                         ドラッグアンドドロップ
