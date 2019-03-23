@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'likes/create'
+
+  get 'likes/destroy'
+
   root 'items#index'
 
   post 'users/card_create' => 'users#card_create'
@@ -40,6 +44,7 @@ Rails.application.routes.draw do
     get :all_categories_show,  on: :collection
     get :buy, on: :member
     post :pay, on: :member
+    resources :likes, only: [:create, :destroy]
   end
 
 end

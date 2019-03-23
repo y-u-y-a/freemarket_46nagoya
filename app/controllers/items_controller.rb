@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+  require 'payjp'
+
+  # before_action :authenticate_user!
 
   require 'payjp'
 

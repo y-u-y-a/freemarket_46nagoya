@@ -7,8 +7,7 @@
   .right-content
     %section.right-container
       %h2.right-container__title クレジットカード情報入力
-      %script{:src => "https://js.pay.jp/", :type => "text/javascript"}
-      %form#charge-form.right-container__inner{action: :card_create, method: "POST", id: "charge-form"}
+      %form.right-container__inner{action: :card_create, method: "POST", id: "charge-form"}
         = render 'card-form'
 
 = render 'shared/sell-button'
