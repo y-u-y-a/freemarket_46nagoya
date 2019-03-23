@@ -1,0 +1,51 @@
+%main.l-container
+  = render 'shared/l-side'
+  .l-content
+    %section.mypage-tab-container-bottom
+      %h2.mypage-tab-container-bottom__head
+        - url = request.path_info
+        - if url.match('purchased') || (url.match('trading') && (not url.match('seller_trading')))
+          購入した商品
+        - else
+          出品した商品
+
+      %ul.mypage-tab-container__tabs
+        = render 'shared/mypage-tabs'
+      .tab-content
+        %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
+          - if @item.present?
+            - @item.each do |item|
+              %li.mypage-item-lists
+                = link_to transaction_page_users_path,class: 'mypage-item-lists__link' do
+                  %figure
+                    = image_tag item.item_images.first.image
+                  .mypage-item-lists__body
+                    .mypage-item-lists__body--text
+                      - url = request.path_info
+                      - if url.match('purchased')
+                        = "「#{item.name}」を購入しました。取引が完了しました。"
+                      - else
+                        = item.name
+                    - url = request.path_info
+                    - if url.match('purchased')
+                      .mypage-item-lists__status.done
+                        取引完了
+                    - if url.match('sold_page')
+                      .mypage-item-lists__status.done
+                        売却済
+                    - if url.match('exhibition')
+                      .mypage-item-lists__status.awaiting
+                        出品中
+                  %i.fa.fa-angle-right.mypage-item-lists-icon
+
+          - else
+            %li.mypage-item-not-found.bold
+              - url = request.path_info
+              - if url.match('trading')
+                取引中の商品がありません
+              - if url.match('purchased')
+                購入済みの商品がありません
+              - if url.match('exhibition')
+                出品中の商品がありません
+              - if url.match('sold_page')
+                売却済みの商品がありません
