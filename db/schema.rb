@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190322100445) do
+ActiveRecord::Schema.define(version: 20190323052516) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20190322100445) do
     t.integer  "category_id"
     t.integer  "child_category_id"
     t.integer  "grand_child_category_id"
+    t.integer  "user_id"
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["child_category_id"], name: "index_items_on_child_category_id", using: :btree
     t.index ["grand_child_category_id"], name: "index_items_on_grand_child_category_id", using: :btree
@@ -80,6 +81,11 @@ ActiveRecord::Schema.define(version: 20190322100445) do
     t.datetime "remember_created_at"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
+<<<<<<< HEAD
+=======
+    t.string   "provider"
+    t.string   "uid"
+>>>>>>> tsurutadesu/master
     t.string   "card_token"
     t.string   "customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
