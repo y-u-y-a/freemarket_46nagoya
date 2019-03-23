@@ -4,8 +4,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-  prepend_before_action :check_captcha, only: [:create]
+  # prepend_before_action :check_captcha, only: [:create]
   prepend_before_action :customize_sign_up_params, only: [:create]
+
+
+  # def create
+  #   # ユーザー情報を登録する処理
+  # end
+
+  # def phone_number
+  #   # 電話番号を登録する処理
+  # end
+
+  # def address
+  #   # 住所を登録する処理
+  # end
+
+  # def credit
+  #   # 支払い方法を登録する処理
+  # end
 
 
   private
