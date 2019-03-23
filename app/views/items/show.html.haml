@@ -16,28 +16,18 @@
                 .owl-item__inner.is-higher-width
                   = image_tag @images.first.image
 
-
-
           .owl-dots
-            .owl-dot.active
-              %span
-              .owl-dot-inner
-                = image_tag 'apple.jpg'
+            - @images.each do |image|
+              - if image.image.present?
+                .owl-dot
+                  %span
+                  .owl-dot-inner
+                    = image_tag image.image
 
-            .owl-dot
-              %span
-              .owl-dot-inner
-                = image_tag 'apple.jpg',class: 'white'
-
-            .owl-dot
-              %span
-              .owl-dot-inner
-                = image_tag 'apple.jpg',class: 'white'
-
-            .owl-dot
-              %span
-              .owl-dot-inner
-                = image_tag 'apple.jpg',class: 'white'
+            / .owl-dot
+            /   %span
+            /   .owl-dot-inner
+            /     = image_tag @images.second.image,class: 'white'
 
           .item-sold-out-badge
             %div SOLD
@@ -146,7 +136,7 @@
       %p.text-center or
       = form_for @item, method: 'POST' do |f|
         = f.submit "出品を一旦停止する",class: 'btn-default btn-gray', id: 'stop-item'
-      = button_tag type: 'button', class: 'btn-default btn-gray',id: 'delete-item' do
+      = button_tag type: 'button', class: 'btn-default btn-gray',id: 'delete-item',style: {"touch-action":"manipulation"}, remote: true do
         この商品を削除する
 
   .item-detail-message
