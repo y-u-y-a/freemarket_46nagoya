@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+  require 'payjp'
+
+  # before_action :authenticate_user!
 
   before_action :set_item, only: [:show,:edit, :update, :destroy]
   before_action :set_category, only: [ :index, :new, :all_brands_show, :all_categories_show, :show]
@@ -117,6 +120,6 @@ class ItemsController < ApplicationController
 
   def set_payjp_user
     @user = User.find(current_user)
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
   end
 end

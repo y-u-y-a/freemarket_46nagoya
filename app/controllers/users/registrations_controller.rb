@@ -25,7 +25,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
 
-  private
+  protected
+
   def customize_sign_up_params
     devise_parameter_sanitizer.permit :sign_up, keys: [:nickname, :email, :password, :password_confirmation, :remember_me]
   end

@@ -1,0 +1,24 @@
+- if user_signed_in?
+  - unless item.like_user(current_user.id).blank?
+    = link_to item_like_path(item_id: item.id ,id: item.likes[0].id), method: :delete, remote: true, url: url_for(action: :destroy) do
+      .vertical-like.red-text
+        %i.fa.fa-heart.vertical-like__red-icon  いいね!
+        %span.vertical-like__red-text
+          = item.likes_count
+  - else
+    = link_to item_likes_path(item.id), method: :post, remote: true, url: url_for(action: :create) do
+      .vertical-like
+        %i.fa.fa-heart.vertical-like__icon  いいね!
+        %span.vertical-like__text
+          = item.likes_count
+- else
+  - if item.likes_count > 0
+    .vertical-like.red-text
+      %i.fa.fa-heart.vertical-like__red-icon  いいね!
+      %span.vertical-like__red-text
+        = item.likes_count
+  - else
+    .vertical-like
+      %i.fa.fa-heart.vertical-like__icon  いいね!
+      %span.vertical-like__text
+        = item.likes_count

@@ -68,7 +68,7 @@ class UsersController < ApplicationController
         exp_year: params[:exp_year]
       }},
       {
-        'X-Payjp-Direct-Token-Generate': 'true' #テスト用トークン取得
+        'X-Payjp-Direct-Token-Generate': 'true'
       }
     )
     #顧客の作成
@@ -102,7 +102,7 @@ class UsersController < ApplicationController
 
   def set_payjp_user
     @user = User.find(current_user)
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
   end
 
 end
