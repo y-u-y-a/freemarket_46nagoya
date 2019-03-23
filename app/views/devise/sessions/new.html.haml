@@ -33,8 +33,8 @@
           .mail-account__field--password
             = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "password__input"
 
-          .mail-account__field--RECAPCHA
-            = recaptcha_tags
+          / .mail-account__field--RECAPCHA
+          /   = recaptcha_tags
 
           // ログインボタン
           = f.submit "ログイン", class: "mail-account__field--login-btn"
