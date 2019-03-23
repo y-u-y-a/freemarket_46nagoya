@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   $(".input-default").on('keyup', function(e){
     e.preventDefault();
     var count = $(this).val();
