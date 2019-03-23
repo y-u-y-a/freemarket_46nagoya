@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
 
+  require 'payjp'
+
   before_action :set_item, only: [:show,:edit, :update, :destroy]
   before_action :set_category, only: [ :index, :new, :all_brands_show, :all_categories_show, :show]
   before_action :set_item, only: [:show ,:edit, :update, :destroy, :buy]

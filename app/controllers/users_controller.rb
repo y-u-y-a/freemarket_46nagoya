@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  require 'payjp'
+
   before_action :authenticate_user!, only: [:payment_method, :card_registration, :indentification, :card_create, :card_delete]
 
   before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page]
@@ -66,11 +69,8 @@ class UsersController < ApplicationController
         cvc: params[:cvc],
         exp_month: params[:exp_month],
         exp_year: params[:exp_year]
-      }},
-      {
-        'X-Payjp-Direct-Token-Generate': 'true' #テスト用トークン取得
       }
-    )
+    })
     #顧客の作成
     customer = Payjp::Customer.create(
       email: @user.email,
