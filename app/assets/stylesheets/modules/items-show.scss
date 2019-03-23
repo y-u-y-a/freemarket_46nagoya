@@ -48,6 +48,7 @@
                   right: 0;
                   width: 100%;
                   margin: auto;
+                  max-height: 300px;
                 }
               }
             }
@@ -62,10 +63,10 @@
             display: inline-block;
             width: 75px;
             height: 75px;
-            opacity: 1;
+            opacity: 0.4;
             cursor: pointer;
             &:active {
-              opacity: .4;
+              opacity: 1;
               cursor: default;
             }
             span {

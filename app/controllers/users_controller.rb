@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  require 'payjp'
+
   before_action :authenticate_user!, only: [:payment_method, :card_registration, :indentification, :card_create, :card_delete]
 
   before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page]
@@ -70,7 +73,7 @@ class UsersController < ApplicationController
       {
         'X-Payjp-Direct-Token-Generate': 'true'
       }
-    )
+    })
     #顧客の作成
     customer = Payjp::Customer.create(
       email: @user.email,

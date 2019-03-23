@@ -3,7 +3,8 @@ class ItemsController < ApplicationController
 
   # before_action :authenticate_user!
 
-  before_action :set_item, only: [:show,:edit, :update, :destroy]
+  require 'payjp'
+
   before_action :set_category, only: [ :index, :new, :all_brands_show, :all_categories_show, :show]
   before_action :set_item, only: [:show ,:edit, :update, :destroy, :buy]
   before_action :set_payjp_user ,only: [:buy, :pay]
@@ -36,16 +37,14 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    images = @item.item_images
-    @images = ItemImage.find(images.ids)
-    @item_image = @item.item_images.build
+    @images = @item.item_images
   end
 
   def update
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
-      render :edit
+      redirect_to edit_item_path(@item)
     end
   end
 
