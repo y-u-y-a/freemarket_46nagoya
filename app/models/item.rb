@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
 
+  has_many :likes, dependent: :destroy
   has_many :item_images,dependent: :delete_all
   accepts_nested_attributes_for :item_images
 
@@ -12,6 +13,10 @@ class Item < ApplicationRecord
   validates :shipping_date, presence: true
   validates :postage, presence: true
   validates :shipping_way,presence: true
+
+  def like_user(user_id)
+   likes.find_by(user_id: user_id)
+  end
 
   enum state: {
     '新品、未使用': 1,

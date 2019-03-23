@@ -29,6 +29,38 @@
       color: #333;
       font-weight: bold;
     }
+    &__card {
+      li {
+        padding: 24px 0;
+        border-bottom: 1px solid #eee;
+        .users-card {
+          position: relative;
+          max-width: 320px;
+          margin: 0 auto;
+          figure {
+            margin: 0;
+            img {
+              vertical-align: middle;
+            }
+          }
+          &__num {
+            margin: 8px 0 0;
+            font-size: 12px;
+          }
+          &__exp {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 4px 6px;
+            background: #fff;
+            border-radius: 3px;
+            border: 1px solid #ea352d;
+            color: #ea352d;
+            font-size: 14px;
+          }
+        }
+      }
+    }
     &__title {
       font-size: 24px;
       padding: 8px 24px;
@@ -50,6 +82,7 @@
     .right-single-content {
       max-width: 320px;
       margin: 0 auto;
+      padding: 24px 0;
       .btn-red:first-child {
         margin: 0;
       }

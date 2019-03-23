@@ -1,0 +1,77 @@
+%span.charge-errors
+  .credit-form-content
+    .card-form
+      %label{for: "payment_card_no",class: "card-form__title"} カード番号
+      %span.form-require.card-form__label 必須
+      %input#payment_card_no.card-form__input.number{maxlength: "19", name: "number", placeholder: "半角英数字のみ", type: "text", value: ""}
+      %ul#card-no-error-wrapper.has-error-text
+      %ul.card-list
+        %li
+          = image_tag("//www-mercari-jp.akamaized.net/assets/img/card/visa.svg?2845599746",alt: "",class: "card-list__image--visa")
+        %li
+          = image_tag("//www-mercari-jp.akamaized.net/assets/img/card/master-card.svg?2845599746",alt: "",class: "card-list__image--master")
+        %li
+          = image_tag("//www-mercari-jp.akamaized.net/assets/img/card/saison-card.svg?2845599746",alt: "",class: "card-list__image--saison")
+        %li
+          = image_tag("//www-mercari-jp.akamaized.net/assets/img/card/jcb.svg?2845599746",alt: "",class: "card-list__image--jcb-club-dis")
+        %li
+          = image_tag("//www-mercari-jp.akamaized.net/assets/img/card/american_express.svg?2845599746",alt: "",class: "card-list__image--american-express")
+        %li
+          = image_tag("//www-mercari-jp.akamaized.net/assets/img/card/dinersclub.svg?2845599746",alt: "",class: "card-list__image--jcb-club-dis")
+        %li
+          = image_tag("//www-mercari-jp.akamaized.net/assets/img/card/discover.svg?2845599746",alt: "" ,class: "card-list__image--jcb-club-dis")
+    .card-form
+      %label{for: "payment_card_expire",class: "card-form__title"} 有効期限
+      %span.form-require.card-form__label 必須
+      %br
+      .select-wrap
+        %select#payment_card_expire_mm.select-wrap__default.exp_month{name: "exp_month", placeholder: "月", type: "text"}
+          %option{value: "01"} 01
+          %option{value: "02"} 02
+          %option{value: "03"} 03
+          %option{value: "04"} 04
+          %option{value: "05"} 05
+          %option{value: "06"} 06
+          %option{value: "07"} 07
+          %option{value: "08"} 08
+          %option{value: "09"} 09
+          %option{value: "10"} 10
+          %option{value: "11"} 11
+          %option{value: "12"} 12
+        %i.fa.fa-angle-down.select-wrap__icon
+      %span 月
+      %ul#expire-mm-error-wrapper.has-error-text
+      .select-wrap
+        %select#payment_card_expire_yy.select-wrap__default.exp_year{name: "exp_year", placeholder: "年", type: "text"}
+          %option{value: "2019"} 19
+          %option{value: "2020"} 20
+          %option{value: "2021"} 21
+          %option{value: "2022"} 22
+          %option{value: "2023"} 23
+          %option{value: "2024"} 24
+          %option{value: "2025"} 25
+          %option{value: "2026"} 26
+          %option{value: "2027"} 27
+          %option{value: "2028"} 28
+          %option{value: "2029"} 29
+        %i.fa.fa-angle-down.select-wrap__icon
+      %span 年
+      %ul#expire-yy-error-wrapper.has-error-text
+
+    .card-form
+      %label{for: "payment_card_security_code",class: "card-form__title"} セキュリティコード
+      %span.form-require.card-form__label 必須
+      %input#payment_card_security_code.card-form__input.cvc{maxlength: "4", name: "cvc", placeholder: "カード背面4桁もしくは3桁の番号", type: "text", value: ""}
+
+      %ul#security-code-error-wrapper.has-error-text
+      .card-seqcode
+        .card-seqcode__text{"data-js" => "show-tips-toggle"}
+          %span.form-question> ?
+          カード裏面の番号とは？
+        .card-seqcode__info{"data-js" => "show-tips-content"}
+          カードの裏面をご参照ください。
+          %br
+          = image_tag("//www-mercari-jp.akamaized.net/assets/img/signup/seq-card.png?2845599746",class: "card-seqcode__info--image")
+    %p#primary-error.has-error-text
+    %button#submit-button.btn-default.btn-red{type: "submit"} 追加する
+
