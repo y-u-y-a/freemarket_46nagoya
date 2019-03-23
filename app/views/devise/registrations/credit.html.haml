@@ -1,0 +1,23 @@
+.single-container
+  = render "users/signup_header"
+  // 登録完了画面
+  %main.single-main
+    %section.l-single-container
+      %h2.l-single-head 会員登録完了
+      .l-single-inner
+        .l-single-content
+          .form-group
+            %p.form-info-text
+              ありがとうございます。
+              %br
+              会員登録が完了しました。
+
+          .btn-default.btn-red
+            = link_to 'メルカリを始める', root_path
+          .form-group.text-right
+            %p
+              %a{href: "", target: "_blank"}
+                メルカリについて
+                %i.fa.fa-angle-right
+
+  = render "users/user_footer"

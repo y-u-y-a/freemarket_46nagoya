@@ -13,14 +13,14 @@
       // SNSでログイン
       .login-panel__sns-account
         %button#facebook-login.btn-sns.btn-facebook
-          = link_to do
+          = link_to user_facebook_omniauth_authorize_path do
             %span Facebookで登録
             = fa_icon "facebook-square lg", class: "icon-facebook"
 
         %button#google-login.btn-sns.btn-google
-          = link_to do
+          = link_to user_google_oauth2_omniauth_authorize_path do
+            = fa_icon 'google',class: "icon-google"
             %span Googleで登録
-            = image_tag("/assets/google.png", class: "image-google")
 
 
       // メールアドレスでログイン
@@ -33,8 +33,8 @@
           .mail-account__field--password
             = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "password__input"
 
-          .mail-account__field--RECAPCHA
-            = recaptcha_tags
+          / .mail-account__field--RECAPCHA
+          /   = recaptcha_tags
 
           // ログインボタン
           = f.submit "ログイン", class: "mail-account__field--login-btn"

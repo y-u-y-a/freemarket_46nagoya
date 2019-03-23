@@ -14,18 +14,20 @@
                 %p 最大10枚までアップロードできます
                 .sell-dropbox-container.clearfix.state-image-number-10
                   .sell-upload-items-container
-                    %div{class: "sell-upload-items have-item-1"}
-                      %ul
-                        %li.sell-upload-item
-                          %figure.sell-upload-figure.landscape
-                            = image_tag 'apple.jpg'
-                          .sell-upload-button
-                            = link_to '編集', class: 'sell-upload-edit'
-                            = link_to '削除'
+                    .sell-upload-items.have-item-1
+                      %ul.pictures
+                        - @images.each do |image|
+                          - if image.image.present?
+                            %li.sell-upload-item
+                              %figure.sell-upload-figure.landscape
+                                = image_tag image.image
+                              .sell-upload-button
+                                = link_to '編集', class: 'sell-upload-edit'
+                                = link_to '削除'
 
-                  = f.fields_for :item_images , @item_image do |image|
+                  = f.fields_for :item_images do |image|
                     = image.label :image, class: 'form-mask-image' do
-                      .sell-upload-drop-box.have-item-1
+                      .sell-upload-drop-box.have-item-1.box-display-none
                         = image.file_field :image,class: 'hidden'
                         %pre.visible-pc
                           ドラッグアンドドロップ
@@ -68,7 +70,7 @@
                         商品の状態
                         %span.form-require 必須
                       .select-wrap
-                        = f.select :state, Item.states_i18n.invert,{}
+                        = f.select :state, Item.states_i18n.invert,{include_blank: '---'}
                         = fa_icon 'angle-down'
 
               .sell-content.clearfix
@@ -80,7 +82,7 @@
                       配送料の負担
                       %span.form-require 必須
                     .select-wrap
-                      = f.select :postage, Item.postages_i18n.invert, {}
+                      = f.select :postage, Item.postages_i18n.invert, {include_blank: '---'}
                       = fa_icon 'angle-down'
 
                   .form-group
@@ -88,7 +90,7 @@
                       発送元の地域
                       %span.form-require 必須
                     .select-wrap
-                      = collection_select :item, :region,Prefecture.all,:id,:name,{} ,{class: "select-default"}
+                      = collection_select :item, :region,Prefecture.all,:id,:name,{include_blank: '---'} ,{class: "select-default"}
                       = fa_icon 'angle-down'
 
                   .form-group
@@ -96,7 +98,7 @@
                       配達の方法
                       %span.form-require 必須
                     .select-wrap
-                      = f.select :shipping_way,Item.shipping_ways_i18n.invert, {}
+                      = f.select :shipping_way,Item.shipping_ways_i18n.invert, {include_blank: '---'}
                       = fa_icon 'angle-down'
 
                   .form-group
@@ -104,7 +106,7 @@
                       発送までの日数
                       %span.form-require 必須
                     .select-wrap
-                      = f.select :shipping_date, Item.shipping_dates_i18n.invert,{}
+                      = f.select :shipping_date, Item.shipping_dates_i18n.invert,{include_blank: '---'}
                       = fa_icon 'angle-down'
 
               .sell-content
@@ -123,7 +125,6 @@
                           .input-price
                             = f.text_field :price,class: 'input-default',value: @item.price,placeholder: '例）300'
 
-
                     %li.clearfix
                       .l-left 販売手数料(10%)
                       .l-right.commission
@@ -133,6 +134,7 @@
                       .l-left 販売利益
                       .total-right.profits
                         = "¥#{thousands_separator(profits(@item.price))}"
+
 
               .sell-content.sell-btn-box
                 = f.submit '変更する',class: 'btn-default btn-red'
