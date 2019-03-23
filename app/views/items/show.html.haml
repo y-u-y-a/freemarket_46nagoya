@@ -1,7 +1,7 @@
 .container
 
   - breadcrumb :item_show, @item
-  = render 'header'
+  = render 'shared/header'
   = render 'delete-overlay'
 
   %section.item-box-container.l-single-container
@@ -24,13 +24,9 @@
                   .owl-dot-inner
                     = image_tag image.image
 
-            / .owl-dot
-            /   %span
-            /   .owl-dot-inner
-            /     = image_tag @images.second.image,class: 'white'
-
-          .item-sold-out-badge
-            %div SOLD
+          - if @item.business_stats == 3
+            .item-sold-out-badge
+              %div SOLD
 
       %table.item-box-container__main-content__item-detail-table
         %tbody
@@ -101,12 +97,12 @@
       %span.item-tax          (税込)
       %span.item-shipping-fee 送料込み
 
-    / 売れた後
-    / .item-buy-btn.disabled
-    /   売り切れました
+    - if @item.business_stats == 3
+      .item-buy-btn.disabled
+        売り切れました
 
     - if current_user.id != @item.user_id
-      = link_to buy_items_path , class: 'item-btn-client item-buy-btn' do
+      = link_to buy_item_path(@item) , class: 'item-btn-client item-buy-btn' do
         %div{"data-client":"visible"} 購入画面に進む
 
     .item-description
@@ -192,4 +188,4 @@
 
 
 
-  = render 'footer'
+  = render 'shared/footer'
