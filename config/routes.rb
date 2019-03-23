@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     post 'phone_number' => 'users/registrations#phone_number'
     post 'address' => 'users/registrations#address'
-    get 'credit' => 'users/registrations#credit'
+    post 'credit' => 'users/registrations#credit'
   end
 
   resources :users do

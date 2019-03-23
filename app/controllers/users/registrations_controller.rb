@@ -39,7 +39,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       user_id: session[:user_id]
     )
     @address.save
-    redirect_to credit_path
+    # redirect_to credit_path
   end
 
   def credit

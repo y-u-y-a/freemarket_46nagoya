@@ -81,13 +81,10 @@ ActiveRecord::Schema.define(version: 20190323052516) do
     t.datetime "remember_created_at"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-<<<<<<< HEAD
-=======
-    t.string   "provider"
-    t.string   "uid"
->>>>>>> tsurutadesu/master
     t.string   "card_token"
     t.string   "customer_id"
+    t.string   "provider"
+    t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
