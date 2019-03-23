@@ -43,7 +43,7 @@ RSpec.describe Item, type: :model do
 
     describe '#destroy' do
 
-      it "itemが正常に作成できているか"
+      it "itemが正常に作成できているか" do
         item = @item
         expect(item).to be_valid
       end
@@ -53,5 +53,12 @@ RSpec.describe Item, type: :model do
         expect{ item.destroy}.to change{ ItemImage.count }.by{-1}
       end
     end
+
+    describe '#create' do
+      it 'カード情報を作成できること' do
+        allow(Payjp::Charge).to receive(:create).and_return(PayjpMock.prepare_valid_charge)
+      end
+    end
+
   end
 end

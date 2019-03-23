@@ -2,7 +2,7 @@
   %nav.mypage-nav
     %ul.mypage-nav__list
       %li
-        = link_to '#',class: "mypage-nav__list__item active" do
+        = link_to users_path(current_user),class: "mypage-nav__list__item active" do
           マイページ
           %i.fa.fa-angle-right.mypage-icon
       %li
@@ -24,23 +24,23 @@
           出品する
           %i.fa.fa-angle-right.mypage-icon
       %li
-        = link_to '#',class: "mypage-nav__list__item" do
+        = link_to exhibition_users_path(current_user),class: "mypage-nav__list__item" do
           出品した商品 - 出品中
           %i.fa.fa-angle-right.mypage-icon
       %li
-        = link_to '#',class: "mypage-nav__list__item" do
+        = link_to seller_trading_users_path(current_user),class: "mypage-nav__list__item" do
           出品した商品 - 取引中
           %i.fa.fa-angle-right.mypage-icon
       %li
-        = link_to '#',class: "mypage-nav__list__item" do
+        = link_to sold_page_users_path(current_user),class: "mypage-nav__list__item" do
           出品した商品 - 売却済み
           %i.fa.fa-angle-right.mypage-icon
       %li
-        = link_to '#',class: "mypage-nav__list__item" do
+        = link_to trading_users_path(current_user),class: "mypage-nav__list__item" do
           購入した商品 - 取引中
           %i.fa.fa-angle-right.mypage-icon
       %li
-        = link_to '#',class: "mypage-nav__list__item" do
+        = link_to purchased_users_path(current_user),class: "mypage-nav__list__item" do
           購入した商品 - 過去の取引
           %i.fa.fa-angle-right.mypage-icon
       %li
@@ -80,7 +80,7 @@
           発送元・お届け先住所変更
           %i.fa.fa-angle-right.mypage-icon
       %li
-        = link_to payment_method_users_path,class: "mypage-nav__list__item" do
+        = link_to payment_method_users_path(current_user),class: "mypage-nav__list__item" do
           支払い方法
           %i.fa.fa-angle-right.mypage-icon
       %li
@@ -88,7 +88,7 @@
           メール/パスワード
           %i.fa.fa-angle-right.mypage-icon
       %li
-        = link_to indentification_users_path,class: "mypage-nav__list__item" do
+        = link_to indentification_users_path(current_user),class: "mypage-nav__list__item" do
           本人情報
           %i.fa.fa-angle-right.mypage-icon
       %li

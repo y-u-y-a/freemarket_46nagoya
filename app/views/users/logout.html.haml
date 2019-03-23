@@ -1,8 +1,8 @@
 - breadcrumb :logout
-= render 'items/header'
+= render 'shared/header'
 
 %main.l-container
-  = render 'l-side'
+  = render 'shared/l-side'
 
   .l-content
     .chapter-container
@@ -11,5 +11,5 @@
           %button{ type: 'submit', class: 'btn-default btn-red' }
             = link_to "ログアウト", destroy_user_session_path, method: :delete
 
-= render 'items/footer'
-= render 'items/sell-button'
+= render 'shared/footer'
+= render 'shared/sell-button'
