@@ -8,21 +8,42 @@ class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :customize_sign_up_params, only: [:create]
 
 
-  # def create
-  #   # ユーザー情報を登録する処理
-  # end
+  def create
+    super
+    session[:user_id] = resource.id
+  end
 
-  # def phone_number
-  #   # 電話番号を登録する処理
-  # end
+  def phone_number
+    # sessionに電話番号を格納する処理
+    session[:phone_number] = params[:session][:phone_number]
+  end
 
-  # def address
-  #   # 住所を登録する処理
-  # end
+  def address
+    # sessionに住所を格納する処理
+    session[:post_number] = params[:session][:post_number]
+    session[:prefecture] = params[:session][:prefecture]
+    session[:city] = params[:session][:city]
+    session[:town] = params[:session][:town]
+    session[:building] = params[:session][:building]
+    # テーブルに保存する処理
+    @address = Address.new(
+      post_number: session[:post_number],
+      prefecture_id: session[:prefecture],
+      city: session[:city],
+      town: session[:town],
+      building: session[:building],
+      user_id: session[:user_id]
+    )
+    @address.save
+  end
 
-  # def credit
-  #   # 支払い方法を登録する処理
-  # end
+  def credit
+    # sessionに情報を格納する処理
+    session[:number] = params[:session][:number]
+    session[:exp_month] = params[:session][:exp_year]
+    session[:exp_month] = params[:session][:exp_month]
+    session[:cvc] = params[:session][:cvc]
+  end
 
 
   private
