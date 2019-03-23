@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
 
   require 'payjp'
 
-  before_action :set_item, only: [:show,:edit, :update, :destroy]
   before_action :set_category, only: [ :index, :new, :all_brands_show, :all_categories_show, :show]
   before_action :set_item, only: [:show ,:edit, :update, :destroy, :buy]
   before_action :set_payjp_user ,only: [:buy, :pay]
@@ -42,7 +41,6 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
-
       redirect_to edit_item_path(@item)
     end
   end
@@ -118,6 +116,6 @@ class ItemsController < ApplicationController
 
   def set_payjp_user
     @user = User.find(current_user)
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
   end
 end
