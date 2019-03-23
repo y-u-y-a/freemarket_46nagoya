@@ -1,8 +1,8 @@
 - breadcrumb :users
-= render 'shared/header'
+= render 'items/header'
 
 %main.l-container.clearfix
-  = render 'shared/l-side'
+  = render 'l-side'
   .l-content
     %section.mypage-user-icon
       = link_to '#' do
@@ -114,6 +114,6 @@
           %li.mypage-item-not-found.bold
             取引中の商品がありません
 
-= render 'shared/footer'
+= render 'items/footer'
 
-= render 'shared/sell-button'
+= render 'items/sell-button'

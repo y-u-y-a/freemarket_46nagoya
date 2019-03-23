@@ -38,12 +38,10 @@
       }
     }
     .header-lists {
-      @include clearfix;
       height: 32px;
       margin: 8px 0 0 0;
       &__left {
         .lists-menu {
-          height: 32px;
           &__categories {
             position: relative;
             display: inline-block;
@@ -58,14 +56,10 @@
             color: #333;
             text-decoration: none;
           }
-          &__link:hover {
-            color: #0099e8;
-          }
           &__brands {
             position: relative;
             display: inline-block;
             padding: 0 0 0 16px;
-            float: right;
           }
         }
       }
@@ -106,11 +100,6 @@
               padding: 7px 10px;
               text-align: center;
               border-radius: $header-btn-radius;
-            }
-            &__text:hover {
-              color: $white;
-              background-color: #0099e8;
-              transition: 0.5s ;
             }
           }
         }

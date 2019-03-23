@@ -1,7 +1,7 @@
 .container
 
   - breadcrumb :item_show, @item
-  = render 'shared/header'
+  = render 'header'
   = render 'delete-overlay'
 
   %section.item-box-container.l-single-container
@@ -16,16 +16,21 @@
                 .owl-item__inner.is-higher-width
                   = image_tag @images.first.image
 
-          - @images.each do |image|
-            - if image.present?
-              .owl-dots
-                .owl-dot.active
+          .owl-dots
+            - @images.each do |image|
+              - if image.image.present?
+                .owl-dot
                   %span
                   .owl-dot-inner
                     = image_tag image.image
-          - if @item.business_stats == 3
-            .item-sold-out-badge
-              %div SOLD
+
+            / .owl-dot
+            /   %span
+            /   .owl-dot-inner
+            /     = image_tag @images.second.image,class: 'white'
+
+          .item-sold-out-badge
+            %div SOLD
 
       %table.item-box-container__main-content__item-detail-table
         %tbody
@@ -101,7 +106,7 @@
     /   売り切れました
 
     - if current_user.id != @item.user_id
-      = link_to buy_item_path(@item) , class: 'item-btn-client item-buy-btn' do
+      = link_to buy_items_path , class: 'item-btn-client item-buy-btn' do
         %div{"data-client":"visible"} 購入画面に進む
 
     .item-description
@@ -131,7 +136,7 @@
       %p.text-center or
       = form_for @item, method: 'POST' do |f|
         = f.submit "出品を一旦停止する",class: 'btn-default btn-gray', id: 'stop-item'
-      = button_tag type: 'button', class: 'btn-default btn-gray',id: 'delete-item' do
+      = button_tag type: 'button', class: 'btn-default btn-gray',id: 'delete-item',style: {"touch-action":"manipulation"}, remote: true do
         この商品を削除する
 
   .item-detail-message
@@ -187,4 +192,4 @@
 
 
 
-  = render 'shared/footer'
+  = render 'footer'

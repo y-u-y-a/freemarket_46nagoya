@@ -8,23 +8,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :customize_sign_up_params, only: [:create]
 
 
-  # def create
-  #   # ユーザー情報を登録する処理
-  # end
-
-  # def phone_number
-  #   # 電話番号を登録する処理
-  # end
-
-  # def address
-  #   # 住所を登録する処理
-  # end
-
-  # def credit
-  #   # 支払い方法を登録する処理
-  # end
-
-
   private
   def customize_sign_up_params
     devise_parameter_sanitizer.permit :sign_up, keys: [:nickname, :email, :password, :password_confirmation, :remember_me]
