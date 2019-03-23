@@ -13,12 +13,12 @@
           %li.lists-menu__categories
             %h2.lists-menu__text.category-nav
               = link_to "カテゴリーから探す", all_categories_show_items_path,class: "lists-menu__link"
-              = render '/items/category-drop-menu'
+              = render 'shared/category-drop-menu'
 
           %li.lists-menu__brands
             %h2.lists-menu__text.brand-nav
               = link_to "ブランドから探す", all_brands_show_items_path,class: "lists-menu__link"
-              = render '/items/brand-drop-menu'
+              = render 'shared/brand-drop-menu'
 
       .header-lists__right.right-float
         - if user_signed_in?
