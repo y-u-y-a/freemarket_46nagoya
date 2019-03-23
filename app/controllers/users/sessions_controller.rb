@@ -2,7 +2,7 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  # prepend_before_action :check_captcha, only: [:create]
+  prepend_before_action :check_captcha, only: [:create]
   prepend_before_action :customize_sign_in_params, only: [:create]
 
   def customize_sign_in_params
