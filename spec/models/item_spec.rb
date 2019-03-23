@@ -159,6 +159,13 @@ RSpec.describe Item, type: :model do
         expect(response).to redirect_to "/users/sign_in"
       end
     end
+
+    describe '#create' do
+      it 'カード情報を作成できること' do
+        allow(Payjp::Charge).to receive(:create).and_return(PayjpMock.prepare_valid_charge)
+      end
+    end
+
   end
   # describe Item do
   #   before do

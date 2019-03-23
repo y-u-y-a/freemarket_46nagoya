@@ -19,15 +19,16 @@
     .items-boxes__lists
       - @lady_items.each do |lady|
         %section.items-card
-          = link_to root_path, class: "item-link" do
+          = link_to item_path(lady), class: "item-link" do
             %figure.items-card__photo
-              = image_tag("/images/item-sample.jpg")
+              = image_tag lady.item_images.first.image
             .items-card-intro
               %h3.items-card-intro__item-name
                 = lady.name
               .items-card-num
                 .items-card-num__price
                 = "¥ #{thousands_separator(lady.price)}"
+
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
@@ -37,15 +38,16 @@
     .items-boxes__lists
       - @man_items.each do |man|
         %section.items-card
-          = link_to root_path, class: "item-link" do
+          = link_to item_path(man), class: "item-link" do
             %figure.items-card__photo
-              = image_tag man.item_images
+              = image_tag man.item_images.first.image
             .items-card-intro
               %h3.items-card-intro__item-name
                 = man.name
               .items-card-num
                 .items-card-num__price
                 = "¥ #{thousands_separator(man.price)}"
+
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
@@ -55,15 +57,16 @@
     .items-boxes__lists
       - @kids_items.each do |kid|
         %section.items-card
-          = link_to root_path, class: "item-link" do
+          = link_to item_path(kid), class: "item-link" do
             %figure.items-card__photo
-              = image_tag("")
+              = image_tag kid.item_images.first.image
             .items-card-intro
               %h3.items-card-intro__item-name
                 = kid.name
               .items-card-num
                 .items-card-num__price
                 = "¥ #{thousands_separator(kid.price)}"
+
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
@@ -73,15 +76,16 @@
     .items-boxes__lists
       - @cosmetic_items.each do |cosmetic|
         %section.items-card
-          = link_to root_path, class: "item-link" do
+          = link_to item_path(cosmetic), class: "item-link" do
             %figure.items-card__photo
-              = image_tag("")
+              = image_tag cosmetic.item_images.first.image
             .items-card-intro
               %h3.items-card-intro__item-name
                 = cosmetic.name
               .items-card-num
                 .items-card-num__price
                 = "¥ #{thousands_separator(cosmetic.price)}"
+
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
@@ -95,15 +99,16 @@
     .items-boxes__lists
       - @chanel_items.each do |chanel|
         %section.items-card
-          = link_to root_path, class: "item-link" do
+          = link_to item_path(chanel), class: "item-link" do
             %figure.items-card__photo
-              = image_tag("")
+              = image_tag chanel.item_images.first.image
             .items-card-intro
               %h3.items-card-intro__item-name
                 = chanel.name
               .items-card-num
                 .items-card-num__price
                 = "¥ #{thousands_separator(chanel.price)}"
+
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
@@ -113,15 +118,16 @@
     .items-boxes__lists
       - @vuitton_items.each do |vuitton|
         %section.items-card
-          = link_to root_path, class: "item-link" do
+          = link_to item_path(vuitton), class: "item-link" do
             %figure.items-card__photo
-              = image_tag("")
+              = image_tag vuitton.item_images.first.image
             .items-card-intro
               %h3.items-card-intro__item-name
                 = vuitton.name
               .items-card-num
                 .items-card-num__price
                 = "¥ #{thousands_separator(vuitton.price)}"
+
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
@@ -131,15 +137,16 @@
     .items-boxes__lists
       - @supreme_items.each do |supreme|
         %section.items-card
-          = link_to root_path, class: "item-link" do
+          = link_to item_path(supreme), class: "item-link" do
             %figure.items-card__photo
-              = image_tag("")
+              = image_tag supreme.item_images.first.image
             .items-card-intro
               %h3.items-card-intro__item-name
                 = supreme.name
               .items-card-num
                 .items-card-num__price
                 = "¥ #{thousands_separator(supreme.price)}"
+
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
@@ -149,15 +156,16 @@
     .items-boxes__lists
       - @nike_items.each do |nike|
         %section.items-card
-          = link_to root_path, class: "item-link" do
+          = link_to item_path(nike), class: "item-link" do
             %figure.items-card__photo
-              = image_tag("")
+              = image_tag nike.item_images.first.image
             .items-card-intro
               %h3.items-card-intro__item-name
                 = nike.name
               .items-card-num
                 .items-card-num__price
                 = "¥ #{thousands_separator(nike.price)}"
+
                 %p.item-card-num__tax
                   (税込)
     .items-boxes__view-all.l-right
