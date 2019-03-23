@@ -15,7 +15,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def phone_number
     # sessionに電話番号を格納する処理
     session[:phone_number] = params[:session][:phone_number]
-    # テーブルに保存する処理
   end
 
   def address
@@ -39,7 +38,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       user_id: session[:user_id]
     )
     @address.save
-    # redirect_to credit_path
   end
 
   def credit
