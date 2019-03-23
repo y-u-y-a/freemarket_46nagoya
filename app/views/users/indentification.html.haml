@@ -1,8 +1,8 @@
 - breadcrumb :indentification
-= render 'shared/header'
+= render 'items/header'
 
 %main.l-container.clearfix
-  = render 'shared/l-side'
+  = render 'l-side'
   .l-content
     %section.l-chapter-container.mypage-identification
       %h2.l-chapter-container__head 本人情報の登録
@@ -55,6 +55,6 @@
               %i.fa.fa-angle-right.l-chapter-container__inner--icon
         %input{name: "__csrf_value", type: "hidden", value: "4ef49fdf0b674df00fd4d50a9826b8b4315993b7a81673e8f9d14c75a1ee2c8e1926a3263664571f3217cf83b5746fb808719167aeda3014de90649deb54e14fb"}
 
-= render 'shared/sell-button'
+= render 'items/sell-button'
 
-= render 'shared/footer'
+= render 'items/footer'

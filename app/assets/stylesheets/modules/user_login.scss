@@ -50,13 +50,12 @@
             left:20px;
             color:white;
           }
-          .icon-google{
+          .image-google{
             position:absolute;
-            top: 16px;
-            left: 22px;
+            top: 14px;
+            left: 16px;
             height: 22px;
-            text-align: middle;
-            color: white;
+            width: auto;
           }
         }
         .btn-facebook{
@@ -70,9 +69,8 @@
           position: relative;
           border: #979797 solid 1px;
           margin: 16px 0 0;
-          background: rgba(250,100,100,1);
           span{
-            color:white;
+            color:black;
           }
         }
       }

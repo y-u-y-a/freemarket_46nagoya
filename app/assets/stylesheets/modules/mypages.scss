@@ -57,16 +57,8 @@
         background: $white;
         border-top: $border_red;
       }
-      li:hover {
-        opacity: 0.7;
-      }
-      .two-tabs {
+      li {
         width: 50%;
-      }
-      .three-tabs {
-        width: 33.3%;
-      }
-      .two-tabs,.three-tabs {
         display: inline-block;
         text-align: center;
         vertical-align: top;
@@ -163,80 +155,8 @@
       background: #fafafa;
       font-size: 16px;
       line-height: 72px;
-      font-weight: bold;
     }
     .tab-content {
-      .mypage-item-list {
-        .mypage-item-lists:hover {
-          opacity: 0.7;
-          background-color: #eee;
-        }
-        .mypage-item-lists {
-          li {
-            border-bottom: 1px solid #eee;
-          }
-          &__link {
-            position: relative;
-            display: block;
-            min-height: 80px;
-            padding: 16px;
-            color: #333;
-            .mypage-item-lists-icon {
-              position: absolute;
-              top: 50%;
-              right: 16px;
-              transform: translate(0, -50%);
-              font-weight: bold;
-              font-size: 20px;
-            }
-            .mypage-item-lists-icon:before {
-              content: "\f105";
-            }
-            figure {
-              position: relative;
-              overflow: hidden;
-              float: left;
-              width: 48px;
-              height: 48px;
-              img {
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                z-index: 1;
-                width: 100%;
-              }
-            }
-          }
-          &__body {
-            margin: 0 40px 0 68px;
-            &--text {
-              overflow: hidden;
-              display: block;
-              display: -webkit-box;
-              max-height: 4.4em;
-              text-overflow: ellipsis;
-              line-height: 1.5;
-            }
-          }
-          &__status {
-            display: inline-block;
-            margin: 8px 0 0 0;
-            padding: 5px 6px;
-            border-radius: 2px;
-            font-size: 12px;
-            color: #fff;
-            font-weight: 600;
-          }
-          .done {
-            background: #888;
-          }
-          .awaiting {
-            background: #0099e8;
-          }
-        }
-      }
       .mypage-item-not-found {
         padding: 160px 0 60px;
         background: url("https://www.mercari.com/jp/assets/img/common/common/logo-gray-icon.svg?82208132");

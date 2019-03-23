@@ -13,17 +13,3 @@ end
 RSpec.describe UsersHelper, type: :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end
-
-
-OmniAuth.config.test_mode = true
-
-RSpec.configure do |config|
-  # FactoryBotの記述省略
-  config.include FactoryBot::Syntax::Methods
-  # deviseで使うヘルパー
-  config.include Devise::Test::ControllerHelpers, type: :controller
-  config.include Devise::Test::IntegrationHelpers, type: :request
-end
-RSpec.configure do |config|
-  config.include OmniauthMocks
-end
