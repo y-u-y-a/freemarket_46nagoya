@@ -102,7 +102,7 @@ class UsersController < ApplicationController
 
   def set_payjp_user
     @user = User.find(current_user)
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
   end
 
 end
