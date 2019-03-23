@@ -1,8 +1,8 @@
 - breadcrumb :logout
-= render 'shared/header'
+= render 'items/header'
 
 %main.l-container
-  = render 'shared/l-side'
+  = render 'l-side'
 
   .l-content
     .chapter-container
@@ -10,6 +10,7 @@
         .chapter-container__single-inner__content
           %button{ type: 'submit', class: 'btn-default btn-red' }
             = link_to "ログアウト", destroy_user_session_path, method: :delete
+          %input{ type: 'hidden', name: '__csrf_value'}
 
-= render 'shared/footer'
-= render 'shared/sell-button'
+= render 'items/footer'
+= render 'items/sell-button'

@@ -1,4 +1,4 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
   $('#delete-item').click(function(e){
     $('body').append('<div class="is-overlay"></div>');
     $('.is-overlay').fadeIn(300);
@@ -9,6 +9,6 @@ $(function() {
     $('.is-overlay').fadeOut(300);
     $('.is-overlay').remove();
     $('#delete-item').prop('disabled', false);
-    // $('.is-animate')[0].reset();
+    $('.modal-btn-cancel').prop('disabled', false);
   });
 });

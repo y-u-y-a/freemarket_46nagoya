@@ -8,6 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   prepend_before_action :customize_sign_up_params, only: [:create]
 
 
+<<<<<<< HEAD
   def create
     build_resource(sign_up_params)
 
@@ -72,6 +73,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session[:cvc] = params[:session][:cvc]
   end
 
+=======
+>>>>>>> tsurutadesu/master
   private
   def customize_sign_up_params
     devise_parameter_sanitizer.permit :sign_up, keys: [:nickname, :email, :password, :password_confirmation, :remember_me]

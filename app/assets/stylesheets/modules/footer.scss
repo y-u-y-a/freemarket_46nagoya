@@ -1,5 +1,5 @@
 .footer-app-bar {
-  background-color: $footer-back;
+  background-color: $footer-back; // 画像サイズの関係で隙間ができているのでフッターと背景色を合わせて隙間がないように見せてます。
   &__image {
     height: 260px;
     width: 100vw;
@@ -48,9 +48,6 @@
           }
           a {
             display: block;
-          }
-          a:hover {
-            text-decoration: underline;
           }
           img {
             margin: 0 3px 0 0;
