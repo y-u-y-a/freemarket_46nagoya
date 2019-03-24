@@ -4,7 +4,7 @@
   %main.single-main
     %section.l-single-container
       %h2.l-single-head クレジットカード情報入力
-      = form_for(:session, url:credit_path, html: {id: "add-card-form", class: "right-container__inner", method: :post}) do |f|
+      = form_for(:session, url: signup_credit_path, html: {id: "add-card-form", class: "right-container__inner", method: :post}) do |f|
 
         .credit-form-content
           .card-form

@@ -10,10 +10,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :set_payjp_user, only: [:credit]
   protect_from_forgery :except => [ :card_create, :card_delete, :payment_method, :card_registration]
 
+  def to_signup
+  end
 
   def create
     super
     session[:user_id] = resource.id
+  end
+
+  def profile
   end
 
   def phone_number

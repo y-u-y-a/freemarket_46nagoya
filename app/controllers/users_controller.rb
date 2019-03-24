@@ -19,9 +19,6 @@ class UsersController < ApplicationController
   def update
   end
 
-  def to_signup
-  end
-
   def logout
   end
 
