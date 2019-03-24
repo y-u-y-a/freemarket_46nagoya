@@ -86,7 +86,7 @@
               width: 100%;
               margin: 0;
               float: right;
-              .hidden {
+              .hidden-new {
                 display: none;
               }
               pre {
@@ -172,7 +172,7 @@
           .form-group:first-child {
             margin: 0;
           }
-          .hidden {
+          .hidden-new {
             display: none;
           }
         }
@@ -452,21 +452,25 @@
     }
   }
 }
-.image-box-1 {
+.image-box-1-new {
   width: 116px;
   height: 162px;
   margin-left: 8px;
-  .image-box-2 {
+  .image-box-2-new {
     width: 116px;
     padding-top: 20px;
     height: 116px;
     margin-right: 10px;
     background: #f5f5f5;
+    img {
+      height: 100%;
+      width:116px;
+    }
   }
-  .edit-delete-button {
+  .edit-delete-button-new {
     font-size: 14px;
     width: 116px;
-    .edit-button {
+    .edit-button-new {
       display: inline-block;
       width: 50%;
       background: #f5f5f5;
@@ -478,7 +482,7 @@
       cursor: pointer;
       height: 44px;
     }
-    .delete-button {
+    .delete-button-new {
       border-left: 1px solid #eee;
       display: inline-block;
       width: calc(50% - 1px);
