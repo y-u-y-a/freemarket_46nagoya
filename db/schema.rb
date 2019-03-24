@@ -59,10 +59,13 @@ ActiveRecord::Schema.define(version: 20190323052516) do
     t.integer  "user_id"
     t.integer  "buyer_id"
     t.integer  "business_stats"
-    t.integer  "shipping_way",                          default: 0
     t.integer  "category_id"
     t.integer  "child_category_id"
     t.integer  "grand_child_category_id"
+<<<<<<< HEAD
+=======
+    t.integer  "user_id"
+>>>>>>> tsurutadesu/master
     t.integer  "likes_count"
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["child_category_id"], name: "index_items_on_child_category_id", using: :btree
