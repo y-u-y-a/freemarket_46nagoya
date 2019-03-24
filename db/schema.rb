@@ -56,13 +56,12 @@ ActiveRecord::Schema.define(version: 20190323052516) do
     t.integer  "brand_id"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-    t.integer  "shipping_way",                          default: 0
+    t.integer  "user_id"
     t.integer  "buyer_id"
     t.integer  "business_stats"
     t.integer  "category_id"
     t.integer  "child_category_id"
     t.integer  "grand_child_category_id"
-    t.integer  "user_id"
     t.integer  "likes_count"
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["child_category_id"], name: "index_items_on_child_category_id", using: :btree
@@ -91,10 +90,10 @@ ActiveRecord::Schema.define(version: 20190323052516) do
     t.datetime "remember_created_at"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-    t.string   "provider"
-    t.string   "uid"
     t.string   "card_token"
     t.string   "customer_id"
+    t.string   "provider"
+    t.string   "uid"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

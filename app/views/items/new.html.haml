@@ -1,3 +1,4 @@
+= javascript_include_tag 'new_image_upload.js', 'data-turbolinks-track': 'reload'
 .single-container
   = render 'single-container'
   %main.single-main
@@ -17,7 +18,7 @@
                     = image.label :image, class: 'box-display-none-new form-mask-image-new' do
                       .form-mask-image-new
                         .sell-upload-drop-box-new
-                          = image.file_field :image, class: 'hidden'
+                          = image.file_field :image, class: 'hidden-new'
                       %pre.visible-pc
                         ドラッグアンドドロップ
                         またはクリックしてファイルをアップロード
