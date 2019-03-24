@@ -1,6 +1,10 @@
 class ItemsController < ApplicationController
+  require 'payjp'
 
-  before_action :set_item, only: [:show,:edit, :update, :destroy]
+  # before_action :authenticate_user!
+
+  require 'payjp'
+
   before_action :set_category, only: [ :index, :new, :all_brands_show, :all_categories_show, :show]
   before_action :set_item, only: [:show ,:edit, :update, :destroy, :buy]
   before_action :set_payjp_user ,only: [:buy, :pay]
@@ -18,13 +22,19 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
-    @item.item_images.build
+    @item = Item.create(price: 0)
+    5.times {@item.item_images.build}
   end
 
   def create
-    Item.create(item_params)
-    redirect_to root_path(@item)
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      t = 5 - @item.item_images.length
+      t.times {@item.item_images.build}
+      render new_item_path
+    end
   end
 
   def show
@@ -33,16 +43,14 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    images = @item.item_images
-    @images = ItemImage.find(images.ids)
-    @item_image = @item.item_images.build
+    @images = @item.item_images
   end
 
   def update
     if @item.update(item_params)
       redirect_to item_path(@item)
     else
-      render :edit
+      redirect_to edit_item_path(@item)
     end
   end
 
@@ -117,6 +125,6 @@ class ItemsController < ApplicationController
 
   def set_payjp_user
     @user = User.find(current_user)
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
   end
 end

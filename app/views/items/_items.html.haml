@@ -12,7 +12,7 @@
 %section.pickup-container
   %h2.pickup-container__title
     ピックアップカテゴリー
-  // 商品一覧表示
+
   %section.items-boxes
     %h3.items-boxes__category.text-center
       = link_to "レディース 新着アイテム",root_path, class: "new-item"
@@ -27,10 +27,15 @@
                 = lady.name
               .items-card-num
                 .items-card-num__price
-                = "¥ #{thousands_separator(lady.price)}"
+                  = "¥ #{thousands_separator(lady.price)}"
+                - if lady.likes_count
+                  .items-card-num__likes
+                    %i.fa.fa-heart
+                    %span
+                      = lady.likes_count
+              %p.items-card-intro__tax
+                (税込)
 
-                %p.item-card-num__tax
-                  (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
     %h3.items-boxes__category.text-center
@@ -46,10 +51,15 @@
                 = man.name
               .items-card-num
                 .items-card-num__price
-                = "¥ #{thousands_separator(man.price)}"
+                  = "¥ #{thousands_separator(man.price)}"
+                - if man.likes_count
+                  .items-box-likes
+                    %i.fa.fa-heart
+                    %span
+                      = man.likes_count
+              %p.items-card-intro__tax
+                (税込)
 
-                %p.item-card-num__tax
-                  (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
     %h3.items-boxes__category.text-center
@@ -65,10 +75,15 @@
                 = kid.name
               .items-card-num
                 .items-card-num__price
-                = "¥ #{thousands_separator(kid.price)}"
+                  = "¥ #{thousands_separator(kid.price)}"
+                - if kid.likes_count
+                  .items-box-likes
+                    %i.fa.fa-heart
+                    %span
+                      = kid.likes_count
+              %p.items-card-intro__tax
+                (税込)
 
-                %p.item-card-num__tax
-                  (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
     %h3.items-boxes__category.text-center
@@ -84,15 +99,19 @@
                 = cosmetic.name
               .items-card-num
                 .items-card-num__price
-                = "¥ #{thousands_separator(cosmetic.price)}"
+                  = "¥ #{thousands_separator(cosmetic.price)}"
+                - if cosmetic.likes_count
+                  .items-box-likes
+                    %i.fa.fa-heart
+                    %span
+                      = cosmetic.likes_count
+              %p.items-card-intro__tax
+                (税込)
 
-                %p.item-card-num__tax
-                  (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
   %h2.pickup-container__title
     ピックアップブランド
-  // 商品一覧表示
   %section.items-boxes
     %h3.items-boxes__category.text-center
       = link_to "シャネル 新着アイテム",root_path, class: "new-item"
@@ -107,10 +126,15 @@
                 = chanel.name
               .items-card-num
                 .items-card-num__price
-                = "¥ #{thousands_separator(chanel.price)}"
+                  = "¥ #{thousands_separator(chanel.price)}"
+                - if chanel.likes_count
+                  .items-box-likes
+                    %i.fa.fa-heart
+                    %span
+                      = chanel.likes_count
+              %p.items-card-intro__tax
+                (税込)
 
-                %p.item-card-num__tax
-                  (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
     %h3.items-boxes__category.text-center
@@ -126,10 +150,15 @@
                 = vuitton.name
               .items-card-num
                 .items-card-num__price
-                = "¥ #{thousands_separator(vuitton.price)}"
+                  = "¥ #{thousands_separator(vuitton.price)}"
+                - if vuitton.likes_count
+                  .items-box-likes
+                    %i.fa.fa-heart
+                    %span
+                      = vuitton.likes_count
+              %p.items-card-intro__tax
+                (税込)
 
-                %p.item-card-num__tax
-                  (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
     %h3.items-boxes__category.text-center
@@ -145,10 +174,15 @@
                 = supreme.name
               .items-card-num
                 .items-card-num__price
-                = "¥ #{thousands_separator(supreme.price)}"
+                  = "¥ #{thousands_separator(supreme.price)}"
+                - if supreme.likes_count
+                  .items-box-likes
+                    %i.fa.fa-heart
+                    %span
+                      = supreme.likes_count
+              %p.items-card-intro__tax
+                (税込)
 
-                %p.item-card-num__tax
-                  (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path
     %h3.items-boxes__category.text-center
@@ -164,9 +198,14 @@
                 = nike.name
               .items-card-num
                 .items-card-num__price
-                = "¥ #{thousands_separator(nike.price)}"
+                  = "¥ #{thousands_separator(nike.price)}"
+                - if nike.likes_count
+                  .items-box-likes
+                    %i.fa.fa-heart
+                    %span
+                      = nike.likes_count
+              %p.items-card-intro__tax
+                (税込)
 
-                %p.item-card-num__tax
-                  (税込)
     .items-boxes__view-all.l-right
       = link_to "すべての商品を見る",root_path

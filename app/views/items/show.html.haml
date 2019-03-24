@@ -16,13 +16,14 @@
                 .owl-item__inner.is-higher-width
                   = image_tag @images.first.image
 
-          - @images.each do |image|
-            - if image.present?
-              .owl-dots
-                .owl-dot.active
+          .owl-dots
+            - @images.each do |image|
+              - if image.image.present?
+                .owl-dot
                   %span
                   .owl-dot-inner
                     = image_tag image.image
+
           - if @item.business_stats == 3
             .item-sold-out-badge
               %div SOLD
@@ -96,9 +97,9 @@
       %span.item-tax          (税込)
       %span.item-shipping-fee 送料込み
 
-    / 売れた後
-    / .item-buy-btn.disabled
-    /   売り切れました
+    - if @item.business_stats == 3
+      .item-buy-btn.disabled
+        売り切れました
 
     - if current_user.id != @item.user_id
       = link_to buy_item_path(@item) , class: 'item-btn-client item-buy-btn' do
@@ -110,15 +111,12 @@
 
     .item-button-container.clearfix
       .item-button-left
-        %button{ type: 'button', name: 'like','data-toggle':'like',class: 'item-button item-button-like'}
-
-          %i.fa.fa-heart
-          %span いいね
-          %span.fade-in-down 7
+        %div{id: "likes_buttons_#{@item.id}",class: 'item-button item-button-like'}
+          = render partial: 'shared/like', locals: { item: @item, likes: @likes}
 
         = link_to '#',class: 'item-button item-button-report clearfix' do
-          %i.fa.fa-flag
-          %span 適切な商品の報告
+          %i.fa.fa-flag.flag
+          %span.flag-text 適切な商品の報告
 
       .item-button-right
         = link_to '#' do
@@ -131,7 +129,7 @@
       %p.text-center or
       = form_for @item, method: 'POST' do |f|
         = f.submit "出品を一旦停止する",class: 'btn-default btn-gray', id: 'stop-item'
-      = button_tag type: 'button', class: 'btn-default btn-gray',id: 'delete-item' do
+      = button_tag type: 'button', class: 'btn-default btn-gray',id: 'delete-item',style: {"touch-action":"manipulation"}, remote: true do
         この商品を削除する
 
   .item-detail-message

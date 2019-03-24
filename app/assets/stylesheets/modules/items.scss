@@ -66,6 +66,10 @@
           .items-card-intro {
             padding: 16px;
             height: 110px;
+            &__tax {
+              font-size: 10px;
+              clear: both;
+            }
             &__item-name {
               font-size: 16px;
               overflow: hidden;
@@ -82,15 +86,27 @@
               margin: 8px 0 0;
               p {
                 margin: 0;
+                font-size: 10px;
+                clear: both;
               }
               &__price {
                 font-size: 16px;
                 font-weight: bold;
                 color: #333;
+                float: left;
               }
-              p {
-                font-size: 10px;
-                clear: both;
+              &__likes {
+                float: right;
+                font-size: 16px;
+                font-weight: 400;
+                color: #333;
+                i {
+                  margin-right: 2px;
+                  color: #aaa;
+                }
+                span {
+                  font-size: 15px;
+                }
               }
             }
           }
