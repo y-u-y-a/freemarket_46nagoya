@@ -1,10 +1,10 @@
 .single-container
-  = render "users/signup_header"
+  = render "devise/registrations/signup_header"
   // 住所情報登録フォーム
   %main.single-main
     %section.l-single-container
       %h2.l-single-head 住所入力
-      = form_for(:session, url: address_path, html: {class: 'l-single-inner', method: :post}) do |f|
+      = form_for(:session, url: signup_address_path, html: {class: 'l-single-inner', method: :post}) do |f|
 
         .l-single-content
           .form-group
