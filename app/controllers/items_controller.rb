@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+  require 'payjp'
+
+  # before_action :authenticate_user!
 
   require 'payjp'
 
@@ -19,13 +22,19 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.new
-    @item.item_images.build
+    @item = Item.create(price: 0)
+    5.times {@item.item_images.build}
   end
 
   def create
-    Item.create(item_params)
-    redirect_to root_path(@item)
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      t = 5 - @item.item_images.length
+      t.times {@item.item_images.build}
+      render new_item_path
+    end
   end
 
   def show

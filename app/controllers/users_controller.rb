@@ -79,6 +79,9 @@ class UsersController < ApplicationController
         cvc: params[:cvc],
         exp_month: params[:exp_month],
         exp_year: params[:exp_year]
+      }},
+      {
+        'X-Payjp-Direct-Token-Generate': 'true'
       }
     })
     #顧客の作成
