@@ -1,6 +1,7 @@
 FactoryBot.define do
 
   factory :item do
+    association :user, factory: :user,strategy: :build
     name                  {Faker::Name.name}
     price                 {1000}
     explain               {"きれいです"}
@@ -8,6 +9,7 @@ FactoryBot.define do
     region                {"名古屋市"}
     state                 {1}
     shipping_date         {1}
+
     size                  {1}
     brand_id              {1}                                                 # 1ケタの数字でランダム生成
     category_id           {1}

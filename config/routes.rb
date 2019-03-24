@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'likes/create'
+
+  get 'likes/destroy'
+
   root 'items#index'
 
   post 'users/card_create' => 'users#card_create'
@@ -15,9 +19,9 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do
-    get 'phone_number' => 'users/registrations#phone_number'
-    get 'address' => 'users/registrations#address'
-    get 'credit' => 'users/registrations#credit'
+    post 'phone_number' => 'users/registrations#phone_number'
+    post 'address' => 'users/registrations#address'
+    post 'credit' => 'users/registrations#credit'
   end
 
   resources :users do
@@ -40,6 +44,7 @@ Rails.application.routes.draw do
     get :all_categories_show,  on: :collection
     get :buy, on: :member
     post :pay, on: :member
+    resources :likes, only: [:create, :destroy]
   end
 
 end

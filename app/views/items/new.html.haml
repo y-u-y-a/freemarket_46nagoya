@@ -13,17 +13,15 @@
                   %span.form-require 必須
                 %p.sell-form__max-10-upload 最大10枚までアップロードできます
                 .sell-form__dropbox-container.clearfix.state-image-number-10
-                  .sell-upload-items-container
-                    .sell-upload-items.have-item-0
-                      %ul
-                  .sell-upload-drop-box.have-item-0
-                    = f.fields_for :item_images do |image|
-                      = image.label :image, class: 'sell-upload-drop-box' do
-                        = image.file_field :image, class: 'hidden'
-                        %pre.visible-pc
-                          ドラッグアンドドロップ
-                          またはクリックしてファイルをアップロード
-                        %i.icon-camera
+                  = f.fields_for :item_images do |image|
+                    = image.label :image, class: 'box-display-none-new form-mask-image-new' do
+                      .form-mask-image-new
+                        .sell-upload-drop-box-new
+                          = image.file_field :image, class: 'hidden'
+                      %pre.visible-pc
+                        ドラッグアンドドロップ
+                        またはクリックしてファイルをアップロード
+                      %i.icon-camera
               .sell-form__content
                 .form-group
                   %label
@@ -107,16 +105,18 @@
                         .l-right.sell-price-input
                           %p.price-mark
                             ¥
-                          .price-input-field
+                          .input-price
                             = f.text_field :price, class: 'input-default', value: @item.price, placeholder: '例) 300'
                     %li.clearfix.clearfix-commission
                       .l-left
                         販売手数料（10%）
-                      .l-right.l-right-commission -
+                      .l-right.l-right-commission.commission
+                        = "¥#{thousands_separator(commission(@item.price))}"
                     %li.clearfix.bold
-                      .l-left.profit 販売利益
-                      .l-right -
-              .modal{:role => "dialog", :tabindex => "-1"}
+                      .l-left.gain 販売利益
+                      .total-right.profits
+                        = "¥#{thousands_separator(profits(@item.price))}"
+
                 .modal-inner
               .sell-form__content.sell-btn-box
                 %div
