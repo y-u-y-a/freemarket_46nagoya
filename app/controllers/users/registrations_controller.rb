@@ -53,6 +53,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       city: session[:city],
       town: session[:town],
       building: session[:building],
+      phone_number: session[:phone_number],
       user_id: session[:user_id]
     )
     @address.save
