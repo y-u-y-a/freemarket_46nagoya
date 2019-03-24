@@ -1,10 +1,10 @@
 .single-container
-  = render "users/signup_header"
+  = render "devise/registrations/signup_header"
   // 電話番号登録フォーム
   %main.single-main
     %section.l-single-container
       %h2.l-single-head 電話番号の確認
-      = form_for(:session, url: phone_number_path, html: {class: 'l-single-inner', method: :post}) do |f|
+      = form_for(:session, url: signup_phone_number_path, html: {class: 'l-single-inner', method: :post}) do |f|
 
         .l-single-content
           .form-group

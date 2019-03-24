@@ -1,5 +1,5 @@
 .single-container
-  = render "users/signup_header"
+  = render "devise/registrations/signup_header"
   // 入力フォーム
   %main.single-main
     %section.l-single-container
@@ -60,6 +60,7 @@
             %br
             .birthday-select-wrap
               .select-wrap
+                / = f.select :birth_year, [2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990]
                 %select.select-default{name: "year"}
                   %option{:value => ""} --
                   %option{:value => "1900"} 1900
@@ -182,7 +183,7 @@
                   %option{:value => "2017"} 2017
                   %option{:value => "2018"} 2018
                   %option{:value => "2019"} 2019
-                %i.fa.fa-angle-down
+                = fa_icon "angle-down"
               %span 年
             .birthday-select-wrap
               .select-wrap.select-wrap__month
@@ -200,13 +201,15 @@
                   %option{:value => "10"} 10
                   %option{:value => "11"} 11
                   %option{:value => "12"} 12
-                %i.fa.fa-angle-down
+                / = f.select :birth_month [,1,2,3,4,5,6,7,8,9,10,11,12], class: "select-default"
+                = fa_icon "angle-down"
               %span 月
             .birthday-select-wrap
               .select-wrap.select-wrap__day
                 %select.select-default{name: "day"}
                   %option{value: ""} --
-                %i.fa.fa-angle-down
+                / = f.select :birth_day, [,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], class: "select-default"
+                = fa_icon "angle-down"
               %span 日
             %input{name: "birthday", type: "hidden", value: ""}
             .clearfix

@@ -29,9 +29,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def to_signup
-  end
-
   def logout
   end
 
@@ -83,7 +80,7 @@ class UsersController < ApplicationController
       {
         'X-Payjp-Direct-Token-Generate': 'true'
       }
-    })
+    )
     #顧客の作成
     customer = Payjp::Customer.create(
       email: @user.email,
