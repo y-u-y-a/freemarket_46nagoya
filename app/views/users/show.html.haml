@@ -1,26 +1,27 @@
 - breadcrumb :user
 = render 'shared/header'
 
+/ - if flash[:notice]
+/   #notice
+/     = flash[:notice]
 
 %main.l-container.clearfix
   = render 'shared/l-side'
   .l-content
     %section.l-chapter-container
       %h2.l-chapter-container__head
-        プロフィール
+        = @user.nickname
 
-      %form
+      = form_for @user, method: :patch do |f|
         %input{ type: "hidden", name: "__csrf_value", value: ""}
         .setting-profile-icon
           %figure
             = image_tag '//static.mercdn.net/images/member_photo_noimage_thumb.png', width: "60",height: "60"
-          %input{ type: "text",value: "名前", name: "nickname", class: "input-default" }
+          = f.text_field :nickname ,value: @user.nickname, class: 'input-default'
 
         .setting-profile-content
-          %textarea{ name: "introduction", placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪", class: "setting-profile-content__textarea-default"}
-          %input{ type: "hidden", value: "",name: "after_save_callback"}
-          %button{ type: "submit", class: "btn-default btn-red"}
-            変更する
+          = f.text_area :profile_text, value: @user.profile_text,placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪",class: 'setting-profile-content__textarea-default'
+          = f.submit '変更する' ,class: "btn-default btn-red"
 
 
 = render 'shared/footer'
