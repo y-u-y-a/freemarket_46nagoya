@@ -4,14 +4,14 @@
       .header-mypage-box__state__figure__div
         = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: "", width: 60,height: "60"
       %figcaption
-        = @user.nickname
+        = @user&.nickname
 
     %ul.header-mypage-box__state__listing
       %li.header-mypage-box__state__listing__li
         = link_to '評価: 0','#'
 
       %li.header-mypage-box__state__listing__li
-        = link_to "出品数: #{@user.items.count}",'#'
+        = link_to "出品数: #{@user&.items&.count}",'#'
 
     %ul.header-mypage-box__state__points
       %li.header-mypage-box__state__points__li

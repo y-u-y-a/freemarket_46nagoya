@@ -106,10 +106,10 @@ ActiveRecord::Schema.define(version: 20190325034608) do
     t.datetime "remember_created_at"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-    t.string   "card_token"
-    t.string   "customer_id"
     t.string   "provider"
     t.string   "uid"
+    t.string   "card_token"
+    t.string   "customer_id"
     t.text     "profile_text",           limit: 65535
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
