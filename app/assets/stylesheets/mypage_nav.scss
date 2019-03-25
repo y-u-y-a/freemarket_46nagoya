@@ -1,0 +1,123 @@
+.header-mypage-box {
+  position: absolute;
+  left: 0;
+  top: 38px;
+  z-index: 1;
+  // display: none;
+  width: 320px;
+  background: $white;
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24);
+  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24);
+  font-size: 14px;
+  &__state {
+    text-align: center;
+    &__figure {
+      padding: 28px 0 0;
+      height: 80px;
+      background-image: image-url("mypage.jpg");
+      background-repeat: no-repeat;
+      background-size: 320px 80px;
+      &__div {
+        overflow: hidden;
+        width: 60px;
+        height: 60px;
+        margin: 0 auto;
+        border-radius: 50%;
+        -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.08);
+        box-shadow: 0 1px 1px 0 rgba(0,0,0,0.08);
+        img {
+          vertical-align: middle;
+        }
+      }
+      &__nickname {
+        margin: 8px 0 0;
+        padding: 0 8px;
+        font-size: 16px;
+      }
+    }
+    &__listing {
+      margin: 40px 0 0;
+      padding: 8px 8px 0;
+      font-size: 0;
+      text-align: center;
+      &__li:first-child {
+        margin: 0;
+      }
+      &__li {
+        display: inline-block;
+        margin: 0 0 0 16px;
+        font-size: 14px;
+        a {
+          display: block;
+          font-size: 14px;
+          color: $light_black;
+          font-size: 14px;
+          display: block;
+        }
+      }
+    }
+    &__points {
+      width: 300px;
+      margin: 16px auto;
+      background: #fafafa;
+      border: $border_light_gray;
+      .icon-arrow-right {
+        position: relative;
+        top: -2px;
+        font-size: 12px;
+        margin: 0 0 0 8px;
+        color: #ccc;
+      }
+      &__li:first-child {
+        border: 0;
+      }
+      li {
+        display: block !important;
+        border-top: $border_light_gray;
+        a {
+          padding: 0 8px;
+          line-height: 40px;
+          color: $light_black;
+          font-size: 14px;
+          display: block;
+          @include clearfix;
+          .left {
+            float: left;
+          }
+          .right {
+            float: right;
+          }
+        }
+      }
+    }
+  }
+  &__list {
+    width: 100%;
+    li:first-child {
+      border-top: $border_light_gray;
+    }
+    &__li {
+      display: block !important;
+      border-top: $border_light_gray;
+      &__item {
+        font-size: 14px;
+        position: relative;
+        color: $light_black;
+        display: block;
+        min-height: 48px;
+        padding: 16px;
+        background-color: $white;
+        .mypage-nav-icon {
+          position: absolute;
+          top: 50%;
+          right: 16px;
+          color: #ccc;
+          -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+          -webkit-transition: all ease-out .2s;
+          transition: all ease-out .2s;
+        }
+      }
+    }
+  }
+}

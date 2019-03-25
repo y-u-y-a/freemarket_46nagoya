@@ -29,6 +29,7 @@
                   %div
                     = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", width: '32'
                 %div マイページ
+              = render 'shared/mypage_navbar'
 
             %li
               = link_to '#', class: 'pc-header-nav__root','data-url':'https://www.mercari.com/jp/mypage/notification_and_todo_json/' do
