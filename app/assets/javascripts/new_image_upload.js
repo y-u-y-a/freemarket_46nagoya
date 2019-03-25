@@ -32,7 +32,6 @@ $(document).on('turbolinks:load', function() {  //出品ページに遷移後リ
           height: "100%",
           class: "preview"
         })
-        console.log($preview_new)
         var previewCount = $('.preview').length; //previewの数によってdropboxのwidthを変更
         if  (previewCount == 1 || previewCount == 6){
           $('.form-mask-image-new').width(490);
