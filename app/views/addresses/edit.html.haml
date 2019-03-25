@@ -6,19 +6,19 @@
   %main.right-content
     %section.l-single-container
       %h2.l-single-head 発送元・お届け先住所変更
-      = form_for(:session, url: signup_address_path, html: {class: 'l-single-inner', method: :post}) do |f|
+      = form_for(@address, url: user_address_path, method: :patch,  html: {class: 'l-single-inner'}) do |f|
 
         .l-single-content
-          .form-group
-            = f.label :お名前
-            %span.form-require 必須
-            = f.text_field :first_name, placeholder: "例) 山田", class: 'input-default'
-            = f.text_field :last_name, placeholder: "例) 彩", class: 'input-default'
-          .form-group
-            = f.label :お名前カナ
-            %span.form-require 必須
-            = f.text_field :first_name_kana, placeholder: "例) ヤマダ", class: 'input-default'
-            = f.text_field :last_name_kana, placeholder: "例) アヤ", class: 'input-default'
+          / .form-group
+          /   = f.label :お名前
+          /   %span.form-require 必須
+          /   = f.text_field :first_name, placeholder: "例) 山田", class: 'input-default'
+          /   = f.text_field :last_name, placeholder: "例) 彩", class: 'input-default'
+          / .form-group
+          /   = f.label :お名前カナ
+          /   %span.form-require 必須
+          /   = f.text_field :first_name_kana, placeholder: "例) ヤマダ", class: 'input-default'
+          /   = f.text_field :last_name_kana, placeholder: "例) アヤ", class: 'input-default'
           .form-group
             = f.label :郵便番号
             %span.form-require 必須
@@ -26,7 +26,7 @@
           .form-group
             = f.label :都道府県
             %span.form-require 必須
-            = f.text_field :prefecture, placeholder: "北海道", class: 'input-default'
+            = f.text_field :prefecture_id, placeholder: "北海道", class: 'input-default'
           .form-group
             = f.label :市町村
             %span.form-require 必須
@@ -42,6 +42,6 @@
           .form-group
             = f.label :電話
             %span.form-require 任意
-            = f.text_field :pnone_number, placeholder: "例) 09012345678", class: 'input-default'
+            = f.text_field :phone_number, placeholder: "例) 09012345678", class: 'input-default'
 
           %button.btn-default.btn-red{type: "submit"} 次へ進む

@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-
   devise_scope :user do
     get  'to_signup' => 'users/registrations#to_signup'
     post 'signup/phone_number' => 'users/registrations#phone_number'
@@ -36,7 +35,7 @@ Rails.application.routes.draw do
     get :exhibition,           on: :collection
     get :seller_trading,       on: :collection
     get :sold_page,            on: :collection
-    resource :addresses, only: [:edit, :update]
+    resources :addresses, only: [:edit, :update]
   end
 
   resources :items do
