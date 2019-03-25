@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190323052516) do
+ActiveRecord::Schema.define(version: 20190325034608) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20190323052516) do
     t.string   "building"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "phone_number"
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
@@ -56,12 +57,13 @@ ActiveRecord::Schema.define(version: 20190323052516) do
     t.integer  "brand_id"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-    t.integer  "user_id"
+    t.integer  "shipping_way",                          default: 0
     t.integer  "buyer_id"
     t.integer  "business_stats"
     t.integer  "category_id"
     t.integer  "child_category_id"
     t.integer  "grand_child_category_id"
+    t.integer  "user_id"
     t.integer  "likes_count"
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["child_category_id"], name: "index_items_on_child_category_id", using: :btree
@@ -79,12 +81,26 @@ ActiveRecord::Schema.define(version: 20190323052516) do
     t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
   end
 
+  create_table "profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "first_name_kana"
+    t.string   "last_name_kana"
+    t.integer  "birth_year"
+    t.integer  "birth_month"
+    t.integer  "birth_day"
+    t.integer  "phone_number"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                                default: "", null: false
     t.string   "encrypted_password",                   default: "", null: false
     t.string   "nickname"
     t.string   "avatar"
-    t.text     "profile_text",           limit: 65535
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -94,6 +110,7 @@ ActiveRecord::Schema.define(version: 20190323052516) do
     t.string   "customer_id"
     t.string   "provider"
     t.string   "uid"
+    t.text     "profile_text",           limit: 65535
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -102,4 +119,5 @@ ActiveRecord::Schema.define(version: 20190323052516) do
   add_foreign_key "items", "categories"
   add_foreign_key "likes", "items"
   add_foreign_key "likes", "users"
+  add_foreign_key "profiles", "users"
 end
