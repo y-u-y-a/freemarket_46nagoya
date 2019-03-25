@@ -69,6 +69,9 @@ class UsersController < ApplicationController
     @item = @user.items.find(params[:id])
   end
 
+  def trading_message
+  end
+
   def card_create
     card = Payjp::Token.create({
       card: {
