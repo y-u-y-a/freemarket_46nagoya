@@ -32,33 +32,45 @@ $(document).on('turbolinks:load', function() {  //出品ページに遷移後リ
           height: "100%",
           class: "preview"
         })
+        console.log($preview_new)
         var previewCount = $('.preview').length; //previewの数によってdropboxのwidthを変更
-        if  (previewCount == 1){
-          $('label').width(490);
-        } else if (previewCount == 2){
-          $('label').width(360);
-        } else if (previewCount == 3){
-          $('label').width(230);
-        } else if (previewCount == 4){
-          $('label').width(100);
+        if  (previewCount == 1 || previewCount == 6){
+          $('.form-mask-image-new').width(490);
+        } else if (previewCount == 2 || previewCount == 7){
+          $('.form-mask-image-new').width(360);
+        } else if (previewCount == 3 || previewCount == 8){
+          $('.form-mask-image-new').width(230);
+        } else if (previewCount == 4 || previewCount == 9){
+          $('.form-mask-image-new').width(100);
+        } else if (previewCount == 5){
+          $('.form-mask-image-new').width(620);
+        } else if (previewCount == 10){
+          $('.form-mask-image-new').addClass('box-display-none-new');
         }
         var delete_btn = $('<div class="delete-button-new">').text('削除').on('click',function(){
           var c = $(this).parent().parent().prev().children().children().children("").clone();//fileクローンをcに代入
           c.val('');
           $(this).parent().parent().prev().children().children().children("").replaceWith(c);//１つ前のfileにクローンを置き換える
-          c.remove()
+          c.remove() //クローンを削除
           $(this).parent().parent().prev().addClass("box-display-none-new");
           $(this).parent().parent().prev().appendTo('.sell-form__dropbox-container');
           $(this).parent().parent().remove(); //削除ボタンを押したimage-box-1削除
-          // $(".image-box-1-new:last").next(".form-mask-image-new").removeClass("box-display-none-new");
-          // $(".image-box-1-new:last").next(".form-mask-image-new").children().children().removeClass("box-display-none-new");
-          // var label = $(this).parent().parent().next('label').style;
-          var label = document.querySelector("label");
-          // var label = document.querySelector(this).parent().parent().next();
-          var width = parseInt(label.style.width);
-          label.style.width = (width + 130) + "px"; //dropboxのwidth+130
+          $(".image-box-1-new:last").next(".form-mask-image-new").removeClass("box-display-none-new");//完全に消えたdropboxを復活させる
+          $(".image-box-1-new:last").next(".form-mask-image-new").children().children().removeClass("box-display-none-new");
+          var deleteCount = $('.preview').length; //previewの数によってdropboxのwidthを変更
+          if (deleteCount == 0 || deleteCount == 5){
+            $('.form-mask-image-new').width(618);
+          } else if (deleteCount == 1 || deleteCount == 6){
+            $('.form-mask-image-new').width(490);
+          } else if (deleteCount == 2 || deleteCount == 7){
+            $('.form-mask-image-new').width(360);
+          } else if (deleteCount == 3 || deleteCount == 8){
+            $('.form-mask-image-new').width(230);
+          } else if (deleteCount == 4 || deleteCount == 9){
+            $('.form-mask-image-new').width(100);
+          }
         });
-        $('.replace').replaceWith(delete_btn); //replaceを置き換える
+        $('.replace').replaceWith(delete_btn); //replaceをdeleteボタンに置き換える
       };
     })(file);
     reader.readAsDataURL(file);
