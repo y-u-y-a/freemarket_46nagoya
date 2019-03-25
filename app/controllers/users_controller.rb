@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.id == current_user.id
-      current_user.update!(update_params)
+      current_user.update(update_params)
       redirect_to users_path
     else
       render_to :edit
