@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     get :exhibition,           on: :collection
     get :seller_trading,       on: :collection
     get :sold_page,            on: :collection
+    resource :addresses, only: [:edit, :update]
   end
 
   resources :items do
