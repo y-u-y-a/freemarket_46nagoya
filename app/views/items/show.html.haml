@@ -12,8 +12,8 @@
         .owl-carousel.owl-loaded.owl-drag
           .owl-stage-outer
             .owl-stage{ style: 'left:0px',width: '900px'}
-              - if @images.present?
-                - @images.each do |image|
+              - @images.each do |image|
+                - if image.image.present?
                   .owl-item{ style: 'width:300px'}
                     .owl-item__inner.is-higher-width
                       = image_tag image.image

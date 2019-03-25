@@ -3,22 +3,23 @@ class ItemsController < ApplicationController
 
   # before_action :authenticate_user!
 
-  require 'payjp'
-
   before_action :set_category, only: [ :index, :new, :all_brands_show, :all_categories_show, :show]
   before_action :set_item, only: [:show ,:edit, :update, :destroy, :buy]
   before_action :set_payjp_user ,only: [:buy, :pay]
 
+  before_action :set_user, only: :index
+
   def index
     items = Item.order("created_at DESC")
     @lady_items = items.where(category_id: 1).where(business_stats: 1).first(4)
-    @man_items = items.where(category_id: "2").where(business_stats: 1).first(4)
-    @kids_items = items.where(category_id: "3").where(business_stats: 1).first(4)
-    @cosmetic_items = items.where(category_id: "6").where(business_stats: 1).first(4)
-    @chanel_items = items.where(brand_id: "1").where(business_stats: 1).first(4)
-    @nike_items = items.where(brand_id: "2").where(business_stats: 1).first(4)
-    @vuitton_items = items.where(brand_id: "3").where(business_stats: 1).first(4)
-    @supreme_items = items.where(brand_id: "4").where(business_stats: 1).first(4)
+    @man_items = items.where(category_id: 2).where(business_stats: 1).first(4)
+    @kids_items = items.where(category_id: 3).where(business_stats: 1).first(4)
+    @cosmetic_items = items.where(category_id: 6).where(business_stats: 1).first(4)
+    @chanel_items = items.where(brand_id: 1).where(business_stats: 1).first(4)
+    @nike_items = items.where(brand_id: 2).where(business_stats: 1).first(4)
+    @vuitton_items = items.where(brand_id: 3).where(business_stats: 1).first(4)
+    @supreme_items = items.where(brand_id: 4).where(business_stats: 1).first(4)
+
   end
 
   def new
@@ -110,7 +111,6 @@ class ItemsController < ApplicationController
   end
 
   private
-
   def item_params
     params.require(:item).permit( :name, :price, :explain, :postage, :region, :state, :shipping_date, :shipping_way,:size,:brand_id, :category_id, :child_category_id, :grand_child_category_id, item_images_attributes: [:image,:item_id]).merge(user_id: current_user.id, business_stats: '1')
   end
@@ -121,6 +121,12 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def set_user
+    if user_signed_in?
+      @user = User.find(current_user)
+    end
   end
 
   def set_payjp_user
