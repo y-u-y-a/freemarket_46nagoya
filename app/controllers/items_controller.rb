@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.create(price: 0)
-    5.times {@item.item_images.build}
+    30.times {@item.item_images.build}
   end
 
   def create
@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
-      t = 5 - @item.item_images.length
+      t = 30 - @item.item_images.length
       t.times {@item.item_images.build}
       render new_item_path
     end
