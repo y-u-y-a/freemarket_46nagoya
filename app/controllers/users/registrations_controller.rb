@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
   require 'payjp'
   # before_action :configure_sign_up_params, only: [:create]
@@ -17,13 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
     session[:user_id] = resource.id
   end
-  # def profile
-  #   # usersテーブル
-  #   session[:nickname] = params[:sesssion][:nickname]
-  #   session[:email] = params[:sesssion][:email]
-  #   session[:password] = params[:sesssion][:password]
-  #   session[:password_confirmation] = params[:sesssion][:password_confirmation]
-  # end
+
   def phone_number
     # profilesテーブル
     session[:first_name] = params[:session][:first_name]
