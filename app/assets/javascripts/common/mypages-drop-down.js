@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function(){
   $(".pc-header-nav__user-icon").hover(function(e){
     e.preventDefault();
-    var mypageBox = $('.header-mypage-box');
+    var mypageBox = $(".header-mypage-box:not(:animated)");
     mypageBox.show();
     mypageBox.hover(function(){
       mypageBox.show();
@@ -9,6 +9,6 @@ $(document).on('turbolinks:load', function(){
       mypageBox.hide();
     });
   }, function(){
-    mypageBox.hide();
+    $(".header-mypage-box").hide();
   });
 });
