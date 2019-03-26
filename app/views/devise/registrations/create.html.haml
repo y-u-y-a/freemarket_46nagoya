@@ -6,34 +6,39 @@
       %h2.l-single-head プロフィール情報入力
       = form_for(:session, url: signup_phone_number_path, html: {class: 'l-single-inner', method: :post}) do |f|
 
+        .l-single-content
           .form-group
             %h3.text-left.l-chapter-sub-head 本人確認
             %p.l-single-text
               安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
           .form-group
-            %label{for: "family_name_kanji"} 姓 (全角)
+            = f.label :姓
             %span.form-require 必須
-            %input.input-default{name: "family_name_kanji", placeholder: "例) 山田", type: "text", value: ""}
+            = f.text_field :first_name, placeholder: "例) 山田", class: "input-default"
+
           .form-group
-            %label{for: "first_name_kanji"} 名 (全角)
+            = f.label :名
             %span.form-require 必須
-            %input.input-default{name: "first_name_kanji", placeholder: "例) 彩", type: "text", value: ""}
+            = f.text_field :last_name, placeholder: "例) 彩", class: "input-default"
+
           .form-group
-            %label{for: "family_name_kanji"} 姓カナ (全角)
+            = f.label :姓カナ
             %span.form-require 必須
-            %input.input-default{name: "family_name_kana", placeholder: "例) ヤマダ", type: "text", value: ""}
+            = f.text_field :first_name_kana, placeholder: "例) ヤマダ", class: "input-default"
+
           .form-group
-            %label{for: "first_name_kana"} 名カナ (全角)
+            = f.label :名カナ
             %span.form-require 必須
-            %input.input-default{name: "first_name_kana", placeholder: "例) アヤ", type: "text", value: ""}
+            = f.text_field :last_name_kana, placeholder: "例) アヤ", class: "input-default"
+
           .form-group
-            %label{for: "birthday"} 生年月日
+            = f.label :生年月日
             %span.form-require 必須
             %br
             .birthday-select-wrap
               .select-wrap
                 / = f.select :birth_year, [2019,2018,2017,2016,2015,2014,2013,2012,2011,2010,2009,2008,2007,2006,2005,2004,2003,2002,2001,2000,1999,1998,1997,1996,1995,1994,1993,1992,1991,1990]
-                %select.select-default{name: "year"}
+                %select.select-default{name: "birth_year"}
                   %option{:value => ""} --
                   %option{:value => "1900"} 1900
                   %option{:value => "1901"} 1901
@@ -159,7 +164,7 @@
               %span 年
             .birthday-select-wrap
               .select-wrap.select-wrap__month
-                %select.select-default{name: "month"}
+                %select.select-default{name: "birth_month"}
                   %option{:value => ""} --
                   %option{:value => "1"} 1
                   %option{:value => "2"} 2
@@ -178,12 +183,11 @@
               %span 月
             .birthday-select-wrap
               .select-wrap.select-wrap__day
-                %select.select-default{name: "day"}
+                %select.select-default{name: "birth_day"}
                   %option{value: ""} --
                 / = f.select :birth_day, [,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], class: "select-default"
                 = fa_icon "angle-down"
               %span 日
-            %input{name: "birthday", type: "hidden", value: ""}
             .clearfix
           %p.form-info-text
             ※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
@@ -196,21 +200,3 @@
           %button.btn-default.btn-red{type: "submit"} 次へ進む
 
   = render "users/user_footer"
-
-
-        / .l-single-content
-        /   .form-group
-        /     = f.label :携帯電話の番号
-        /     = f.text_field :phone_number, placeholder: "携帯電話の番号を入力", class: 'input-default'
-        /     %p.l-single-text
-        /       本人確認のため、携帯電話のSMS(ショートメッセージサービス)を利用して認証を行います。
-
-        / .l-single-content
-        /   %button.btn-default.btn-red{type: "submit"} SNSを送信する
-        /   %p.l-single-text
-        /     電話番号は本人確認や不正利用防止のために利用します。他のユーザーに公開されることはありません。
-        /   .form-group.text-right
-        /     %p
-        /       %a{href: "", target: "_blank"}
-        /         電話番号の確認が必要な理由
-        /         %i.fa.fa-angle-right

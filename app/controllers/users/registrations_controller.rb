@@ -26,13 +26,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
   def phone_number
     # profilesテーブル
-    session[:first_name] = params[:sesssion][:first_name]
-    session[:last_name] = params[:sesssion][:last_name]
-    session[:first_name_kana] = params[:sesssion][:first_name_kana]
-    session[:last_name_kana] = params[:sesssion][:last_name_kana]
-    session[:birth_year] = params[:sesssion][:birth_year]
-    session[:birth_month] = params[:sesssion][:birth_month]
-    session[:birth_day] = params[:sesssion][:birth_day]
+    session[:first_name] = params[:session][:first_name]
+    session[:last_name] = params[:session][:last_name]
+    session[:first_name_kana] = params[:session][:first_name_kana]
+    session[:last_name_kana] = params[:session][:last_name_kana]
+    session[:birth_year] = params[:session][:birth_year]
+    session[:birth_month] = params[:session][:birth_month]
+    session[:birth_day] = params[:session][:birth_day]
     # テーブルに保存する処理
     @profile = Profile.new(
       first_name: session[:first_name],
@@ -42,6 +42,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       birth_year: session[:birth_year],
       birth_month: session[:birth_month],
       birth_day: session[:birth_day],
+      user_id: session[:user_id]
       )
     @profile.save
   end
