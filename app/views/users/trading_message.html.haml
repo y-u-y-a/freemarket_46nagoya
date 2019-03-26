@@ -33,7 +33,7 @@
             %i.icon-arrow-right
         %li
       .message-container
-        .message-content
+        .message-content1
           .notification.notification-success
             メッセージを送りました
             %i.icon-close
@@ -66,7 +66,7 @@
                     %i.icon-time
                     %span 0 秒前
                 %i.icon-balloon
-        .message-content
+        .message-content2
           %form.message-form{:action => "https://www.mercari.com/jp/transaction/message/m18251864076/", :method => "POST"}
             %input{:name => "__csrf_value", :type => "hidden", :value => "a50969b0ebdc51fb05cb19bc49a1e9db2011786b93ef65c6eb24ee21407267529e12152d425a4ff8c7423eab9d587880161901ad69b4c4d8c5c9808af854f5dd6"}/
             %p 取引メッセージの内容は、必要に応じて事務局で確認しています
@@ -89,7 +89,7 @@
               %input{:name => "item_id", :type => "hidden", :value => "m18251864076"}/
               %input{:name => "comment_id", :type => "hidden", :value => ""}/
               %input{:name => "__csrf_value", :type => "hidden", :value => "a50969b0ebdc51fb05cb19bc49a1e9db2011786b93ef65c6eb24ee21407267529e12152d425a4ff8c7423eab9d587880161901ad69b4c4d8c5c9808af854f5dd6"}/
-      .message-content
+      .message-content3
         ※お困りの際は
         %a{:href => "/jp/help_center/category/1/", :target => "_blank"}> よくある質問
         をご確認ください。
@@ -152,7 +152,8 @@
                   %span.buyer-name
                     メルカリ
                     タロウ
-                  様
+                  %p
+                    様
     %section.l-side-container
       %h3.transact-info-head 出品者情報
       .transact-info-inner
