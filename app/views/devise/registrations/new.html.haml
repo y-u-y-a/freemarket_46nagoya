@@ -11,30 +11,19 @@
             = f.label :ニックネーム
             %span.form-require 必須
             = f.text_field :nickname, placeholder: "例) メルカリ太郎", class: 'input-default'
-
-
           .form-group
             = f.label :メールアドレス
             %span.form-require 必須
             = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "PC・携帯どちらでも可", class: "input-default"
-          %input{name: "login_type", type: "hidden", value: ""}
-
-
           .form-group
             = f.label :パスワード
             %span.form-require 必須
             = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "input-default"
-
-
           .form-group
             = f.label :パスワード確認
             %span.form-require 必須
             = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上", class: "input-default"
-
-
-
         .l-single-content
-          %input{name: "after_save_callback", type: "hidden", value: ""}
           .form-group
             .mail-account__field--RECAPCHA
               = recaptcha_tags
