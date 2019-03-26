@@ -24,11 +24,12 @@
         - if user_signed_in?
           %ul.pc-header-nav
             %li
-              = link_to users_path, class: "pc-header-nav__user-icon pc-header-nav__root" do
+              = link_to users_path(current_user), class: "pc-header-nav__user-icon pc-header-nav__root" do
                 %figure
                   %div
                     = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", width: '32'
                 %div マイページ
+              = render 'shared/mypage_drop_down'
 
             %li
               = link_to '#', class: 'pc-header-nav__root','data-url':'https://www.mercari.com/jp/mypage/notification_and_todo_json/' do

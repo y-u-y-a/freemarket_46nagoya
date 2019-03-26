@@ -6,7 +6,8 @@ class UsersController < ApplicationController
 
   before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page]
   # ヘッダーに使うカテゴリを読み込む
-  before_action :set_user, only: [:trading, :purchased,:index,:show,:update]
+  before_action :set_user
+  # , only: [:trading, :purchased,:index,:show,:update]
 
   before_action :set_payjp_user ,only: [:card_delete, :card_create, :payment_method, :card_registration]
 
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.id == current_user.id
-      current_user.update!(update_params)
+      current_user.update(update_params)
       redirect_to users_path
     else
       render_to :edit
