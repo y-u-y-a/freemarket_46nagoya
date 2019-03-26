@@ -30,10 +30,6 @@
             border: none;
           }
         }
-        &__item:active {
-          background-color: $light_gray;
-          font-weight: 600;
-        }
         &__item {
           position: relative;
           color: $light_black;
@@ -60,7 +56,16 @@
             font-size: 1.5rem;
             right: 16px;
             color: #ccc;
-            transform: translate(0, -15%);
+            transform: translate(0px, -15%);
+          }
+        }
+        &__item:hover {
+          background:#f8f8f8;
+          .mypage-icon {
+            transition-duration: 0.3s;
+            color: black;
+            font-size: 27px;
+            transform: translate(5px,-4px);
           }
         }
       }
