@@ -11,6 +11,8 @@ class UsersController < ApplicationController
 
   before_action :set_payjp_user ,only: [:card_delete, :card_create, :payment_method, :card_registration]
 
+  before_action :set_search
+
   protect_from_forgery :except => [ :card_create, :card_delete, :payment_method, :card_registration]
   # 外部からのAPIを受ける特定アクションのみ除外
 
