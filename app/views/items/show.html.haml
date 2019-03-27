@@ -51,16 +51,19 @@
           %tr
             %th カテゴリー
             %td
-              = link_to '#' do
-                %div 果物
-              = link_to '#' do
-                .item-detail-table-sub-category
-                  = fa_icon 'angle-right'
-                  フルーツ
-              = link_to '#' do
-                .item-detail-table-sub-sub-category
-                  = fa_icon 'angle-right'
-                  果物
+              = link_to category_path(@category1.id) do
+                %div
+                  = @category1.name
+              - if @category2
+                = link_to category_path(@category2.id) do
+                  .item-detail-table-sub-category
+                    = fa_icon 'angle-right'
+                    = @category2.name
+              - if @category3
+                = link_to category_path(@category3.id) do
+                  .item-detail-table-sub-sub-category
+                    = fa_icon 'angle-right'
+                    = @category3.name
 
           %tr
             %th ブランド
