@@ -1,66 +1,96 @@
 = render 'shared/header'
 
 %main.l-container.clearfix
-  .brand-box
-    .brand-box__index.clearfix
+  .brand-wrapper
+    .brand-index.clearfix
       %h2 ブランド一覧
 
 
-    .brand-box__category.clearfix
-      %a{href: "#", class: "category-name-box"}
-        レディース
-      %a{href: "#", class: "category-name-box"}
-        メンズ
-      %a{href: "#", class: "category-name-box"}
-        ベビー・キッズ
-      %a{href: "#", class: "category-name-box"}
-        スマートフォン
-      %a{href: "#", class: "category-name-box"}
-        バイク
-      %a{href: "#", class: "category-name-box"}
-        楽器
+    .category-container.clearfix
+      .name-box
+        %a{href: "#"}
+          レディース
+      .name-box
+        %a{href: "#"}
+          メンズ
+      .name-box
+        %a{href: "#"}
+          ベビー・キッズ
+      .name-box
+        %a{href: "#"}
+          インテリア・住まい・雑貨
+      .name-box
+        %a{href: "#"}
+          キッチン・食器
+      .name-box
+        %a{href: "#"}
+          時計
+      .name-box
+        %a{href: "#"}
+          コスメ・香水・美容
+      .name-box
+        %a{href: "#"}
+          テレビゲーム
+      .name-box
+        %a{href: "#"}
+          スポーツ・レジャー
+      .name-box
+        %a{href: "#"}
+          スマートフォン・携帯電話
+      .name-box
+        %a{href: "#"}
+          バイク
+      .name-box
+        %a{href: "#"}
+          楽器
+      .name-box
+        %a{href: "#"}
+          自動車パーツ
+      .name-box
+        %a{href: "#"}
+          食品
+      .name-box
+        %a{href: "#"}
+          国内自動車本体
+      .name-box
+        %a{href: "#"}
+          外国自動車本体
+
+    .brand-initial-container.clearfix
+      .initial__box.clearfix
+        %a{href: "#"}
+          %p ア
+      .initial__box.clearfix
+        %a{href: "#"}
+          %p イ
+      .initial__box.clearfix
+        %a{href: "#"}
+          %p ウ
+      .initial__box.clearfix
+        %a{href: "#"}
+          %p エ
+      .initial__box.clearfix
+        %a{href: "#"}
+          %p オ
 
 
-    .brand-box__initial.clearfix
-      .brand-initial__link
-        %a{href: "#"}
-          ア
-        %a{href: "#"}
-          イ
-        %a{href: "#"}
-          ウ
-        %a{href: "#"}
-          エ
-        %a{href: "#"}
-          オ
-
-
-    .brand-box__list.clearfix
-      .brand-list__title
+    .brand-name-container
+      .category-name
         %h3 レディース
 
-      .brand-list__box
-        .brand-initial
+      .brand-name-list
+        .brand-name__initial
           %h4 ア
-        .brand-title
-          %a{href: "#", class: "brand-title-left"}
-            .brand-title__name-left
-              %p アーヴェヴェ
-        .brand-title
-          %a{href: "#", class: "brand-title-right"}
-            .brand-title__name-right
-              %p アーカー
+        .brand-name__wrapper
+          .brand-name__box--left
+            %a{href: "#", class: "brand-name-link"}
+              .brand-name
+                %p アーヴェヴェ
+          .brand-name__box--right
+            %a{href: "#", class: "brand-name-link"}
+              .brand-name
+                %p アーカー
 
-        .box__brand-initial
-          %h4 イ
-        .box__brand-title
-          %a{href: "#"}
-            .brand-title__name-left
-              %p イーエーピー
-        .box__brand-title
-          %a{href: "#"}
-            .brand-title__name-right
-              %p イーエム
 
 = render 'shared/footer'
 
