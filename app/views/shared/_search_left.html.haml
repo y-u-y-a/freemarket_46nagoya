@@ -1,0 +1,82 @@
+.search-container__left-contents
+  %form.search-extend-container
+    = search_form_for @searches, url: item_search_result_items_path do |f|
+      .search-sort
+        .form-group
+          .select-wrap
+            = f.sort_fields do |s|
+              = s.sort_select prompt: "並び替え"
+            = fa_icon 'angle-bown'
+      .search-dropdown
+        %h3.search-dropdown__large-text
+          詳細検索
+        .search-dropdown__form-group.first
+          %label
+            = fa_icon 'plus'
+            %span キーワードを追加する
+            = f.search_field :name_cont ,placeholder: "例 値下げ", value: "#{params[:q]["name_cont"] if params[:q]}", class: "input-default"
+        .search-dropdown__form-group
+          %label
+            = fa_icon 'list'
+            %span カテゴリーを選択する
+          .select-wrap.select-category{'data-search' => 'parent'}
+            = f.select :category_id_eq, @category.map{|cate| [cate.name, cate.id]},{:include_blank => "すべて"}, {class: "search_parent_box"}
+            = fa_icon "angle-down"
+
+        .search-dropdown__form-group.brand
+          %label
+            = fa_icon "tag"
+            %span ブランド名から探す
+            %input{type: "text",value: "",name: "brand_name",placeholder: "例 シャネル",class: "input-default","data-search" => "brand"}
+            %input{type: "hidden",name: "brand_id",value: ""}
+            %ul{"data-search" => "brand-dom"}
+        .search-dropdown__form-group
+          %label
+            = fa_icon "square"
+            %span サイズを指定する
+          .select-wrap{'data-search' => 'parent'}
+            = collection_select :select, :size, Size.all,:id,:name, {} ,{class: "select-default"}
+            = fa_icon "angle-down"
+            %div{"data-search" => "child"}
+        .search-dropdown__form-group
+          %label
+            = fa_icon "bitcoin"
+            %span 価格
+          .select-wrap{'data-search' => 'price'}
+            = f.collection_select :price_cont , PriceSearch.all, :id, :name, {:include_blank => '選択してください'} ,{class: "select-default"}
+            = fa_icon 'angle-down', class: "price-icon"
+            %div{"data-search" => "price"}
+            = f.search_field :price_gteq_any , value: "",type: "number",value: "",name: "q[price_gteq_any][]",placeholder: "¥ Min",class: "price","data-search" => "price-min"
+            %span ~
+            = f.search_field :price_lteq_any , value: "",type: "number",value: "",name: "q[price_lteq_any][]",placeholder: "¥ Max",class: "price","data-search" => "price-max"
+        .search-dropdown__form-group.clear
+          %label
+            = fa_icon "star"
+            %span 商品の状態
+            #checkboxes_itemstatus.checkboxes
+              = f.collection_check_boxes(:state_in, ItemStatus.all, :id, :name) do |b|
+                .checkboxes__default
+                  = b.label { b.check_box + b.text }
+
+        .search-dropdown__form-group.clear
+          %label
+            = fa_icon "truck"
+            %span 配送料の負担
+            #checkboxes_shippingmethod.checkboxes
+              = f.collection_check_boxes(:shipping_way_in, ShippingMethod.all, :id, :name) do |b|
+                .checkboxes__default
+                  = b.label { b.check_box + b.text }
+
+        .search-dropdown__form-group.clear
+          %label
+            = fa_icon "shopping-cart"
+            %span 販売状況
+            #checkboxes_businessstatus.checkboxes
+              = f.collection_check_boxes(:business_stats_in, BusinessStatus.all, :id, :name) do |b|
+                .checkboxes__default
+                  = b.label { b.check_box + b.text }
+
+        .search-dropdown__btn
+          .reset-btn{"data-search" => "reset"} クリア
+          %button{type: "submit" ,class: "comp-btn"} 完了
+

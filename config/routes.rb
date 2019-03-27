@@ -36,16 +36,29 @@ Rails.application.routes.draw do
     get :exhibition,           on: :collection
     get :seller_trading,       on: :collection
     get :sold_page,            on: :collection
+<<<<<<< HEAD
     get :trading_message,      on: :collection
+=======
+    resources :addresses, only: [:edit, :update]
+>>>>>>> tsurutadesu/master
   end
 
   resources :items do
     get :buy,                  on: :collection
     get :all_brands_show,      on: :collection
     get :all_categories_show,  on: :collection
-    get :buy, on: :member
-    post :pay, on: :member
+    get :item_search_result,   on: :collection
+    get :buy,                  on: :member
+    post :pay,                 on: :member
     resources :likes, only: [:create, :destroy]
+  end
+
+  resources :categories, only: :show do
+    get :child_category,       on: :collection
+    get :grand_child_category, on: :collection
+  end
+
+  resources :mypages do
   end
 
 end

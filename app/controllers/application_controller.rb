@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery with: :exception
   before_action :basic_auth, if: :production?
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -21,6 +22,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
+
+
   def after_sign_in_path_for(resource)
     root_path # ログイン後に遷移するpathを設定
   end
@@ -29,7 +32,19 @@ class ApplicationController < ActionController::Base
     root_path # ログアウト後に遷移するpathを設定
   end
 
+  def set_search
+    @search = Item.ransack(params[:q]) #ransackメソッド推奨
+    @search_items = @search.result(distinct: true).page(params[:page]).per(8)
+  end
+
+  def set_searches
+    @searches = Item.ransack(params[:q]) #ransackメソッド推奨
+    @search_items = @searches.result(distinct: true).page(params[:page]).per(8)
+    @searches.build_sort if @searches.sorts.empty?
+  end
+
   private
+
   def production?
     Rails.env.production?
   end

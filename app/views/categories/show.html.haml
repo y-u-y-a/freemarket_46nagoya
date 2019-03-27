@@ -1,0 +1,46 @@
+- if @show_category.main_category_id == nil
+  - breadcrumb :category_show
+
+- elsif @show_category.sub_category_id == nil
+  - breadcrumb :child_category_show_name
+
+- else
+  - breadcrumb :grand_child_category_name
+
+= render 'shared/header'
+
+.lists-container
+  .lists-container__full-width
+    %ul.category-links
+      - if @page == "main"
+        - @child_category_names.each do |cate|
+          %li.category-link
+            = link_to "#{cate.name}",category_path(cate.id),class: "category_link__link"
+      - elsif @page == "sub"
+        - @grand_child_category_names.each do |cate|
+          %li.category-link
+            = link_to "#{cate.name}",category_path(cate.id),class: "category_link__link"
+
+    %secttion.item-lists
+      %h1.item-lists__title
+        #{@show_category.name}の商品一覧
+      - if @items.length > 0
+        .item-lists__item-container
+          = render partial: 'shared/category_items', locals: {items: @items}
+      - else
+        商品がありません
+
+= paginate @items
+
+.spacial-description
+  .spacial-description__title
+    %h3
+      = @show_category.name
+  .spacial-description__text
+    %p
+      - if @show_category.intro
+        = @show_category.intro
+
+= render 'shared/sell-button'
+
+= render 'shared/footer'

@@ -1,6 +1,6 @@
 .single-container
   = render "devise/registrations/signup_header"
-  // 住所情報登録フォーム
+  // 住所入力フォーム
   %main.single-main
     %section.l-single-container
       %h2.l-single-head 住所入力
@@ -24,7 +24,7 @@
           .form-group
             = f.label :都道府県
             %span.form-require 必須
-            = f.text_field :prefecture, placeholder: "北海道", class: 'input-default'
+            = collection_select :address,:prefecture_id,Prefecture.all,:id,:name,{} ,{class: "input-default"}
           .form-group
             = f.label :市町村
             %span.form-require 必須
