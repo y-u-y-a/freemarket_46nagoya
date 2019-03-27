@@ -12,19 +12,19 @@
         .owl-carousel.owl-loaded.owl-drag
           .owl-stage-outer
             .owl-stage{ style: 'left:0px',width: '900px'}
-              - @images.each do |image|
-                - if image.image.present?
+              - @item.item_images.each do |i|
+                - if i.image.present?
                   .owl-item{ style: 'width:300px'}
                     .owl-item__inner.is-higher-width
-                      = image_tag image.image
+                      = image_tag i.image
 
           .owl-dots
-            - if @images.present?
-              - @images.each do |image|
+            - if @item.item_images.present?
+              - @item.item_images.each do |i|
                 .owl-dot
                   %span
                   .owl-dot-inner
-                    = image_tag image.image
+                    = image_tag i.image
 
           - if @item.business_stats == 3
             .item-sold-out-badge
@@ -51,19 +51,19 @@
           %tr
             %th カテゴリー
             %td
-              = link_to category_path(@category1.id) do
+              = link_to category_path(@parent_category[0].category_id) do
                 %div
-                  = @category1.name
-              - if @category2
-                = link_to category_path(@category2.id) do
+                  = @parent_category.name
+              - if @child_category
+                = link_to category_path(@child_category[0].child_category_id) do
                   .item-detail-table-sub-category
                     = fa_icon 'angle-right'
-                    = @category2.name
-              - if @category3
-                = link_to category_path(@category3.id) do
+                    = @child_category.name
+              - if @grand_category
+                = link_to category_path(@grand_category[0].grand_child_category_id) do
                   .item-detail-table-sub-sub-category
                     = fa_icon 'angle-right'
-                    = @category3.name
+                    = @grand_category.name
 
           %tr
             %th ブランド
@@ -178,13 +178,13 @@
   .items-in-user-profile
     %section.items-box-container.items-box-overflow.items-in-user-profile.clearfix
       %h2.item-box-head
-        = link_to @item.user.nickname, users_path
+        = link_to "#{@item.user.nickname}さんのその他の出品", users_path
       .items-box-content.clearfix
         = render 'user_items'
 
     %section.items-box-container.items-box-overflow.items-in-user-profile.clearfix
       %h2.item-box-head
-        = link_to 'コーチのショルダーバッグ その他の商品','#'
+        = link_to "#{@grand_category.name}（#{@parent_category.name}）その他の商品", category_select_path(@grand_category)
       .items-box-content.clearfix
         = render 'other_items'
 

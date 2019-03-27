@@ -45,12 +45,16 @@
               ul {
                 display: inline;
                 width: 100%;
+                font-size: 0;
                 .sell-upload-item:first-child {
                   margin-left: 0;
                 }
+                .sell-upload-item:nth-child(5n+1) {
+                  margin: 0 0 10px 0;
+                }
                 .sell-upload-item {
                   width: 116px;
-                  margin: 0 0 10px 6px;
+                  margin: 0 0 10px 10px;
                   position: relative;
                   display: inline-block;
                   border: $border_light_gray;
@@ -94,6 +98,7 @@
             }
           }
           .form-mask-image {
+            font-size: 0;
             .hidden {
               display: none;
             }
@@ -106,7 +111,7 @@
               border: 1px dashed #ccc;
               text-align: center;
               cursor: pointer;
-              margin-left: 2%;
+              // margin-left: 2%;
               width: 491px;
               pre {
                 position: absolute;
