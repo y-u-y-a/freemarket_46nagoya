@@ -51,16 +51,16 @@
           %tr
             %th カテゴリー
             %td
-              = link_to category_path(@parent_category[0].category_id) do
+              = link_to category_path(@parent_category.id) do
                 %div
                   = @parent_category.name
               - if @child_category
-                = link_to category_path(@child_category[0].child_category_id) do
+                = link_to category_path(@children_category.id) do
                   .item-detail-table-sub-category
                     = fa_icon 'angle-right'
-                    = @child_category.name
+                    = @children_category.name
               - if @grand_category
-                = link_to category_path(@grand_category[0].grand_child_category_id) do
+                = link_to category_path(@grand_category.id) do
                   .item-detail-table-sub-sub-category
                     = fa_icon 'angle-right'
                     = @grand_category.name
@@ -184,7 +184,7 @@
 
     %section.items-box-container.items-box-overflow.items-in-user-profile.clearfix
       %h2.item-box-head
-        = link_to "#{@grand_category.name}（#{@parent_category.name}）その他の商品", category_select_path(@grand_category)
+        = link_to "#{@grand_category.name}（#{@parent_category.name}）その他の商品", category_path(@grand_category)
       .items-box-content.clearfix
         = render 'other_items'
 

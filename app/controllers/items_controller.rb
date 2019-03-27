@@ -10,7 +10,6 @@ class ItemsController < ApplicationController
   before_action :set_searches ,    only: [:item_search_result]
 
   before_action :set_user, only: :index
-
   before_action :get_category, only: [:show,:edit]
 
   def index
@@ -145,7 +144,7 @@ class ItemsController < ApplicationController
   end
 
   def get_category
-    @parent_category,@child_category,@grand_category = Category.find(@item.category_id,@item.child_category_id,@item.grand_child_category_id)
+    @parent_category,@children_category,@grand_category = Category.find(@item.category_id,@item.child_category_id,@item.grand_child_category_id)
   end
 
   def set_item
