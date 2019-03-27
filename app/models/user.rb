@@ -8,6 +8,7 @@ class User < ApplicationRecord
   belongs_to_active_hash :prefecture
   has_many :items
   has_one :address
+  has_one :profile
 
   validates :nickname, presence: true
   validates :password, length: { minimum: 6 }   # 6文字以上で有効
