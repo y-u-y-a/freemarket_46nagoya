@@ -4,16 +4,13 @@
 %nav.bread-crumbs
   %ul
     %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
-      %a{:href => "https://www.mercari.com/jp/", :itemprop => "url"}
-        %span{:itemprop => "title"} メルカリ
+      = link_to 'メルカリ', root_path
       = fa_icon 'angle-right'
     %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
-      %a{:href => "https://www.mercari.com/jp/mypage/", :itemprop => "url"}
-        %span{:itemprop => "title"} マイページ
+      = link_to 'マイページ', users_path
       = fa_icon 'angle-right'
     %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
-      %a{:href => "https://www.mercari.com/jp/mypage/purchase/", :itemprop => "url"}
-        %span{:itemprop => "title"} 購入した商品 - 取引中
+      = link_to "購入した商品 - 取引中", trading_users_path
       = fa_icon 'angle-right'
     %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
       %span{:itemprop => "title"} 取引画面
@@ -156,10 +153,10 @@
     %section.l-side-container
       %h3.transact-info-head 出品者情報
       .transact-info-inner
-        %a.transaction-user-icon{:href => "https://www.mercari.com/jp/u/534324103/"}
+        %a.transaction-user-icon{:href => "#"}
           %figure
             %div.image-box
-              %img{:alt => "", :src => "https://static.mercdn.net/members/534324103.jpg?1521981262", :width => "40"}/
+              %img{:alt => "", :src => "//static.mercdn.net/images/member_photo_noimage_thumb.png", :width => "40"}/
             %figcaption.bold
               .transact-user-name
                 メルカリ二郎
