@@ -11,14 +11,16 @@
       .item-box-container__main-content__photo
         .owl-carousel.owl-loaded.owl-drag
           .owl-stage-outer
-            .owl-stage{ style: 'left:0px',width: '1200px'}
-              .owl-item{ style: 'width:300px'}
-                .owl-item__inner.is-higher-width
-                  = image_tag @images.first.image
+            .owl-stage{ style: 'left:0px',width: '900px'}
+              - @images.each do |image|
+                - if image.image.present?
+                  .owl-item{ style: 'width:300px'}
+                    .owl-item__inner.is-higher-width
+                      = image_tag image.image
 
           .owl-dots
-            - @images.each do |image|
-              - if image.image.present?
+            - if @images.present?
+              - @images.each do |image|
                 .owl-dot
                   %span
                   .owl-dot-inner

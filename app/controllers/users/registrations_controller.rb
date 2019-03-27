@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class Users::RegistrationsController < Devise::RegistrationsController
   require 'payjp'
   # before_action :configure_sign_up_params, only: [:create]
@@ -10,6 +9,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :set_payjp_user, only: [:credit]
   protect_from_forgery :except => [ :card_create, :card_delete, :payment_method, :card_registration]
 
+  def to_signup
+  end
 
   def create
     super
@@ -17,8 +18,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def phone_number
-    # sessionに電話番号を格納する処理
-    session[:phone_number] = params[:session][:phone_number]
+    # profilesテーブル
+    session[:first_name] = params[:session][:first_name]
+    session[:last_name] = params[:session][:last_name]
+    session[:first_name_kana] = params[:session][:first_name_kana]
+    session[:last_name_kana] = params[:session][:last_name_kana]
+    session[:birth_year] = params[:session][:birth_year]
+    session[:birth_month] = params[:session][:birth_month]
+    session[:birth_day] = params[:session][:birth_day]
+    # テーブルに保存する処理
+    @profile = Profile.new(
+      first_name: session[:first_name],
+      last_name: session[:last_name],
+      first_name_kana: session[:first_name_kana],
+      last_name_kana: session[:last_name_kana],
+      birth_year: session[:birth_year],
+      birth_month: session[:birth_month],
+      birth_day: session[:birth_day],
+      user_id: session[:user_id]
+      )
+    @profile.save
   end
 
   def address
@@ -35,6 +54,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       city: session[:city],
       town: session[:town],
       building: session[:building],
+      phone_number: session[:phone_number],
       user_id: session[:user_id]
     )
     @address.save

@@ -17,15 +17,14 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
-
   devise_scope :user do
-    post 'phone_number' => 'users/registrations#phone_number'
-    post 'address' => 'users/registrations#address'
-    post 'credit' => 'users/registrations#credit'
+    get  'to_signup' => 'users/registrations#to_signup'
+    post 'signup/phone_number' => 'users/registrations#phone_number'
+    post 'signup/address' => 'users/registrations#address'
+    post 'signup/credit' => 'users/registrations#credit'
   end
 
   resources :users do
-    get :to_signup,            on: :collection
     get :logout,               on: :collection
     get :payment_method,       on: :collection
     get :card_registration,    on: :collection
@@ -36,6 +35,7 @@ Rails.application.routes.draw do
     get :exhibition,           on: :collection
     get :seller_trading,       on: :collection
     get :sold_page,            on: :collection
+    resources :addresses, only: [:edit, :update]
   end
 
   resources :items do
@@ -45,6 +45,9 @@ Rails.application.routes.draw do
     get :buy, on: :member
     post :pay, on: :member
     resources :likes, only: [:create, :destroy]
+  end
+
+  resources :mypages do
   end
 
 end
