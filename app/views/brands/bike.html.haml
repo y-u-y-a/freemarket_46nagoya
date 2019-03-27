@@ -1,0 +1,67 @@
+= render 'shared/header'
+
+%main.l-container.clearfix
+  .brand-box
+    .brand-box__index.clearfix
+      %h2 ブランド一覧
+
+
+    .brand-box__category.clearfix
+      %a{href: "#", class: "category-name-box"}
+        レディース
+      %a{href: "#", class: "category-name-box"}
+        メンズ
+      %a{href: "#", class: "category-name-box"}
+        ベビー・キッズ
+      %a{href: "#", class: "category-name-box"}
+        スマートフォン
+      %a{href: "#", class: "category-name-box"}
+        バイク
+      %a{href: "#", class: "category-name-box"}
+        楽器
+
+
+    .brand-box__initial.clearfix
+      .brand-initial__link
+        %a{href: "#"}
+          ア
+        %a{href: "#"}
+          イ
+        %a{href: "#"}
+          ウ
+        %a{href: "#"}
+          エ
+        %a{href: "#"}
+          オ
+
+
+    .brand-box__list.clearfix
+      .brand-list__title
+        %h3 レディース
+
+      .brand-list__box
+        .brand-initial
+          %h4 ア
+        .brand-title
+          %a{href: "#", class: "brand-title-left"}
+            .brand-title__name-left
+              %p アーヴェヴェ
+        .brand-title
+          %a{href: "#", class: "brand-title-right"}
+            .brand-title__name-right
+              %p アーカー
+
+        .box__brand-initial
+          %h4 イ
+        .box__brand-title
+          %a{href: "#"}
+            .brand-title__name-left
+              %p イーエーピー
+        .box__brand-title
+          %a{href: "#"}
+            .brand-title__name-right
+              %p イーエム
+
+= render 'shared/footer'
+
+= render 'shared/sell-button'

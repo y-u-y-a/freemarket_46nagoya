@@ -1,0 +1,53 @@
+.brand-box{
+  display:block;
+  .brand-index-box{
+    padding-bottom:20px;
+    h2{
+      padding:8px 15px;
+      font-size: 22px;
+      font-weight:bold;
+      line-height: 1.4;
+    }
+  }
+  .brand-category-box{
+    .category-name-box{
+      // color:black;
+      // font-size:16px;
+      padding:12px 30px;
+      margin-left:10px;
+      background-color:white;
+    }
+  }
+  .brand-initial-box{
+    padding-top:40px;
+    .brand-initial__link{
+      a{
+      }
+    }
+  }
+  .brand-list-box{
+    padding-top:40px;
+    .brand-list__title{
+      color:white;
+      background-color:#ea352d;
+      padding:10px 30px;
+      h3{
+        font-size:20px;
+        font-weight:bold;
+      }
+    }
+    .brand-list__box{
+      padding:0 30px 10px 30px;
+      .box__brand-initial{
+        background-color:#eee;
+        h4{
+          font-size:15px;
+        }
+      }
+      .box__brand-title{
+        background-color:white;
+        a{}
+      }
+    }
+  }
+}

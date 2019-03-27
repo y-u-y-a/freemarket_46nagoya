@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
   get 'likes/create'
-
   get 'likes/destroy'
-
   root 'items#index'
 
   post 'users/card_create' => 'users#card_create'
@@ -48,6 +46,10 @@ Rails.application.routes.draw do
   end
 
   resources :mypages do
+  end
+
+  resources :brands do
+    get :bike,                  on: :collection
   end
 
 end
