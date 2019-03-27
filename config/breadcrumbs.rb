@@ -17,10 +17,16 @@ crumb :all_brands_show do
   parent :root
 end
 
+crumb :item_search_result do
+  link "#{params[:q]["name_cont"]}",  item_search_result_items_path
+  parent :root
+end
+
 crumb :logout do
   link 'ログアウト', logout_users_path
   parent :users
 end
+
 
 crumb :user do
   link 'プロフィール', user_path(current_user)
@@ -70,4 +76,33 @@ end
 crumb :item_show do |item|
   link item.name, item_path
   parent :root
+end
+
+# categories#show
+# メンズ、レディース等の大カテゴリ
+crumb :category_show do
+  link "#{Category.find_by(id: params[:id]).name}",category_path
+  parent :all_categories_show
+end
+
+# トップス、パンツ等の中カテゴリ
+crumb :child_category_show do
+  main_category_id = Category.find_by(id: params[:id]).main_category_id
+  link "#{Category.find_by(id: main_category_id).name}",category_path(id: main_category_id)
+  parent :all_categories_show
+end
+crumb :child_category_show_name do
+  link "#{Category.find_by(id: params[:id]).name}"
+  parent :child_category_show
+end
+
+# ポロシャツ、スラックス等の小カテゴリ
+crumb :grand_child_category_show do
+  sub_category_id = Category.find_by(id: params[:id]).sub_category_id
+  link "#{Category.find_by(id: sub_category_id).name}",category_path(id: sub_category_id)
+  parent :child_category_show
+end
+crumb :grand_child_category_name do
+  link "#{Category.find_by(id: params[:id]).name}"
+  parent :grand_child_category_show
 end

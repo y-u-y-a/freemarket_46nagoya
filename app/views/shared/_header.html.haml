@@ -3,22 +3,22 @@
     .logo-and-search
       =link_to root_path do
         = image_tag("//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2845599746", class: "logo-and-search__logo left-float")
-      %form.logo-and-search__search.right-float
-        %input{value:"", placeholder:"キーワードから探す",class: "logo-and-search__form"}
-        = link_to root_path do
-          %i.fa.fa-search.logo-and-search__icon
+      = search_form_for @search, url: item_search_result_items_path,class: "logo-and-search__search right-float" do |f|
+        = f.search_field :name_cont ,placeholder: "キーワードから探す", value: "#{params[:q]["name_cont"] if params[:q]}", class: "logo-and-search__form"
+        = button_tag type: "submit", class: "logo-and-search__icon" do
+          %i.fa.fa-search
     .header-lists
       .header-lists__left.left-float
         %ul.lists-menu
           %li.lists-menu__categories
             %h2.lists-menu__text.category-nav
               = link_to "カテゴリーから探す", all_categories_show_items_path,class: "lists-menu__link"
-              = render 'shared/category-drop-menu'
+            = render "shared/category-drop-menu"
 
           %li.lists-menu__brands
             %h2.lists-menu__text.brand-nav
               = link_to "ブランドから探す", all_brands_show_items_path,class: "lists-menu__link"
-              = render 'shared/brand-drop-menu'
+            = render "shared/brand-drop-menu"
 
       .header-lists__right.right-float
         - if user_signed_in?
@@ -27,12 +27,12 @@
               = link_to users_path(current_user), class: "pc-header-nav__user-icon pc-header-nav__root" do
                 %figure
                   %div
-                    = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", width: '32'
+                    = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", width: "32"
                 %div マイページ
               = render 'shared/mypage_drop_down'
 
             %li
-              = link_to '#', class: 'pc-header-nav__root','data-url':'https://www.mercari.com/jp/mypage/notification_and_todo_json/' do
+              = link_to '#', class: "pc-header-nav__root",'data-url':'https://www.mercari.com/jp/mypage/notification_and_todo_json/' do
                 %i.fa.fa-bell.icon
                 %span お知らせ
                 .pc-header-nav__root__count

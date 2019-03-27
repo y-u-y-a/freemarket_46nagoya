@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
+
   devise_scope :user do
     get  'to_signup' => 'users/registrations#to_signup'
     post 'signup/phone_number' => 'users/registrations#phone_number'
@@ -40,9 +41,15 @@ Rails.application.routes.draw do
     get :buy,                  on: :collection
     get :all_brands_show,      on: :collection
     get :all_categories_show,  on: :collection
-    get :buy, on: :member
-    post :pay, on: :member
+    get :item_search_result,   on: :collection
+    get :buy,                  on: :member
+    post :pay,                 on: :member
     resources :likes, only: [:create, :destroy]
+  end
+
+  resources :categories, only: :show do
+    get :child_category,       on: :collection
+    get :grand_child_category, on: :collection
   end
 
   resources :mypages do
