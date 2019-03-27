@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :item_images
 
   belongs_to :user
-  belongs_to :category
+  # belongs_to :category
 
   validates :name, presence: true
   validates :price, presence: true
