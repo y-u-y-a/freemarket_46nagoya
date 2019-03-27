@@ -2,18 +2,18 @@ class Item < ApplicationRecord
 
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to_active_hash :result_order
-  belongs_to_active_hash :size
-  belongs_to_active_hash :price_search
-  belongs_to_active_hash :item_status
-  belongs_to_active_hash :business_status
-  belongs_to_active_hash :shipping_method
+  # belongs_to_active_hash :result_order
+  # belongs_to_active_hash :size
+  # belongs_to_active_hash :price_search
+  # belongs_to_active_hash :item_status
+  # belongs_to_active_hash :business_status
+  # belongs_to_active_hash :shipping_method
 
-  has_many :likes, dependent: :destroy
-  has_many :item_images,dependent: :delete_all
-  accepts_nested_attributes_for :item_images
+  # has_many :likes, dependent: :destroy
+  # has_many :item_images,dependent: :delete_all
+  # accepts_nested_attributes_for :item_images
 
-  belongs_to :user
+  # belongs_to :user
   # belongs_to :category
 
   validates :name, presence: true
