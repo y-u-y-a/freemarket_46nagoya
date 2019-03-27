@@ -1,20 +1,20 @@
 
--# = render 'shared/header'
+= render 'shared/header'
 
 %nav.bread-crumbs
   %ul
     %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
       %a{:href => "https://www.mercari.com/jp/", :itemprop => "url"}
         %span{:itemprop => "title"} メルカリ
-      %i.icon-arrow-right
+      = fa_icon 'angle-right'
     %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
       %a{:href => "https://www.mercari.com/jp/mypage/", :itemprop => "url"}
         %span{:itemprop => "title"} マイページ
-      %i.icon-arrow-right
+      = fa_icon 'angle-right'
     %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
       %a{:href => "https://www.mercari.com/jp/mypage/purchase/", :itemprop => "url"}
         %span{:itemprop => "title"} 購入した商品 - 取引中
-      %i.icon-arrow-right
+      = fa_icon 'angle-right'
     %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
       %span{:itemprop => "title"} 取引画面
 %main.l-container.clearfix
@@ -23,47 +23,46 @@
       %h2.l-chapter-head 取引画面
       .transact-attention
         %h3
-          %i.icon-time
+          %i.fa.fa-clock-o
           %span 発送をお待ちください
         %p 出品者からの発送通知をお待ちください。
       %ul.transact-guide.text-right
         %li
           %a{:href => "/jp/help_center/category/5/", :target => "_blank"}
             %span 購入した後の流れ
-            %i.icon-arrow-right
+            %i.fa.fa-angle-right
         %li
       .message-container
         .message-content1
           .notification.notification-success
-            メッセージを送りました
             %i.icon-close
           %ul.message-items
             %li.clearfix
-              %a.message-user{:href => "https://www.mercari.com/jp/u/534324103/"}
+              %a.message-user{:href => ""}
                 %figure
                   %div
-                    %img{:alt => "", :src => "//static.mercdn.net/thumb/members/534324103.jpg?1521981262"}/
+                    %img{:alt => "", :src => "//static.mercdn.net/images/member_photo_noimage_thumb.png"}/
                   %figcaption.bold
-                    なみたん
+                    メルカリ二郎
               .message-body
                 .message-body-text こんにちわ、この度はご購入ありがとうございます。発送終えましたらコメントさせてもらいます。
                 .message-icons.clearfix
                   %time.message-icon-left
-                    %i.icon-time
+                    %i.fa.fa-clock-o
                     %span 46 秒前
                 %i.icon-balloon
             %li.clearfix.message-self
               %a.message-user{:href => "https://www.mercari.com/jp/u/178529040/"}
                 %figure
                   %div
-                    %img{:alt => "", :src => "//static.mercdn.net/thumb/members/178529040.jpg?1425734532"}/
+                    %img{:alt => "", :src => "//static.mercdn.net/images/member_photo_noimage_thumb.png"}/
                   %figcaption.bold
-                    Ryunosuke Ide
+                    メルカリタロウ
               .message-body
                 .message-body-text こんにちは、よろしくお願いします！
                 .message-icons.clearfix
                   %time.message-icon-left
-                    %i.icon-time
+                    %i.fa.fa-clock-o
                     %span 0 秒前
                 %i.icon-balloon
         .message-content2
@@ -152,19 +151,19 @@
                   %span.buyer-name
                     メルカリ
                     タロウ
-                  %p
+                  %span.sama
                     様
     %section.l-side-container
       %h3.transact-info-head 出品者情報
       .transact-info-inner
         %a.transaction-user-icon{:href => "https://www.mercari.com/jp/u/534324103/"}
           %figure
-            %div
+            %div.image-box
               %img{:alt => "", :src => "https://static.mercdn.net/members/534324103.jpg?1521981262", :width => "40"}/
             %figcaption.bold
               .transact-user-name
-                なみたん
-          %i.icon-arrow-right
+                メルカリ二郎
+          %i.fa.fa-angle-right
 
 
 
