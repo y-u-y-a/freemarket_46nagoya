@@ -1,5 +1,14 @@
 class Item < ApplicationRecord
 
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :result_order
+  belongs_to_active_hash :size
+  belongs_to_active_hash :price_search
+  belongs_to_active_hash :item_status
+  belongs_to_active_hash :business_status
+  belongs_to_active_hash :shipping_method
+
   has_many :likes, dependent: :destroy
   has_many :item_images,dependent: :delete_all
   accepts_nested_attributes_for :item_images, allow_destroy: true
@@ -18,11 +27,15 @@ class Item < ApplicationRecord
    likes.find_by(user_id: user_id)
   end
 
+  ransacker :created_at do
+    Arel::Nodes::SqlLiteral.new "date(items.created_at)"
+  end
+
   enum state: {
     '新品、未使用': 1,
     '未使用に近い': 2,
     '目立った傷や汚れなし': 3,
-    'やや傷や汚れなし': 4,
+    'やや傷や汚れあり': 4,
     '傷や汚れあり': 5,
     '全体的に状態が悪い': 6
   }

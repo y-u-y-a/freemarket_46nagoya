@@ -1,0 +1,60 @@
+.search-container {
+  &__right-contents .pager {
+    margin: 40px 0 0;
+  }
+}
+.pager {
+  position: relative;
+  font-size: 0;
+  text-align: center;
+  .block {
+    display: block;
+  }
+  .current {
+    color: #fff;
+    background: #ea352d;
+  }
+  .icon {
+    a {
+      font-size: 50px;
+      font-weight: 100;
+      line-height: 35px;
+    }
+  }
+  ul {
+    list-style: none;
+  }
+  &__num {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+  &__prev {
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+  &__next {
+    right: 0;
+    position: absolute;
+    top: 0;
+  }
+  &__cell:not(.current):hover {
+    opacity: 0.8;
+    background: rgba(255,255,255,0);
+  }
+  &__cell {
+    display: inline-block;
+    width: 44px;
+    height: 44px;
+    border-radius: 4px;
+    background: #fff;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    line-height: 42px;
+    a {
+      display: block;
+      color: #333;
+    }
+  }
+}
+

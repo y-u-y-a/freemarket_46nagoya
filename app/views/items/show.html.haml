@@ -51,17 +51,19 @@
           %tr
             %th カテゴリー
             %td
-              = link_to '#' do
+              = link_to category_path(@parent_category[0].category_id) do
                 %div
                   = @parent_category.name
-              = link_to '#' do
-                .item-detail-table-sub-category
-                  = fa_icon 'angle-right'
-                  = @child_category.name
-              = link_to '#' do
-                .item-detail-table-sub-sub-category
-                  = fa_icon 'angle-right'
-                  = @grand_category.name
+              - if @child_category
+                = link_to category_path(@child_category[0].child_category_id) do
+                  .item-detail-table-sub-category
+                    = fa_icon 'angle-right'
+                    = @child_category.name
+              - if @grand_category
+                = link_to category_path(@grand_category[0].grand_child_category_id) do
+                  .item-detail-table-sub-sub-category
+                    = fa_icon 'angle-right'
+                    = @grand_category.name
 
           %tr
             %th ブランド
