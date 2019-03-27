@@ -25,9 +25,11 @@
         top: 0;
         right: 0;
         width: 36px;
+        font-size: 15px;
         line-height: 36px;
         cursor: pointer;
         text-align: center;
+        background-color: rgba(0,0,0,0);
       }
       &__search {
         position: relative;
