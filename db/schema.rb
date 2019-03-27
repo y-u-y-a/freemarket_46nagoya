@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20190326104015) do
+ActiveRecord::Schema.define(version: 20190327031021) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -73,13 +72,13 @@ ActiveRecord::Schema.define(version: 20190326104015) do
     t.integer  "brand_id"
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
-    t.integer  "user_id"
+    t.integer  "shipping_way",                          default: 0
     t.integer  "buyer_id"
     t.integer  "business_stats"
-    t.integer  "shipping_way",                          default: 0
     t.integer  "category_id"
     t.integer  "child_category_id"
     t.integer  "grand_child_category_id"
+    t.integer  "user_id"
     t.integer  "likes_count"
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["child_category_id"], name: "index_items_on_child_category_id", using: :btree

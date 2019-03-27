@@ -138,7 +138,7 @@ class Scraping
     brand.initial = initial
     brand.name = name
     brand.save
-    CategoryBrand.create(category_id: num, brand_id: brand.id,)
+    CategoryBrand.create(category_id: num, brand_id: brand.id)
   end
 
 
