@@ -1,0 +1,56 @@
+.header-mypage-box
+  .header-mypage-box__state
+    %figure.header-mypage-box__state__figure
+      .header-mypage-box__state__figure__div
+        = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: "", width: 60,height: "60"
+      %figcaption
+        = @user&.nickname
+
+    %ul.header-mypage-box__state__listing
+      %li.header-mypage-box__state__listing__li
+        = link_to '評価: 0','#'
+
+      %li.header-mypage-box__state__listing__li
+        = link_to "出品数: #{@user&.items&.count}",'#'
+
+    %ul.header-mypage-box__state__points
+      %li.header-mypage-box__state__points__li
+        = link_to '#', class: "clearfix" do
+          .left 売上金
+          .right
+            ¥ 0
+            = fa_icon 'angle-right',class: 'icon-arrow-right'
+
+      %li.header-mypage-box__state__points__li
+        = link_to '#',class: "clearfix" do
+          .left ポイント
+          .right
+            P 0
+            = fa_icon 'angle-right',class: 'icon-arrow-right'
+
+  %ul.header-mypage-box__list
+    %li
+      = link_to '#',class: "link-item" do
+        いいね！一覧
+
+        = fa_icon 'angle-right',class: 'mypage-nav-icon'
+    %li
+      = link_to exhibition_users_path(current_user),class: "link-item" do
+        出品した商品 - 出品中
+        = fa_icon 'angle-right',class: 'mypage-nav-icon'
+    %li
+      = link_to seller_trading_users_path(current_user),class: "link-item" do
+        出品した商品 - 取引中
+        = fa_icon 'angle-right',class: 'mypage-nav-icon'
+    %li
+      = link_to sold_page_users_path(current_user),class: "link-item" do
+        出品した商品 - 売却済み
+        = fa_icon 'angle-right',class: 'mypage-nav-icon'
+    %li
+      = link_to trading_users_path(current_user),class: "link-item" do
+        購入した商品 - 取引中
+        = fa_icon 'angle-right',class: 'mypage-nav-icon'
+    %li
+      = link_to purchased_users_path(current_user),class: "link-item" do
+        購入した商品 - 過去の取引
+        = fa_icon 'angle-right',class: 'mypage-nav-icon'

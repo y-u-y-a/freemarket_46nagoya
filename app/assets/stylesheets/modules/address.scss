@@ -1,0 +1,96 @@
+.right-content {
+  float: right;
+  width: 700px;
+  .l-single-container {
+  width: 700px;
+  margin: 0 auto;
+  background: #fff;
+    .l-single-head {
+      padding: 32px 16px;
+      font-size: 22px;
+      line-height: 1.5;
+      text-align: center;
+      font-weight: bold;
+    }
+    .l-single-inner {
+      padding: 64px;
+      border-top: 1px solid #f5f5f5;
+      .l-single-content {
+        max-width: 320px;
+        margin: 0 auto;
+        .l-chapter-sub-head {
+          font-size: 16px;
+          font-weight: bold;
+        }
+        .l-single-text {
+          margin: 8px 0 0;
+          padding: 0;
+          line-height: 1.5;
+        }
+        .select-wrap {
+          width: 140px;
+          display: inline-block;
+          margin: 8px 0 0;
+          position: relative;
+          background: #fff;
+          select {
+            width: 100%;
+            position: relative;
+            z-index: 2;
+            height: 48px;
+            padding: 0 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            background: 0;
+            font-size: 16px;
+            line-height: 1.5;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+          }
+        }
+        span {
+          margin-left: 10px;
+        }
+      }
+      .form-info-text {
+        color: #888;
+        margin: 8px 0 0;
+        line-height: 1.5;
+        text-align:center;
+      }
+      a {
+        color: #0099e8;
+      }
+    }
+    .btn-red {
+      margin: 40px 0 0;
+      background: #ea352d;
+      border: 1px solid #ea352d;
+      color: #fff;
+      display: block;
+      width: 100%;
+      line-height: 48px;
+      font-size: 14px;
+      transition: all ease-out .3s;
+      cursor: pointer;
+      text-align: center;
+      a{
+        color:white;
+      }
+    }
+    .text-right {
+      text-align: right;
+    }
+  }
+  li{
+    margin-left: 18px;
+  }
+  .single-footer-logo img {
+    margin-top: 40px;
+  }
+  .small {
+    margin: 8px 0 0;
+  }
+}

@@ -5,11 +5,11 @@
   = render 'shared/l-side'
   .l-content
     %section.mypage-user-icon
-      = link_to '#' do
+      = link_to user_path(@user) do
         %figure
           = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: "", width: 60,height: "60"
         %h2.bold
-          ニックネーム
+          = @user.nickname
         .mypage-number
           %div
             評価
@@ -18,14 +18,14 @@
           %div
             出品数
             %span.bold
-              0
+              = @user.items.count
 
     %section.mypage-tab-container
       %ul.mypage-tab-container__tabs
-        %li.active
+        %li.two-tabs.active
           %h3
             = link_to 'お知らせ','#','data-toggle':'tab'
-        %li
+        %li.two-tabs
           %h3
             = link_to 'やることリスト','#','data-toggle':'tab'
       .tab-content
@@ -102,10 +102,10 @@
         購入した商品
 
       %ul.mypage-tab-container__tabs
-        %li.active
+        %li.two-tabs.active
           %h3
             = link_to '取引中','#',id: 'mypage-tab-transaction-now','data-toggle':'tab'
-        %li
+        %li.two-tabs
           %h3
             = link_to '過去の取引','#',id: 'mypage-tab-transaction-old','data-toggle':'tab'
 
