@@ -9,6 +9,8 @@ class ItemsController < ApplicationController
 
   before_action :set_user, only: :index
 
+  before_action :get_category, only: [:show,:edit]
+
   def index
     items = Item.order("created_at DESC")
     @lady_items = items.where(category_id: 1).where(business_stats: 1).first(4)
@@ -19,7 +21,6 @@ class ItemsController < ApplicationController
     @nike_items = items.where(brand_id: 2).where(business_stats: 1).first(4)
     @vuitton_items = items.where(brand_id: 3).where(business_stats: 1).first(4)
     @supreme_items = items.where(brand_id: 4).where(business_stats: 1).first(4)
-
   end
 
   def new
@@ -39,19 +40,21 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @images = @item.item_images
     @region = Prefecture.find(@item.region)
+    @user_items = Item.where(user_id: @item.user.id).where.not(id: params[:id]).limit(6)
+
+    @category_items = Item.where(grand_child_category_id: @grand_category.id).where.not(user_id: current_user.id).all
   end
 
   def edit
-    @images = @item.item_images
+    10.times {@item.item_images.build}
   end
 
   def update
-    if @item.update(item_params)
+    if @item.update(update_params)
       redirect_to item_path(@item)
     else
-      redirect_to edit_item_path(@item)
+    redirect_to edit_item_path(@item)
     end
   end
 
@@ -112,21 +115,27 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit( :name, :price, :explain, :postage, :region, :state, :shipping_date, :shipping_way,:size,:brand_id, :category_id, :child_category_id, :grand_child_category_id, item_images_attributes: [:image,:item_id]).merge(user_id: current_user.id, business_stats: '1')
+    params.require(:item).permit( :name, :price, :explain, :postage, :region, :state, :shipping_date, :shipping_way,:size,:brand_id, :category_id, :child_category_id, :grand_child_category_id, item_images_attributes: [:image]).merge(user_id: current_user.id, business_stats: '1')
+  end
+
+  def update_params
+    params.require(:item).permit( :name, :price, :explain, :postage, :region, :state, :shipping_date, :shipping_way,:size,:brand_id, :category_id, :child_category_id, :grand_child_category_id, item_images_attributes: [:image,:id,:_destroy]).merge(user_id: current_user.id, business_stats: '1')
   end
 
   def pay_item_params
     params.permit(:item_id)
   end
 
+  def get_category
+    @parent_category,@child_category,@grand_category = Category.find(@item.category_id,@item.child_category_id,@item.grand_child_category_id)
+  end
+
   def set_item
-    @item = Item.find(params[:id])
+    @item = Item.includes([:user,:item_images]).find(params[:id])
   end
 
   def set_user
-    if user_signed_in?
-      @user = User.find(current_user)
-    end
+    @user = User.includes(:items).find(current_user) if user_signed_in?
   end
 
   def set_payjp_user

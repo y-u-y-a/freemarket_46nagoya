@@ -21,7 +21,7 @@
         %section.items-card
           = link_to item_path(lady), class: "item-link" do
             %figure.items-card__photo
-              = image_tag lady.item_images.first.image
+              / = image_tag lady.item_images.first.image
             .items-card-intro
               %h3.items-card-intro__item-name
                 = lady.name
@@ -45,7 +45,7 @@
         %section.items-card
           = link_to item_path(man), class: "item-link" do
             %figure.items-card__photo
-              = image_tag man.item_images.first.image
+              / = image_tag man.item_images.first.image
             .items-card-intro
               %h3.items-card-intro__item-name
                 = man.name

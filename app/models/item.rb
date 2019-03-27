@@ -2,7 +2,7 @@ class Item < ApplicationRecord
 
   has_many :likes, dependent: :destroy
   has_many :item_images,dependent: :delete_all
-  accepts_nested_attributes_for :item_images
+  accepts_nested_attributes_for :item_images, allow_destroy: true
 
   belongs_to :user
   belongs_to :category
