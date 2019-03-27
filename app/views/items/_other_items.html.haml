@@ -1,38 +1,18 @@
-%section.items-box
-  = link_to '#' do
-    %figure.items-box-photo
-      = image_tag 'https://static.mercdn.net/thumb/photos/m65471139405_1.jpg?1548298453'
-    .items-box-body
-      %h3.items-box-name 配信用（300）
-      .items-box-num.clearfix
-        .items-box-price ¥ 12,600
-        .items-box-likes
-          %i.fa.fa-heart.icon-like-border
-          %span 8
-        %p.items-box-tax (税込)
+- @category_items.first(6).each do |item|
+  %section.items-box
+    = link_to item_path(item) do
+      %figure.items-box-photo
+        = image_tag item.item_images.first.image
+      .items-box-body
+        %h3.items-box-name
+          = item.name
+        .items-box-num.clearfix
+          .items-box-price
+            = "¥ #{thousands_separator(item.price)}"
+          .items-box-likes
+            %i.fa.fa-heart.icon-like-border
+            %span
+              = item.likes.count
+          %p.items-box-tax (税込)
 
-%section.items-box
-  = link_to '#' do
-    %figure.items-box-photo
-      = image_tag 'https://static.mercdn.net/thumb/photos/m65471139405_1.jpg?1548298453'
-    .items-box-body
-      %h3.items-box-name 配信用（300）
-      .items-box-num.clearfix
-        .items-box-price ¥ 12,600
-        .items-box-likes
-          %i.fa.fa-heart.icon-like-border
-          %span 8
-        %p.items-box-tax (税込)
 
-%section.items-box
-  = link_to '#' do
-    %figure.items-box-photo
-      = image_tag 'https://static.mercdn.net/thumb/photos/m65471139405_1.jpg?1548298453'
-    .items-box-body
-      %h3.items-box-name 配信用（300）
-      .items-box-num.clearfix
-        .items-box-price ¥ 12,600
-        .items-box-likes
-          %i.fa.fa-heart.icon-like-border
-          %span 8
-        %p.items-box-tax (税込)
