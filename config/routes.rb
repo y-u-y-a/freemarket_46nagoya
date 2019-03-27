@@ -36,11 +36,8 @@ Rails.application.routes.draw do
     get :exhibition,           on: :collection
     get :seller_trading,       on: :collection
     get :sold_page,            on: :collection
-<<<<<<< HEAD
     get :trading_message,      on: :collection
-=======
     resources :addresses, only: [:edit, :update]
->>>>>>> tsurutadesu/master
   end
 
   resources :items do
