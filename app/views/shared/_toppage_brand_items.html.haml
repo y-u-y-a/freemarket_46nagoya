@@ -1,6 +1,6 @@
 %section.items-boxes
   %h3.items-boxes__category.text-center
-    = link_to "#{name} 新着アイテム",category_path(name), class: "new-item"
+    = link_to "#{name} 新着アイテム",root_path, class: "new-item"
   .items-boxes__lists
     - item.each do |item|
       %section.items-card

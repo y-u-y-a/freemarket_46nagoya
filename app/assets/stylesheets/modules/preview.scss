@@ -1,5 +1,5 @@
-.box-display-none {
-  display: none;
+.box-display-none:nth-of-type(n+2) {
+  display:none;
 }
 .sell-upload-item {
   width: 116px;

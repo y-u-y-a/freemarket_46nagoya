@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     post 'signup/credit' => 'users/registrations#credit'
   end
 
-  resources :users do
+  resources :users,except: :show do
     get :logout,               on: :collection
     get :payment_method,       on: :collection
     get :card_registration,    on: :collection
@@ -35,6 +35,10 @@ Rails.application.routes.draw do
     get :seller_trading,       on: :collection
     get :sold_page,            on: :collection
     resources :addresses, only: [:edit, :update]
+  end
+
+  scope :profiels do
+    resources :users, only: :show
   end
 
   resources :items do

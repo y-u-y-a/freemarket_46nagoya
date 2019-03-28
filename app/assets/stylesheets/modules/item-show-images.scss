@@ -1,0 +1,116 @@
+.items-in-user-profile {
+  width: 700px;
+  margin: 0 auto;
+  .items-box-overflow {
+    overflow: hidden;
+    &:last-of-type {
+      margin-bottom: 40px;
+    }
+    .item-box-head {
+      margin: 24px 0 8px;
+      font-size: 22px;
+      line-height: 1.4;
+      a {
+        color: #0099e8;
+        text-decoration: none;
+      }
+    }
+    .items-box-content {
+      margin: 0 auto;
+      @include clearfix;
+      padding: 0;
+      width: auto;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      .items-box:nth-child(3n+1) {
+        margin: 0 0 20px;
+        float: left;
+        display: block;
+        max-width: 220px;
+        width: 220px;
+        vertical-align: inherit;
+      }
+      .items-box {
+        margin: 0 0 20px 20px;
+        float: left;
+        display: block;
+        max-width: 220px;
+        width: 220px;
+        vertical-align: inherit;
+        background: $white;
+        a {
+          display: block;
+          color: $light_black;
+          figure {
+            width: 220px;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            padding: 0 0 100px;
+            img {
+              width: 220px;
+              position:absolute;
+              right: auto;
+              left: 50%;
+              height:100%;
+              z-index: 1;
+              transform: translate(-50%,0);
+              vertical-align: middle;
+              opacity: 1;
+              -webkit-transition: opacity .3s;
+              transition: opacity .3s;
+            }
+          }
+          .items-box-body {
+            padding: 16px;
+            height: 110px;
+            background: $white;
+            .items-box-name {
+              overflow: hidden;
+              position:relative;
+              font-weight: 400;
+              height: 3em;
+              line-height: 1.5;
+              word-break: break-word;
+              white-space: normal;
+              font-size: 16px;
+              color: $light_black;
+            }
+            .items-box-num {
+              @include clearfix;
+              margin: 8px 0 0;
+              .items-box-price {
+                font-size: 20px;
+                float: left;
+                font-weight: 600;
+                color: $light_black;
+                vertical-align: middle;
+              }
+              .items-box-likes {
+                float: right;
+                font-size: 16px;
+                font-weight: 400;
+                color: $light_black;
+                .icon-like-border {
+                  margin: 0 4px 0 0;
+                  vertical-align: middle;
+                  color: #ccc;
+                }
+                span {
+                  vertical-align: middle;
+                  display: inline-block;
+                  margin: 1px 0 0;
+                }
+              }
+              .items-box-tax {
+                font-size: 10px;
+                clear: both;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
