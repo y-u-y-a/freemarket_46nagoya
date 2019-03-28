@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-  # prepend_before_action :check_captcha, only: [:create]
+  prepend_before_action :check_captcha, only: [:create]
   prepend_before_action :customize_sign_up_params, only: [:create]
   before_action :set_payjp_user, only: [:credit]
   protect_from_forgery :except => [ :card_create, :card_delete, :payment_method, :card_registration]
@@ -67,21 +67,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session[:exp_year] = params[:session][:exp_year]
     session[:cvc] = params[:session][:cvc]
     # # カードのトークン生成
-    # card = Payjp::Token.create({
-    #   card: {
-    #     number: session[:number],
-    #     exp_month: session[:exp_month],
-    #     exp_year: session[:exp_year],
-    #     cvc: session[:cvc]
-    #   }
-    # })
-    # #トークンとアドレスで顧客の生成
-    # customer = Payjp::Customer.create(
-    #   email: @user.email,
-    #   card: card
-    # )
-    # # 顧客とユーザーの紐付け
-    # @user.update_attribute(:customer_id, customer.id)
+    card = Payjp::Token.create({
+      card: {
+        number: session[:number],
+        exp_month: session[:exp_month],
+        exp_year: session[:exp_year],
+        cvc: session[:cvc]
+      }
+    })
+    #トークンとアドレスで顧客の生成
+    customer = Payjp::Customer.create(
+      email: @user.email,
+      card: card
+    )
+    # 顧客とユーザーの紐付け
+    @user.update_attribute(:customer_id, customer.id)
   end
 
 
@@ -101,7 +101,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def set_payjp_user
     @user = User.find(current_user)
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
   end
 end
   # GET /resource/sign_up
