@@ -152,7 +152,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.includes([:user,:item_images]).find(params[:id])
+    @item = Item.includes([:user,:item_images,:likes]).find(params[:id])
   end
 
   def set_user
