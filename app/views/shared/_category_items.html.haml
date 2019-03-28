@@ -13,7 +13,7 @@
           .item-box-num
             .item-box-num__price
               = "¥ #{thousands_separator(item.price)}"
-            - if item.likes_count
+            - if item.likes_count != 0
               .item-box-num__likes
                 %i.fa.fa-heart
                 %span

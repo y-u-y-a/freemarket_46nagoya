@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
   before_action :category_in_brand ,    only: [:all_brands_show]
 
 
-  before_action :set_user, only: :index
+  before_action :set_user, only: [:index,:show]
   before_action :get_category, only: [:show,:edit]
 
   def index
@@ -60,10 +60,14 @@ class ItemsController < ApplicationController
     @region = Prefecture.find(@item.region)
     @user_items = Item.where(user_id: @item.user.id).where.not(id: params[:id]).limit(6)
     @category_items = Item.where(grand_child_category_id: @grand_category.id).where.not(user_id: @item.user.id).all
+
+    @comment = Comment.new
+    @images = @item.item_images
+    @comments = @item.comments
   end
 
   def edit
-    10.times {@item.item_images.build}
+    10.times{@item.item_images}
   end
 
   def update

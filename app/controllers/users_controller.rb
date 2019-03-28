@@ -68,11 +68,8 @@ class UsersController < ApplicationController
     @item = Item.where(business_stats: 3).where(buyer_id: current_user.id)
   end
 
-  def transaction_page
-    @item = @user.items.find(params[:id])
-  end
-
   def card_create
+    #顧客の作成
     card = Payjp::Token.create({
       card: {
         number: params[:number],
@@ -85,6 +82,7 @@ class UsersController < ApplicationController
       }
     )
     #顧客の作成
+    # card: params["payjpToken"]
     customer = Payjp::Customer.create(
       email: @user.email,
       card: card
