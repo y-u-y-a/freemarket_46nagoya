@@ -65,6 +65,7 @@
                     = fa_icon 'angle-right'
                     = @grand_category.name
 
+
           %tr
             %th ブランド
             %td
@@ -102,11 +103,11 @@
       %span.item-tax          (税込)
       %span.item-shipping-fee 送料込み
 
-    - if @item.business_stats == 3
+    - if @item.business_stats == 2 || @item.business_stats == 3
       .item-buy-btn.disabled
         売り切れました
 
-    - if current_user.id != @item.user_id
+    - elsif @item.user_id != current_user&.id && @item.business_stats == 1
       = link_to buy_item_path(@item) , class: 'item-btn-client item-buy-btn' do
         %div{"data-client":"visible"} 購入画面に進む
 
@@ -128,30 +129,34 @@
           %i.fa.fa-unlock
           %span あんしん・あんぜんへの取り組み
 
-  - if @item.user_id == current_user.id
-    .listening-item-change-box
-      = link_to '商品の編集',edit_item_path(@item),class: 'btn-default btn-red'
-      %p.text-center or
-      = form_for @item, method: 'POST' do |f|
-        = f.submit "出品を一旦停止する",class: 'btn-default btn-gray', id: 'stop-item'
-      = button_tag type: 'button', class: 'btn-default btn-gray',id: 'delete-item',style: {"touch-action":"manipulation"}, remote: true do
-        この商品を削除する
+  - if user_signed_in?
+    - if @item.user_id == current_user.id
+      .listening-item-change-box
+        = link_to '商品の編集',edit_item_path(@item),class: 'btn-default btn-red'
+        %p.text-center or
+        = form_for @item, method: 'POST' do |f|
+          = f.submit "出品を一旦停止する",name: 'stop_item', class: 'btn-default btn-gray', id: 'stop-item'
+        = button_tag type: 'button', class: 'btn-default btn-gray',id: 'delete-item' do
+          この商品を削除する
 
   .item-detail-message
     .message-container
-      .message-content
-        %ul.message-items
-          = render 'user_comments'
+      - if @comments.present?
+        .message-content
+          %ul.message-items
+            = render partial: 'user_comments',locals: { item: @item, comments: @comments}
 
-
-      .message-content
-        %form.message-form
+      - if user_signed_in?
+        .message-content
           %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          %input{ type: 'hidden',name: 'item_id',value: ''}
-          %input{ type: 'hidden',name: 'redirect_url_key',value: '',class: 'item_detail'}
-          %textarea{ type: 'text',name: 'body',class: 'textarea-default disabled'}
-          %button{ type: 'submit', class: 'message-submit btn-default btn-gray'}
-            %span 売り切れのためコメントできません
+          = form_for [@item, @comment] do |c|
+            - if @item.business_stats == 1
+              = c.text_area :text, class: 'textarea-default'
+              = c.submit "コメントする", data: { disable_with: "送信中..." },class: 'message-submit btn-default btn-gray'
+            - else
+              = c.text_area :text, class: 'textarea-default disabled'
+              = c.submit "売り切れのためコメントできません",:disabled => true, class: 'message-submit btn-default btn-gray'
+
 
   %ul.nav-item-link-prev-next.clearfix
     %li.nav-item-link-prev

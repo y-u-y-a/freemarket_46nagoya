@@ -101,7 +101,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def set_payjp_user
     @user = User.find(current_user)
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
   end
 end
   # GET /resource/sign_up
