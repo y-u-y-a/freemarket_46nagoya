@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def category_in_brand
+    @categories = Category.find(1,2,3,4,490,334,7,681,9,899,1235,738,1207,1272,1200,1201)
+  end
+
 
 
   def after_sign_in_path_for(resource)

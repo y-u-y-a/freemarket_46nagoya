@@ -1,4 +1,4 @@
-= render 'shared/header'
+/ = render 'shared/header'
 
 %main.l-container.clearfix
   .brand-wrapper
@@ -73,23 +73,23 @@
         %a{href: "#"}
           %p オ
 
-
     .brand-name-container
       .category-name
-        %h3 レディース
+        %h3 バイク
 
       .brand-name-list
-        .brand-name__initial
-          %h4 ア
-        .brand-name__wrapper
-          .brand-name__box--left
-            %a{href: "#", class: "brand-name-link"}
-              .brand-name
-                %p アーヴェヴェ
-          .brand-name__box--right
-            %a{href: "#", class: "brand-name-link"}
-              .brand-name
-                %p アーカー
+        - @category.category_brands.each do |category_brand|
+          .brand-name__initial
+            %h4
+              - if category_brand.brand.initial
+              = category_brand.brand.initial
+          .brand-name__wrapper
+            - @category.category_brands.each do |category_brand|
+              .brand-name__box--left
+                %a{href: "#", class: "brand-name-link"}
+                  .brand-name
+                    %p
+                    = category_brand.brand.name
 
 
 = render 'shared/footer'

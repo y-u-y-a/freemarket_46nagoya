@@ -54,6 +54,7 @@
       }
     }
     .brand-name-list{
+      background-color:white;
       .brand-name__initial{
         padding:10px 30px;
         background-color:#eee;
@@ -63,18 +64,17 @@
         }
       }
       .brand-name__wrapper{
+        @include clearfix;
         display:inline;
         .brand-name__box--left{
           width:50%;
           float:left;
-          padding:30px 40px;
-          background-color:white;
+          padding:10px 10px;
         }
         .brand-name__box--right{
           width:50%;
           float:left;
           padding:30px 40px;
-          background-color:white;
         }
       }
     }

@@ -55,8 +55,6 @@ Rails.application.routes.draw do
   resources :mypages do
   end
 
-  resources :brands do
-    get :bike,                  on: :collection
+  resources :brands, only: :show do
   end
-
 end

@@ -66,22 +66,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session[:exp_month] = params[:session][:exp_month]
     session[:exp_year] = params[:session][:exp_year]
     session[:cvc] = params[:session][:cvc]
-    # # カードのトークン生成
-    # card = Payjp::Token.create({
-    #   card: {
-    #     number: session[:number],
-    #     exp_month: session[:exp_month],
-    #     exp_year: session[:exp_year],
-    #     cvc: session[:cvc]
-    #   }
-    # })
-    # #トークンとアドレスで顧客の生成
-    # customer = Payjp::Customer.create(
-    #   email: @user.email,
-    #   card: card
-    # )
-    # # 顧客とユーザーの紐付け
-    # @user.update_attribute(:customer_id, customer.id)
+    # カードのトークン生成
+    card = Payjp::Token.create({
+      card: {
+        number: session[:number],
+        exp_month: session[:exp_month],
+        exp_year: session[:exp_year],
+        cvc: session[:cvc]
+      }
+    })
+    #トークンとアドレスで顧客の生成
+    customer = Payjp::Customer.create(
+      email: @user.email,
+      card: card
+    )
+    # 顧客とユーザーの紐付け
+    @user.update_attribute(:customer_id, customer.id)
   end
 
 

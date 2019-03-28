@@ -32,23 +32,26 @@
 
       .brand-name-container
         .category-name
-          %h3 レディース
+          %h3
+            = @category.name
+
 
         .brand-name-list
-          - @bike_initial.each do |initial|
+          - @categoryBrands.each do |category_brand|
             .brand-name__initial
               %h4
-                = initial
+                = category_brand.brand.initial
 
 
-            / .brand-name__wrapper
-            /   - @category.category_brands.each do |category_brand|
-            /     .brand-name__box--left
-            /       %a{href: "#", class: "brand-name-link"}
-            /         .brand-name
-            /           %p
-            /           - if initial == category_brand.brand.initial
-            /             = category_brand.brand.name
+
+            .brand-name__wrapper
+              - @categoryBrands.each do |cateBra|
+                .brand-name__box--left
+                  %a{href: "#", class: "brand-name-link"}
+                    .brand-name
+                      %p
+                      - if category_brand.brand
+                      = cateBra.brand.name
 
 = render 'shared/footer'
 
