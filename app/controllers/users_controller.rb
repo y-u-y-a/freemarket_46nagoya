@@ -73,6 +73,7 @@ class UsersController < ApplicationController
   end
 
   def trading_message
+    @item2 = Item.where(business_stats: 2).where(buyer_id: current_user.id)
   end
 
   def card_create
