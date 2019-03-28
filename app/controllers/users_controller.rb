@@ -70,9 +70,22 @@ class UsersController < ApplicationController
 
   def card_create
     #顧客の作成
+    card = Payjp::Token.create({
+      card: {
+        number: params[:number],
+        cvc: params[:cvc],
+        exp_month: params[:exp_month],
+        exp_year: params[:exp_year]
+      }},
+      {
+        'X-Payjp-Direct-Token-Generate': 'true'
+      }
+    )
+    #顧客の作成
+    # card: params["payjpToken"]
     customer = Payjp::Customer.create(
       email: @user.email,
-      card: params["payjpToken"]
+      card: card
     )
     #トークンとアプリのユーザーの紐付け
     if @user.update_attribute(:customer_id, customer.id)
