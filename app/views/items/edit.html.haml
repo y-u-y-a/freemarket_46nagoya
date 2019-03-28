@@ -1,4 +1,4 @@
-= javascript_include_tag 'edit_image_upload.js'
+= javascript_include_tag 'edit_preview.js'
 .single-container
   = render 'users/user_header'
   %main.single-main
@@ -17,19 +17,19 @@
                   .sell-upload-items-container
                     .sell-upload-items.have-item-1
                       %ul.pictures
-                        - @images.each do |image|
-                          - if image.image.present?
+                        - @item.item_images.each do |i|
+                          - if i.image.present?
                             %li.sell-upload-item
                               %figure.sell-upload-figure.landscape
-                                = image_tag image.image
+                                = image_tag i.image,class: 'preview'
                               .sell-upload-button
                                 = link_to '編集', class: 'sell-upload-edit'
                                 = link_to '削除'
 
                   = f.fields_for :item_images do |image|
-                    = image.label :image, class: 'form-mask-image' do
-                      .sell-upload-drop-box.have-item-1.box-display-none
-                        = image.file_field :image,class: 'hidden'
+                    = image.label :image, class: 'form-mask-image box-display-none' do
+                      .sell-upload-drop-box.have-item-1
+                        = image.file_field :image,class: 'hidden file'
                         %pre.visible-pc
                           ドラッグアンドドロップ
                           またはクリックしてファイルをアップロード
