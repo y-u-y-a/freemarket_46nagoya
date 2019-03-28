@@ -68,6 +68,7 @@ class UsersController < ApplicationController
     @item = Item.where(business_stats: 3).where(buyer_id: current_user.id)
   end
 
+<<<<<<< HEAD
   def transaction_page
     @item = @user.items.find(params[:id])
   end
@@ -76,22 +77,13 @@ class UsersController < ApplicationController
     @item2 = Item.where(business_stats: 2).where(buyer_id: current_user.id)
   end
 
+=======
+>>>>>>> tsurutadesu/master
   def card_create
-    card = Payjp::Token.create({
-      card: {
-        number: params[:number],
-        cvc: params[:cvc],
-        exp_month: params[:exp_month],
-        exp_year: params[:exp_year]
-      }},
-      {
-        'X-Payjp-Direct-Token-Generate': 'true'
-      }
-    )
     #顧客の作成
     customer = Payjp::Customer.create(
       email: @user.email,
-      card: card
+      card: params["payjpToken"]
     )
     #トークンとアプリのユーザーの紐付け
     if @user.update_attribute(:customer_id, customer.id)

@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   get 'likes/create'
-
   get 'likes/destroy'
 
   root 'items#index'
@@ -32,7 +31,6 @@ Rails.application.routes.draw do
     get :indentification,      on: :collection
     get :trading,              on: :collection
     get :purchased,            on: :collection
-    get :transaction_page,     on: :collection
     get :exhibition,           on: :collection
     get :seller_trading,       on: :collection
     get :sold_page,            on: :collection
@@ -46,13 +44,14 @@ Rails.application.routes.draw do
   end
 
   resources :items do
+    resources :comments, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy]
     get :buy,                  on: :collection
     get :all_brands_show,      on: :collection
     get :all_categories_show,  on: :collection
     get :item_search_result,   on: :collection
     get :buy,                  on: :member
     post :pay,                 on: :member
-    resources :likes, only: [:create, :destroy]
   end
 
   resources :categories, only: :show do

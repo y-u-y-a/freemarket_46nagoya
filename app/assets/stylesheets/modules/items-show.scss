@@ -444,7 +444,7 @@
           }
         }
       }
-      .message-form {
+      .new_comment {
         p {
           padding: 8px;
           font-size: 14px;
@@ -473,12 +473,9 @@
         .message-submit {
           width: 100%;
           margin: 8px 0 0;
-          font-size: 0;
           text-align: center;
-          span {
-            font-size: 14px;
-            vertical-align: middle;
-          }
+          font-size: 14px;
+          color: $white;
         }
       }
     }
