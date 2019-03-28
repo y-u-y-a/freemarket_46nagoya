@@ -19,16 +19,96 @@
     %section.l-chapter-container
       %h2.l-chapter-head 取引画面
       .transact-attention
+        -# %h3
+        -#   %i.fa.fa-clock-o
+        -#   %span 発送をお待ちください
+        -# %p 出品者からの発送通知をお待ちください。
         %h3
-          %i.fa.fa-clock-o
-          %span 発送をお待ちください
-        %p 出品者からの発送通知をお待ちください。
+          %i.fa.fa-user-circle
+          %span 受取評価をしてください
+        %p 商品が発送されました。商品が到着したら、出品者の評価をしてください。
+        -# %h3
+        -#   %i.fa.fa-truck
+        -#   %span 発送をしてください
+        -# %p 商品が購入され支払いされました。商品の発送を行ってください。
+        -# %h3
+        -#   %i.fa.fa-check
+        -#   %span 商品の発送を通知しました
+        -# %p 購入者の受取確認と評価をしばらくお待ち下さい
       %ul.transact-guide.text-right
         %li
           %a{:href => "/jp/help_center/category/5/", :target => "_blank"}
-            %span 購入した後の流れ
+            %span 商品が売れた後の流れ
+            -# %span 購入した後の流れ
             %i.fa.fa-angle-right
         %li
+          %a{:href => "/jp/help_center/category/5/", :target => "_blank"}
+            %span 出品者のよくある質問
+            -# %span 購入者のよくある質問　
+            %i.fa.fa-angle-right
+
+      %section.l-single-inner.yuuyuu-content
+        %h3 配送状況
+        %nav.progress-bar
+          %ol.clearfix
+            %li.active
+              発送済み
+              .progress-status
+            %li
+              輸送中
+              .progress-status
+            %li
+              配達中
+              .progress-status
+            %li
+              受取
+              .progress-status
+        %p 引受
+        %p
+          %span.bold
+            ※ゆうゆうメルカリ便に関するお問い合わせは
+            %a{:href => "https://www.mercari.com/jp/mypage/support/"}> こちら
+            よりお願いします
+          %br/
+          （日本郵便には、直接お問い合わせされないようお願いします）
+
+
+      %form.transact-form-review{:action => "https://www.mercari.com/jp/transaction/review/m18251864076/", :method => "POST"}
+        %input{:name => "__csrf_value", :type => "hidden", :value => "548b8672d0a5998354cfac5c0af6823e6a1fd351fdac08492995fc979a866428bcdf5275bb3e1f5dce8399036f2f3b1d2edc82e5c7f7b893ca0525ae979de99fc"}/
+        .checkbox-default
+          %input#transaction_delivered{:name => "transaction_delivered", :type => "checkbox", :value => "1"}/
+          %i.icon-check
+          %label{:for => "transaction_delivered"} 商品の中身を確認しました。
+        %ul.transact-review-list.clearfix
+          %li
+            %input#face1{:name => "fame", :type => "radio", :value => "good"}/
+            .transact-review-icon
+              %i.icon-good
+              %label{:for => "face1"}
+                良い
+          %li
+            %input#face2{:name => "fame", :type => "radio", :value => "normal"}/
+            .transact-review-icon
+              %i.icon-normal
+              %label{:for => "face2"}
+                普通
+          %li
+            %input#face3{:name => "fame", :type => "radio", :value => "bad"}/
+            .transact-review-icon
+              %i.icon-bad
+              %label{:for => "face3"}
+                悪い
+        %p 評価のコメントを記入しましょう。
+        %textarea.textarea-default{:name => "message", :placeholder => "コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。"}
+        %button.btn-default.btn-red{:disabled => "disabled", :type => "submit"}
+          評価を投稿する
+
+      -# .transact-button
+      -#   %form{:action => "/jp/shipping/shipped/m46233963393/", :method => "POST", :novalidate => "novalidate"}
+      -#     %input{:name => "__csrf_value", :type => "hidden", :value => "cc5da73d1f3563876c4598e97658e52fe75e6b090a79d6f4b4a3048073d34ba1f11545b99e1fbe4303d901cdfb9537c2c8033c59c247ba42eb58ce5d355ff35ef"}/
+      -#     %button.btn-default.btn-red{:type => "submit"} 商品の発送をしたので、発送通知をする
+
+
       .message-container
         .message-content1
           .notification.notification-success
@@ -119,11 +199,11 @@
             %ul.transact-info-table-cell
               %li
                 %a{:href => "https://item.mercari.com/jp/m18251864076/"}
-                  %img.lazyloaded{:alt => "", "data-src" => "https://static.mercdn.net/thumb/photos/m18251864076_1.jpg?1553153276", :src => "https://static.mercdn.net/thumb/photos/m18251864076_1.jpg?1553153276"}/
+                  %img.lazyloaded{:alt => "", "data-src" => "https://static.mercdn.net/thumb/photos/m46233963393_1.jpg?1552715495", :src => "https://static.mercdn.net/thumb/photos/m46233963393_1.jpg?1552715495"}/
                   .transact-info-item.bold
-                    新どろあわわ「さっぱりタイプ」
+                    水筒
                     %br/
-                    ¥ 1,700
+                    ¥ 500
           %li.transact-info-table-row
             %span.transact-info-table-cell 送料
             %ul.transact-info-table-cell

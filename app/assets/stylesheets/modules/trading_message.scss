@@ -103,6 +103,9 @@
       }
       .transact-guide {
         padding: 16px;
+        li {
+          margin: 8px 0 0;
+        }
         li:first-child {
           margin: 0;
           a {
@@ -117,6 +120,224 @@
             }
           }
         }
+      }
+      .yuuyuu-content {
+        text-align: center;
+      }
+      .l-single-inner {
+        padding: 64px;
+        border-top: 1px solid #f5f5f5;
+        h3 {
+          font-size: 22px;
+          display: block;
+          font-weight: bold;
+        }
+        .progress-bar {
+          margin: 24px 0 0;
+          display: inline-block;
+          vertical-align: top;
+          font-size: 0;
+          text-align: center;
+          ol {
+            margin: 0;
+            list-style: none;
+            display: block;
+            @include clearfix;
+            .active {
+              font-weight: 600;
+              color: #ea352d;
+              .progress-status {
+                background: #ea352d;
+                width: 12px;
+                height: 12px;
+                margin: 8px auto 0;
+                border-radius: 50%;
+                &:after {
+                  position: absolute;
+                  bottom: 5px;
+                  z-index: -1;
+                  display: block;
+                  content: '';
+                  width: 100%;
+                  height: 2px;
+                  background: #ccc;
+                }
+                &:before {
+                  position: absolute;
+                  bottom: 5px;
+                  z-index: -1;
+                  display: block;
+                  content: '';
+                  width: 100%;
+                  height: 2px;
+                  background: #ccc;
+                  right: -100%;
+                }
+              }
+            }
+            li:last-child {
+              margin: 0;
+              .progress-status {
+                width: 12px;
+                height: 12px;
+                margin: 8px auto 0;
+                background: #ccc;
+                border-radius: 50%;
+                &:after {
+                  position: absolute;
+                  bottom: 5px;
+                  z-index: -1;
+                  display: block;
+                  content: '';
+                  width: 100%;
+                  height: 2px;
+                  background: #ccc;
+                  left: -100%;
+                }
+              }
+            }
+            li {
+              margin: 0 40px 0 0;
+              min-width: 60px;
+              position: relative;
+              z-index: 1;
+              display: inline-block;
+              font-size: 12px;
+              .progress-status {
+                width: 12px;
+                height: 12px;
+                margin: 8px auto 0;
+                background: #ccc;
+                border-radius: 50%;
+                &:before {
+                  position: absolute;
+                  bottom: 5px;
+                  z-index: -1;
+                  display: block;
+                  content: '';
+                  width: 100%;
+                  height: 2px;
+                  background: #ccc;
+                  right: 50%;
+                }
+                &:after {
+                  position: absolute;
+                  bottom: 5px;
+                  z-index: -1;
+                  display: block;
+                  content: '';
+                  width: 100%;
+                  height: 2px;
+                  background: #ccc;
+                }
+              }
+            }
+          }
+        }
+        p {
+          margin: 16px 0 0;
+          line-height: 1.5;
+          .bold {
+            font-weight: 600;
+          }
+        }
+      }
+      .transact-form-review {
+        width: 280px;
+        margin: 0 auto;
+        padding: 40px 0;
+        .checkbox-default {
+          position: relative;
+          font-size: 0;
+          .icon-check {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            z-index: 1;
+            width: 20px;
+            height: 20px;
+            border-radius: 2px;
+            background: #fff;
+            border: 1px solid #ccc;
+            font-size: 10px;
+            line-height: 17px;
+            text-align: center;
+            color: #fff;
+            vertical-align: middle;
+            -webkit-transition: all ease-out .3s;
+            transition: all ease-out .3s;
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+          }
+          label {
+            position: relative;
+            z-index: 2;
+            padding: 0 0 0 15px;
+            font-size: 14px;
+            font-weight: 400;
+            vertical-align: middle;
+            cursor: pointer;
+          }
+        }
+        .transact-review-list {
+          margin: 32px 0 0;
+          @include clearfix;
+          li:last-child {
+            margin: 0;
+          }
+          li {
+            position: relative;
+            float: left;
+            margin: 0 20px 0 0;
+            input {
+              display: none;
+            }
+            .transact-review-icon {
+              position: relative;
+              width: 80px;
+              height: 80px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              text-align: center;
+              i {
+                margin: 14px 0 0;
+                font-size: 30px;
+                display: inline-block;
+                font-family: 'icon-font';
+                font-style: normal;
+                font-variant: normal;
+                text-transform: none;
+                line-height: 1;
+              }
+            }
+          }
+        }
+        p {
+          margin: 32px 0 0;
+          font-size: 14px;
+        }
+        textarea {
+          width: 100%;
+          max-width: 280px;
+          margin: 8px 0 0;
+          display: block;
+          min-height: 104px;
+          padding: 10px;
+          border: 1px solid #ccc;
+          background: #fff;
+          font-size: 16px;
+          line-height: 1.5;
+        }
+        .btn-red {
+          margin: 8px 0 0;
+        }
+        .btn-default:disabled {
+          border: 1px solid #888;
+          background: #888;
+        }
+      }
+      .transact-button {
+        padding: 24px 32px;
       }
       .message-container {
         @include clearfix;
