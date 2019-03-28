@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
   before_action :set_search
   before_action :set_searches ,    only: [:item_search_result]
 
-  before_action :set_user, only: :index
+  before_action :set_user, only: [:index,:show]
   before_action :get_category, only: [:show,:edit]
 
   def index
@@ -55,7 +55,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @user = User.find(@item.user.id)
     @region = Prefecture.find(@item.region)
     @user_items = Item.where(user_id: @item.user.id).where.not(id: params[:id]).limit(6)
     @category_items = Item.where(grand_child_category_id: @grand_category.id).where.not(user_id: @item.user.id).all
