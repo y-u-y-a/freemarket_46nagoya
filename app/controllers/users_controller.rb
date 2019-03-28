@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!, only: [:payment_method, :card_registration, :indentification, :card_create, :card_delete]
 
-  before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :trading_message, :trading_evaluation]
+  before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :trading_message]
   # ヘッダーに使うカテゴリを読み込む
   before_action :set_user
   # , only: [:trading, :purchased,:index,:show,:update]
@@ -73,9 +73,6 @@ class UsersController < ApplicationController
   end
 
   def trading_message
-    @images = @item_images
-    @user = @users
-    @item = @items
   end
 
   def card_create

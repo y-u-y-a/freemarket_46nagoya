@@ -8,16 +8,10 @@ set :default_env, {
   AWS_ACCESS_KEY_ID: ENV["AWS_ACCESS_KEY_ID"],
   AWS_SECRET_ACCESS_KEY: ENV["AWS_SECRET_ACCESS_KEY"],
   BASIC_AUTH_USER: ENV["BASIC_AUTH_USER"],
-  BASIC_AUTH_PASSWORD: ENV["BASIC_AUTH_PASSWORD"]
+  BASIC_AUTH_PASSWORD: ENV["BASIC_AUTH_PASSWORD"],
+  RECAPTCHA_SITE_KEY: ENV["RECAPTCHA_SITE_KEY"],
+  RECAPTCHA_SECRET_KEY: ENV["RECAPTCHA_SECRET_KEY"]
 }
-
-# set :default_env, {
-#   rbenv_root: "/usr/local/rbenv",
-#   path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH",
-#   RECAPTCHA_SITE_KEY: ENV["RECAPTCHA_SITE_KEY"],
-#   RECAPTCHA_SECRET_KEY: ENV["RECAPTCHA_SECRET_KEY"]
-# }
-
 
 set :application, "my_app_name"
 set :repo_url, "git@example.com:me/my_repo.git"

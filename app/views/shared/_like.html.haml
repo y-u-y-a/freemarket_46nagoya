@@ -12,7 +12,7 @@
         %span.vertical-like__text
           = item.likes_count
 - else
-  - if item.likes_count > 0
+  - if item.likes_count != nil
     .vertical-like.red-text
       %i.fa.fa-heart.vertical-like__red-icon  いいね!
       %span.vertical-like__red-text
