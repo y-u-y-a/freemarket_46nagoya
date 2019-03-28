@@ -14,17 +14,14 @@
               = fa_icon "envelope lg", class: "icon-mail"
 
           %button.btn-default.btn-sns.btn-facebook
-            = link_to do
+            = link_to user_facebook_omniauth_authorize_path do
               %span Facebookで登録
               = fa_icon "facebook-square lg", class: "icon-facebook"
 
           %button.btn-default.btn-sns.btn-google
-            = link_to do
+            = link_to user_google_oauth2_omniauth_authorize_path do
               %span Googleで登録
               = fa_icon 'google',class: "icon-google"
-              / = image_tag("/assets/google.png", class: "image-google")
-
-
 
     // hiddenされている部分
     %form#single-main__form-facebook{action: "", :method => "POST", novalidate: "novalidate"}
