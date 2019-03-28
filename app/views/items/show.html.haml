@@ -26,7 +26,7 @@
                   .owl-dot-inner
                     = image_tag i.image
 
-          - if @item.business_stats == 3
+          - if @item.business_stats != 1
             .item-sold-out-badge
               %div SOLD
 
@@ -102,11 +102,10 @@
       %span.item-tax          (税込)
       %span.item-shipping-fee 送料込み
 
-    - if @item.business_stats == 3
+    - if @item.business_stats != 1
       .item-buy-btn.disabled
         売り切れました
-
-    - if current_user.id != @item.user_id
+    - elsif @item.user_id != current_user&.id && @item.business_stats == 1
       = link_to buy_item_path(@item) , class: 'item-btn-client item-buy-btn' do
         %div{"data-client":"visible"} 購入画面に進む
 
@@ -128,7 +127,7 @@
           %i.fa.fa-unlock
           %span あんしん・あんぜんへの取り組み
 
-  - if @item.user_id == current_user.id
+  - if @item.user_id == current_user&.id
     .listening-item-change-box
       = link_to '商品の編集',edit_item_path(@item),class: 'btn-default btn-red'
       %p.text-center or
@@ -176,11 +175,12 @@
             %i.fa.fa-google.icon-google
 
   .items-in-user-profile
-    %section.items-box-container.items-box-overflow.items-in-user-profile.clearfix
-      %h2.item-box-head
-        = link_to "#{@item.user.nickname}さんのその他の出品", users_path
-      .items-box-content.clearfix
-        = render 'user_items'
+    - if @user_items.present?
+      %section.items-box-container.items-box-overflow.items-in-user-profile.clearfix
+        %h2.item-box-head
+          = link_to "#{@item.user.nickname}さんのその他の出品", users_path
+        .items-box-content.clearfix
+          = render 'user_others_items'
 
     %section.items-box-container.items-box-overflow.items-in-user-profile.clearfix
       %h2.item-box-head

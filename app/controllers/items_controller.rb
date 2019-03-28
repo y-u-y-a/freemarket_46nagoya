@@ -57,7 +57,7 @@ class ItemsController < ApplicationController
   def show
     @region = Prefecture.find(@item.region)
     @user_items = Item.where(user_id: @item.user.id).where.not(id: params[:id]).limit(6)
-    @category_items = Item.where(grand_child_category_id: @grand_category.id).where.not(user_id: current_user.id).all
+    @category_items = Item.where(grand_child_category_id: @grand_category.id).where.not(user_id: @item.user.id).all
   end
 
   def edit
@@ -148,7 +148,7 @@ class ItemsController < ApplicationController
   end
 
   def set_item
-    @item = Item.includes([:user,:item_images]).find(params[:id])
+    @item = Item.includes([:user,:item_images,:likes]).find(params[:id])
   end
 
   def set_user
