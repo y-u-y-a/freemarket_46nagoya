@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    binding.pry
     if @comment.save
       redirect_to item_path(params[:item_id])
     else
