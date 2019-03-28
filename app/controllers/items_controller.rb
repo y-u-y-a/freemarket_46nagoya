@@ -55,6 +55,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @user = User.find(@item.user.id)
     @region = Prefecture.find(@item.region)
     @user_items = Item.where(user_id: @item.user.id).where.not(id: params[:id]).limit(6)
     @category_items = Item.where(grand_child_category_id: @grand_category.id).where.not(user_id: @item.user.id).all

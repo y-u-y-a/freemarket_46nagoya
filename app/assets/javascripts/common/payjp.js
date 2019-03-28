@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function() {
   var form = $("#charge-form");
-  Payjp.setPublicKey("pk_test_2d1dcf5e756205ea82c6fa78");
+  Payjp.setPublicKey("pk_test_04e029df3db8f11b42183425");
   $(document).on("click", "#submit-button", function(e) {
 
     e.preventDefault();
