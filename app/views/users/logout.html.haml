@@ -8,8 +8,7 @@
     .chapter-container
       %form.chapter-container__single-inner
         .chapter-container__single-inner__content
-          %button{ type: 'submit', class: 'btn-default btn-red' }
-            = link_to "ログアウト", destroy_user_session_path, method: :delete
+          = link_to "ログアウト", destroy_user_session_path, class: 'btn-default btn-red',method: :delete
 
 = render 'shared/footer'
 = render 'shared/sell-button'
