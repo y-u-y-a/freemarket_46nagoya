@@ -65,6 +65,7 @@
                     = fa_icon 'angle-right'
                     = @grand_category.name
 
+
           %tr
             %th ブランド
             %td
@@ -105,6 +106,7 @@
     - if @item.business_stats != 1
       .item-buy-btn.disabled
         売り切れました
+
     - elsif @item.user_id != current_user&.id && @item.business_stats == 1
       = link_to buy_item_path(@item) , class: 'item-btn-client item-buy-btn' do
         %div{"data-client":"visible"} 購入画面に進む
@@ -138,19 +140,22 @@
 
   .item-detail-message
     .message-container
-      .message-content
-        %ul.message-items
-          = render 'user_comments'
+      - if @comments.present?
+        .message-content
+          %ul.message-items
+            = render partial: 'user_comments',locals: { item: @item, comments: @comments}
 
-
-      .message-content
-        %form.message-form
+      - if user_signed_in?
+        .message-content
           %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          %input{ type: 'hidden',name: 'item_id',value: ''}
-          %input{ type: 'hidden',name: 'redirect_url_key',value: '',class: 'item_detail'}
-          %textarea{ type: 'text',name: 'body',class: 'textarea-default disabled'}
-          %button{ type: 'submit', class: 'message-submit btn-default btn-gray'}
-            %span 売り切れのためコメントできません
+          = form_for [@item, @comment] do |c|
+            - if @item.business_stats == 1
+              = c.text_area :text, class: 'textarea-default'
+              = c.submit "コメントする", data: { disable_with: "送信中..." },class: 'message-submit btn-default btn-gray'
+            - else
+              = c.text_area :text, class: 'textarea-default disabled'
+              = c.submit "売り切れのためコメントできません",:disabled => true, class: 'message-submit btn-default btn-gray'
+
 
   %ul.nav-item-link-prev-next.clearfix
     %li.nav-item-link-prev

@@ -16,7 +16,7 @@
             .items-card-num
               .items-card-num__price
                 = "¥ #{thousands_separator(item.price)}"
-              - if item.likes_count
+              - if item.likes_count != 0
                 .items-card-num__likes
                   %i.fa.fa-heart
                   %span
