@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20190329110113) do
     t.datetime "updated_at",               null: false
     t.text     "initial",    limit: 65535
     t.text     "intro",      limit: 65535
+
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
