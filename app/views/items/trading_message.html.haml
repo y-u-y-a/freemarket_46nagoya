@@ -133,8 +133,7 @@
                   悪い
           %p 評価のコメントを記入しましょう。
           %textarea.textarea-default{:name => "message", :placeholder => "コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。"}
-          %button.btn-default.btn-red{:disabled => "disabled", :type => "submit"}
-            評価を投稿する
+          = link_to "評価を投稿する", trading_page_item_path(@item.id), method: :post, class: "button btn-default btn-red"
 
 
       - if @item.delivery_status == 2 && @item.user_id == current_user.id
@@ -161,8 +160,7 @@
                   悪い
           %p 評価のコメントを記入しましょう。
           %textarea.textarea-default{:name => "message", :placeholder => "コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。"}
-          %button.btn-default.btn-red{:disabled => "disabled", :type => "submit"}
-            評価を投稿する
+          = link_to "評価を投稿する", pay_item_path(@item.id), method: :post, class: "button btn-default btn-red"
 
 
 

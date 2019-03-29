@@ -125,9 +125,10 @@ class ItemsController < ApplicationController
         :currency => 'jpy',
       )
       @item.buyer_id = current_user.id
+      @item.dlivery_status = '3'
       @item.business_stats = '3'
       if @item.save
-        redirect_to root_path, notice: '購入しました'
+        redirect_to trading_message_path, notice: '購入しました'
       else
         render :buy, notice: '購入出来ませんでした'
       end
@@ -141,11 +142,7 @@ class ItemsController < ApplicationController
   def trading_page
     @item = Item.find(params[:id])
     @item.delivery_status += 1
-    if @item.delivery_status < 3
-      @item.save
-    else
-      @item.business_stats = 3
-    end
+    @item.save
     redirect_to trading_message_item_path
   end
 
