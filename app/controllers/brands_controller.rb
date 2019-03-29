@@ -1,14 +1,17 @@
 class BrandsController < ApplicationController
 
-  before_action :category_in_brand, only: :show
-  before_action :set_search,        only: :show
+  before_action :category_in_brand, only: [:show, :brand_show]
+  before_action :set_search,        only: [:show, :brand_show]
+  before_action :set_category,      only: [:show, :brand_show]
 
   def show
-    # カテゴリーが選択される
-    @category = Category.find(params[:id])
-    # カテゴリーが持つブランドのレコードを抽出
-    @Brands = @category.brands
-    # 取得したレコードからinitialカラムの中だけを取得して配列で返す
-    @initials = @Brands.pluck(:initial).uniq
+    @category_index = Category.find(params[:id])
+    @brands = @category_index.brands
+    @initials = @brands.pluck(:initial).uniq
+  end
+
+  def brand_show
+    @brand = Brand.find(params[:id])
+    @items = @brand.items
   end
 end

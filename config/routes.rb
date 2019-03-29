@@ -60,5 +60,6 @@ Rails.application.routes.draw do
   end
 
   resources :brands, only: :show do
+    get :brand_show,          on: :member
   end
 end

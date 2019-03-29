@@ -1,5 +1,5 @@
-/ - breadcrumb :all_brands_show
-/ = render 'shared/header'
+- breadcrumb :all_brands_show
+= render 'shared/header'
 
 %main.l-container.clearfix
   .brand-wrapper
@@ -8,9 +8,8 @@
 
       .category-container.clearfix
         - @categories.each do |category|
-          .name-box
-            = link_to brand_path(category.id) do
-              = category.name
+          = link_to brand_path(category.id) do
+            = category.name
 
 
       .brand-initial-container.clearfix
@@ -23,7 +22,7 @@
       .brand-name-container
         .category-name
           %h3
-            = @category.name
+            = @category_index.name
 
         .brand-name-list
           - @initials.each do |initial|
@@ -32,13 +31,13 @@
                 = initial
 
             .brand-name__wrapper
-              - @Brands.each do |cateBra|
-                - if initial == cateBra.initial
+              - @brands.each do |brand|
+                - if initial == brand.initial
                   .brand-name__box--left
-                    %a{href: "#", class: "brand-name-link"}
+                    = link_to brand_show_brand_path(brand.id), class: "brand-name-link" do
                       .brand-name
                         %p
-                        = cateBra.name
+                        = brand.name
 
 = render 'shared/footer'
 

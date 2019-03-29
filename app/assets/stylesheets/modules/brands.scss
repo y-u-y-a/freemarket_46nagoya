@@ -11,7 +11,7 @@
     }
   }
   .category-container{
-    .name-box{
+    a{
       border-radius:4px;
       display:block;
       float:left;
@@ -22,11 +22,12 @@
       margin-right:10px;
       margin-bottom:10px;
       background-color:white;
-      a{
-        color:black;
-        p{
-        }
-      }
+      color:black;
+      box-shadow: 1px 1px 1px 1px rgba(14,14,14,0.05803);
+    }
+    a:hover{
+      background-color: $red;
+      color: $white;
     }
   }
   .brand-initial-container{
@@ -37,8 +38,6 @@
     .initial__box{
       padding-right:17px;
       float:left;
-      a{
-      }
     }
   }
   .brand-name-container{

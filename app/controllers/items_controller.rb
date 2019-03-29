@@ -102,12 +102,9 @@ class ItemsController < ApplicationController
   end
 
   def all_brands_show
-    # カテゴリーが選択される
-    @category = Category.find(1)
-    # カテゴリーが持つブランドのレコードを抽出
-    @Brands = @category.brands
-    # 取得したレコードからinitialカラムの中だけを取得して配列で返す
-    @initials = @Brands.pluck(:initial).uniq
+    @category_index = Category.find(1)
+    @brands = @category_index.brands
+    @initials = @brands.pluck(:initial).uniq
   end
 
   def all_categories_show
