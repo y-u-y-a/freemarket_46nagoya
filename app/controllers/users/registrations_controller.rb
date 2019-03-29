@@ -109,23 +109,27 @@ class Users::RegistrationsController < Devise::RegistrationsController
     )
     @address.save
 
-    # # # カードのトークン生成
-    # Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-    # card = Payjp::Token.create({
-    #   card: {
-    #     number:    session[:number],
-    #     exp_month: session[:exp_month],
-    #     exp_year:  session[:exp_year],
-    #     cvc:       session[:cvc]
-    #   }
-    # })
-    # #トークンとアドレスで顧客の生成
-    # customer = Payjp::Customer.create(
-    #   email: @user.email,
-    #   card:  card
-    # )
-    # # 顧客とユーザーの紐付け
-    # @user.update_attribute(:customer_id, customer.id)
+    # # カードのトークン生成
+
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    card = Payjp::Token.create({
+      card: {
+        number:        session[:number],
+        cvc:           session[:cvc],
+        exp_month:     session[:exp_month],
+        exp_year:      session[:exp_year]
+      }},
+      {
+        'X-Payjp-Direct-Token-Generate': 'true'
+      }
+    )
+    #トークンとアドレスで顧客の生成
+    customer = Payjp::Customer.create(
+      email: session[:email],
+      card:  card
+    )
+    # 顧客とユーザーの紐付け
+    @user.update_attribute(:customer_id, customer.id)
   end
 
 
