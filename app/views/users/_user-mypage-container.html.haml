@@ -2,13 +2,14 @@
   %ul.mypage-tab-container__tabs
     %li.two-tabs.active
       %h3
-        = link_to 'お知らせ','#',id: "mypage-tab-notification",'data-toggle':'tab'
+        %span{id: "mypage-tab-notification",'data-toggle':'tab'} お知らせ
+
     %li.two-tabs
       %h3
-        = link_to 'やることリスト','#',id: "mypage-tab-todo",'data-toggle':'tab'
+        %span{id: "mypage-tab-todo",'data-toggle':'tab'} やることリスト
 
   .tab-content
-    %ul#mypage-tab-notification.tab-content__mypage-item.tab-name
+    %ul.tab-content__mypage-item.tab-name.notification-lists
       %li
         = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
           %i.fa.fa-angle-right
@@ -74,4 +75,23 @@
                 1 時間前
 
       %li.mypage-go-list
-        = link_to '一覧を見る','#'
+        = link_to '一覧を見る',notification_users_path
+
+    %ul.tab-content__mypage-item.tab-name.todo-lists
+      - @items.first(6).each do |item|
+        %li
+          = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+            %i.fa.fa-angle-right
+            %figure
+              = image_tag item.item_images.first.image,alt: ""
+            .tab-content__mypage-item__link__body
+              .tab-content__mypage-item__link__body__text
+                取引相手から「#{item.name}」の取引メッセージがあります。返信をお願いします
+              %time
+                %i.fa.fa-clock-o
+                %span
+                  1 時間前
+
+
+      %li.mypage-go-list
+        = link_to '一覧を見る',todo_users_path
