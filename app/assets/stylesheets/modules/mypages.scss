@@ -79,7 +79,7 @@
         vertical-align: top;
         h3 {
           font-size: 22px;
-          a {
+          a, span {
             display: block;
             color: $light_black;
             font-size: 16px;
@@ -118,6 +118,7 @@
             left: 0;
             z-index: 1;
             width: 100%;
+            height: 100%;
           }
         }
         &__body {
