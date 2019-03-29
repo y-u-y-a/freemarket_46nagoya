@@ -425,9 +425,20 @@
               }
               .message-icon-right {
                 float: right;
+                form {
+                  float: left;
+                }
                 button {
                   border: none;
                   .fa-flag {
+                    color: #aaa;
+                    background: #eef0f4;
+                  }
+                }
+                .delete-comment {
+                  float: right;
+                  margin: 0 0 0 8px;
+                  i {
                     color: #aaa;
                     background: #eef0f4;
                   }

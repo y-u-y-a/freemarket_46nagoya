@@ -1,4 +1,5 @@
-- comments.each do |comment|
+- comments.each_with_index do |comment, i|
+  = render partial: 'delete-comment-overlay',locals: {item: item, comment: comment}
   - if comment.no_comment == 1
     %li.clearfix
       .message-user
@@ -7,7 +8,7 @@
             = image_tag '//www-mercari-jp.akamaized.net/assets/img/common/common/user-icon.svg?2845599746'
           %figcaption.bold
       .message-body
-        .message-body-text 出品者がコメントを削除しました
+        .message-body-text{id: "comment_id_#{i}"} 出品者がコメントを削除しました
         .message-icons.clearfix
           %time.message-icon-left
             %i.fa.fa-clock-o
@@ -34,6 +35,10 @@
               %form
                 %button{ type: 'submit'}
                   %i.fa.fa-flag
+              - if current_user&.id == item.user_id
+                .delete-comment
+                  = button_tag type: 'button',id: "delete-comment-btn_#{comment.id}",class: "delete-comment-btn",style: {"touch-action":"manipulation"}, remote: true do
+                    %i.fa.fa-trash
           %i.fa.fa-caret-left
 
     - else
@@ -56,4 +61,8 @@
               %form
                 %button{ type: 'submit'}
                   %i.fa.fa-flag
+              - if current_user&.id == item.user_id
+                .delete-comment
+                  = button_tag type: 'button',id: "delete-comment-btn_#{comment.id}",class: "delete-comment-btn",style: {"touch-action":"manipulation"}, remote: true do
+                    %i.fa.fa-trash
           %i.fa.fa-caret-left
