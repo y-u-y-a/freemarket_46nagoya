@@ -257,3 +257,30 @@ class Scraping
     category.save
   end
 end
+
+
+
+
+def self.get_brands_intro
+end
+
+
+def self.update(id,intro)
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
