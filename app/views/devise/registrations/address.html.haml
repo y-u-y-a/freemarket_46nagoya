@@ -33,35 +33,12 @@
             %span.form-require.card-form__label 必須
             %br
             .select-wrap
-              %select#payment_card_expire_mm.select-wrap__default{name: "exp_month"}
-                %option{value: "01"} 01
-                %option{value: "02"} 02
-                %option{value: "03"} 03
-                %option{value: "04"} 04
-                %option{value: "05"} 05
-                %option{value: "06"} 06
-                %option{value: "07"} 07
-                %option{value: "08"} 08
-                %option{value: "09"} 09
-                %option{value: "10"} 10
-                %option{value: "11"} 11
-                %option{value: "12"} 12
+              = f.collection_select :exp_month, CardMonth.all,:id,:name,{} ,{class: "select-wrap__default"}
               %i.fa.fa-angle-down.select-wrap__icon
             %span 月
             %ul#expire-mm-error-wrapper.has-error-text
             .select-wrap
-              %select#payment_card_expire_yy.select-wrap__default{name: "exp_year"}
-                %option{value: "19"} 19
-                %option{value: "20"} 20
-                %option{value: "21"} 21
-                %option{value: "22"} 22
-                %option{value: "23"} 23
-                %option{value: "24"} 24
-                %option{value: "25"} 25
-                %option{value: "26"} 26
-                %option{value: "27"} 27
-                %option{value: "28"} 28
-                %option{value: "29"} 29
+              = f.collection_select :exp_year, CardYear.all,:value,:name, {} ,{class: "select-wrap__default"}
               %i.fa.fa-angle-down.select-wrap__icon
             %span 年
             %ul#expire-yy-error-wrapper.has-error-text

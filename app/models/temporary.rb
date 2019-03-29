@@ -1,0 +1,2 @@
+class Temporary < ApplicationRecord
+end
