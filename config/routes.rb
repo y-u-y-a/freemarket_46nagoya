@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get  'to_signup' => 'users/registrations#to_signup'
-    post 'signup/phone_number' => 'users/registrations#phone_number'
+    post 'signup/profile' => 'users/registrations#profile'
     post 'signup/address' => 'users/registrations#address'
     post 'signup/credit' => 'users/registrations#credit'
   end

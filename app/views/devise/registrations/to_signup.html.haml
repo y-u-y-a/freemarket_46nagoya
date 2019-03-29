@@ -8,18 +8,16 @@
       .signup-container__inner
         .inner__content
 
-          %button.btn-default.btn-mail
-            = link_to new_user_registration_path do
+          = link_to new_user_registration_path do
+            %button.btn-default.btn-mail
               %span メールアドレスで登録
               = fa_icon "envelope lg", class: "icon-mail"
-
-          %button.btn-default.btn-sns.btn-facebook
-            = link_to user_facebook_omniauth_authorize_path do
+          = link_to user_facebook_omniauth_authorize_path do
+            %button.btn-default.btn-sns.btn-facebook
               %span Facebookで登録
               = fa_icon "facebook-square lg", class: "icon-facebook"
-
-          %button.btn-default.btn-sns.btn-google
-            = link_to user_google_oauth2_omniauth_authorize_path do
+          = link_to user_google_oauth2_omniauth_authorize_path do
+            %button.btn-default.btn-sns.btn-google
               %span Googleで登録
               = fa_icon 'google',class: "icon-google"
 
