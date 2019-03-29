@@ -5,7 +5,8 @@
         .form-group
           .select-wrap
             = f.sort_fields do |s|
-              = s.sort_select prompt: "並び替え"
+              = s.sort_select prompt: "並び替え",class: "hidden"
+            = f.collection_select :id , ResultOrder.all, :id, :name, {} ,{class: "select-default"}
             = fa_icon 'angle-bown'
       .search-dropdown
         %h3.search-dropdown__large-text
@@ -43,7 +44,7 @@
             = fa_icon "bitcoin"
             %span 価格
           .select-wrap{'data-search' => 'price'}
-            = f.collection_select :price_cont , PriceSearch.all, :id, :name, {:include_blank => '選択してください'} ,{class: "select-default"}
+            = f.collection_select :price_cont , PriceSearch.all, :id, :name, {} ,{class: "select-default"}
             = fa_icon 'angle-down', class: "price-icon"
             %div{"data-search" => "price"}
             = f.search_field :price_gteq_any , value: "",type: "number",value: "",name: "q[price_gteq_any][]",placeholder: "¥ Min",class: "price","data-search" => "price-min"

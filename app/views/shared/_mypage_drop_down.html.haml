@@ -11,7 +11,8 @@
         = link_to '評価: 0','#'
 
       %li.header-mypage-box__state__listing__li
-        = link_to "出品数: #{@user&.items&.count}",'#'
+        = link_to exhibition_users_path(current_user) do
+          出品数: #{@user&.items&.count}
 
     %ul.header-mypage-box__state__points
       %li.header-mypage-box__state__points__li
