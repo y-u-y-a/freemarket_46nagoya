@@ -6,9 +6,11 @@ class User < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
+
   has_many :items
   has_one :address
   has_one :profile
+  has_many :comments ,dependent: :delete_all
 
   validates :nickname, presence: true
   validates :password, length: { minimum: 6 }   # 6文字以上で有効
@@ -21,16 +23,17 @@ class User < ApplicationRecord
         uid:      auth.uid,
         provider: auth.provider,
         nickname:     auth.info.name,
-        email:    User.dummy_email(auth),
+        email:    auth.info.email,
+        token:    auth.credentials.token,
         password: Devise.friendly_token[0, 20]
         )
     end
     user
   end
 
-  private
+  # private
 
-  def self.dummy_email(auth)
-    "#{auth.uid}-#{auth.provider}@example.com"
-  end
+  # def self.dummy_email(auth)
+  #   "#{auth.uid}-#{auth.provider}@example.com"
+  # end
 end
