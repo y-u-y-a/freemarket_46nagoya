@@ -14,41 +14,31 @@
 
 
       .brand-initial-container.clearfix
-        .initial__box.clearfix
-          %a{href: "#"}
-            %p ア
-        .initial__box.clearfix
-          %a{href: "#"}
-            %p イ
-        .initial__box.clearfix
-          %a{href: "#"}
-            %p ウ
-        .initial__box.clearfix
-          %a{href: "#"}
-            %p エ
-        .initial__box.clearfix
-          %a{href: "#"}
-            %p オ
+        - @initials.each do |initial|
+          .initial__box.clearfix
+            %a{href: "#"}
+              %p
+              = initial
 
       .brand-name-container
         .category-name
-          %h3 レディース
+          %h3
+            = @category.name
 
         .brand-name-list
-          - @bike_initial.each do |initial|
+          - @initials.each do |initial|
             .brand-name__initial
               %h4
                 = initial
 
-
-            / .brand-name__wrapper
-            /   - @category.category_brands.each do |category_brand|
-            /     .brand-name__box--left
-            /       %a{href: "#", class: "brand-name-link"}
-            /         .brand-name
-            /           %p
-            /           - if initial == category_brand.brand.initial
-            /             = category_brand.brand.name
+            .brand-name__wrapper
+              - @Brands.each do |cateBra|
+                - if initial == cateBra.initial
+                  .brand-name__box--left
+                    %a{href: "#", class: "brand-name-link"}
+                      .brand-name
+                        %p
+                        = cateBra.name
 
 = render 'shared/footer'
 

@@ -32,9 +32,10 @@
   .brand-initial-container{
     clear:both;
     display:block;
-    padding-top:25px;
+    padding: 25px 0px 25px 0px;
+    font-size: 15px;
     .initial__box{
-      padding-right:10px;
+      padding-right:17px;
       float:left;
       a{
       }
@@ -69,7 +70,8 @@
         .brand-name__box--left{
           width:50%;
           float:left;
-          padding:10px 10px;
+          padding:25px 40px;
+          font-size:18px;
         }
         .brand-name__box--right{
           width:50%;

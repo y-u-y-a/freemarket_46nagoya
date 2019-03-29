@@ -1,10 +1,11 @@
-/ - breadcrumb :all_brands_show
-/ = render 'shared/header'
+- breadcrumb :all_brands_show
+= render 'shared/header'
 
 %main.l-container.clearfix
   .brand-wrapper
     .brand-index.clearfix
       %h2 ブランド一覧
+
 
       .category-container.clearfix
         - @categories.each do |category|
@@ -14,44 +15,31 @@
 
 
       .brand-initial-container.clearfix
-        .initial__box.clearfix
-          %a{href: "#"}
-            %p ア
-        .initial__box.clearfix
-          %a{href: "#"}
-            %p イ
-        .initial__box.clearfix
-          %a{href: "#"}
-            %p ウ
-        .initial__box.clearfix
-          %a{href: "#"}
-            %p エ
-        .initial__box.clearfix
-          %a{href: "#"}
-            %p オ
+        - @initials.each do |initial|
+          .initial__box.clearfix
+            %a{href: "#"}
+              %p
+              = initial
 
       .brand-name-container
         .category-name
           %h3
             = @category.name
 
-
         .brand-name-list
-          - @categoryBrands.each do |category_brand|
+          - @initials.each do |initial|
             .brand-name__initial
               %h4
-                = category_brand.brand.initial
-
-
+                = initial
 
             .brand-name__wrapper
-              - @categoryBrands.each do |cateBra|
-                .brand-name__box--left
-                  %a{href: "#", class: "brand-name-link"}
-                    .brand-name
-                      %p
-                      - if category_brand.brand
-                      = cateBra.brand.name
+              - @Brands.each do |cateBra|
+                - if initial == cateBra.initial
+                  .brand-name__box--left
+                    %a{href: "#", class: "brand-name-link"}
+                      .brand-name
+                        %p
+                        = cateBra.name
 
 = render 'shared/footer'
 
