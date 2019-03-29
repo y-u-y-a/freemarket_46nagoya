@@ -4,21 +4,30 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-  prepend_before_action :check_captcha, only: [:create]
-  prepend_before_action :customize_sign_up_params, only: [:create]
-  before_action :set_payjp_user, only: [:credit]
-  protect_from_forgery :except => [ :card_create, :card_delete, :payment_method, :card_registration]
+  prepend_before_action :check_captcha, only: [:create, :credit]
+  prepend_before_action :customize_sign_up_params, only: [:create, :credit]
+  # before_action :set_payjp_user, only: [:credit]
+  protect_from_forgery except: [ :card_create, :card_delete, :payment_method, :card_registration]
 
   def to_signup
   end
 
   def create
-    super
-    session[:user_id] = resource.id
+    session[:nickname] = params[:session][:nickname]
+    session[:email] = params[:session][:email]
+    session[:password] = params[:session][:password]
+    session[:password_confirmation] = params[:session][:password_confirmation]
+
+    @temporary = Temporary.create(
+      nickname:              session[:nickname],
+      email:                 session[:email],
+      password:              session[:password],
+      password_confirmation: session[:password_confirmation],
+    )
+    session[:user_id] = @temporary.id
   end
 
-  def phone_number
-    # profilesテーブル
+  def profile
     session[:first_name] = params[:session][:first_name]
     session[:last_name] = params[:session][:last_name]
     session[:first_name_kana] = params[:session][:first_name_kana]
@@ -26,62 +35,97 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session[:birth_year] = params[:session][:birth_year]
     session[:birth_month] = params[:session][:birth_month]
     session[:birth_day] = params[:session][:birth_day]
-    # テーブルに保存する処理
-    @profile = Profile.new(
-      first_name: session[:first_name],
-      last_name: session[:last_name],
-      first_name_kana: session[:first_name_kana],
-      last_name_kana: session[:last_name_kana],
-      birth_year: session[:birth_year],
-      birth_month: session[:birth_month],
-      birth_day: session[:birth_day],
-      user_id: session[:user_id]
-      )
-    @profile.save
+
+    @temporary = Temporary.find(session[:user_id]).update(
+      first_name:       session[:first_name],
+      last_name:        session[:last_name],
+      first_name_kana:  session[:first_name_kana],
+      last_name_kana:   session[:last_name_kana],
+      birth_year:       session[:birth_year],
+      birth_month:      session[:birth_month],
+      birth_day:        session[:birth_day],
+    )
   end
 
   def address
-    # sessionに住所を格納する処理
     session[:post_number] = params[:session][:post_number]
     session[:prefecture] = params[:session][:prefecture]
     session[:city] = params[:session][:city]
     session[:town] = params[:session][:town]
     session[:building] = params[:session][:building]
-    # テーブルに保存する処理
-    @address = Address.new(
-      post_number: session[:post_number],
+    session[:phone_number] = params[:session][:phone_number]
+
+    @temporary = Temporary.find(session[:user_id]).update(
+      post_number:   session[:post_number],
       prefecture_id: session[:prefecture],
-      city: session[:city],
-      town: session[:town],
-      building: session[:building],
-      phone_number: session[:phone_number],
-      user_id: session[:user_id]
+      city:          session[:city],
+      town:          session[:town],
+      building:      session[:building],
+      phone_number:  session[:phone_number],
     )
-    @address.save
   end
 
   def credit
-    # sessionに情報を格納する処理
     session[:number] = params[:session][:number]
     session[:exp_month] = params[:session][:exp_month]
     session[:exp_year] = params[:session][:exp_year]
     session[:cvc] = params[:session][:cvc]
-    # # カードのトークン生成
-    card = Payjp::Token.create({
-      card: {
-        number: session[:number],
-        exp_month: session[:exp_month],
-        exp_year: session[:exp_year],
-        cvc: session[:cvc]
-      }
-    })
-    #トークンとアドレスで顧客の生成
-    customer = Payjp::Customer.create(
-      email: @user.email,
-      card: card
+
+    # userの正規登録
+    @user = User.new(
+      nickname:              session[:nickname],
+      email:                 session[:email],
+      password:              session[:password],
+      password_confirmation: session[:password_confirmation],
     )
-    # 顧客とユーザーの紐付け
-    @user.update_attribute(:customer_id, customer.id)
+    @user.save
+    sign_up(@user, current_user)
+    if @user.save
+      Temporary.find(session[:user_id]).destroy
+    end
+
+    # プロフィールの正規登録
+    @profile = Profile.new(
+      first_name:      session[:first_name],
+      last_name:       session[:last_name],
+      first_name_kana: session[:first_name_kana],
+      last_name_kana:  session[:last_name_kana],
+      birth_year:      session[:birth_year],
+      birth_month:     session[:birth_month],
+      birth_day:       session[:birth_day],
+      user_id:         @user.id
+    )
+    @profile.save
+
+    # 住所の正規登録
+    @address = Address.new(
+      post_number:   session[:post_number],
+      prefecture_id: session[:prefecture],
+      city:          session[:city],
+      town:          session[:town],
+      building:      session[:building],
+      phone_number:  session[:phone_number],
+      user_id:       @user.id
+    )
+    @address.save
+
+    # # # カードのトークン生成
+    # Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    # card = Payjp::Token.create({
+    #   card: {
+    #     number:    session[:number],
+    #     exp_month: session[:exp_month],
+    #     exp_year:  session[:exp_year],
+    #     cvc:       session[:cvc]
+    #   }
+    # })
+    # #トークンとアドレスで顧客の生成
+    # customer = Payjp::Customer.create(
+    #   email: @user.email,
+    #   card:  card
+    # )
+    # # 顧客とユーザーの紐付け
+    # @user.update_attribute(:customer_id, customer.id)
   end
 
 
@@ -99,10 +143,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def set_payjp_user
-    @user = User.find(current_user)
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-  end
+  # def set_payjp_user
+  #   @user = User.find(session[:user_id])
+  #   Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+  # end
 end
   # GET /resource/sign_up
   # def new
