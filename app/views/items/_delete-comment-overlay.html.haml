@@ -1,0 +1,14 @@
+%aside.modal.is-show.is-comment-animate{id: "comment_text_#{comment.id}"}
+  .modal-inner.modal-banner
+    .modal-body
+      .modal-head.bold
+        確認
+      .comment-text
+        = comment.text
+      .info
+        本当にこのコメントを削除してもよろしいですか？
+    .clearfix
+      .modal-btn.modal-btn-cancel{id: "comment_delete_btn_#{comment.id}"}
+        キャンセル
+      = link_to "/items/#{item.id}/comments/#{comment.id}",method: :delete do
+        = submit_tag '削除する', class: 'modal-btn modal-btn-submit'

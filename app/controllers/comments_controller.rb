@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find_by(user_id: current_user.id, item_id: params[:item_id])
+    @comment = Comment.find(params[:id])
     if @comment.destroy
       redirect_to item_path(params[:item_id])
     else

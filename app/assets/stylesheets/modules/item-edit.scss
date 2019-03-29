@@ -322,7 +322,11 @@
   }
 }
 
-.modal.is-animate {
+.modal .is-animate {
+  opacity: 1;
+  transform: translate(0,0);
+}
+.modal .is-comment-animate {
   opacity: 1;
   transform: translate(0,0);
 }
@@ -346,6 +350,14 @@
     .modal-body {
       padding: 64px;
       line-height: 1.5;
+      .comment-text {
+        margin: 16px 0 0;
+        padding: 16px;
+        background: #eee;
+      }
+      .info {
+        margin-top: 16px;
+      }
       .modal-head {
         font-size: 16px;
         font-weight: 600;
@@ -364,7 +376,7 @@
         text-align: center;
         // line-height: 49px;
       }
-      form {
+      form ,a {
         .modal-btn-submit {
           float: right;
           border-left: $border_gray;
