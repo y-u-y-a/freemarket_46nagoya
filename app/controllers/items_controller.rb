@@ -65,7 +65,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    10.times {@item.item_images.build}
+    10.times{@item.item_images}
   end
 
   def update

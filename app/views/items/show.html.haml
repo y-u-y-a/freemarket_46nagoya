@@ -151,7 +151,7 @@
           = form_for [@item, @comment] do |c|
             - if @item.business_stats == 1
               = c.text_area :text, class: 'textarea-default'
-              = c.submit "コメントする", data: { disable_with: "送信中..." },class: 'message-submit btn-default btn-gray'
+              = c.submit "コメントする", data: { disable_with: "送信中..." },class: 'message-submit btn-default btn-gray',id: "new-comment-submit"
             - else
               = c.text_area :text, class: 'textarea-default disabled'
               = c.submit "売り切れのためコメントできません",:disabled => true, class: 'message-submit btn-default btn-gray'

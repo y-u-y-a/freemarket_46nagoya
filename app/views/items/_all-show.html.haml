@@ -10,14 +10,14 @@
     - if request.path_info == '/items/all_categories_show'
       .category-list-menu.text-center
         - @category.each do |category|
-          = link_to category_path(category.id),class: "white category-list-menu__link-name" do
+          = link_to "##{category.id}",class: "white category-list-menu__link-name" do
             %div
               = category.name
 
     - @category.each do |category|
       .category-lists-boxes
         .category-lists-box.white
-          .category-lists-box__root-category-name.font-white.red
+          .category-lists-box__root-category-name.font-white.red{id: "#{category.id}"}
             %h3
               = category.name
           .category-lists-box__inner-box
@@ -36,4 +36,5 @@
                     %p
                       = link_to category_path(grand_child_category.id) do
                         = grand_child_category.name
+
 

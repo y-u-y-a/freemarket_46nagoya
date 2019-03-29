@@ -1,0 +1,77 @@
+%section.mypage-tab-container
+  %ul.mypage-tab-container__tabs
+    %li.two-tabs.active
+      %h3
+        = link_to 'お知らせ','#',id: "mypage-tab-notification",'data-toggle':'tab'
+    %li.two-tabs
+      %h3
+        = link_to 'やることリスト','#',id: "mypage-tab-todo",'data-toggle':'tab'
+
+  .tab-content
+    %ul#mypage-tab-notification.tab-content__mypage-item.tab-name
+      %li
+        = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+          %i.fa.fa-angle-right
+          %figure
+            = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+          .tab-content__mypage-item__link__body
+            .tab-content__mypage-item__link__body__text
+              明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+            %time
+              %i.fa.fa-clock-o
+              %span
+                1 時間前
+      %li
+        = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+          %i.fa.fa-angle-right
+          %figure
+            = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+          .tab-content__mypage-item__link__body
+            .tab-content__mypage-item__link__body__text
+              明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+            %time
+              %i.fa.fa-clock-o
+              %span
+                1 時間前
+
+      %li
+        = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+          %i.fa.fa-angle-right
+          %figure
+            = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+          .tab-content__mypage-item__link__body
+            .tab-content__mypage-item__link__body__text
+              明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+            %time
+              %i.fa.fa-clock-o
+              %span
+                1 時間前
+
+      %li
+        = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+          %i.fa.fa-angle-right
+          %figure
+            = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+          .tab-content__mypage-item__link__body
+            .tab-content__mypage-item__link__body__text
+              明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+            %time
+              %i.fa.fa-clock-o
+              %span
+                1 時間前
+
+      %li
+        = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+          %i.fa.fa-angle-right
+          %figure
+            = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+          .tab-content__mypage-item__link__body
+            .tab-content__mypage-item__link__body__text
+              明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+            %time
+              %i.fa.fa-clock-o
+              %span
+                1 時間前
+
+      %li.mypage-go-list
+        = link_to '一覧を見る','#'

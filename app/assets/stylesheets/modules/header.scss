@@ -239,6 +239,7 @@
                     color: $light_black;
                     font-size: 14px;
                     display: block;
+                    @include clearfix;
                   }
                 }
               }
@@ -273,7 +274,13 @@
                     }
                     .right {
                       float: right;
+                      .mypage-nav-icon {
+                        color: #ccc;
+                      }
                     }
+                  }
+                  a:hover {
+                    opacity: 0.6;
                   }
                 }
               }
@@ -298,12 +305,22 @@
                   .mypage-nav-icon {
                     position: absolute;
                     top: 50%;
-                    right: 16px;
+                    right: 18px;
                     color: #ccc;
                     -webkit-transform: translate(0, -50%);
                     transform: translate(0, -50%);
                     -webkit-transition: all ease-out .2s;
                     transition: all ease-out .2s;
+                    font-size: 1.5rem;
+                  }
+                }
+                .link-item:hover {
+                  background:#f8f8f8;
+                  .mypage-nav-icon {
+                    transition-duration: 0.3s;
+                    color: black;
+                    font-size: 27px;
+                    transform: translate(7px,-13px);
                   }
                 }
               }
