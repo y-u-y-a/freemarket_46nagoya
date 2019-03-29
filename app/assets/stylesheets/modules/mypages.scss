@@ -25,7 +25,7 @@
         display: block;
       }
       h2 {
-        display: block;
+        display: inline-block;
         margin-top: 0.83em;
         font-weight: bold;
       }
@@ -43,6 +43,13 @@
           font-size: 16px;
           font-weight: 600;
         }
+      }
+    }
+    a:hover {
+      opacity: 0.7;
+      h2 {
+        border-bottom: 1px solid black;
+        margin-bottom: -1px;
       }
     }
   }
@@ -138,6 +145,9 @@
           -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
         }
+      }
+      &__link:hover {
+        background-color: #f8f8f8;
       }
       .mypage-go-list {
         border: 0;
@@ -247,6 +257,9 @@
         color: #ccc;
         font-weight: bold;
       }
+    }
+    .tab-hidden {
+      display: none;
     }
   }
 }
