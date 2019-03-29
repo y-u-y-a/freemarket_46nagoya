@@ -42,6 +42,7 @@ Things you may want to cover:
 |user_id|integer|null: false|
 |buyer_id|integer||
 |business_stats|integer|null: false|
+|delivery_status|integer|null: false|
 
 ### Association
 - has_many   comments    ,dependent: :delete_all

@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   # before_action :authenticate_user!
 
-  before_action :set_category,     only: [ :index, :new, :all_brands_show, :all_categories_show, :show, :item_search_result]
+  before_action :set_category,     only: [ :index, :new, :all_brands_show, :all_categories_show, :show, :item_search_result, :trading_message]
   before_action :set_item,         only: [:show ,:edit, :update, :destroy, :buy]
   before_action :set_payjp_user ,  only: [:buy, :pay]
   before_action :set_search
@@ -132,6 +132,21 @@ class ItemsController < ApplicationController
         render :buy, notice: '購入出来ませんでした'
       end
     end
+  end
+
+  def trading_message
+    @item = Item.find(params[:id])
+  end
+
+  def trading_page
+    @item = Item.find(params[:id])
+    @item.delivery_status += 1
+    if @item.delivery_status < 3
+      @item.save
+    else
+      @item.business_stats = 3
+    end
+    redirect_to trading_message_item_path
   end
 
   private

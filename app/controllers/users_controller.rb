@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!, only: [:payment_method, :card_registration, :indentification, :card_create, :card_delete]
 
-  before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :trading_message]
+  before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page]
   # ヘッダーに使うカテゴリを読み込む
   before_action :set_user
   # , only: [:trading, :purchased,:index,:show,:update]
@@ -68,17 +68,10 @@ class UsersController < ApplicationController
     @item = Item.where(business_stats: 3).where(buyer_id: current_user.id)
   end
 
-<<<<<<< HEAD
   def transaction_page
     @item = @user.items.find(params[:id])
   end
 
-  def trading_message
-    @item2 = Item.where(business_stats: 2).where(buyer_id: current_user.id)
-  end
-
-=======
->>>>>>> tsurutadesu/master
   def card_create
     #顧客の作成
     customer = Payjp::Customer.create(

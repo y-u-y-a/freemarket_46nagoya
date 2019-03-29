@@ -34,8 +34,6 @@ Rails.application.routes.draw do
     get :exhibition,           on: :collection
     get :seller_trading,       on: :collection
     get :sold_page,            on: :collection
-    get :trading_message,      on: :collection
-    get :trading_evaluation,   on: :collection
     resources :addresses, only: [:edit, :update]
   end
 
@@ -52,6 +50,8 @@ Rails.application.routes.draw do
     get :item_search_result,   on: :collection
     get :buy,                  on: :member
     post :pay,                 on: :member
+    get :trading_message,      on: :member
+    post :trading_page,        on: :member
   end
 
   resources :categories, only: :show do
