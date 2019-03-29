@@ -100,3 +100,27 @@
     color: $white;
   }
 }
+
+.top-scroll-btn {
+  bottom: 52px;
+  left: 52px;
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  z-index: 10;
+  border-radius: 50%;
+  background: #ea352d;
+  text-align: center;
+  &__link {
+    text-decoration: none;
+  }
+  &__text {
+    font-size: 14px;
+    color: $white;
+  }
+  .icon-up {
+    font-size: 40px;
+    margin-top: 12px;
+    color: $white;
+  }
+}
