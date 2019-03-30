@@ -137,6 +137,11 @@ class ItemsController < ApplicationController
 
   def trading_message
     @item = Item.find(params[:id])
+    @buyer = User.find(@item.buyer_id)
+    @address = Address.find_by(user_id: @item.buyer_id)
+    @prefecture = Prefecture.find(@address.prefecture_id)
+    @message = Message.new
+    @messages = Message.where(user_id: @item.user_id).where(buyer_id: current_user.id)
   end
 
   def trading_page
@@ -152,6 +157,13 @@ class ItemsController < ApplicationController
     redirect_to trading_message_item_path
   end
 
+  def message
+    @message = Item.find(params[:id])
+    @message = Message.new(message_params)
+    @message = Message.save
+    redirect_to trading_message_item_path
+  end
+
   private
   def item_params
     params.require(:item).permit( :name, :price, :explain, :postage, :region, :state, :shipping_date, :shipping_way,:size,:brand_id, :category_id, :child_category_id, :grand_child_category_id, item_images_attributes: [:image]).merge(user_id: current_user.id, business_stats: '1')
@@ -163,6 +175,10 @@ class ItemsController < ApplicationController
 
   def pay_item_params
     params.permit(:item_id)
+  end
+
+  def message_params
+    params.require(:message).permit(:text).merge(user_id: current_user.id, item_id: params[:item_id])
   end
 
   def get_category

@@ -168,7 +168,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false|
-|buyer_id|integer|null: false|
+|item_id|integer|null: false|
 |text|text|null: false|
 
 ### Association

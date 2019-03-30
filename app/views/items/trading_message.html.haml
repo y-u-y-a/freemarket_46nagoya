@@ -203,13 +203,11 @@
                     %span 0 秒前
                 %i.icon-balloon
         .message-content2
-          %form.message-form{:action => "", :method => "POST"}
-            %input{:name => "__csrf_value", :type => "hidden", :value => "a50969b0ebdc51fb05cb19bc49a1e9db2011786b93ef65c6eb24ee21407267529e12152d425a4ff8c7423eab9d587880161901ad69b4c4d8c5c9808af854f5dd6"}/
+          .message-form
             %p 取引メッセージの内容は、必要に応じて事務局で確認しています
-            %input{:name => "item_id", :type => "hidden", :value => "m18251864076"}/
-            %textarea.textarea-default{:name => "body", :type => "text", :value => ""}
-            %button.message-submit.btn-default.btn-gray{:type => "submit"}
-              %span 取引メッセージを送る
+            = form_for [@item,@message], url: message_item_path(@item.buyer_id) do |f|
+              = f.text_area :text, class: 'textarea-default'
+              = f.submit "取引メッセージを送る", data: { disable_with: "送信中..." },class: 'message-submit btn-default btn-gray',id: "new-comment-submit"
         %aside.modal{"data-close" => "modal", "data-modal" => "delete-comment"}
           .modal-inner.modal-banner
             .modal-body
@@ -285,12 +283,13 @@
             %span.transact-info-table-cell お届け先
             %ul.transact-info-table-cell
               %li
-                %p 〒451-0053
                 %p
-                  愛知県名古屋市中村区0-00-00
+                  = "〒 #{zip_code(@address.post_number)}"
+                %p
+                  = "#{@prefecture.name} #{@address.city} #{@address.town} #{@address.building}"
                 %p
                   %span.buyer-name
-                    メルカリタロウ
+                    = @buyer.nickname
                   %span.sama
                     様
     %section.l-side-container

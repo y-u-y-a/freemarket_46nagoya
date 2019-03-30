@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     post :pay,                 on: :member
     get :trading_message,      on: :member
     post :trading_page,        on: :member
+    post :message,             on: :member
   end
 
   resources :categories, only: :show do

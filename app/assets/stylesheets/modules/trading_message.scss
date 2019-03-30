@@ -483,7 +483,7 @@
           padding: 24px;
           height: 248px;
           @include clearfix;
-          form {
+          .message-form {
             margin: 0;
             padding: 0;
             border: 0;
@@ -528,17 +528,15 @@
               text-align: center;
             }
             .btn-gray {
+              color: #fff;
               background: #aaa;
               border: 1px solid #aaa;
-              color: #fff;
             }
             .btn-default {
               transition: all ease-out .3s;
               cursor: pointer;
-              span {
-                font-size: 14px;
-                vertical-align: middle;
-              }
+              font-size: 14px;
+              vertical-align: middle;
             }
           }
         }
