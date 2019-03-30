@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!, only: [:payment_method, :card_registration, :indentification, :card_create, :card_delete]
 
-  before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page]
+  before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :notification, :todo]
   # ヘッダーに使うカテゴリを読み込む
   before_action :set_user
   # , only: [:trading, :purchased,:index,:show,:update]
@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   # 外部からのAPIを受ける特定アクションのみ除外
 
   def index
+    @items = Item.where(user_id: current_user)
   end
 
   def show
@@ -33,6 +34,13 @@ class UsersController < ApplicationController
   end
 
   def logout
+  end
+
+  def notification
+  end
+
+  def todo
+    @items = Item.where(user_id: current_user)
   end
 
   def payment_method
@@ -112,7 +120,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(current_user)
+    @user = User.includes(:items).find(current_user)
   end
 
   def set_payjp_user

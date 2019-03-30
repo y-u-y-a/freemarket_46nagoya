@@ -1,0 +1,23 @@
+%ul.mypage-tab-container__tabs
+  - url = request.path_info
+  - if url.match(notification_users_path)
+    %li.two-tabs.active
+      %h3
+        = link_to notification_users_path,id: "mypage-tab-notification",'data-toggle':'tab' do
+          お知らせ
+
+    %li.two-tabs
+      %h3
+        = link_to todo_users_path,id: "mypage-tab-todo",'data-toggle':'tab' do
+          やることリスト
+
+  - if url.match(todo_users_path)
+    %li.two-tabs
+      %h3
+        = link_to notification_users_path,id: "mypage-tab-notification",'data-toggle':'tab' do
+          お知らせ
+
+    %li.two-tabs.active
+      %h3
+        = link_to todo_users_path,id: "mypage-tab-todo",'data-toggle':'tab' do
+          やることリスト

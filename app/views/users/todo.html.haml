@@ -1,0 +1,27 @@
+- breadcrumb :todo
+= render 'shared/header'
+%main.l-container.clearfix
+  = render 'shared/l-side'
+  .l-content
+    %section.mypage-tab-container
+      = render 'shared/todo_header'
+
+      .tab-content
+        %ul.tab-content__mypage-item.tab-name
+          - @items.first(6).each do |item|
+            %li
+              = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+                %i.fa.fa-angle-right
+                %figure
+                  = image_tag item.item_images.first.image,alt: ""
+                .tab-content__mypage-item__link__body
+                  .tab-content__mypage-item__link__body__text
+                    取引相手から「#{item.name}」の取引メッセージがあります。返信をお願いします
+                  %time
+                    %i.fa.fa-clock-o
+                    %span
+                      1 時間前
+
+= render 'shared/footer'
+
+= render 'shared/sell-button'

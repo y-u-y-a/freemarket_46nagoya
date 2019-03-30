@@ -143,8 +143,13 @@
               -moz-appearance: none;
             }
           }
-          span {
+          .form-require {
             margin-left: 10px;
+            background-color:#ea352d;
+            color:white;
+            padding: 2px;
+            border-radius:2px;
+            font-size:13px;
           }
         }
         .form-info-text {

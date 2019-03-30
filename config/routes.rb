@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
+  root 'items#index'
+
   get 'likes/create'
   get 'likes/destroy'
-
-  root 'items#index'
 
   post 'users/card_create' => 'users#card_create'
   delete 'users/card_delete' => 'users#card_delete'
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get  'to_signup' => 'users/registrations#to_signup'
-    post 'signup/phone_number' => 'users/registrations#phone_number'
+    post 'signup/profile' => 'users/registrations#profile'
     post 'signup/address' => 'users/registrations#address'
     post 'signup/credit' => 'users/registrations#credit'
   end
@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     get :exhibition,           on: :collection
     get :seller_trading,       on: :collection
     get :sold_page,            on: :collection
+    get :notification,         on: :collection
+    get :todo,                 on: :collection
     resources :addresses, only: [:edit, :update]
   end
 
@@ -42,8 +44,14 @@ Rails.application.routes.draw do
   end
 
   resources :items do
+    get  :all_brands_show,      on: :collection
+    get  :all_categories_show,  on: :collection
+    get  :item_search_result,   on: :collection
+    get  :buy,                  on: :member
+    post :pay,                  on: :member
     resources :comments, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
+<<<<<<< HEAD
     get :buy,                  on: :collection
     get :all_brands_show,      on: :collection
     get :all_categories_show,  on: :collection
@@ -53,14 +61,13 @@ Rails.application.routes.draw do
     get :trading_message,      on: :member
     post :trading_page,        on: :member
     post :message,             on: :member
+=======
+>>>>>>> tsurutadesu/master
   end
 
   resources :categories, only: :show do
     get :child_category,       on: :collection
     get :grand_child_category, on: :collection
-  end
-
-  resources :mypages do
   end
 
 end

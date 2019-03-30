@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', function() {
     if(location.pathname == $href){
       $(this).addClass('active');
       $(this).css({'background':'#eee','font-weight':'bold'});
-      $(this).children().css('color','black');
+      $(this).children('.mypage-icon').css('color','black');
     }
   });
 });

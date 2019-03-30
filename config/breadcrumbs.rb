@@ -73,6 +73,16 @@ crumb :card_registration do
   parent :payment_method
 end
 
+crumb :notification do
+  link "お知らせ", notification_users_path
+  parent :users
+end
+
+crumb :todo do
+  link "やることリスト", todo_users_path
+  parent :users
+end
+
 crumb :item_show do |item|
   link item.name, item_path
   parent :root

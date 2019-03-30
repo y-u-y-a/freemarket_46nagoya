@@ -6,6 +6,10 @@ class User < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
+  belongs_to_active_hash :card_month
+  belongs_to_active_hash :card_year
+  belongs_to_active_hash :birth_year_select
+
 
   has_many :items
   has_one :address
