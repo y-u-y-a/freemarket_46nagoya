@@ -189,7 +189,7 @@
                     %span 46 秒前
                 %i.icon-balloon
             %li.clearfix.message-self
-              %a.message-user{:href => "https://www.mercari.com/jp/u/178529040/"}
+              %a.message-user{:href => ""}
                 %figure
                   %div
                     %img{:alt => "", :src => "//static.mercdn.net/images/member_photo_noimage_thumb.png"}/
@@ -260,25 +260,27 @@
             %span.transact-info-table-cell 商品
             %ul.transact-info-table-cell
               %li
-                %a{:href => "https://item.mercari.com/jp/m18251864076/"}
-                  %img.lazyloaded{:alt => "", "data-src" => "https://static.mercdn.net/thumb/photos/m46233963393_1.jpg?1552715495", :src => "https://static.mercdn.net/thumb/photos/m46233963393_1.jpg?1552715495"}/
-                  .transact-info-item.bold
-                    水筒
-                    %br/
-                    ¥ 500
+                = image_tag @item.item_images.first.image, class: 'img lazyloaded'
+                .transact-info-item.bold
+                  #{@item.name}
+                  %br/
+                  ¥#{@item.price}
           %li.transact-info-table-row
             %span.transact-info-table-cell 送料
             %ul.transact-info-table-cell
               %li
-                送料込み(出品者負担)
+                - if @item.postage == 1
+                  送料込み(出品者負担)
+                - else
+                  着払い(購入者負担)
           %li.transact-info-table-row
             %span.transact-info-table-cell 購入日時
             %ul.transact-info-table-cell
-              %li 3月25日 14:14
+              %li #{@item.created_at.strftime("%m月%d日 %H:%M")}
           %li.transact-info-table-row
             %span.transact-info-table-cell 商品ID
             %ul.transact-info-table-cell
-              %li m18251864076
+              %li #{@item.id}
           %li.transact-info-table-row
             %span.transact-info-table-cell お届け先
             %ul.transact-info-table-cell
@@ -288,8 +290,7 @@
                   愛知県名古屋市中村区0-00-00
                 %p
                   %span.buyer-name
-                    メルカリ
-                    タロウ
+                    メルカリタロウ
                   %span.sama
                     様
     %section.l-side-container
@@ -301,7 +302,7 @@
               %img{:alt => "", :src => "//static.mercdn.net/images/member_photo_noimage_thumb.png", :width => "40"}/
             %figcaption.bold
               .transact-user-name
-                メルカリ二郎
+                #{@item.user.nickname}
           %i.fa.fa-angle-right
 
 

@@ -25,7 +25,7 @@
                   -# 仮置きのコード
                   %span{"data-buy-pay" => "1200"} ¥ 1,200
             - if @item.user_id != current_user.id
-              = link_to "購入する", trading_message_item_path(@item.id), method: :post, class:"button btn-default btn-red bold"
+              = link_to "購入する", trading_page_item_path(@item.id), method: :post, class:"button btn-default btn-red bold"
       %section.buy-content.buy-user-info
         .buy-content-inner
           %h3 配送先

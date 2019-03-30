@@ -50,6 +50,7 @@ class ItemsController < ApplicationController
     else
       t = 30 - @item.item_images.length
       t.times {@item.item_images.build}
+      @item.valid?
       render new_item_path
     end
   end
@@ -124,11 +125,10 @@ class ItemsController < ApplicationController
         :customer => @user.customer_id,
         :currency => 'jpy',
       )
-      @item.buyer_id = current_user.id
-      @item.dlivery_status = '3'
+      @item.delivery_status = '3'
       @item.business_stats = '3'
       if @item.save
-        redirect_to trading_message_path, notice: '購入しました'
+        redirect_to trading_message_item_path, notice: '購入しました'
       else
         render :buy, notice: '購入出来ませんでした'
       end
@@ -141,8 +141,14 @@ class ItemsController < ApplicationController
 
   def trading_page
     @item = Item.find(params[:id])
-    @item.delivery_status += 1
-    @item.save
+    if @item.business_stats == 1
+      @item.buyer_id = current_user.id
+      @item.business_stats = 2
+      @item.save
+    else
+      @item.delivery_status += 1
+      @item.save
+    end
     redirect_to trading_message_item_path
   end
 
