@@ -189,24 +189,16 @@
 
     %section.items-box-container.items-box-overflow.items-in-user-profile.clearfix
       %h2.item-box-head
-        //ブランドがあり孫なし
-        - if @grand_category.present?
+        //ブランドがあり孫あり(優先)
+        - if @grand_category_items
           = link_to "ブランドの#{@grand_category.name}その他の商品", category_path(@grand_category)
         //ブランドがあり孫なし
-        - if @grand_category == nil
+        - if @child_category_items
           = link_to "ブランドの#{@children_category.name}その他の商品", category_path(@children_category)
 
-        //ブランドなくて孫あり
-        / - elsif @grand_category && @brand == nil
-        /   = link_to "#{@grand_category.name}（#{@parent_category.name}）その他の商品", category_path(@grand_category)
-
-        //ブランドなくて孫もなし
-        / - elsif @children_category == nil && @brand == nil
-        /   = link_to "#{@children_category.name}（#{@parent_category.name}）その他の商品", category_path(@children_category)
 
       .items-box-content.clearfix
-        = render 'other_items'
-
+        = render 'other_category_items'
 
 
   = render 'shared/footer'
