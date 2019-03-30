@@ -60,7 +60,6 @@ class ItemsController < ApplicationController
     @category_items = Item.where(grand_child_category_id: @grand_category.id).where.not(user_id: @item.user.id).all
 
     @comment = Comment.new
-    @images = @item.item_images
     @comments = @item.comments
   end
 
