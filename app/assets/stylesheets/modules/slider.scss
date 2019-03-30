@@ -6,7 +6,7 @@
       .top-main-visual {
         height: 390px;
         display: block;
-        background: url('top-background.jpg');
+        background-image: image-url("top-background.jpg");
         &__div {
           max-width: 860px;
           position: relative;
