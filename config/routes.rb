@@ -51,7 +51,6 @@ Rails.application.routes.draw do
     post :pay,                  on: :member
     resources :comments, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
-<<<<<<< HEAD
     get :buy,                  on: :collection
     get :all_brands_show,      on: :collection
     get :all_categories_show,  on: :collection
@@ -61,8 +60,6 @@ Rails.application.routes.draw do
     get :trading_message,      on: :member
     post :trading_page,        on: :member
     post :message,             on: :member
-=======
->>>>>>> tsurutadesu/master
   end
 
   resources :categories, only: :show do
