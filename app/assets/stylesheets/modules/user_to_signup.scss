@@ -86,3 +86,14 @@
   top:20px;
   left:20px;
 }
+.errors {
+  text-align: center;
+  li {
+    margin-top: 8px;
+    color: $red;
+    font-weight: bold;
+  }
+  li:last-child {
+    margin-bottom: 16px;
+  }
+}

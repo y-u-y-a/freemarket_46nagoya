@@ -1,13 +1,15 @@
 class ItemsController < ApplicationController
   require 'payjp'
 
-  # before_action :authenticate_user!
+  before_action :authenticate_user! , only: [:new ,:buy, :pay]
 
   before_action :set_category,     only: [ :index, :new, :all_brands_show, :all_categories_show, :show, :item_search_result]
   before_action :set_item,         only: [:show ,:edit, :update, :destroy, :buy]
   before_action :set_payjp_user ,  only: [:buy, :pay]
   before_action :set_search
   before_action :set_searches ,    only: [:item_search_result]
+  before_action :category_in_brand ,    only: [:all_brands_show]
+
 
   before_action :set_user, only: [:index,:show]
   before_action :get_category, only: [:show,:edit]
@@ -57,11 +59,13 @@ class ItemsController < ApplicationController
   def show
     @region = Prefecture.find(@item.region)
     @user_items = Item.where(user_id: @item.user.id).where.not(id: params[:id]).limit(6)
-    @category_items = Item.where(grand_child_category_id: @grand_category.id).where.not(user_id: @item.user.id).all
-
     @comment = Comment.new
-    @images = @item.item_images
     @comments = @item.comments
+    if @grand_category == nil
+      @child_category_items = Item.where(child_category_id: @children_category.id).where.not(user_id: @item.user.id).all
+    else
+      @grand_category_items = Item.where(grand_child_category_id: @grand_category.id).where.not(user_id: @item.user.id).all
+    end
   end
 
   def edit
@@ -100,6 +104,9 @@ class ItemsController < ApplicationController
   end
 
   def all_brands_show
+    @category_index = Category.find(1)
+    @brands = @category_index.brands
+    @initials = @brands.pluck(:initial).uniq
   end
 
   def all_categories_show
@@ -160,6 +167,7 @@ class ItemsController < ApplicationController
   end
 
   def set_payjp_user
+    redirect_to new_user_session_path unless current_user
     @user = User.find(current_user)
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
   end

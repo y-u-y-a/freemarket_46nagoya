@@ -1,5 +1,22 @@
-$(document).on('turbolinks:load', function() {  //出品ページに遷移後リロード
+$(document).on('turbolinks:load', function(e) {
+  e.preventDefault();
+  var previewCount = $('.preview').length;
+  if (previewCount == 1 || previewCount == 6){
+    $('.sell-upload-drop-box').width(491);
+  } else if (previewCount == 2 || previewCount == 7){
+    $('.sell-upload-drop-box').width(363);
+  } else if (previewCount == 3 || previewCount == 8){
+    $('.sell-upload-drop-box').width(234);
+  } else if (previewCount == 4 || previewCount == 9){
+    $('.sell-upload-drop-box').width(106);
+  } else if (previewCount == 5){
+    $('.sell-upload-drop-box').width(620);
+  } else if (previewCount == 10){
+    $('.sell-upload-drop-box').css('display','none');
+  }
+  //出品ページに遷移後リロード
   $(document).on('change', 'input[type="file"]', function(e) { //fileを選択時に発火
+    e.preventDefault();
     $preview = $(this).parent();
     previewFile(e,$preview);
     $(this).parent().parent().addClass("box-display-none");
@@ -27,6 +44,7 @@ $(document).on('turbolinks:load', function() {  //出品ページに遷移後リ
         var secondHtml = `<div class="sell-upload-items have-item-1 second">
                             <ul class="pictures"></ul>
                           </div>`
+
         var prepreView = $('.preview').length;
 
         if(prepreView <= 4){

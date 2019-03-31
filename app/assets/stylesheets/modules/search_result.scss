@@ -64,6 +64,9 @@
         left: 0;
         z-index: 100;
         margin: 0 auto;
+        #q_s_0_name,#q_s_0_dir {
+          display: none;
+        }
         .form-group:first-child {
           margin: 0;
           .select-wrap {
