@@ -4,7 +4,6 @@ $(document).on('turbolinks:load', function(){
   $("ul.grand-child-category").hide();
   $("ul.main-brand").hide();
 
-
   $(".lists-menu__brands").hover(function(e){
     e.preventDefault();
     $("ul:not(:animated)",this).show();

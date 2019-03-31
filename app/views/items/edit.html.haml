@@ -15,24 +15,26 @@
                 %p 最大10枚までアップロードできます
                 .sell-dropbox-container.clearfix.state-image-number-10
                   .sell-upload-items-container
-                    .sell-upload-items.have-item-1
+                    .sell-upload-items
                       %ul.pictures
                         - @item.item_images.each do |i|
                           - if i.image.present?
                             %li.sell-upload-item
                               %figure.sell-upload-figure.landscape
-                                = image_tag i.image,class: 'preview'
+                                = image_tag i.image,class: "preview"
                               .sell-upload-button
-                                = link_to '編集', class: 'sell-upload-edit'
-                                = link_to '削除'
+                                = link_to '編集','#', class: 'sell-upload-edit'
+                                = link_to '削除','#',id: "sell-upload-delete"
 
-                  = f.fields_for :item_images do |image|
-                    = image.label :image, class: 'form-mask-image box-display-none' do
-                      .sell-upload-drop-box.have-item-1
-                        = image.file_field :image,class: 'hidden file'
-                        %pre.visible-pc
-                          ドラッグアンドドロップ
-                          またはクリックしてファイルをアップロード
+                    = f.fields_for :item_images do |image|
+                      = image.label :image, class: 'form-mask-image box-display-none' do
+                        .sell-upload-drop-box
+                          = image.file_field :image,class: 'hidden file'
+                          %pre.visible-pc
+                            ドラッグアンドドロップ
+                            またはクリックしてファイルをアップロード
+
+
               .sell-content
                 .form-group
                   %label 商品名
