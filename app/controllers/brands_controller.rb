@@ -7,6 +7,7 @@ class BrandsController < ApplicationController
   def show
     @category_index = Category.find(params[:id])
     @brands = @category_index.brands
+    # initialカラムのみを配列で取り出し、同じものは省く
     @initials = @brands.pluck(:initial).uniq
   end
 

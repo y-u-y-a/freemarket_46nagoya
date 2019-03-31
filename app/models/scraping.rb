@@ -128,6 +128,7 @@ class Scraping
         end
         brands.each do |brand|
           name = brand.inner_text
+          name = name.gsub(/\n|\s/, "")
           get_brand(initial,name,num)
         end
       end
@@ -142,8 +143,41 @@ class Scraping
   end
 
 
+  # brandのイントロを取得する
+  def self.brand_intro
+    agent = Mechanize.new
+    page = 1
+    while page < 11000 do
+      # 普通の処理
+      begin
+        doc = agent.get("https://www.mercari.com/jp/brand/#{page}/")
+      # エラーが出た場合に実行する処理(例外処理)
+      rescue Mechanize::ResponseCodeError => e
+        case e.response_code
+        when "404"
+          puts "caught Net::HTTPNotFound !"
+          page += 1
+          next
+        end
+      end
+      # titleを取得する
+      title = doc.search(".spacial-description-title h3")
+      # 正規表現されている部分は取り除く
+      title = title.inner_text.gsub(/\n|\s/, "")
+      # introを取得する
+      ele = doc.search(".spacial-description-text p")
+      intro = ele.inner_text
+      # nameカラムがtitleと一致するレコードを全て取得する
+      select_brand = Brand.where(name: title)
+      # レコードを更新する
+      select_brand.update(intro: intro)
+      page += 1
+    end
+  end
 
-  # 紹介文のスクレイピング
+
+
+  # categoryのイントロを取得する
   def self.intro_urls
     agent = Mechanize.new
 
@@ -257,27 +291,6 @@ class Scraping
     category.save
   end
 end
-
-
-
-
-def self.get_brands_intro
-end
-
-
-def self.update(id,intro)
-end
-
-
-
-
-
-
-
-
-
-
-
 
 
 

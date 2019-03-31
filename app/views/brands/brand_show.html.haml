@@ -20,8 +20,10 @@
       = @brand.name
   .spacial-description__text
     %p
-      / - if @brand.intro
-      /   = @brand.intro
+      - if @brand.intro
+        = @brand.intro
+
+= paginate @items
 
 = render 'shared/sell-button'
 
