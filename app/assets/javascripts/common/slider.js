@@ -4,6 +4,7 @@ $(document).on('turbolinks:load', function() {
       preventClicks: false,
       preventClicksPropagation: false,
       loop: true,
+      speed: 700,
       pagination: {
         el: '.swiper-pagination',
         type: 'bullets',
@@ -14,9 +15,9 @@ $(document).on('turbolinks:load', function() {
         prevEl: '.swiper-button-prev'
       },
       autoplay: {
-        delay: 3000,
+        delay: 3500,
         stopOnLastSlide: false,
-        disableOnInteraction: true,
+        disableOnInteraction: false,
         reverseDirection: false
       },
     });
