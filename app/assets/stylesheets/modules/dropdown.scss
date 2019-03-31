@@ -28,7 +28,6 @@
       box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24);
     }
   }
-
   &__categories {
     &--category-link {
       display: block;
@@ -44,12 +43,12 @@
     .main-category {
       z-index: 100;
       position: absolute;
+      background-color: $white;
+      box-shadow: 1px 0 0 #eee inset;
       &__list {
         float:left;
         width:224px;
         height:44px;
-        background-color: $white;
-        box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24);
       }
       &__link {
         overflow: hidden;
@@ -66,12 +65,12 @@
       left:224px;
       top:0;
       bottom: 0;
+      background-color: $white;
+      box-shadow: 1px 0 0 $light_gray inset;
       &__list {
+        border: none;
         float:left;
-        position:relative;
         width: 224px;
-        background-color: $white;
-        box-shadow: 0 1px 1px 0 rgba(0,0,0,0.24);
         padding: 8px 16px;
       }
       &__sub-category-link {
