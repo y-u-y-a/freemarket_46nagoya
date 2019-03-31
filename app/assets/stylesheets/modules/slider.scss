@@ -1,6 +1,61 @@
 .swiper-container{
   width: 100vw;
   .swiper-slide {
+    float: left;
+    div {
+      .top-main-visual {
+        height: 390px;
+        display: block;
+        background-image: image-url("top-background.jpg");
+        &__div {
+          max-width: 860px;
+          position: relative;
+          height: 100%;
+          margin: 0 auto;
+          &__content {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(0, -50%);
+            h2 {
+              font-size: 60px;
+              line-height: 1.2;
+              font-weight: bold;
+            }
+            p {
+              font-size: 18px;
+              margin: 16px 0 0;
+              line-height: 1.77778;
+            }
+            &__store {
+              margin: 24px 0 0;
+              line-height: 0;
+              a:first-child {
+                margin: 0;
+              }
+              a {
+                width: 170px;
+                height: 50px;
+                display: inline-block;
+                margin: 0 0 0 11px;
+                img {
+                  width: 100%;
+                  vertical-align: bottom;
+                }
+              }
+            }
+          }
+        }
+        &__image {
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 100%;
+          width: auto;
+          vertical-align: bottom;
+        }
+      }
+    }
     &__image {
       height: 390px;
       width: 100vw;
