@@ -291,9 +291,3 @@ class Scraping
     category.save
   end
 end
-
-
-
-
-
-

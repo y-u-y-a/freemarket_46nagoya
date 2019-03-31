@@ -23,7 +23,9 @@
       - if @brand.intro
         = @brand.intro
 
-= paginate @items
+- if @items.length > 0
+  = paginate @items
+
 
 = render 'shared/sell-button'
 
