@@ -172,7 +172,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       render :address
     end
-
   end
 
 

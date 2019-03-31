@@ -8,6 +8,8 @@ class ItemsController < ApplicationController
   before_action :set_payjp_user ,  only: [:buy, :pay]
   before_action :set_search
   before_action :set_searches ,    only: [:item_search_result]
+  before_action :category_in_brand ,    only: [:all_brands_show]
+
 
   before_action :set_user, only: [:index,:show]
   before_action :get_category, only: [:show,:edit]
@@ -102,6 +104,9 @@ class ItemsController < ApplicationController
   end
 
   def all_brands_show
+    @category_index = Category.find(1)
+    @brands = @category_index.brands
+    @initials = @brands.pluck(:initial).uniq
   end
 
   def all_categories_show
