@@ -67,7 +67,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    10.times{@item.item_images}
+    20.times{@item.item_images.build}
   end
 
   def update
@@ -142,7 +142,7 @@ class ItemsController < ApplicationController
   end
 
   def update_params
-    params.require(:item).permit( :name, :price, :explain, :postage, :region, :state, :shipping_date, :shipping_way,:size,:brand_id, :category_id, :child_category_id, :grand_child_category_id, item_images_attributes: [:image,:id,:_destroy]).merge(user_id: current_user.id, business_stats: '1')
+    params.require(:item).permit( :name, :price, :explain, :postage, :region, :state, :shipping_date, :shipping_way,:size,:brand_id, :category_id, :child_category_id, :grand_child_category_id, item_images_attributes: [:id,:image,:_destroy]).merge(user_id: current_user.id, business_stats: '1')
   end
 
   def pay_item_params
