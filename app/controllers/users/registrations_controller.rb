@@ -109,8 +109,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     )
     @address.save
 
-    # # カードのトークン生成
-
+    # クレジットの正規登録
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     card = Payjp::Token.create({
       card: {
