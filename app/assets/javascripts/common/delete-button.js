@@ -17,7 +17,6 @@ $(document).on('turbolinks:load', function() {
     id = val.replace(/[^0-9]/g, "");
     var html = `comment_text_${id}`
     var comment = document.getElementById(html);
-    console.log(comment)
     $('body').append('<div class="is-overlay"></div>');
     $('.is-overlay').fadeIn(300);
     $(comment).fadeIn(400);

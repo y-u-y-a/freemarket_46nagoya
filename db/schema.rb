@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20190329055153) do
+ActiveRecord::Schema.define(version: 20190330103557) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -22,15 +21,8 @@ ActiveRecord::Schema.define(version: 20190329055153) do
     t.string   "building"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.integer  "phone_number"
+    t.bigint   "phone_number"
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
-  end
-
-  create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",                     null: false
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.text     "initial",    limit: 65535
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -43,15 +35,6 @@ ActiveRecord::Schema.define(version: 20190329055153) do
     t.text     "intro",            limit: 65535
     t.index ["main_category_id"], name: "index_categories_on_main_category_id", using: :btree
     t.index ["sub_category_id"], name: "index_categories_on_sub_category_id", using: :btree
-  end
-
-  create_table "category_brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "category_id"
-    t.integer  "brand_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["brand_id"], name: "index_category_brands_on_brand_id", using: :btree
-    t.index ["category_id"], name: "index_category_brands_on_category_id", using: :btree
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -91,7 +74,7 @@ ActiveRecord::Schema.define(version: 20190329055153) do
     t.integer  "category_id"
     t.integer  "child_category_id"
     t.integer  "grand_child_category_id"
-    t.integer  "likes_count"
+    t.integer  "likes_count",                           default: 0
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["child_category_id"], name: "index_items_on_child_category_id", using: :btree
     t.index ["grand_child_category_id"], name: "index_items_on_grand_child_category_id", using: :btree
@@ -140,7 +123,7 @@ ActiveRecord::Schema.define(version: 20190329055153) do
     t.string   "city"
     t.string   "town"
     t.string   "building"
-    t.integer  "phone_number"
+    t.bigint   "phone_number"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
@@ -165,8 +148,6 @@ ActiveRecord::Schema.define(version: 20190329055153) do
   end
 
   add_foreign_key "addresses", "users"
-  add_foreign_key "category_brands", "brands"
-  add_foreign_key "category_brands", "categories"
   add_foreign_key "comments", "items"
   add_foreign_key "comments", "users"
   add_foreign_key "items", "categories"
