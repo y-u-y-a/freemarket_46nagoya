@@ -4,24 +4,28 @@
   %main.single-main
     %section.l-single-container
       %h2.l-single-head 会員情報入力
-      = form_for(:session, url: registration_path(resource_name), html: {class: 'l-single-inner'}) do |f|
+      = form_for(:session, url: registration_path(resource_name), html: {id: "new_user_form",class: 'l-single-inner'}) do |f|
+        - if @error&.present?
+          = render partial: "shared/unique_error",locals: {errors: @error}
+        - if @temporary&.errors.present?
+          = render partial: "shared/errors_messages",locals: {temporary: @temporary}
         .l-single-content
           .form-group
             = f.label :ニックネーム
             %span.form-require 必須
-            = f.text_field :nickname, placeholder: "例) メルカリ太郎", class: 'input-default'
+            = f.text_field :nickname, autofocus: true, placeholder: "例) メルカリ太郎",required: "required", class: 'input-default'
           .form-group
             = f.label :メールアドレス
             %span.form-require 必須
-            = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "PC・携帯どちらでも可", class: "input-default"
+            = f.email_field :email, autocomplete: "email", placeholder: "PC・携帯どちらでも可",required: "required", class: "input-default"
           .form-group
             = f.label :パスワード
             %span.form-require 必須
-            = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上", class: "input-default"
+            = f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上",required: "required", class: "input-default"
           .form-group
             = f.label :パスワード確認
             %span.form-require 必須
-            = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上", class: "input-default"
+            = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上",required: "required", class: "input-default"
         .l-single-content
           .form-group
             .mail-account__field--RECAPCHA

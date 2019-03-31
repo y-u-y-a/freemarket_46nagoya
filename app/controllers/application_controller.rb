@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def category_in_brand
+    @categories = Category.find(1,2,3,4,490,334,7,681,9,899,1235,738,1207,1272,1200,1201)
+  end
+
 
 
   def after_sign_in_path_for(resource)
@@ -38,11 +42,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_searches
-    params[:q]["price_gteq_any"] = set_price_gteq(params[:q]["price_cont"]) if params[:q]["price_cont"] != "0"
-    params[:q]["price_lteq_any"] = set_price_lteq(params[:q]["price_cont"]) if params[:q]["price_cont"] != "0"
+    params[:q]["price_gteq_any"] = set_price_gteq(params[:q]["price_cont"]) if params[:q]["price_cont"] != nil
+    params[:q]["price_lteq_any"] = set_price_lteq(params[:q]["price_cont"]) if params[:q]["price_cont"] != nil
     params[:q]["price_cont"]     = ""
-    params[:q]["s"]["0"]["name"] = set_sort_name(params[:q]["id"]) if params[:q]["id"] != "0"
-    params[:q]["s"]["0"]["dir"]  = set_sort_dir(params[:q]["id"]) if params[:q]["id"] != "0"
+    params[:q]["s"]["0"]["name"] = set_sort_name(params[:q]["id"]) if params[:q]["id"] != nil
+    params[:q]["s"]["0"]["dir"]  = set_sort_dir(params[:q]["id"]) if params[:q]["id"] != nil
 
     @searches = Item.ransack(params[:q]) #ransackメソッド推奨
     @search_items = @searches.result(distinct: true).page(params[:page]).per(8)

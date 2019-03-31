@@ -7,13 +7,14 @@
           = category.name
         / 子カテゴリーul
         %ul.child-category.hidden{id: "child_category_ul_#{category.id}"}
-          - @child_category[category.id - 1].each_with_index do |child_category, i|
+          - @child_category[category.id - 1].each do |child_category|
             %li.child-category__list{id: "child_category_li_#{child_category.id}"}
               = link_to category_path(child_category.id),class: "child-category__sub-category-link" do
                 = child_category.name
               / 孫カテゴリーul
               %ul.child-category.hidden{id: "grand_child_category_ul_#{child_category.id}"}
-                - @grand_child_category[i].each do |grand_child_category|
+                - grand_child_category = Category.where(main_category_id: category.id).where(sub_category_id: child_category.id)
+                - grand_child_category.each do |grand_child_category|
                   %li.child-category__list.grand-child-list-width
                     = link_to category_path(grand_child_category.id),class: "child-category__sub-category-link" do
                       = grand_child_category.name
@@ -22,4 +23,3 @@
     = link_to all_categories_show_items_path,class: "lists-menu__categories--category-link" do
       %h3.main-category__name
         カテゴリー一覧
-
