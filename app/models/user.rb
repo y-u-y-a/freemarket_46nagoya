@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_one :address
   has_one :profile
   has_many :comments ,dependent: :delete_all
-  has_many :messages, dependent: :delite_all
+  has_many :messages, dependent: :delete_all
 
   validates :nickname, presence: true
   validates :password, length: { minimum: 6 }   # 6文字以上で有効
