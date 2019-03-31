@@ -213,6 +213,10 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     mysql2 (0.4.10)
+    nested_form_fields (0.8.2)
+      coffee-rails (>= 3.2.1)
+      jquery-rails
+      rails (>= 3.2.0)
     net-http-digest_auth (1.4.1)
     net-http-persistent (3.0.0)
       connection_pool (~> 2.2)
@@ -419,6 +423,7 @@ DEPENDENCIES
   mechanize
   mini_magick
   mysql2 (>= 0.3.18, < 0.5)
+  nested_form_fields
   nokogiri
   omniauth-facebook
   omniauth-google-oauth2
