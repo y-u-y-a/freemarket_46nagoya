@@ -1,6 +1,18 @@
 .single-container {
   padding: 0 0 220px;
   background-color: #f5f5f5;
+  .hidden {
+    display: none;
+  }
+  .form-arbitrary {
+    background: #ccc;
+    color: #fff;
+    margin: 0 0 0 8px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-size: 12px;
+    vertical-align: top;
+  }
   &__header {
     height: 128px;
     text-align: center;
@@ -309,6 +321,26 @@
 }
 .form-group {
   margin: 40px 0 0;
+  #brand_result {
+    overflow: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    max-height: 280px;
+    background: #fff;
+    box-shadow: 0 0 4px 0 rgba(0,0,0,0.64);
+    li {
+      padding: 16px 8px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-left: 0;
+    }
+    li:hover {
+      color: $white;
+      background-color: #0099e8;
+    }
+  }
   .input-default {
     height: 48px;
     padding: 10px 16px 8px;
