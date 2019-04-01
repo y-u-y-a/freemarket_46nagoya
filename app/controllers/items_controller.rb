@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   before_action :authenticate_user! , only: [:new ,:buy, :pay]
 
-  before_action :set_category,     only: [ :index, :new, :all_brands_show, :all_categories_show, :show, :item_search_result]
+  before_action :set_category,     only: [ :index, :new, :create, :all_brands_show, :all_categories_show, :show, :item_search_result]
   before_action :set_item,         only: [:show ,:edit, :update, :destroy, :buy]
   before_action :set_payjp_user ,  only: [:buy, :pay]
   before_action :set_search
