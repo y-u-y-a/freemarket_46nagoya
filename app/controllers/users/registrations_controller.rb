@@ -159,7 +159,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       # 住所の正規登録
       @address = Address.new(
         post_number:   session[:post_number],
-        prefecture_id: session[:prefecture],
+        prefecture_id: session[:prefecture_id],
         city:          session[:city],
         town:          session[:town],
         building:      session[:building],
