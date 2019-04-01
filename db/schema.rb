@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20190331064402) do
-=======
-ActiveRecord::Schema.define(version: 20190330103557) do
->>>>>>> tsurutadesu/master
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -95,12 +91,8 @@ ActiveRecord::Schema.define(version: 20190330103557) do
     t.integer  "category_id"
     t.integer  "child_category_id"
     t.integer  "grand_child_category_id"
-<<<<<<< HEAD
-    t.integer  "likes_count"
-    t.integer  "delivery_status",                       default: 0
-=======
     t.integer  "likes_count",                           default: 0
->>>>>>> tsurutadesu/master
+    t.integer  "delivery_status",                       default: 0
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["child_category_id"], name: "index_items_on_child_category_id", using: :btree
     t.index ["grand_child_category_id"], name: "index_items_on_grand_child_category_id", using: :btree

@@ -153,9 +153,9 @@ class ItemsController < ApplicationController
 
   def trading_page
     @item = Item.find(params[:id])
-    if @item.business_stats == 1
+    if @item.business_stats == '1'
       @item.buyer_id = current_user.id
-      @item.business_stats = 2
+      @item.business_stats = '2'
       @item.save
     else
       @item.delivery_status += 1

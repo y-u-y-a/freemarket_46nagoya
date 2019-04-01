@@ -9,7 +9,8 @@
             %figcaption.bold
               = message.user.nickname
         .message-body
-          .message-body-text = message.text
+          .message-body-text
+            = message.text
           .message-icons.clearfix
             %time.message-icon-left
               %i.fa.fa-clock-o
