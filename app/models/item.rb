@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
 
-
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :result_order
   belongs_to_active_hash :size

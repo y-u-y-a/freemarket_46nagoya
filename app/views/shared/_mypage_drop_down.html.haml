@@ -2,7 +2,10 @@
   .header-mypage-box__state
     %figure.header-mypage-box__state__figure
       .header-mypage-box__state__figure__div
-        = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: "", width: 60,height: "60"
+        - if current_user.persisted? && current_user.avatar?
+          = image_tag current_user.avatar.to_s, class: 'avatar_present_img'
+        - else
+          = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: ""
       %figcaption
         = @user&.nickname
 

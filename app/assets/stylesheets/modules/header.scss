@@ -135,15 +135,17 @@
           &__user-icon {
             margin: 0;
             figure {
-              line-height: 0;
               display: inline-block;
               position: relative;
-              height: 32px;
+              line-height: 0;
+              overflow: hidden;
               margin: 0 auto;
               vertical-align: middle;
-              div {
-                overflow: hidden;
+              img {
+                width: 32px;
+                height: 32px;
                 border-radius: 50%;
+                object-fit: cover;
               }
             }
             div {
@@ -209,10 +211,12 @@
                   height: 60px;
                   margin: 0 auto;
                   border-radius: 50%;
-                  -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.08);
-                  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.08);
+                  display: block;
                   img {
-                    vertical-align: middle;
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    object-fit: cover;
                   }
                 }
                 figcaption {

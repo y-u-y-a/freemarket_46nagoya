@@ -26,8 +26,10 @@
             %li
               = link_to users_path(current_user), class: "pc-header-nav__user-icon pc-header-nav__root" do
                 %figure
-                  %div
-                    = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", width: "32"
+                  - if current_user.persisted? && current_user.avatar?
+                    = image_tag current_user.avatar.to_s, class: 'avatar_present_img'
+                  - else
+                    = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: ""
                 %div マイページ
               = render 'shared/mypage_drop_down'
 
