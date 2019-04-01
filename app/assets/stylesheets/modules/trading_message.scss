@@ -343,141 +343,8 @@
         @include clearfix;
         .message-content1 {
           @include clearfix;
-          padding: 24px;
+          padding: 0 24px 24px 24px;
           background: #fff;
-          .message-items {
-            margin: 0;
-            @include clearfix;
-            li:first-child {
-              margin: 1.5em 0 0;
-              .message-user {
-                float: left;
-                position: relative;
-                top: -20px;
-                display: inline-block;
-                color: #333;
-                figure {
-                  display: block;
-                  float: left;
-                  margin-bottom: 80px;
-                  div {
-                    width: 40px;
-                    height: 40px;
-                    overflow: hidden;
-                    border-radius: 50%;
-                    img {
-                      width: 100%;
-                    }
-                  }
-                  figcaption {
-                    width: 600px;
-                    min-width: 600px;
-                    overflow: hidden;
-                    position: absolute;
-                    top: 0;
-                    left: 56px;
-                    max-width: 100%;
-                    height: 1.2em;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    font-weight: 600;
-                  }
-                }
-              }
-              .message-body {
-                width: 600px;
-                float: right;
-                position: relative;
-                padding: 16px;
-                background: #eef0f4;
-                border-radius: 15px;
-                line-height: 1.5;
-                word-break: break-all;
-                .message-icons {
-                  margin: 8px 0 0;
-                  time {
-                    display: block;
-                    color: #aaa;
-                  }
-                  .message-icon-left {
-                    float: left;
-                  }
-                }
-                .icon-balloon {
-                  position: absolute;
-                  top: 8px;
-                  left: -9px;
-                  color: #eef0f4;
-                }
-              }
-            }
-            .message-self {
-              @include clearfix;
-              .message-user {
-                float: right;
-                color: #ea352d;
-                position: relative;
-                top: -20px;
-                display: inline-block;
-                figure {
-                  display: block;
-                  float: right;
-                  right: 0;
-                  margin-top: 75px;
-                  div {
-                    width: 40px;
-                    height: 40px;
-                    overflow: hidden;
-                    border-radius: 50%;
-                    img {
-                      width: 100%;
-                    }
-                  }
-                  figcaption {
-                    font-weight: bold;
-                    left: auto;
-                    right: 56px;
-                    text-align: right;
-                    width: 600px;
-                    min-width: 600px;
-                    height: 1.2em;
-                    white-space: nowrap;
-                    text-overflow: ellipsis;
-                    max-width: 100%;
-                    overflow: hidden;
-                    position: absolute;
-                    top: 75px;
-                  }
-                }
-              }
-              .message-body {
-                float: left;
-                background: #fbf0e6;
-                width: 600px;
-                position: relative;
-                padding: 16px;
-                border-radius: 15px;
-                line-height: 1.5;
-                word-break: break-all;
-                margin-top: 60px;
-                .message-icons {
-                  margin: 8px 0 0;
-                  time {
-                    display: block;
-                    color: #aaa;
-                    .icon-time {
-                      vertical-align: middle;
-                    }
-                  }
-                }
-                .icon-balloon {
-                  transform: scaleX(-1);
-                  color: #fbf0e6;
-                  right: -9px;
-                }
-              }
-            }
-          }
         }
         .message-content2 {
           padding: 24px;
@@ -667,6 +534,129 @@
             -webkit-transform: translate(0, -50%);
             transform: translate(0, -50%);
           }
+        }
+      }
+    }
+  }
+}
+.message-content1 {
+  .message-items {
+    @include clearfix;
+    li {
+      margin-top: 60px;
+    }
+    .message-left {
+      .message-user {
+        float: left;
+        position: relative;
+        top: -20px;
+        display: inline-block;
+        color: #333;
+        figure {
+          display: block;
+          div {
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            border-radius: 50%;
+            img {
+              width: 100%;
+            }
+          }
+          figcaption {
+            width: 600px;
+            min-width: 600px;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 56px;
+            max-width: 100%;
+            min-width: 214px;
+            height: 1.2em;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-weight: bold;
+          }
+        }
+      }
+      .message-body {
+        width: 600px;
+        float: right;
+        position: relative;
+        padding: 16px;
+        background: #eef0f4;
+        border-radius: 15px;
+        line-height: 1.5;
+        word-break: break-all;
+        .message-icons {
+          margin: 8px 0 0;
+          .message-icon-left {
+            float: left;
+            color: gray;
+          }
+        }
+        .fa-caret-down {
+          font-size: 50px;
+          color: #eef0f4;
+          position: absolute;
+          top: -10px;
+          left: -8px;
+        }
+      }
+    }
+    .message-right {
+      .message-user {
+        position: relative;
+        top: -20px;
+        display: inline-block;
+        color: #ea352d;
+        float: right;
+        figure {
+          display: block;
+          div {
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            border-radius: 50%;
+            img {
+              width: 100%;
+            }
+          }
+          figcaption {
+            left: auto;
+            right: 56px;
+            text-align: right;
+            width: 600px;
+            min-width: 600px;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            font-weight: bold;
+          }
+        }
+      }
+      .message-body {
+        width: 600px;
+        position: relative;
+        padding: 16px;
+        float: left;
+        background: #fbf0e6;
+        border-radius: 15px;
+        line-height: 1.5;
+        word-break: break-all;
+        .message-icons {
+          margin: 8px 0 0;
+          .message-icon-left {
+            float: left;
+            color: gray;
+          }
+        }
+        .fa-caret-down {
+          font-size: 50px;
+          color: #fbf0e6;
+          position: absolute;
+          top: -10px;
+          left: 580px;
         }
       }
     }

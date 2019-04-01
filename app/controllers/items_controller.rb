@@ -143,7 +143,7 @@ class ItemsController < ApplicationController
     @address = Address.find_by(user_id: @item.buyer_id)
     @prefecture = Prefecture.find(@address.prefecture_id)
     @message = Message.new
-    @messages = Message.where(user_id: @item.user_id).where(buyer_id: current_user.id)
+    @messages = Message.where(item_id: @item.id)
   end
 
   def trading_page
@@ -160,9 +160,8 @@ class ItemsController < ApplicationController
   end
 
   def message
-    @message = Item.find(params[:id])
     @message = Message.new(message_params)
-    @message = Message.save
+    @message.save
     redirect_to trading_message_item_path
   end
 
@@ -180,7 +179,7 @@ class ItemsController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:text).merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:message).permit(:text).merge(user_id: current_user.id, item_id: params[:id])
   end
 
   def get_category

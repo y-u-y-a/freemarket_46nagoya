@@ -173,39 +173,12 @@
         .message-content1
           .notification.notification-success
             %i.icon-close
-          %ul.message-items
-            %li.clearfix
-              %a.message-user{:href => ""}
-                %figure
-                  %div
-                    %img{:alt => "", :src => "//static.mercdn.net/images/member_photo_noimage_thumb.png"}/
-                  %figcaption.bold
-                    メルカリ二郎
-              .message-body
-                .message-body-text こんにちわ、この度はご購入ありがとうございます。発送終えましたらコメントさせてもらいます。
-                .message-icons.clearfix
-                  %time.message-icon-left
-                    %i.fa.fa-clock-o
-                    %span 46 秒前
-                %i.icon-balloon
-            %li.clearfix.message-self
-              %a.message-user{:href => ""}
-                %figure
-                  %div
-                    %img{:alt => "", :src => "//static.mercdn.net/images/member_photo_noimage_thumb.png"}/
-                  %figcaption.bold
-                    メルカリタロウ
-              .message-body
-                .message-body-text こんにちは、よろしくお願いします！
-                .message-icons.clearfix
-                  %time.message-icon-left
-                    %i.fa.fa-clock-o
-                    %span 0 秒前
-                %i.icon-balloon
+          = render partial: 'shared/messages',locals: { item: @item, messages: @messages}
+
         .message-content2
           .message-form
             %p 取引メッセージの内容は、必要に応じて事務局で確認しています
-            = form_for [@item,@message], url: message_item_path(@item.buyer_id) do |f|
+            = form_for [@item,@message], url: message_item_path(@item.id) do |f|
               = f.text_area :text, class: 'textarea-default'
               = f.submit "取引メッセージを送る", data: { disable_with: "送信中..." },class: 'message-submit btn-default btn-gray',id: "new-comment-submit"
         %aside.modal{"data-close" => "modal", "data-modal" => "delete-comment"}

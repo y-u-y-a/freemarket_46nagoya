@@ -1,0 +1,34 @@
+- messages.each do |message|
+  %ul.message-items
+    - if message.user_id != current_user.id
+      %li.message-left
+        %a.message-user{:href => ""}
+          %figure
+            %div
+              %img{:alt => "", :src => "//static.mercdn.net/images/member_photo_noimage_thumb.png"}/
+            %figcaption.bold
+              = message.user.nickname
+        .message-body
+          .message-body-text = message.text
+          .message-icons.clearfix
+            %time.message-icon-left
+              %i.fa.fa-clock-o
+              %span 46 秒前
+          %i.fa.fa-caret-down
+
+    - elsif message.user_id == current_user.id
+      %li.message-right
+        %a.message-user{:href => ""}
+          %figure
+            %div
+              %img{:alt => "", :src => "//static.mercdn.net/images/member_photo_noimage_thumb.png"}/
+            %figcaption.bold
+              = current_user.nickname
+        .message-body
+          .message-body-text
+            = message.text
+          .message-icons.clearfix
+            %time.message-icon-left
+              %i.fa.fa-clock-o
+              %span 0 秒前
+          %i.fa.fa-caret-down
