@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
 
-
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :result_order
   belongs_to_active_hash :size
@@ -18,14 +17,15 @@ class Item < ApplicationRecord
 
   belongs_to :user
   belongs_to :category
-  belongs_to :brand
+  belongs_to :brand,optional: true
 
-  # validates :name, presence: true
-  # validates :price, presence: true
-  # validates :state, presence: true
-  # validates :shipping_date, presence: true
-  # validates :postage, presence: true
-  # validates :shipping_way,presence: true
+
+  validates :name, presence: true
+  validates :price, presence: true
+  validates :state, presence: true
+  validates :shipping_date, presence: true
+  validates :postage, presence: true
+  validates :shipping_way, presence: true
 
   def like_user(user_id)
    likes.find_by(user_id: user_id)

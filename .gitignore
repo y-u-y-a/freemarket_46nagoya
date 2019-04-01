@@ -20,6 +20,7 @@
 /config/secrets.yml
 /public/uploads/item_image
 /public/uploads/tmp
+/public/uploads/user
 .env.swp
 .env
 /config/initializers/settings.rb

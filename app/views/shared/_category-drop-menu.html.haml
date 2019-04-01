@@ -14,10 +14,11 @@
               / 孫カテゴリーul
               %ul.child-category.hidden{id: "grand_child_category_ul_#{child_category.id}"}
                 - grand_child_category = Category.where(main_category_id: category.id).where(sub_category_id: child_category.id)
-                - grand_child_category.each do |grand_child_category|
+                - grand_child_category.each_with_index do |grand_child_category, i|
                   %li.child-category__list.grand-child-list-width
                     = link_to category_path(grand_child_category.id),class: "child-category__sub-category-link" do
                       = grand_child_category.name
+                  - break if i == 19
 
   %li.main-category__list
     = link_to all_categories_show_items_path,class: "lists-menu__categories--category-link" do
