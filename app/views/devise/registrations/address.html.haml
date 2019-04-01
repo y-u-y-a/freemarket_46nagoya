@@ -1,5 +1,27 @@
 .single-container
-  = render "devise/registrations/signup_header"
+  %header.single-header
+    %h1
+      %figure.single-container__header-icon
+        = link_to root_path do
+          %figure.single-container__header-icon-image
+            = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2845599746"
+    %nav.progress-bar.signup-bar
+      %ol.clearfix
+        %li.member-page
+          会員情報
+          .progress-status
+        %li.phone-page
+          電話番号認証
+          .progress-status
+        %li.address-page
+          お届け先住所入力
+          .progress-status
+        %li.credit-page.active
+          支払い方法
+          .progress-status
+        %li.comp-page
+          完了
+          .progress-status
   // 支払い方法登録フォーム
   %main.single-main
     %section.l-single-container

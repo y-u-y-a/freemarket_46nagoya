@@ -21,7 +21,6 @@ class UsersController < ApplicationController
   end
 
   def show
-
   end
 
   def update
@@ -125,7 +124,7 @@ class UsersController < ApplicationController
   end
 
   def update_params
-    params.require(:user).permit(:nickname,:profile_text)
+    params.require(:user).permit(:nickname, :profile_text, :avatar, :avatar_cache, :remove_avatar)
   end
 
 end
