@@ -14,7 +14,7 @@
           .message-icons.clearfix
             %time.message-icon-left
               %i.fa.fa-clock-o
-              %span 46 秒前
+              %span #{message.created_at.strftime("%m月%d日 %H:%M")}
           %i.fa.fa-caret-down
 
     - elsif message.user_id == current_user.id
@@ -31,5 +31,5 @@
           .message-icons.clearfix
             %time.message-icon-left
               %i.fa.fa-clock-o
-              %span 0 秒前
+              %span #{message.created_at.strftime("%m月%d日 %H:%M")}
           %i.fa.fa-caret-down
