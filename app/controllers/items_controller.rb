@@ -134,7 +134,7 @@ class ItemsController < ApplicationController
       )
       @item.delivery_status = '3'
       @item.business_stats = '3'
-      if @item.save
+      if @item.save(validate: false)
         redirect_to trading_message_item_path, notice: '購入しました'
       else
         render :buy, notice: '購入出来ませんでした'
@@ -156,10 +156,10 @@ class ItemsController < ApplicationController
     if @item.business_stats == 1
       @item.buyer_id = current_user.id
       @item.business_stats = 2
-      @item.save
+      @item.save(validate: false)
     else
       @item.delivery_status += 1
-      @item.save
+      @item.save(validate: false)
     end
     redirect_to trading_message_item_path
   end
