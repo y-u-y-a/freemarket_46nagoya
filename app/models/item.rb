@@ -15,6 +15,7 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :item_images, allow_destroy: true
 
   has_many :comments,dependent: :delete_all
+  has_many :messages,dependent: :delete_all
 
   belongs_to :user
   belongs_to :category

@@ -12,7 +12,7 @@
             = @item.name
           %form.buy-form{:action => "https://www.mercari.com/jp/transaction/buy/done/m78002095847/", :method => "POST", :novalidate => "novalidate"}
             %p.buy-price-ja.bold
-              ¥ 1,200
+              = "¥#{@item.price}"
               %span.item-shipping-fee.f14.bold 送料込み
             %ul.buy-accordion.not-have
               %li.accordion-parent
@@ -22,8 +22,7 @@
               %li.buy-price-row.buy-you-pay.bold
                 .buy-price-cell 支払い金額
                 .buy-price-cell
-                  -# 仮置きのコード
-                  %span{"data-buy-pay" => "1200"} ¥ 1,200
+                  = "¥#{@item.price}"
             - if @item.user_id != current_user.id
               = link_to "購入する", trading_page_item_path(@item.id), method: :post, class:"button btn-default btn-red bold"
       %section.buy-content.buy-user-info
