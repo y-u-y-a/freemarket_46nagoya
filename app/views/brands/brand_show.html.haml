@@ -1,0 +1,32 @@
+= render 'shared/header'
+
+.lists-container
+  .lists-container__full-width
+    %ul.category-links
+
+
+    %secttion.item-lists
+      %h1.item-lists__title
+        #{@brand.name}の商品一覧
+      - if @items.length > 0
+        .item-lists__item-container
+          = render partial: 'shared/category_items', locals: {items: @items}
+      - else
+        商品がありません
+
+.spacial-description
+  .spacial-description__title
+    %h3
+      = @brand.name
+  .spacial-description__text
+    %p
+      - if @brand.intro
+        = @brand.intro
+
+- if @items.length > 0
+  = paginate @items
+
+
+= render 'shared/sell-button'
+
+= render 'shared/footer'

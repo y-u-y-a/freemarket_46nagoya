@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get 'likes/create'
   get 'likes/destroy'
+  root 'items#index'
+
 
   post 'users/card_create' => 'users#card_create'
   delete 'users/card_delete' => 'users#card_delete'
@@ -65,6 +67,13 @@ Rails.application.routes.draw do
   resources :categories, only: :show do
     get :child_category,       on: :collection
     get :grand_child_category, on: :collection
+  end
+
+  resources :mypages do
+  end
+
+  resources :brands, only: :show do
+    get :brand_show,          on: :member
   end
 
 end

@@ -5,7 +5,8 @@
     %section.l-single-container
       %h2.l-single-head プロフィール情報入力
       = form_for(:session, url: signup_profile_path, html: {class: 'l-single-inner', method: :post}) do |f|
-
+        - if @temporary&.errors.present?
+          = render partial: "shared/errors_messages",locals: {temporary: @temporary}
         .l-single-content
           .form-group
             %h3.text-left.l-chapter-sub-head 本人確認
@@ -14,37 +15,37 @@
           .form-group
             = f.label :姓
             %span.form-require 必須
-            = f.text_field :first_name, placeholder: "例) 山田", class: "input-default"
+            = f.text_field :first_name, placeholder: "例) 山田",required: "required", class: "input-default"
           .form-group
             = f.label :名
             %span.form-require 必須
-            = f.text_field :last_name, placeholder: "例) 彩", class: "input-default"
+            = f.text_field :last_name, placeholder: "例) 彩",required: "required", class: "input-default"
           .form-group
             = f.label :姓カナ
             %span.form-require 必須
-            = f.text_field :first_name_kana, placeholder: "例) ヤマダ", class: "input-default"
+            = f.text_field :first_name_kana, placeholder: "例) ヤマダ",required: "required", class: "input-default"
           .form-group
             = f.label :名カナ
             %span.form-require 必須
-            = f.text_field :last_name_kana, placeholder: "例) アヤ", class: "input-default"
+            = f.text_field :last_name_kana, placeholder: "例) アヤ",required: "required", class: "input-default"
           .form-group
             = f.label :生年月日
             %span.form-require 必須
             %br
             .birthday-select-wrap
               .select-wrap
-                = f.collection_select :birth_year, BirthYearSelect.all,:value,:name, {include_blank: "---"} ,{class: "select-default"}
+                = f.collection_select :birth_year, BirthYearSelect.all,:value,:name, {include_blank: "---"} ,{required: "required", class: "select-default"}
                 = fa_icon "angle-down"
               %span 年
             .birthday-select-wrap
               .select-wrap.select-wrap__month
 
-                = f.select :birth_month, [1,2,3,4,5,6,7,8,9,10,11,12], {include_blank: "---"}, class: "select-default"
+                = f.select :birth_month, [1,2,3,4,5,6,7,8,9,10,11,12], {include_blank: "---"},required: "required", class: "select-default"
                 = fa_icon "angle-down"
               %span 月
             .birthday-select-wrap
               .select-wrap.select-wrap__day
-                = f.select :birth_day, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], {include_blank: "---"}, class: "select-default"
+                = f.select :birth_day, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], {include_blank: "---"},required: "required", class: "select-default"
                 = fa_icon "angle-down"
               %span 日
             .clearfix

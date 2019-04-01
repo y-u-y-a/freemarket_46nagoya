@@ -1,5 +1,35 @@
 $(document).on('turbolinks:load', function(e) {
-  e.preventDefault();
+
+  $('#sell-upload-delete').click(function(){
+    $(this).parents(".sell-upload-item").remove();
+  });
+
+  var htmlWhole = `<li class="sell-upload-item">
+                      <figure class="sell-upload-figure landscape">
+                        <img class="preview" style="vertical-align:middle">
+                      </figure>
+                      <div class="sell-upload-button">
+                        <a href="#" class="sell-upload-edit">編集</a>
+                        <a href="#" id="sell-upload-delete">削除</a>
+                      </div>
+                    </li>`
+
+  var secondHtml = `<div class="sell-upload-items second">
+                      <ul class="pictures"></ul>
+                    </div>`
+
+  var prepreView = $('.preview').length;
+
+  $('.box-display-none').hide();
+
+  for(num=0;num < prepreView; num++) {
+    var id = document.getElementById("item_item_images_attributes_" + num  + "_image");
+    $(id).parent().parent().hide();
+  }
+
+  var currentId = document.getElementById("item_item_images_attributes_" + num + "_image");
+  $(currentId).parent().parent().show();
+
   var previewCount = $('.preview').length;
   if (previewCount == 1 || previewCount == 6){
     $('.sell-upload-drop-box').width(491);
@@ -31,29 +61,16 @@ $(document).on('turbolinks:load', function(e) {
     }
     reader.onload = (function(file) {
       return function(e){
-        var htmlWhole = `<li class="sell-upload-item">
-                            <figure class="sell-upload-figure landscape">
-                              <img class="preview" style="vertical-align:middle">
-                            </figure>
-                            <div class="sell-upload-button">
-                              <a href="#" class="sell-upload-edit">編集</a>
-                              <a href="#" id="image-delete-button">削除</a>
-                            </div>
-                          </li>`
-
-        var secondHtml = `<div class="sell-upload-items have-item-1 second">
-                            <ul class="pictures"></ul>
-                          </div>`
 
         var prepreView = $('.preview').length;
-
         if(prepreView <= 4){
           $('.pictures').append(htmlWhole);
           $('.sell-upload-item:last').children().children('img').attr({
             src: e.target.result,
             width: "100%",
           });
-        } else if (prepreView == 5) {
+        }
+        else if (prepreView == 5) {
           $('.sell-upload-items').after(secondHtml);
           $('.second .pictures').append(htmlWhole);
           $('.second .pictures .sell-upload-item:last').children().children('img').attr({
@@ -69,6 +86,13 @@ $(document).on('turbolinks:load', function(e) {
         }
 
         var previewCount = $('.preview').length;
+
+        currentId = document.getElementById("item_item_images_attributes_" + num + "_image");
+        $(currentId).parent().parent().next().show();
+        $(currentId).parent().parent().hide();
+        num += 1;
+        console.log(currentId);
+
         if (previewCount == 1 || previewCount == 6){
           $('.sell-upload-drop-box').width(491);
         } else if (previewCount == 2 || previewCount == 7){
@@ -82,7 +106,7 @@ $(document).on('turbolinks:load', function(e) {
         } else if (previewCount == 10){
           $('.sell-upload-drop-box').css('display','none');
         }
-        $('#image-delete-button').click(function(){
+        $('#sell-upload-delete').click(function(){
           var c = $(this).parent().parent().prev().children().children().clone();
           c.val('');
           console.log(this);
@@ -90,8 +114,6 @@ $(document).on('turbolinks:load', function(e) {
           c.remove();
           $(this).parent().parent().prev().addClass("box-display-none")
           $(this).parent().parent().prev().appendTo('.sell-dropbox-container');
-          $(this).remove();
-          $(".sell-upload-item:last").next(".form-mask-image").removeClass("box-display-none");
         });
       };
     })(file);

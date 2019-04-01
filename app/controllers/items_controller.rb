@@ -1,13 +1,15 @@
 class ItemsController < ApplicationController
   require 'payjp'
 
-  # before_action :authenticate_user!
+  before_action :authenticate_user! , only: [:new ,:buy, :pay]
 
   before_action :set_category,     only: [ :index, :new, :all_brands_show, :all_categories_show, :show, :item_search_result, :trading_message]
   before_action :set_item,         only: [:show ,:edit, :update, :destroy, :buy]
   before_action :set_payjp_user ,  only: [:buy, :pay]
   before_action :set_search
   before_action :set_searches ,    only: [:item_search_result]
+  before_action :category_in_brand ,    only: [:all_brands_show]
+
 
   before_action :set_user, only: [:index,:show]
   before_action :get_category, only: [:show,:edit]
@@ -68,7 +70,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    10.times{@item.item_images}
+    20.times{@item.item_images.build}
   end
 
   def update
@@ -103,6 +105,9 @@ class ItemsController < ApplicationController
   end
 
   def all_brands_show
+    @category_index = Category.find(1)
+    @brands = @category_index.brands
+    @initials = @brands.pluck(:initial).uniq
   end
 
   def all_categories_show
@@ -171,7 +176,7 @@ class ItemsController < ApplicationController
   end
 
   def update_params
-    params.require(:item).permit( :name, :price, :explain, :postage, :region, :state, :shipping_date, :shipping_way,:size,:brand_id, :category_id, :child_category_id, :grand_child_category_id, item_images_attributes: [:image,:id,:_destroy]).merge(user_id: current_user.id, business_stats: '1')
+    params.require(:item).permit( :name, :price, :explain, :postage, :region, :state, :shipping_date, :shipping_way,:size,:brand_id, :category_id, :child_category_id, :grand_child_category_id, item_images_attributes: [:id,:image,:_destroy]).merge(user_id: current_user.id, business_stats: '1')
   end
 
   def pay_item_params
@@ -195,6 +200,7 @@ class ItemsController < ApplicationController
   end
 
   def set_payjp_user
+    redirect_to new_user_session_path unless current_user
     @user = User.find(current_user)
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
   end

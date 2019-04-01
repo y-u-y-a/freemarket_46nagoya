@@ -22,7 +22,10 @@
             %span カテゴリーを選択する
           .select-wrap.select-category{'data-search' => 'parent'}
             = f.select :category_id_eq, @category.map{|cate| [cate.name, cate.id]},{:include_blank => "すべて"}, {class: "search_parent_box"}
+
             = fa_icon "angle-down"
+          .select-wrap.select-child-category
+          .select-wrap.select-grand-child-category
 
         .search-dropdown__form-group.brand
           %label
