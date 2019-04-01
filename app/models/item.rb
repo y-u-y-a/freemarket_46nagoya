@@ -20,12 +20,12 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :brand
 
-  validates :name, presence: true
-  validates :price, presence: true
-  validates :state, presence: true
-  validates :shipping_date, presence: true
-  validates :postage, presence: true
-  validates :shipping_way,presence: true
+  # validates :name, presence: true
+  # validates :price, presence: true
+  # validates :state, presence: true
+  # validates :shipping_date, presence: true
+  # validates :postage, presence: true
+  # validates :shipping_way,presence: true
 
   def like_user(user_id)
    likes.find_by(user_id: user_id)

@@ -44,8 +44,7 @@
                       %span.form-require 必須
                     .category
                       .select-wrap
-                        = f.select :category_id, options_from_collection_for_select( @category, :id, :name),
-  {:include_blank => '---'}, {data: {remote: true, url: url_for(action: :category_select)}}
+                        = f.select :category_id, options_from_collection_for_select( @category, :id, :name), {:include_blank => '---'}, {data: {remote: true, url: url_for(action: :category_select)}}
                         = fa_icon 'angle-down'
                     .child-category
                       .select-wrap
