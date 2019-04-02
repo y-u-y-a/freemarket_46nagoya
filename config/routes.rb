@@ -4,8 +4,6 @@ Rails.application.routes.draw do
 
   get 'likes/create'
   get 'likes/destroy'
-  root 'items#index'
-
 
   post 'users/card_create' => 'users#card_create'
   delete 'users/card_delete' => 'users#card_delete'

@@ -10,15 +10,9 @@ class ApplicationController < ActionController::Base
 
   def set_category
     @child_category = []
-    @grand_child_category = []
     @category = Category.where(main_category_id: nil).where(sub_category_id: nil)
-    i = 1 #レディース
-    while i <= 14
-      @child_category << Category.where(main_category_id: i).where(sub_category_id: nil)
-      @child_category[i - 1].each do |cate|
-        @grand_child_category << Category.where(main_category_id: i).where(sub_category_id: cate.id)
-      end
-      i += 1
+    @category.each do |category|
+      @child_category << Category.where(main_category_id: category.id).where(sub_category_id: nil)
     end
   end
 
