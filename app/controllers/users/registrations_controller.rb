@@ -4,7 +4,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   require "date"
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  before_action :authenticate_user!
+  before_action :authenticate_user!,expect: :credit
 
   prepend_before_action :check_captcha, only: [:create, :credit]
   prepend_before_action :customize_sign_up_params, only: [:create, :credit]
