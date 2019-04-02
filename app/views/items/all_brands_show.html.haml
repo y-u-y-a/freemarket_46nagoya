@@ -15,7 +15,7 @@
       .brand-initial-container.clearfix
         - @initials.each do |initial|
           .initial__box.clearfix
-            %a{href: "#"}
+            %a{href: "##{initial}"}
               %p
               = initial
 
@@ -26,7 +26,7 @@
 
         .brand-name-list
           - @initials.each do |initial|
-            .brand-name__initial
+            .brand-name__initial{id: "#{initial}"}
               %h4
                 = initial
 
