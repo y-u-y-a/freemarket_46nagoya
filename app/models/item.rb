@@ -8,8 +8,8 @@ class Item < ApplicationRecord
   belongs_to_active_hash :business_status
   belongs_to_active_hash :shipping_method
 
-  accepts_nested_attributes_for :item_images, allow_destroy: true
   has_many :item_images,dependent: :delete_all
+  accepts_nested_attributes_for :item_images, allow_destroy: true
   has_many :likes, dependent: :destroy
   has_many :comments,dependent: :delete_all
   belongs_to :user
