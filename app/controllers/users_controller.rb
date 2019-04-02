@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-
   require 'payjp'
 
-  before_action :authenticate_user!, only: [:payment_method, :card_registration, :indentification, :card_create, :card_delete]
+  before_action :authenticate_user!
 
   before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :notification, :todo, :individual,:following,:followers]
   # ヘッダーに使うカテゴリを読み込む
