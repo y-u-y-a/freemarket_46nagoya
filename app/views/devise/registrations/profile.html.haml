@@ -34,12 +34,12 @@
         .l-single-content
           .form-group
             = f.label :お名前
-            %span.form-require 任意
+            %span.form-optional 任意
             = f.text_field :first_name, placeholder: "例) 山田", class: 'input-default'
             = f.text_field :last_name, placeholder: "例) 彩", class: 'input-default'
           .form-group
             = f.label :お名前カナ
-            %span.form-require 任意
+            %span.form-optional 任意
             = f.text_field :first_name_kana, placeholder: "例) ヤマダ", class: 'input-default'
             = f.text_field :last_name_kana, placeholder: "例) アヤ", class: 'input-default'
           .form-group
