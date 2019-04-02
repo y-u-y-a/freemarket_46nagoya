@@ -72,12 +72,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def address
     check = true
 
-    session[:post_number] = params[:session][:post_number]
+    session[:post_number]   = params[:session][:post_number]
     session[:prefecture_id] = params[:session][:prefecture_id]
-    session[:city] = params[:session][:city]
-    session[:town] = params[:session][:town]
-    session[:building] = params[:session][:building]
-    session[:phone_number] = params[:session][:phone_number]
+    session[:city]          = params[:session][:city]
+    session[:town]          = params[:session][:town]
+    session[:building]      = params[:session][:building]
+    session[:phone_number]  = params[:session][:phone_number]
 
     @error = []
     @error << check_phone(session[:phone_number])
@@ -106,15 +106,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def credit
     check = true
 
-    session[:number] = params[:session][:number]
+    session[:number]    = params[:session][:number]
     session[:exp_month] = params[:session][:exp_month]
-    session[:exp_year] = params[:session][:exp_year]
-    session[:cvc] = params[:session][:cvc]
+    session[:exp_year]  = params[:session][:exp_year]
+    session[:cvc]       = params[:session][:cvc]
 
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
 
     begin
-      Payjp::Token.create({card: {number: session[:number],cvc: session[:cvc],exp_month: session[:exp_month], exp_year: session[:exp_year]}}, {"X-Payjp-Direct-Token-Generate": "true"})
+      Payjp::Token.create({
+        card: {
+          number: session[:number],
+          cvc: session[:cvc],
+          exp_month: session[:exp_month],
+          exp_year: session[:exp_year]
+        }},
+        {
+          "X-Payjp-Direct-Token-Generate": "true"
+        })
     rescue
       check = false
       @error = []
@@ -126,8 +135,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     if check == true
-      card = Payjp::Token.create({card: {number: session[:number],cvc: session[:cvc],exp_month: session[:exp_month], exp_year: session[:exp_year]}}, {"X-Payjp-Direct-Token-Generate": "true"})
-      customer = Payjp::Customer.create(email: session[:email],card: card)
+      card = Payjp::Token.create({
+        card: {
+          number: session[:number],
+          cvc: session[:cvc],
+          exp_month: session[:exp_month],
+          exp_year: session[:exp_year]
+        }},
+        {
+          "X-Payjp-Direct-Token-Generate": "true"
+        })
+      customer = Payjp::Customer.create(
+        email: session[:email],
+        card: card
+        )
       # userの正規登録
       @user = User.new(
         nickname:              session[:nickname],
