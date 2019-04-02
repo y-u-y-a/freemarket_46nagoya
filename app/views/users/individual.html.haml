@@ -5,7 +5,10 @@
   .user-details__profile-box
     = link_to '#',class: 'user-details__profile-box__link' do
       .user-details__profile-box__link__photo
-        = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", class: 'user-details__profile-box__link__photo__image'
+        - if current_user.persisted? && current_user.avatar?
+          = image_tag current_user.avatar.to_s, class: 'user-details__profile-box__link__photo__image'
+        - else
+          = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", class: 'user-details__profile-box__link__photo__image'
       %h2.user-details__profile-box__link__title
         = @page_user.nickname
 
@@ -23,7 +26,6 @@
       %span
         %section.follow-button
           = render 'follow_form' if user_signed_in?
-
 
   .white
     .white__users-ratings
@@ -65,7 +67,7 @@
 
   - if @page_user.items.present?
     %section.items-box-container.clearfix
-      %h2.items-box-head この商品の出品者
+      %h2.items-box-head この出品者の商品
       .items-box-container__content.clearfix
         - @page_user.items.each do |item|
           %section.items-box
@@ -84,9 +86,6 @@
                     %span
                       = item.likes_count
                   %p.items-box__body__num__tax (税込)
-
-
-
 
 = render 'shared/footer'
 
