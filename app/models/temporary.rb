@@ -25,7 +25,6 @@ class Temporary < ApplicationRecord
   validates :birth_day,       presence: true, on: :profile_form
 
   validates :post_number,     presence: true, format: { with: POST_NUMBER }, on: :address_form
-  validates :prefecture_id,   presence: true, on: :address_form
   validates :city,            presence: true, on: :address_form
   validates :town,            presence: true, on: :address_form
   validates :phone_number,    presence: true, uniqueness: true, format: { with: PHONE_NUMBER }, on: :address_form
