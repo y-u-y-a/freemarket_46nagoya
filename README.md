@@ -49,8 +49,9 @@ Things you may want to cover:
 - belongs_to category
 - belongs_to user
 - belongs_to brand
-- has_many   messages
+- has_many   messages,dependent: :delete_all
 - has_many   item_images ,dependent: :destroy_all
+- has_one    late
 
 
 ## item_imagesテーブル
@@ -72,12 +73,16 @@ Things you may want to cover:
 |nickname|string|null: false,index: true|   <!-- ニックネーム -->
 |avatar|string||                            <!-- ユーザー画像 -->
 |profile_text|text||                        <!-- 自己紹介文 -->
+|good|integer||              
+|normal|integer||
+|bad|integer||
 
 ### Association
 - has_many  items,    dependent: :destroy
 - has_many  comments  dependent: :destroy
 - has_many  lates     dependent: :destroy
 - has_many  messages  dependent: :destroy
+- has_many  lates     dependent: :delete_all
 - has_one   address   dependent: :destroy
 - has_one   profiels  dependent: :delete
 - has_one   socialprofiles dependent: :delete
@@ -119,12 +124,11 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false|
-|text|text||
-|evalution|integer||              <!-- 評価 -->
-|item_id|integer|null: false|
+|text|text||　　　　　　　　　　<!-- 評価 -->
 
 ### Association
 - belongs_to  user
+- belongs_to  item
 
 
 ## brandsテーブル   <!-- ブランドテーブル -->
