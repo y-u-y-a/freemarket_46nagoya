@@ -9,7 +9,10 @@
           %section.follow-content__container__content__box
             = link_to individual_user_path(user), class: 'follow-link' do
               %figure.follow-link__photo
-                = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png"
+                - if user.avatar.present?
+                  = image_tag user.avatar.to_s
+                - else
+                  = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png"
               .follow-link__body
                 %h3.follow-link__body__name.font-2
                   = user.nickname
