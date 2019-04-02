@@ -30,15 +30,22 @@
         .buy-content-inner
           %h3 配送先
           %address.buy-user-info-text
-            〒453-0013
+            = "〒"+ current_user.address.post_number.to_s.insert(3, '-')
             %br/
-            愛知県 名古屋市中村区
-            ○○-○○-○○
+            = current_user.address.prefecture.name
+            %span
+              = current_user.address.city
+            %span
+              = current_user.address.town
+            %span
+              = current_user.address.building if current_user.address.building?
             %br/
-            苗字 名前
+            = current_user.profile.first_name
+            %span
+              = current_user.profile.last_name
           %p.buy-user-info-text
           %i.buy-user-info-fix.edit-shipping-address
-            = link_to "変更する", 'https://www.mercari.com/jp/transaction/address/m78002095847/?_s=U2FsdGVkX18aip1cp3M85nexbRAeAk83BDLAJ7KzqUn_qmYX9qA3FibkVuEI_QlSa5Il8z4J5GhjIjH9v41HqQk6Hf0UO_zIa6Qsq-cm7_qa4ZvpQkaHRWS-do4eCM5p', class: 'edit-shipping-address'
+            = link_to "変更する", edit_user_address_path(current_user,current_user&.address), class: 'edit-shipping-address'
             %i.icon-arrow-right.fa.fa-angle-right
       %section.buy-content.buy-user-info{"data-buy" => "pay-method"}
         .buy-content-inner

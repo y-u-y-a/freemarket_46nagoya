@@ -36,8 +36,12 @@ class ApplicationController < ActionController::Base
   end
 
   def set_searches
-    params[:q]["price_gteq_any"] = set_price_gteq(params[:q]["price_cont"]) if params[:q]["price_cont"] != nil
-    params[:q]["price_lteq_any"] = set_price_lteq(params[:q]["price_cont"]) if params[:q]["price_cont"] != nil
+    brand_id = Brand.find_by(name: params[:q][:brand_id_eq])
+    params[:q][:brand_id_eq] = brand_id.id if brand_id.present?
+    if params[:q]["price_cont"] != "0"
+      params[:q]["price_gteq_any"] = set_price_gteq(params[:q]["price_cont"])
+      params[:q]["price_lteq_any"] = set_price_lteq(params[:q]["price_cont"])
+    end
     params[:q]["price_cont"]     = ""
     params[:q]["s"]["0"]["name"] = set_sort_name(params[:q]["id"]) if params[:q]["id"] != nil
     params[:q]["s"]["0"]["dir"]  = set_sort_dir(params[:q]["id"]) if params[:q]["id"] != nil

@@ -1,0 +1,71 @@
+.follow-content {
+  width: 800px;
+  margin-bottom: 40px;
+  &__container {
+    @include clearfix;
+    overflow: hidden;
+    &__content {
+      padding: 0;
+      width: auto;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      margin: 0 auto;
+      font-size: 0;
+      &__box:nth-child(3n+1) {
+        margin: 0 0 20px;
+      }
+      &__box {
+        float: left;
+        display: block;
+        width: 220px;
+        vertical-align: inherit;
+        max-width: 220px;
+        margin: 0 0 20px 30px;
+        .follow-link {
+          color: $light_black;
+          display: block;
+          &__photo {
+            width: 220px;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            background-image: image-url("individual.jpg");
+            background-size: cover;
+            img {
+              position: absolute;
+              top: 25%;
+              left: 50%;
+              z-index:1;
+              width: 100px;
+              height: 100px;
+              border-radius: 50%;
+              right: auto;
+              transform: translate(-50%, 0);
+            }
+          }
+          &__body {
+            text-align: center;
+            vertical-align: middle;
+            &__name {
+              overflow: hidden;
+              position: relative;
+              font-weight: 400;
+              height: 3em;
+              line-height: 3;
+              word-break: break-word;
+              white-space: normal;
+              font-size: 25px;
+              color: #777;
+              background: #eee;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.nothing {
+  width: 700px;
+  height: 500px;
+}
