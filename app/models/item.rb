@@ -24,6 +24,7 @@ class Item < ApplicationRecord
     validates :postage
     validates :shipping_way
     validates :category_id
+    validates :child_category_id
     validates :price,        numericality: { only_integr: true,greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   end
 
