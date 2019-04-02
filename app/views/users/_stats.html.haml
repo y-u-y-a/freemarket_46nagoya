@@ -1,0 +1,10 @@
+- if @page_user ||= current_user
+  .stats
+    = link_to following_user_path(@page_user) do
+      %strong#following.stat
+        = @page_user.following.count
+      フォロー
+    = link_to followers_user_path(@page_user) do
+      %strong#followers.stat
+        = @page_user.followers.count
+      フォロワー

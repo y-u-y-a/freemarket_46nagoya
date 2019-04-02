@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   require 'payjp'
 
   before_action :authenticate_user! , only: [:new ,:buy, :pay]
-
   before_action :set_category,     only: [ :index, :new, :edit, :create, :all_brands_show, :all_categories_show, :show, :item_search_result]
   before_action :set_item,         only: [:show ,:edit, :update, :destroy, :buy]
   before_action :set_payjp_user ,  only: [:buy, :pay]
@@ -57,10 +56,21 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
+      check_item_name(@item.name)
+      check_price(@item.price)
+      check_explain(@item.explain)
+      check_image(@item.item_images)
+      check_category(@item.category_id,@item.child_category_id)
+      check_state(@item.state)
+      check_region(@item.region)
+      check_postage(@item.postage)
+      check_date(@item.shipping_date)
+      check_way(@item.shipping_way)
       t = 30 - @item.item_images.length
       t.times {@item.item_images.build}
       render new_item_path
     end
+
   end
 
   def show
@@ -85,7 +95,19 @@ class ItemsController < ApplicationController
     if @item.update(update_params)
       redirect_to item_path(@item)
     else
-      redirect_to edit_item_path(@item)
+      check_item_name(@item.name)
+      check_price(@item.price)
+      check_image(@item.item_images)
+      check_explain(@item.explain)
+      check_category(@item.category_id,@item.child_category_id)
+      check_state(@item.state)
+      check_region(@item.region)
+      check_postage(@item.postage)
+      check_date(@item.shipping_date)
+      check_way(@item.shipping_way)
+      t = 20 - @item.item_images.length
+      t.times {@item.item_images.build}
+      render :edit
     end
   end
 
@@ -187,4 +209,47 @@ class ItemsController < ApplicationController
     @user = User.find(current_user)
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
   end
+
+  def check_item_name(name)
+    flash[:name] = "名前入力してください" if name.blank?
+    flash[:name] = "40 文字以下で入力してください" if name.length > 40
+  end
+
+  def check_image(image)
+    flash[:image] = "画像がありません" if image == []
+  end
+
+  def check_explain(explain)
+    flash[:explain] = "説明入力してください" if explain.blank?
+    flash[:explain] = "1000文字以下で入力してください" if explain.length > 1000
+  end
+
+  def check_price(price)
+    flash[:price] = "300以上9999999以下で入力してください" if price.nil? || price < 300 || price > 9999999
+  end
+
+  def check_category(category,child)
+    flash[:category] = "選択してください" if category.nil? || child.nil? || category == 0 || child == 0
+  end
+
+  def check_state(state)
+    flash[:state] = "選択してください" if state.nil?
+  end
+
+  def check_region(region)
+    flash[:region] = "選択してください" if region == ""
+  end
+
+  def check_postage(postage)
+    flash[:postage] =  "選択してください" if postage.nil?
+  end
+
+  def check_date(date)
+    flash[:shipping_date] = "選択してください" if date.nil?
+  end
+
+  def check_way(way)
+    flash[:shipping_way] = "選択してください" if way.nil?
+  end
+
 end

@@ -34,20 +34,34 @@
                             ドラッグアンドドロップ
                             またはクリックしてファイルをアップロード
 
+                  - if flash[:image]
+                    %ul.has-error-text
+                      %li
+                        = flash[:image]
+
 
               .sell-content
                 .form-group
-                  %label 商品名
-                  %span.form-require 必須
+                  %label
+                    商品名
+                    %span.form-require 必須
 
                   %div
                     = f.text_field :name,class: 'input-default',placeholder: '商品名（必須 40文字まで)'
+                  - if flash[:name]
+                    %ul.has-error-text
+                      %li
+                        = flash[:name]
 
                   .form-group
                     %label
                       商品の説明
                       %span.form-require 必須
                     = f.text_area :explain, class: 'textarea-default', value: @item.explain,placeholder: '商品の説明ありません'
+                    - if flash[:explain]
+                      %ul.has-error-text
+                        %li
+                          = flash[:explain]
 
               .sell-content.clearfix
                 %h3.sell-sub-head 商品の詳細
@@ -67,6 +81,11 @@
                       = f.select :grand_child_category_id, @grand_child_category.map{ |category| [category.name, category.id, {class: "#{category.sub_category_id}"} ] }, {:include_blank => '---'}, id: "category3-select"
                       = fa_icon "angle-down"
 
+                    - if flash[:category]
+                      %ul.has-error-text
+                        %li
+                          = flash[:category]
+
                     .form-group
                       %label
                         商品の状態
@@ -74,6 +93,10 @@
                       .select-wrap
                         = f.select :state, Item.states_i18n.invert,{include_blank: '---'}
                         = fa_icon 'angle-down'
+                      - if flash[:state]
+                        %ul.has-error-text
+                          %li
+                            = flash[:state]
 
               .sell-content.clearfix
                 %h3.sell-sub-head 配送について
@@ -86,6 +109,10 @@
                     .select-wrap
                       = f.select :postage, Item.postages_i18n.invert, {include_blank: '---'}
                       = fa_icon 'angle-down'
+                    - if flash[:postage]
+                      %ul.has-error-text
+                        %li
+                          = flash[:postage]
 
                   .form-group
                     %label
@@ -94,7 +121,10 @@
                     .select-wrap
                       = f.collection_select :region, Prefecture.all, :id, :name,{include_blank: '---'} ,{class: "select-default"}
                       = fa_icon 'angle-down'
-
+                    - if flash[:region]
+                      %ul.has-error-text
+                        %li
+                          = flash[:region]
                   .form-group
                     %label
                       配達の方法
@@ -102,7 +132,10 @@
                     .select-wrap
                       = f.select :shipping_way,Item.shipping_ways_i18n.invert, {include_blank: '---'}
                       = fa_icon 'angle-down'
-
+                    - if flash[:shipping_way]
+                      %ul.has-error-text
+                        %li
+                          = flash[:shipping_way]
                   .form-group
                     %label
                       発送までの日数
@@ -110,6 +143,11 @@
                     .select-wrap
                       = f.select :shipping_date, Item.shipping_dates_i18n.invert,{include_blank: '---'}
                       = fa_icon 'angle-down'
+
+                    - if flash[:shipping_date]
+                      %ul.has-error-text
+                        %li
+                          = flash[:shipping_date]
 
               .sell-content
                 %h3.sell-sub-head 販売価格(300〜9,999,999)
@@ -121,21 +159,30 @@
                         %label.l-left
                           価格
                           %span.form-require 必須
-
                         .l-right.sell-price-input
                           ¥
                           .input-price
                             = f.text_field :price,class: 'input-default',value: @item.price,placeholder: '例）300'
+                      - if flash[:price]
+                        %ul.has-error-text
+                          %li
+                            = flash[:price]
 
                     %li.clearfix
                       .l-left 販売手数料(10%)
                       .l-right.commission
-                        = "¥#{thousands_separator(commission(@item.price))}"
+                        - if @item.price != nil
+                          = "¥ #{thousands_separator(commission(@item.price))}"
+                        - else
+                          ー
 
                     %li.clearfix.bold
                       .l-left 販売利益
                       .total-right.profits
-                        = "¥#{thousands_separator(profits(@item.price))}"
+                        - if @item.price != nil
+                          = "¥ #{thousands_separator(profits(@item.price))}"
+                        - else
+                          ー
 
 
               .sell-content.sell-btn-box

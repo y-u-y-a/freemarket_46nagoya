@@ -23,6 +23,10 @@
                         ドラッグアンドドロップ
                         またはクリックしてファイルをアップロード
                       %i.icon-camera
+                - if flash[:image]
+                  %ul.has-error-text
+                    %li
+                      = flash[:image]
               .sell-form__content
                 .form-group
                   %label
@@ -30,11 +34,19 @@
                     %span.form-require 必須
                   %div
                     = f.text_field :name, class: 'input-default', placeholder: '商品名(必須 40文字まで)'
+                  - if flash[:name]
+                    %ul.has-error-text
+                      %li
+                        = flash[:name]
                 .form-group
                   %label
                     商品の説明
                     %span.form-require 必須
                   = f.text_area :explain, class: 'textarea-default', placeholder: '商品の説明(必須 1,000文字以内)(色、素材、重さ、定価、注意点など)例)      　 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。', rows: '5'
+                  - if flash[:explain]
+                    %ul.has-error-text
+                      %li
+                        = flash[:explain]
               .sell-form__content.item-detail
                 %h3.sell-sub-head 商品の詳細
                 .sell-form-box
@@ -53,6 +65,10 @@
                     .grand-child-category
                       .select-wrap
                         #child-category-select
+                      - if flash[:category]
+                        %ul.has-error-text
+                          %li
+                            = flash[:category]
 
                   .form-group.brand_field.hidden
                     %label
@@ -69,7 +85,11 @@
                       %span.form-require 必須
                     .select-wrap
                       = f.select :state, Item.states_i18n.invert,{:include_blank => '---'}
-                      = fa_icon "angle-down"
+                      = fa_icon 'angle-down'
+                    - if flash[:state]
+                      %ul.has-error-text
+                        %li
+                          = flash[:state]
               .sell-form__content.item-delivery.clearfix
                 %h3.sell-sub-head 配送について
                 %figure.form-question ?
@@ -81,6 +101,10 @@
                     .select-wrap
                       = f.select :postage, Item.postages_i18n.invert, {:include_blank => '---'}
                       = fa_icon 'angle-down'
+                    - if flash[:postage]
+                      %ul.has-error-text
+                        %li
+                          = flash[:postage]
                   .form-group
                     %label
                       配達の方法
@@ -88,6 +112,10 @@
                     .select-wrap
                       = f.select :shipping_way,Item.shipping_ways_i18n.invert, {:include_blank => '---'}
                       = fa_icon 'angle-down'
+                    - if flash[:shipping_way]
+                      %ul.has-error-text
+                        %li
+                          = flash[:shipping_way]
                   .form-group
                     %label
                       発送元の地域
@@ -95,6 +123,10 @@
                     .select-wrap
                       = collection_select :item, :region,Prefecture.all,:id,:name,{:include_blank => '---'} ,{class: "select-default"}
                       = fa_icon 'angle-down'
+                    - if flash[:region]
+                      %ul.has-error-text
+                        %li
+                          = flash[:region]
                   .form-group
                     %label
                       発送までの日数
@@ -102,6 +134,10 @@
                     .select-wrap
                       = f.select :shipping_date, Item.shipping_dates_i18n.invert,{:include_blank => '---'}
                       = fa_icon 'angle-down'
+                    - if flash[:shipping_date]
+                      %ul.has-error-text
+                        %li
+                          = flash[:shipping_date]
               .sell-form__content.item-price.clearfix
                 %h3.sell-sub-head 販売価格(300~9,999,999)
                 %figure.form-question ?
@@ -116,7 +152,12 @@
                           %p.price-mark
                             ¥
                           .input-price
+
                             = f.text_field :price, class: 'input-default', value: @item.price, placeholder: '例) 300'
+                      - if flash[:price]
+                        %ul.has-error-text
+                          %li
+                            = flash[:price]
                     %li.clearfix.clearfix-commission
                       .l-left
                         販売手数料（10%）
