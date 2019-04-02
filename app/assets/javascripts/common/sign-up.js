@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load', function() {
   var path = location.pathname;
+
   if(path == "/users/sign_up"){
     $(".member-page").addClass("active");
     history.pushState(null, null, null);

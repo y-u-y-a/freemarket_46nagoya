@@ -88,6 +88,23 @@ crumb :item_show do |item|
   parent :root
 end
 
+crumb :individual do |user|
+  link user.nickname, individual_user_path(current_user)
+  parent :root
+end
+
+crumb :following do
+  link "フォロー"
+  parent :root
+end
+
+crumb :followers do
+  link "フォロワー"
+  parent :root
+end
+
+
+
 # categories#show
 # メンズ、レディース等の大カテゴリ
 crumb :category_show do

@@ -34,20 +34,34 @@
                             ドラッグアンドドロップ
                             またはクリックしてファイルをアップロード
 
+                  - if flash[:image]
+                    %ul.has-error-text
+                      %li
+                        = flash[:image]
+
 
               .sell-content
                 .form-group
-                  %label 商品名
-                  %span.form-require 必須
+                  %label
+                    商品名
+                    %span.form-require 必須
 
                   %div
                     = f.text_field :name,class: 'input-default',placeholder: '商品名（必須 40文字まで)'
+                  - if flash[:name]
+                    %ul.has-error-text
+                      %li
+                        = flash[:name]
 
                   .form-group
                     %label
                       商品の説明
                       %span.form-require 必須
                     = f.text_area :explain, class: 'textarea-default', value: @item.explain,placeholder: '商品の説明ありません'
+                    - if flash[:explain]
+                      %ul.has-error-text
+                        %li
+                          = flash[:explain]
 
               .sell-content.clearfix
                 %h3.sell-sub-head 商品の詳細
@@ -58,14 +72,20 @@
                       %span.form-require 必須
                   %div
                     .select-wrap
-                      = f.select :category_id,[["---", "0"], ["レディース", "1"], ["メンズ", "2"], ["ベビー・キッズ", "3"], ["インテリア・住まい・小物", "4"], ["本・音楽・ゲーム", "5"], ["おもちゃ・ホビー・グッズ", "6"], ["コスメ・香水・美容", "7"], ["家電・スマホ・カメラ", "8"], ["スポーツ・レジャー", "9"], ["ハンドメイド", "10"], ["チケット", "11"], ["自動車・オートバイ", "12"], ["その他", "13"]],class: 'select-default'
+                      = f.select :category_id,[["---", ""], ["レディース", "1"], ["メンズ", "2"], ["ベビー・キッズ", "3"], ["インテリア・住まい・小物", "4"], ["本・音楽・ゲーム", "5"], ["おもちゃ・ホビー・グッズ", "6"], ["コスメ・香水・美容", "7"], ["家電・スマホ・カメラ", "8"], ["スポーツ・レジャー", "9"], ["ハンドメイド", "10"], ["チケット", "11"], ["自動車・オートバイ", "12"], ["その他", "13"]],class: 'select-default'
                       = fa_icon 'angle-down'
                     .select-wrap
-                      = f.select :category_id, [["---", "0"], ["まとめ売り", "1"], ["ペット用品", "2"], ["食品", "3"], ["飲料/酒", "4"], ["日用品/生活雑貨/旅行", "5"], ["アンティーク/コレクション", "6"], ["文房具/事務用品", "7"], ["事務/店舗用品", "8"], ["その他", "9"]]
+                      = f.select :category_id, [["---", ""], ["まとめ売り", "1"], ["ペット用品", "2"], ["食品", "3"], ["飲料/酒", "4"], ["日用品/生活雑貨/旅行", "5"], ["アンティーク/コレクション", "6"], ["文房具/事務用品", "7"], ["事務/店舗用品", "8"], ["その他", "9"]]
                       = fa_icon 'angle-down'
                     .select-wrap
                       = f.select :category_id, [["---", "0"], ["筆記具", "1"], ["ノート/メモ帳", "2"], ["テープ/マスキングテープ", "3"], ["カレンダー/スケジュール", "4"],["アルバム/スクラップ", "5"], ["ファイル/バインダー", "6"], ["はさみ/カッター", "7"],["カードホルダー/名刺管理", "8"],["のり/ホッチキス", "9"],["その他", "10"]]
+
                       = fa_icon 'angle-down'
+
+                    - if flash[:category]
+                      %ul.has-error-text
+                        %li
+                          = flash[:category]
 
 
                     .form-group
@@ -75,6 +95,10 @@
                       .select-wrap
                         = f.select :state, Item.states_i18n.invert,{include_blank: '---'}
                         = fa_icon 'angle-down'
+                      - if flash[:state]
+                        %ul.has-error-text
+                          %li
+                            = flash[:state]
 
               .sell-content.clearfix
                 %h3.sell-sub-head 配送について
@@ -87,6 +111,10 @@
                     .select-wrap
                       = f.select :postage, Item.postages_i18n.invert, {include_blank: '---'}
                       = fa_icon 'angle-down'
+                    - if flash[:postage]
+                      %ul.has-error-text
+                        %li
+                          = flash[:postage]
 
                   .form-group
                     %label
@@ -95,7 +123,10 @@
                     .select-wrap
                       = collection_select :item, :region,Prefecture.all,:id,:name,{include_blank: '---'} ,{class: "select-default"}
                       = fa_icon 'angle-down'
-
+                    - if flash[:region]
+                      %ul.has-error-text
+                        %li
+                          = flash[:region]
                   .form-group
                     %label
                       配達の方法
@@ -103,7 +134,10 @@
                     .select-wrap
                       = f.select :shipping_way,Item.shipping_ways_i18n.invert, {include_blank: '---'}
                       = fa_icon 'angle-down'
-
+                    - if flash[:shipping_way]
+                      %ul.has-error-text
+                        %li
+                          = flash[:shipping_way]
                   .form-group
                     %label
                       発送までの日数
@@ -111,6 +145,11 @@
                     .select-wrap
                       = f.select :shipping_date, Item.shipping_dates_i18n.invert,{include_blank: '---'}
                       = fa_icon 'angle-down'
+
+                    - if flash[:shipping_date]
+                      %ul.has-error-text
+                        %li
+                          = flash[:shipping_date]
 
               .sell-content
                 %h3.sell-sub-head 販売価格(300〜9,999,999)
@@ -122,21 +161,30 @@
                         %label.l-left
                           価格
                           %span.form-require 必須
-
                         .l-right.sell-price-input
                           ¥
                           .input-price
                             = f.text_field :price,class: 'input-default',value: @item.price,placeholder: '例）300'
+                      - if flash[:price]
+                        %ul.has-error-text
+                          %li
+                            = flash[:price]
 
                     %li.clearfix
                       .l-left 販売手数料(10%)
                       .l-right.commission
-                        = "¥#{thousands_separator(commission(@item.price))}"
+                        - if @item.price != nil
+                          = "¥ #{thousands_separator(commission(@item.price))}"
+                        - else
+                          ー
 
                     %li.clearfix.bold
                       .l-left 販売利益
                       .total-right.profits
-                        = "¥#{thousands_separator(profits(@item.price))}"
+                        - if @item.price != nil
+                          = "¥ #{thousands_separator(profits(@item.price))}"
+                        - else
+                          ー
 
 
               .sell-content.sell-btn-box

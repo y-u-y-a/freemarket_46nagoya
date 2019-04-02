@@ -5,7 +5,7 @@
   = render 'shared/l-side'
   .l-content
     %section.mypage-user-icon
-      = link_to user_path(@user) do
+      = link_to individual_user_path(@user) do
         %figure
           = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: "", width: 60,height: "60"
         %h2.bold

@@ -38,7 +38,11 @@ Rails.application.routes.draw do
     get :sold_page,            on: :collection
     get :notification,         on: :collection
     get :todo,                 on: :collection
+    get :individual,           on: :member
     resources :addresses, only: [:edit, :update]
+    member do
+     get :following, :followers
+    end
   end
 
   scope :profiels do
@@ -60,11 +64,10 @@ Rails.application.routes.draw do
     get :grand_child_category, on: :collection
   end
 
-  resources :mypages do
-  end
-
   resources :brands, only: :show do
     get :brand_show,          on: :member
   end
+
+  resources :relationships, only: [:create, :destroy]
 
 end

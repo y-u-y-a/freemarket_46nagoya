@@ -12,7 +12,6 @@ class Temporary < ApplicationRecord
 
   validates :password,        presence: true, length: { in: 6..128 }, confirmation: true,on: :new_user
 
-
   validates :first_name,      presence: true, length: { in: 1..35 }, format: { with: ZENKAKU_MOJI }, on: :profile_form
 
   validates :last_name,       presence: true, length: { in: 1..35 }, format: { with: ZENKAKU_MOJI }, on: :profile_form
