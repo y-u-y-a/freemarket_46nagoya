@@ -57,16 +57,15 @@
                       カテゴリ
                       %span.form-require 必須
                   %div
-                    .select-wrap
-                      = f.select :category_id,[["---", "0"], ["レディース", "1"], ["メンズ", "2"], ["ベビー・キッズ", "3"], ["インテリア・住まい・小物", "4"], ["本・音楽・ゲーム", "5"], ["おもちゃ・ホビー・グッズ", "6"], ["コスメ・香水・美容", "7"], ["家電・スマホ・カメラ", "8"], ["スポーツ・レジャー", "9"], ["ハンドメイド", "10"], ["チケット", "11"], ["自動車・オートバイ", "12"], ["その他", "13"]],class: 'select-default'
-                      = fa_icon 'angle-down'
-                    .select-wrap
-                      = f.select :category_id, [["---", "0"], ["まとめ売り", "1"], ["ペット用品", "2"], ["食品", "3"], ["飲料/酒", "4"], ["日用品/生活雑貨/旅行", "5"], ["アンティーク/コレクション", "6"], ["文房具/事務用品", "7"], ["事務/店舗用品", "8"], ["その他", "9"]]
-                      = fa_icon 'angle-down'
-                    .select-wrap
-                      = f.select :category_id, [["---", "0"], ["筆記具", "1"], ["ノート/メモ帳", "2"], ["テープ/マスキングテープ", "3"], ["カレンダー/スケジュール", "4"],["アルバム/スクラップ", "5"], ["ファイル/バインダー", "6"], ["はさみ/カッター", "7"],["カードホルダー/名刺管理", "8"],["のり/ホッチキス", "9"],["その他", "10"]]
-                      = fa_icon 'angle-down'
-
+                    .select-wrap.category
+                      = f.select :category_id, @category.map{ |category| [category.name, category.id, {class: "#{category.id}"} ] }, {:include_blank => '---'}, id: "category1-select"
+                      = fa_icon "angle-down"
+                    .select-wrap.child-category#category2
+                      = f.select :child_category_id, @child_category.map{ |category| [category.name, category.id, {class: "#{category.main_category_id}"} ] }, {:include_blank => '---'}, id: "category2-select"
+                      = fa_icon "angle-down"
+                    .select-wrap.grand-child-category#category3
+                      = f.select :grand_child_category_id, @grand_child_category.map{ |category| [category.name, category.id, {class: "#{category.sub_category_id}"} ] }, {:include_blank => '---'}, id: "category3-select"
+                      = fa_icon "angle-down"
 
                     .form-group
                       %label
@@ -93,7 +92,7 @@
                       発送元の地域
                       %span.form-require 必須
                     .select-wrap
-                      = collection_select :item, :region,Prefecture.all,:id,:name,{include_blank: '---'} ,{class: "select-default"}
+                      = f.collection_select :region, Prefecture.all, :id, :name,{include_blank: '---'} ,{class: "select-default"}
                       = fa_icon 'angle-down'
 
                   .form-group
