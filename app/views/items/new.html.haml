@@ -54,12 +54,12 @@
                       .select-wrap
                         #child-category-select
 
-                  .form-group.brand_field
+                  .form-group.brand_field.hidden
                     %label
                       ブランド
                       %span.form-arbitrary 任意
                     .select-wrap
-                      = f.text_field :brand_id, placeholder: "例) シャネル", class: "input-default", id: "brand_search"
+                      = f.text_field :brand_id, placeholder: "例) シャネル",autocomplete: 'off',value: "", class: "input-default", id: "brand_search"
                       %div
                         %ul#brand_result
 

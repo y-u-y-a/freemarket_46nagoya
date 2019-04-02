@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
 
   before_action :authenticate_user! , only: [:new ,:buy, :pay]
 
-  before_action :set_category,     only: [ :index, :new, :create, :all_brands_show, :all_categories_show, :show, :item_search_result]
+  before_action :set_category,     only: [ :index, :new, :edit, :create, :all_brands_show, :all_categories_show, :show, :item_search_result]
   before_action :set_item,         only: [:show ,:edit, :update, :destroy, :buy]
   before_action :set_payjp_user ,  only: [:buy, :pay]
   before_action :set_search
@@ -77,6 +77,8 @@ class ItemsController < ApplicationController
 
   def edit
     20.times{@item.item_images.build}
+    @child_category = Category.where.not(main_category_id: nil).where(sub_category_id: nil)
+    @grand_child_category = Category.where.not(main_category_id: nil).where.not(sub_category_id: nil)
   end
 
   def update
@@ -97,6 +99,13 @@ class ItemsController < ApplicationController
   end
 
   def item_search_result
+    @category2 = Category.where.not(main_category_id: nil).where(sub_category_id: nil)
+    @category3 = Category.where.not(main_category_id: nil).where.not(sub_category_id: nil)
+    @brands = Brand.where('name LIKE(?)', "%#{params[:keyword]}%")
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def buy

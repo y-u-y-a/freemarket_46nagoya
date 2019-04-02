@@ -1,9 +1,4 @@
 $(document).on('turbolinks:load', function(){
-  $(".brand_field").hide();
-  var path = location.pathname;
-  if(path == "/users/sign_up"){
-    document.getElementById( "brand_search" ).value = "";
-  }
   function appendBrand(brand) {
     var html = `<li class="brand_list" id="${brand.id}">${brand.name}</li>`;
     return html;

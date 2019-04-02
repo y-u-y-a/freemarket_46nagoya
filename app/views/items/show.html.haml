@@ -70,7 +70,8 @@
             %th ブランド
             %td
               = link_to '#' do
-                %div コーチ
+                %div
+                  = @item.brand.name if @item.brand
 
           %tr
             %th 商品の状態
@@ -150,7 +151,7 @@
           %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
           = form_for [@item, @comment] do |c|
             - if @item.business_stats == 1
-              = c.text_area :text, class: 'textarea-default'
+              = c.text_area :text,required: "required", class: 'textarea-default'
               = c.submit "コメントする", data: { disable_with: "送信中..." },class: 'message-submit btn-default btn-gray',id: "new-comment-submit"
             - else
               = c.text_area :text, class: 'textarea-default disabled'
