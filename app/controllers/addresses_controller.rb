@@ -1,7 +1,9 @@
 class AddressesController < ApplicationController
+  before_action :set_search
+  before_action :set_category
 
   def edit
-    @address = Address.new
+    @address = current_user.address
   end
 
   def update
