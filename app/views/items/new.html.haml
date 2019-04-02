@@ -58,7 +58,7 @@
                       .select-wrap
                         = f.select :category_id, options_from_collection_for_select( @category, :id, :name),
   {:include_blank => '---'}, {data: {remote: true, url: url_for(action: :category_select)}}
-                        = fa_icon 'angle-down'
+                        = fa_icon "angle-down"
                     .child-category
                       .select-wrap
                         #category-select
@@ -69,6 +69,15 @@
                         %ul.has-error-text
                           %li
                             = flash[:category]
+
+                  .form-group.brand_field
+                    %label
+                      ブランド
+                      %span.form-arbitrary 任意
+                    .select-wrap
+                      = f.text_field :brand_id, placeholder: "例) シャネル", class: "input-default", id: "brand_search"
+                      %div
+                        %ul#brand_result
 
                   .form-group
                     %label

@@ -1,6 +1,5 @@
 class Item < ApplicationRecord
 
-
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :result_order
   belongs_to_active_hash :size
@@ -9,16 +8,13 @@ class Item < ApplicationRecord
   belongs_to_active_hash :business_status
   belongs_to_active_hash :shipping_method
 
-  has_many :likes, dependent: :destroy
-  has_many :item_images,dependent: :delete_all
-
   accepts_nested_attributes_for :item_images, allow_destroy: true
-
+  has_many :item_images,dependent: :delete_all
+  has_many :likes, dependent: :destroy
   has_many :comments,dependent: :delete_all
-
   belongs_to :user
   belongs_to :category
-  # belongs_to :brand
+  belongs_to :brand,optional: true
 
   with_options presence: true do
     validates :name,        length: { maximum: 40 }
@@ -30,8 +26,7 @@ class Item < ApplicationRecord
     validates :category_id
     validates :price,        numericality: { only_integr: true,greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   end
-
-
+  
   def like_user(user_id)
    likes.find_by(user_id: user_id)
   end
@@ -66,13 +61,4 @@ class Item < ApplicationRecord
     "ゆうパック": 3,
     "ゆうメール": 4
   }
-
-  private
-
-  def add_error_sample
-    if name.empty?
-      errors.add(:name, "に関係するエラーを追加")
-      errors[:base] << "モデル全体に関係するエラーを追加"
-    end
-  end
 end

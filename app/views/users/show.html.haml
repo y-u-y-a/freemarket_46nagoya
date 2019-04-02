@@ -11,12 +11,20 @@
       = form_for @user, method: :patch do |f|
         %input{ type: "hidden", name: "__csrf_value", value: ""}
         .setting-profile-icon
-          %figure
-            = image_tag '//static.mercdn.net/images/member_photo_noimage_thumb.png', width: "60",height: "60"
+          %figure.avatar-field
+            - if current_user.persisted? && current_user.avatar?
+              = image_tag current_user.avatar.to_s, class: 'avatar_present_img'
+              / %label
+              /   = f.check_box :remove_avatar
+            - else
+              = image_tag '//static.mercdn.net/images/member_photo_noimage_thumb.png', class: 'avatar_present_img'
+              = f.hidden_field :avatar_cache
+            = f.file_field :avatar, id: 'post_img', class: "hidden"
+            = image_tag("#", id: "avatar_img_prev" ,class: 'hidden')
           = f.text_field :nickname ,value: @user.nickname, class: 'input-default'
 
         .setting-profile-content
-          = f.text_area :profile_text, value: @user.profile_text,placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪",class: 'setting-profile-content__textarea-default'
+          = f.text_area :profile_text, value: @user.profile_text, placeholder: "例）こんにちは☆ ご覧いただきありがとうございます！かわいいものやきれいめオフィスカジュアル中心に出品しています。服のサイズは主に9号です。気持ちよくお取引できるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪",class: 'setting-profile-content__textarea-default'
           = f.submit '変更する' ,class: "btn-default btn-red"
 
 

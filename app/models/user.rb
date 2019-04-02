@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,:omniauthable
 
+  mount_uploader :avatar, ImageUploader
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :card_month
@@ -33,7 +35,7 @@ class User < ApplicationRecord
   validates :nickname,        presence: true, length: { in: 1..20 }, uniqueness: true
   validates :email,           presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 
-  validates :password,        presence: true, length: { in: 6..128 }, confirmation: true
+  validates :password,        presence: true, length: { in: 6..128 }, confirmation: true, on: :create
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first

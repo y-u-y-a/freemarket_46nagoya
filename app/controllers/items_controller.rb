@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   require 'payjp'
 
   before_action :authenticate_user! , only: [:new ,:buy, :pay]
-
+  
   before_action :set_category,     only: [ :index, :new,:create,:edit,:update, :all_brands_show, :all_categories_show, :show, :item_search_result]
   before_action :set_item,         only: [:show ,:edit, :update, :destroy, :buy]
   before_action :set_payjp_user ,  only: [:buy, :pay]
@@ -43,11 +43,17 @@ class ItemsController < ApplicationController
   def new
     @item = Item.create(price: 0)
     30.times {@item.item_images.build}
+    @brands = Brand.where('name LIKE(?)', "%#{params[:keyword]}%")
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def create
     @item = Item.new(item_params)
-
+    brand_id = Brand.find_by(name: params[:item][:brand_id])
+    @item.brand_id = brand_id.id if brand_id.present?
     if @item.save
       redirect_to root_path
     else
@@ -167,7 +173,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit( :name, :price, :explain, :postage, :region, :state, :shipping_date, :shipping_way,:size,:brand_id, :category_id, :child_category_id, :grand_child_category_id, item_images_attributes: [:image]).merge(user_id: current_user.id, business_stats: '1')
+    params.require(:item).permit( :name, :price, :explain, :postage, :region, :state, :shipping_date, :shipping_way,:size, :brand_id, :category_id, :child_category_id, :grand_child_category_id, item_images_attributes: [:image]).merge(user_id: current_user.id, business_stats: '1')
   end
 
   def update_params
