@@ -26,7 +26,7 @@ class Item < ApplicationRecord
     validates :category_id
     validates :price,        numericality: { only_integr: true,greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   end
-  
+
   def like_user(user_id)
    likes.find_by(user_id: user_id)
   end
