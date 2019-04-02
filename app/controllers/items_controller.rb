@@ -2,16 +2,15 @@ class ItemsController < ApplicationController
   require 'payjp'
 
   before_action :authenticate_user! , only: [:new ,:buy, :pay]
-  before_action :set_category,     only: [ :index, :new, :edit, :create, :all_brands_show, :all_categories_show, :show, :item_search_result]
+  before_action :set_category,     only: [ :index, :new, :edit, :create, :update, :all_brands_show, :all_categories_show, :show, :item_search_result]
   before_action :set_item,         only: [:show ,:edit, :update, :destroy, :buy]
   before_action :set_payjp_user ,  only: [:buy, :pay]
   before_action :set_search
   before_action :set_searches ,    only: [:item_search_result]
   before_action :category_in_brand ,    only: [:all_brands_show]
 
-
   before_action :set_user, only: [:index,:show]
-  before_action :get_category, only: [:show,:edit]
+  before_action :get_category, only: [:show, :edit]
 
   def index
     @lady_items = Item.where(category_id: 1).where.not(business_stats: 2).limit(4).order(id: "DESC")
@@ -70,7 +69,6 @@ class ItemsController < ApplicationController
       t.times {@item.item_images.build}
       render new_item_path
     end
-
   end
 
   def show
@@ -107,6 +105,8 @@ class ItemsController < ApplicationController
       check_way(@item.shipping_way)
       t = 20 - @item.item_images.length
       t.times {@item.item_images.build}
+      @child_category = Category.where.not(main_category_id: nil).where(sub_category_id: nil)
+      @grand_child_category = Category.where.not(main_category_id: nil).where.not(sub_category_id: nil)
       render :edit
     end
   end
