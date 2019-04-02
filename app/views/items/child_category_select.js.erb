@@ -3,4 +3,5 @@ if (child_category >= 1 ) {
   var html = `<%= j(select :item, :grand_child_category_id, options_from_collection_for_select(@grand_child_category, :id, :name),{:include_blank => '---'})%>
               <%= fa_icon 'angle-down' %>`
   $('#child-category-select').html(html);
+  $(".brand_field").show();
 }

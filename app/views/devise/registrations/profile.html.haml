@@ -1,5 +1,27 @@
 .single-container
-  = render "devise/registrations/signup_header"
+  %header.single-header
+    %h1
+      %figure.single-container__header-icon
+        = link_to root_path do
+          %figure.single-container__header-icon-image
+            = image_tag "//www-mercari-jp.akamaized.net/assets/img/common/common/logo.svg?2845599746"
+    %nav.progress-bar.signup-bar
+      %ol.clearfix
+        %li.member-page
+          会員情報
+          .progress-status
+        %li.phone-page
+          電話番号認証
+          .progress-status
+        %li.address-page.active
+          お届け先住所入力
+          .progress-status
+        %li.credit-page
+          支払い方法
+          .progress-status
+        %li.comp-page
+          完了
+          .progress-status
   // 住所入力フォーム
   %main.single-main
     %section.l-single-container
@@ -12,12 +34,12 @@
         .l-single-content
           .form-group
             = f.label :お名前
-            %span.form-require 必須
+            %span.form-require 任意
             = f.text_field :first_name, placeholder: "例) 山田", class: 'input-default'
             = f.text_field :last_name, placeholder: "例) 彩", class: 'input-default'
           .form-group
             = f.label :お名前カナ
-            %span.form-require 必須
+            %span.form-require 任意
             = f.text_field :first_name_kana, placeholder: "例) ヤマダ", class: 'input-default'
             = f.text_field :last_name_kana, placeholder: "例) アヤ", class: 'input-default'
           .form-group
