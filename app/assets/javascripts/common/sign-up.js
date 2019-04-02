@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load', function() {
   var path = location.pathname;
+
   if(path == "/users/sign_up"){
     history.pushState(null, null, null);
     $(window).on("popstate", function (event) {

@@ -1,0 +1,19 @@
+- breadcrumb :following
+= render 'shared/header'
+
+- if @users.present?
+  %section.item-box-container.follow-content
+    %section.follow-content__container.clearfix
+      .follow-content__container__content.clearfix
+        - @users.each do |user|
+          %section.follow-content__container__content__box
+            = link_to individual_user_path(user), class: 'follow-link' do
+              %figure.follow-link__photo
+                = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png"
+              .follow-link__body
+                %h3.follow-link__body__name.font-2
+                  = user.nickname
+
+- else
+  .nothing
+= render 'shared/footer'
