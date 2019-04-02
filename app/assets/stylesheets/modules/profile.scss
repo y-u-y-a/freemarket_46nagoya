@@ -50,6 +50,20 @@
       overflow: hidden;
       border-radius: 50%;
       vertical-align: middle;
+      .hidden {
+        display: none;
+      }
+    }
+    .avatar-field {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
     }
     .input-default {
       width: 220px;
