@@ -1,0 +1,93 @@
+- breadcrumb :individual, @page_user
+= render 'shared/header'
+
+%section.user-details
+  .user-details__profile-box
+    = link_to '#',class: 'user-details__profile-box__link' do
+      .user-details__profile-box__link__photo
+        = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", class: 'user-details__profile-box__link__photo__image'
+      %h2.user-details__profile-box__link__title
+        = @page_user.nickname
+
+    .user-details__profile-box__score
+      %span
+        評価数 0
+      %span
+        出品数
+        = @page_user.items.count
+
+      %span
+        %section.follow-stats
+          = render 'stats'
+
+      %span
+        %section.follow-button
+          = render 'follow_form' if user_signed_in?
+
+
+  .white
+    .white__users-ratings
+      .white__users-ratings__div
+        .white__users-ratings__div__detail.clearfix
+          %i.fa.fa-facebook-square
+          .white__users-ratings__div__detail__score 0
+
+      .white__users-ratings__div
+        .white__users-ratings__div__detail.clearfix
+          %i.fa.fa-twitter
+          .white__users-ratings__div__detail__score 0
+
+      .white__users-ratings__div
+        .white__users-ratings__div__detail.clearfix
+          %i.fa.fa-apple
+          .white__users-ratings__div__detail__score 0
+
+    .white__description_box
+      - if @page_user.profile_text.present?
+        %p.font-2
+          = @page_user.profile_text
+
+      - else
+        %p.font-2
+          プロフィールはありません
+
+  .item-social-media-box
+    %ul.social-media-box
+      %li
+        = link_to '#',class: 'share-btn' do
+          %i.fa.fa-facebook-square
+      %li
+        = link_to '#', class: 'share-btn' do
+          %i.fa.fa-twitter
+      %li
+        = link_to '#', class: 'share-btn' do
+          %i.fa.fa-apple
+
+  - if @page_user.items.present?
+    %section.items-box-container.clearfix
+      %h2.items-box-head この商品の出品者
+      .items-box-container__content.clearfix
+        - @page_user.items.each do |item|
+          %section.items-box
+            = link_to item_path(item), class: 'items-box__link' do
+              %figure.items-box__link__photo
+                - if item.item_images
+                  = image_tag item.item_images.first.image
+              .items-box__body
+                %h3.items-box__body__name.font-2
+                  = item.name
+                .items-box__body__num.clearfix
+                  .items-box__body__num__price.font-5
+                    = "¥ #{thousands_separator(item.price)}"
+                  .items-box__body__num__likes
+                    %i.fa.fa-heart.icon-like-border
+                    %span
+                      = item.likes_count
+                  %p.items-box__body__num__tax (税込)
+
+
+
+
+= render 'shared/footer'
+
+= render 'shared/sell-button'
