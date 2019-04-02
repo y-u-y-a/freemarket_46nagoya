@@ -3,33 +3,34 @@
 %main.l-container
   = render 'shared/l-side'
 
-  %main.right-content
-    %section.l-single-container
-      %h2.l-single-head メール/パスワード
-      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :patch, class: 'l-single-inner'}) do |f|
-        / - if @address&.errors.present?
-        /   = render partial: "shared/errors_messages",locals: {temporary: @address}
+  .single-container
+    %main.right-content
+      %section.l-single-container
+        %h2.l-single-head メール/パスワード
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :patch, class: 'l-single-inner'}) do |f|
+          / - if @address&.errors.present?
+          /   = render partial: "shared/errors_messages",locals: {temporary: @address}
 
-        .l-single-content
-          .form-group
-            = f.label :メールアドレス
-            %span.form-require 必須
-            = f.email_field :email, placeholder: "",required: "required" , class: 'input-default'
-          .form-group
-            = f.label :現在のパスワード
-            %span.form-require 必須
-            = f.password_field :current_password, placeholder: "6文字以上",required: "required", class: 'input-default'
-          .form-group
-            = f.label :新しいパスワード
-            %span.form-require 必須
-            = f.password_field :password, placeholder: "6文字以上",required: "required", class: 'input-default'
-          .form-group
-            = f.label :新しいパスワード確認
-            %span.form-require 必須
-            = f.password_field :password_confirmation, placeholder: "6文字以上",required: "required", class: 'input-default'
+          .l-single-content
+            .form-group
+              = f.label :メールアドレス
+              %span.form-require 必須
+              = f.email_field :email, placeholder: "",required: "required" , class: 'input-default'
+            .form-group
+              = f.label :現在のパスワード
+              %span.form-require 必須
+              = f.password_field :current_password, placeholder: "6文字以上",required: "required", class: 'input-default'
+            .form-group
+              = f.label :新しいパスワード
+              %span.form-require 必須
+              = f.password_field :password, placeholder: "6文字以上",required: "required", class: 'input-default'
+            .form-group
+              = f.label :新しいパスワード確認
+              %span.form-require 必須
+              = f.password_field :password_confirmation, placeholder: "6文字以上",required: "required", class: 'input-default'
 
 
-          %button.btn-default.btn-red{type: "submit"} 変更する
+            %button.btn-default.btn-red{type: "submit"} 変更する
 
 
 
