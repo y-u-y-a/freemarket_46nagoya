@@ -76,6 +76,7 @@ Things you may want to cover:
 |good|integer||              
 |normal|integer||
 |bad|integer||
+|late_count|integer||
 
 ### Association
 - has_many  items,    dependent: :destroy
