@@ -8,23 +8,24 @@ class Item < ApplicationRecord
   belongs_to_active_hash :business_status
   belongs_to_active_hash :shipping_method
 
-  has_many :likes, dependent: :destroy
   has_many :item_images,dependent: :delete_all
-
   accepts_nested_attributes_for :item_images, allow_destroy: true
-
+  has_many :likes, dependent: :destroy
   has_many :comments,dependent: :delete_all
-
   belongs_to :user
   belongs_to :category
   belongs_to :brand,optional: true
 
-  validates :name, presence: true
-  validates :price, presence: true
-  validates :state, presence: true
-  validates :shipping_date, presence: true
-  validates :postage, presence: true
-  validates :shipping_way, presence: true
+  with_options presence: true do
+    validates :name,        length: { maximum: 40 }
+    validates :explain,     length: { maximum: 1000 }
+    validates :state
+    validates :shipping_date
+    validates :postage
+    validates :shipping_way
+    validates :category_id
+    validates :price,        numericality: { only_integr: true,greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+  end
 
   def like_user(user_id)
    likes.find_by(user_id: user_id)
@@ -60,5 +61,4 @@ class Item < ApplicationRecord
     "ゆうパック": 3,
     "ゆうメール": 4
   }
-
 end

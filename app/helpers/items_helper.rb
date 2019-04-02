@@ -1,15 +1,15 @@
 module ItemsHelper
 
   def thousands_separator(price)
-    "#{price.to_s(:delimited, delimiter: ',')}"
+    "#{price.to_s(:delimited, delimiter: ',')}" if price != nil
   end
 
   def commission(price)
-    @commission = (price * 0.1).round()
+      @commission = (price * 0.1).round() if price != nil
   end
 
   def profits(price)
-    profits = (price - @commission)
+    profits = (price - @commission) if price != nil
   end
 
   def get_child_category(category)
