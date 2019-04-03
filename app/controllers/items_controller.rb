@@ -142,12 +142,6 @@ class ItemsController < ApplicationController
     @region = Prefecture.find(@item.region)
   end
 
-  def all_brands_show
-    @category_index = Category.find(1)
-    @brands = @category_index.brands
-    @initials = @brands.pluck(:initial).uniq
-  end
-
   def all_categories_show
   end
 
