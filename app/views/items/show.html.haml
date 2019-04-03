@@ -40,13 +40,16 @@
               %div
                 .item-user-ratings
                   %i.fa.fa-facebook-square
-                  %span 873
+                  %span
+                    = @good_count
                 .item-user-ratings
                   %i.fa.fa-twitter
-                  %span 26
+                  %span
+                    = @normal_count
                 .item-user-ratings
                   %i.fa.fa-apple
-                  %span 3
+                  %span
+                    = @bad_count
 
           %tr
             %th カテゴリー

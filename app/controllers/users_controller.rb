@@ -117,6 +117,12 @@ class UsersController < ApplicationController
   def individual
     @user = User.find(current_user)
     @page_user = User.includes(:items).find(params[:id])
+    @good = Late.where(user_id: current_user.id).where(late: 1)
+    @good_count = @good.length
+    @normal = Late.where(user_id: current_user.id).where(late: 2)
+    @normal_count = @normal.length
+    @bad = Late.where(user_id: current_user.id).where(late: 3)
+    @bad_count = @bad.length
   end
 
   def following

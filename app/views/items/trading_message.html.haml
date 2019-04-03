@@ -137,10 +137,10 @@
               = f.radio_button :late, 1
               良い
             %li
-              = f.radio_button :late, value: :'2'
+              = f.radio_button :late, 2
               普通
             %li
-              = f.radio_button :late, value: :'3'
+              = f.radio_button :late, 3
               悪い
           %p 評価のコメントを記入しましょう。
           = f.text_area :text, class: 'message', placeholder: 'コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。'
@@ -150,7 +150,7 @@
 
       - if @item.delivery_status == 0 && @item.user_id == current_user.id
         .transact-button
-          = link_to "商品の発送をしたので、発送通知をする", late_item_path(@item.id), method: :post, class:"button btn-default btn-red"
+          = link_to "商品の発送をしたので、発送通知をする", trading_page_item_path(@item.id), method: :post, class:"button btn-default btn-red"
 
       // 取引メッセージ
       .message-container

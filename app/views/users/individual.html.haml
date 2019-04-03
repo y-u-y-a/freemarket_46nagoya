@@ -14,7 +14,8 @@
 
     .user-details__profile-box__score
       %span
-        評価数 0
+        評価数
+        = @user.late_count
       %span
         出品数
         = @page_user.items.count
@@ -32,17 +33,20 @@
       .white__users-ratings__div
         .white__users-ratings__div__detail.clearfix
           %i.fa.fa-facebook-square
-          .white__users-ratings__div__detail__score 0
+          .white__users-ratings__div__detail__score
+            = @good_count
 
       .white__users-ratings__div
         .white__users-ratings__div__detail.clearfix
           %i.fa.fa-twitter
-          .white__users-ratings__div__detail__score 0
+          .white__users-ratings__div__detail__score
+            = @normal_count
 
       .white__users-ratings__div
         .white__users-ratings__div__detail.clearfix
           %i.fa.fa-apple
-          .white__users-ratings__div__detail__score 0
+          .white__users-ratings__div__detail__score
+            = @bad_count
 
     .white__description_box
       - if @page_user.profile_text.present?
