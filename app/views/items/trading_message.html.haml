@@ -1,19 +1,9 @@
-
+- if @item.buyer_id == current_user.id
+  - breadcrumb :trading_message_buy
+- else
+  - breadcrumb :trading_message_sell
 = render 'shared/header'
 
-%nav.bread-crumbs
-  %ul
-    %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
-      = link_to 'メルカリ', root_path
-      = fa_icon 'angle-right'
-    %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
-      = link_to 'マイページ', users_path
-      = fa_icon 'angle-right'
-    %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
-      = link_to "購入した商品 - 取引中", trading_users_path
-      = fa_icon 'angle-right'
-    %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
-      %span{:itemprop => "title"} 取引画面
 %main.l-container.clearfix
   .l-content
     %section.l-chapter-container

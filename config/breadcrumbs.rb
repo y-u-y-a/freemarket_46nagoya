@@ -79,6 +79,16 @@ crumb :payment_method do
   parent :users
 end
 
+crumb :trading_message_buy do
+  link '取引画面', trading_message_item_path
+  parent :trading
+end
+
+crumb :trading_message_sell do
+  link '取引画面', trading_message_item_path
+  parent :seller_trading
+end
+
 crumb :card_registration do
   link "クレジットカード情報入力", card_registration_users_path
   parent :payment_method
