@@ -16,6 +16,8 @@ class UsersController < ApplicationController
   # 外部からのAPIを受ける特定アクションのみ除外
 
   def index
+    @price = Item.where(user_id: current_user.id).where(business_stats: 3)
+    @total_price = @price.sum(:price)
     @items = Item.where(user_id: current_user)
     @trading_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 2)
     @old_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 3)
