@@ -150,7 +150,7 @@
 
       - if @item.delivery_status == 0 && @item.user_id == current_user.id
         .transact-button
-          = link_to "商品の発送をしたので、発送通知をする", late_item_path(@item.id), method: :post, class:"button btn-default btn-red"
+          = link_to "商品の発送をしたので、発送通知をする", trading_page_item_path(@item.id), method: :post, class:"button btn-default btn-red"
 
       // 取引メッセージ
       .message-container

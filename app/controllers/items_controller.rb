@@ -38,7 +38,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.create(price: 0)
+    @item = Item.new
     30.times {@item.item_images.build}
     @brands = Brand.where('name LIKE(?)', "%#{params[:keyword]}%")
     respond_to do |format|
@@ -187,7 +187,7 @@ class ItemsController < ApplicationController
 
   def trading_message
     @item = Item.find(params[:id])
-    @user = User.find(@item.user_id)
+    @user = User.find(current_user)
     @buyer = User.find(@item.buyer_id)
     @address = Address.find_by(user_id: @item.buyer_id)
     @prefecture = Prefecture.find(@address.prefecture_id)
