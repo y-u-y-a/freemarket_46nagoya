@@ -132,6 +132,7 @@ class ItemsController < ApplicationController
 
   def pay
     @item = Item.find(params[:id])
+    @buyer = User.find(@item.buyer_id)
     if @user.customer_id == nil
       redirect_to payment_method_users_path
     else
@@ -142,6 +143,11 @@ class ItemsController < ApplicationController
       )
       @item.delivery_status = '3'
       @item.business_stats = '3'
+      @late = Late.new(late_params)
+      @late.user_id = @item.buyer_id
+      @buyer.late_count += 1
+      @buyer.save(validate: false)
+      @late.save(validate: false)
       if @item.save(validate: false)
         redirect_to trading_message_item_path, notice: '購入しました'
       else
@@ -157,10 +163,19 @@ class ItemsController < ApplicationController
     @prefecture = Prefecture.find(@address.prefecture_id)
     @message = Message.new
     @messages = Message.where(item_id: @item.id)
+    @late = Late.new
   end
 
   def trading_page
     @item = Item.find(params[:id])
+    @seller = User.find(@item.user_id)
+    if @item.delivery_status == 1
+      @late = Late.new(late_params)
+      @late.user_id = @item.user_id
+      @seller.late_count += 1
+      @seller.save(validate: false)
+      @late.save(validate: false)
+    end
     if @item.business_stats == 1
       @item.buyer_id = current_user.id
       @item.business_stats = 2
@@ -175,7 +190,28 @@ class ItemsController < ApplicationController
   def message
     @message = Message.new(message_params)
     @message.save
-    redirect_to trading_message_item_path
+    redirect_to trading_page_item_path
+  end
+
+  def late
+    @item = Item.find(params[:id])
+    @buyer = User.find(@item.buyer_id)
+    @seller = User.find(@item.user_id)
+    if @item.user_id == current_user.id
+      @late = Late.new(late_seller_params)
+      @late.user_id = @item.buyer_id
+      @buyer.late_count += 1
+      @buyer.save
+      @late.save
+      redirect_to pay_item_path
+    else
+      @late = Late.new(late_buyer_params)
+      @late.user_id = @item.user_id
+      @seller.late_count += 1
+      @seller.save
+      @late.save
+      redirect_to trading
+    end
   end
 
   private
@@ -193,6 +229,10 @@ class ItemsController < ApplicationController
 
   def message_params
     params.require(:message).permit(:text).merge(user_id: current_user.id, item_id: params[:id])
+  end
+
+  def late_params
+    params.require(:late).permit(:text, :late)
   end
 
   def get_category

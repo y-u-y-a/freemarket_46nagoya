@@ -15,11 +15,11 @@ class Item < ApplicationRecord
 
   has_many :comments,dependent: :delete_all
   has_many :messages,dependent: :delete_all
-  has_one :lates
 
   belongs_to :user
   belongs_to :category
   belongs_to :brand,optional: true
+  has_one    :late
 
   validates :name, presence: true
   validates :price, presence: true

@@ -106,67 +106,51 @@
             （日本郵便には、直接お問い合わせされないようお願いします）
 
       - if @item.delivery_status == 1 && @item.buyer_id == current_user.id
-        %form.transact-form-review{:action => "https://www.mercari.com/jp/transaction/review/m18251864076/", :method => "POST"}
+        = form_for [@late], url: trading_page_item_path(@item.id), method: :post, html: {class: 'form transact-form-review'} do |f|
           %input{:name => "__csrf_value", :type => "hidden", :value => "548b8672d0a5998354cfac5c0af6823e6a1fd351fdac08492995fc979a866428bcdf5275bb3e1f5dce8399036f2f3b1d2edc82e5c7f7b893ca0525ae979de99fc"}/
           .checkbox-default
-            %input#transaction_delivered{:name => "transaction_delivered", :type => "checkbox", :value => "1"}/
-            %i.icon-check
+            %input#transaction_delivered{:name => "", :type => "checkbox", :value => "1"}/
             %label{:for => "transaction_delivered"} 商品の中身を確認しました。
           %ul.transact-review-list.clearfix
             %li
-              %input#face1{:name => "fame", :type => "radio", :value => "good"}/
-              .transact-review-icon
-                %i.icon-good
-                %label{:for => "face1"}
-                  良い
+              = f.radio_button :late, 1
+              良い
             %li
-              %input#face2{:name => "fame", :type => "radio", :value => "normal"}/
-              .transact-review-icon
-                %i.icon-normal
-                %label{:for => "face2"}
-                  普通
+              = f.radio_button :late, 2
+              普通
             %li
-              %input#face3{:name => "fame", :type => "radio", :value => "bad"}/
-              .transact-review-icon
-                %i.icon-bad
-                %label{:for => "face3"}
-                  悪い
+              = f.radio_button :late, 3
+              悪い
           %p 評価のコメントを記入しましょう。
-          %textarea.textarea-default{:name => "message", :placeholder => "コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。"}
-          = link_to "評価を投稿する", trading_page_item_path(@item.id), method: :post, class: "button btn-default btn-red"
+          = f.text_area :text, class: 'message', placeholder: 'コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。'
+          = f.submit "評価を投稿する", data: { disable_with: "送信中..." },class: 'button btn-default btn-red'
 
 
       - if @item.delivery_status == 2 && @item.user_id == current_user.id
-        %form.transact-form-review{:action => "https://www.mercari.com/jp/transaction/review/m18251864076/", :method => "POST"}
+        = form_for [@late], url: pay_item_path(@item.id), method: :post, html: {class: 'form transact-form-review'} do |f|
           %input{:name => "__csrf_value", :type => "hidden", :value => "548b8672d0a5998354cfac5c0af6823e6a1fd351fdac08492995fc979a866428bcdf5275bb3e1f5dce8399036f2f3b1d2edc82e5c7f7b893ca0525ae979de99fc"}/
+          .checkbox-default
+            %input#transaction_delivered{:name => "", :type => "checkbox", :value => "1"}/
+            %label{:for => "transaction_delivered"} 商品の中身を確認しました。
           %ul.transact-review-list.clearfix
             %li
-              %input#face1{:name => "fame", :type => "radio", :value => "good"}/
-              .transact-review-icon
-                %i.icon-good
-                %label{:for => "face1"}
-                  良い
+              = f.radio_button :late, 1
+              良い
             %li
-              %input#face2{:name => "fame", :type => "radio", :value => "normal"}/
-              .transact-review-icon
-                %i.icon-normal
-                %label{:for => "face2"}
-                  普通
+              = f.radio_button :late, value: :'2'
+              普通
             %li
-              %input#face3{:name => "fame", :type => "radio", :value => "bad"}/
-              .transact-review-icon
-                %i.icon-bad
-                %label{:for => "face3"}
-                  悪い
+              = f.radio_button :late, value: :'3'
+              悪い
           %p 評価のコメントを記入しましょう。
-          %textarea.textarea-default{:name => "message", :placeholder => "コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。"}
-          = link_to "評価を投稿する", pay_item_path(@item.id), method: :post, class: "button btn-default btn-red"
+          = f.text_area :text, class: 'message', placeholder: 'コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。'
+          = f.submit "評価を投稿する", data: { disable_with: "送信中..." },class: 'button btn-default btn-red'
 
 
 
       - if @item.delivery_status == 0 && @item.user_id == current_user.id
         .transact-button
-          = link_to "商品の発送をしたので、発送通知をする", trading_page_item_path(@item.id), method: :post, class:"button btn-default btn-red"
+          = link_to "商品の発送をしたので、発送通知をする", late_item_path(@item.id), method: :post, class:"button btn-default btn-red"
 
       // 取引メッセージ
       .message-container

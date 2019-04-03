@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190402045911) do
+ActiveRecord::Schema.define(version: 20190402074609) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -102,8 +102,8 @@ ActiveRecord::Schema.define(version: 20190402045911) do
 
   create_table "lates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
-    t.integer  "item_id"
     t.text     "text",       limit: 65535
+    t.integer  "late"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
@@ -178,9 +178,6 @@ ActiveRecord::Schema.define(version: 20190402045911) do
     t.string   "provider"
     t.string   "uid"
     t.string   "token"
-    t.integer  "good",                                 default: 0
-    t.integer  "normal",                               default: 0
-    t.integer  "bad",                                  default: 0
     t.integer  "late_count",                           default: 0
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

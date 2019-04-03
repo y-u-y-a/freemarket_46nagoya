@@ -60,6 +60,7 @@ Rails.application.routes.draw do
     get :trading_message,      on: :member
     post :trading_page,        on: :member
     post :message,             on: :member
+    post :late,                on: :member
   end
 
   resources :categories, only: :show do

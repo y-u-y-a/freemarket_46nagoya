@@ -73,9 +73,6 @@ Things you may want to cover:
 |nickname|string|null: false,index: true|   <!-- ニックネーム -->
 |avatar|string||                            <!-- ユーザー画像 -->
 |profile_text|text||                        <!-- 自己紹介文 -->
-|good|integer||              
-|normal|integer||
-|bad|integer||
 |late_count|integer||
 
 ### Association
@@ -126,6 +123,7 @@ Things you may want to cover:
 |------|----|-------|
 |user_id|integer|null: false|
 |text|text||　　　　　　　　　　<!-- 評価 -->
+|late|integer|
 
 ### Association
 - belongs_to  user
