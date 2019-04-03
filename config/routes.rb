@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     get :notification,         on: :collection
     get :todo,                 on: :collection
     get :individual,           on: :member
+    resources :likes,     only: :index
     resources :addresses, only: [:edit, :update]
     resources :lates,     only: :index do
       get :great,              on: :collection

@@ -68,6 +68,10 @@ crumb :lates do
   parent :users
 end
 
+crumb :likes do
+  link 'いいね! 一覧', user_likes_path(current_user)
+  parent :users
+end
 
 crumb :indentification do
   link "本人情報の登録", indentification_users_path
