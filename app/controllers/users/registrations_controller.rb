@@ -9,7 +9,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :set_search,   only: [:edit]
   before_action :set_category, only: [:edit]
 
-  prepend_before_action :check_captcha, only: [:create, :credit]
+  prepend_before_action :check_captcha, only: :create
   prepend_before_action :customize_sign_up_params, only: [:create, :credit]
   protect_from_forgery except: [ :card_create, :card_delete, :payment_method, :card_registration]
 
