@@ -38,6 +38,11 @@ Rails.application.routes.draw do
     get :todo,                 on: :collection
     get :individual,           on: :member
     resources :addresses, only: [:edit, :update]
+    resources :lates,     only: :index do
+      get :great,              on: :collection
+      get :good,               on: :collection
+      get :poor,               on: :collection
+    end
     member do
      get :following, :followers
     end

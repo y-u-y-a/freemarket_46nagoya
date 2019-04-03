@@ -1,0 +1,2 @@
+module LatesHelper
+end

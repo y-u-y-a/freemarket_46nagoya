@@ -5,7 +5,10 @@
         %a.message-user{:href => ""}
           %figure
             %div
-              %img{:alt => "", :src => "//static.mercdn.net/images/member_photo_noimage_thumb.png"}/
+              - if message.user.persisted? && message.user.avatar?
+                = image_tag message.user.avatar.to_s, class: 'avatar_present_img'
+              - else
+                = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: ""
             %figcaption.bold
               = message.user.nickname
         .message-body
@@ -14,7 +17,8 @@
           .message-icons.clearfix
             %time.message-icon-left
               %i.fa.fa-clock-o
-              %span #{message.created_at.strftime("%m月%d日 %H:%M")}
+              %span
+                = time_ago_in_words(message.created_at)+"前"
           %i.fa.fa-caret-down
 
     - elsif message.user_id == current_user.id
@@ -22,7 +26,10 @@
         %a.message-user{:href => ""}
           %figure
             %div
-              %img{:alt => "", :src => "//static.mercdn.net/images/member_photo_noimage_thumb.png"}/
+              - if message.user.persisted? && message.user.avatar?
+                = image_tag message.user.avatar.to_s, class: 'avatar_present_img'
+              - else
+                = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: ""
             %figcaption.bold
               = current_user.nickname
         .message-body
@@ -31,5 +38,6 @@
           .message-icons.clearfix
             %time.message-icon-left
               %i.fa.fa-clock-o
-              %span #{message.created_at.strftime("%m月%d日 %H:%M")}
+              %span
+                = time_ago_in_words(message.created_at)+"前"
           %i.fa.fa-caret-down
