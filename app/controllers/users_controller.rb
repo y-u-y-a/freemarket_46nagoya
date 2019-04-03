@@ -7,7 +7,6 @@ class UsersController < ApplicationController
   # ヘッダーに使うカテゴリを読み込む
   before_action :set_user
   # , only: [:trading, :purchased,:index,:show,:update]
-
   before_action :set_payjp_user ,only: [:card_delete, :card_create, :payment_method, :card_registration]
 
   before_action :set_search

@@ -37,5 +37,14 @@ $(document).on('turbolinks:load', function() {
       location.href = "https://www.freemarket46nagoya.com";
     });
   }
+  if(path.match(/great/)){
+    $(".mypage-tab-container__tabs .good").addClass('active');
+  } else if(path.match(/good/)) {
+    $(".mypage-tab-container__tabs .normal").addClass('active');
+  } else if(path.match(/poor/)){
+    $(".mypage-tab-container__tabs .bad").addClass('active');
+  } else {
+    $(".mypage-tab-container__tabs .all").addClass('active');
+  }
 
 });
