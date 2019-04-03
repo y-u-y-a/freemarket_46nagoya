@@ -32,19 +32,19 @@
     .white__users-ratings
       .white__users-ratings__div
         .white__users-ratings__div__detail.clearfix
-          %i.fa.fa-facebook-square
+          %i.fa.fa-grin.icon-good
           .white__users-ratings__div__detail__score
             = @good_count
 
       .white__users-ratings__div
         .white__users-ratings__div__detail.clearfix
-          %i.fa.fa-twitter
+          %i.fa.fa-meh.icon-normal
           .white__users-ratings__div__detail__score
             = @normal_count
 
       .white__users-ratings__div
         .white__users-ratings__div__detail.clearfix
-          %i.fa.fa-apple
+          %i.fa.fa-frown.icon-bad
           .white__users-ratings__div__detail__score
             = @bad_count
 
@@ -61,13 +61,13 @@
     %ul.social-media-box
       %li
         = link_to '#',class: 'share-btn' do
-          %i.fa.fa-facebook-square
+          %i.fab.fa-facebook-square
       %li
         = link_to '#', class: 'share-btn' do
-          %i.fa.fa-twitter
+          %i.fab.fa-twitter
       %li
         = link_to '#', class: 'share-btn' do
-          %i.fa.fa-apple
+          %i.fab.fa-line
 
   - if @page_user.items.present?
     %section.items-box-container.clearfix

@@ -68,6 +68,15 @@
   }
   .white {
     background: $white;
+    .icon-good {
+      color: #ef5185;
+    }
+    .icon-normal {
+      color: #fba933;
+    }
+    .icon-bad {
+      color: #6ab5d8;
+    }
     &__users-ratings {
       height: 50px;
       padding-top: 14px;
@@ -151,10 +160,9 @@
             color: $white;
             background: #5d9dc9;
           }
-          .fa-apple {
-            color: $white;
-            background: #00c137;
-            font-size: 22px;
+          .fa-line {
+            color: #00c137;
+            font-size: 50px;
           }
         }
       }
