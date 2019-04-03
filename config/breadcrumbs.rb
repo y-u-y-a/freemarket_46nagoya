@@ -27,6 +27,11 @@ crumb :logout do
   parent :users
 end
 
+crumb :address_edit do
+  link "発送元・お届け先住所変更", edit_user_address_path(current_user,current_user&.address)
+  parent :users
+end
+
 
 crumb :user do
   link 'プロフィール', user_path(current_user)
@@ -87,6 +92,23 @@ crumb :item_show do |item|
   link item.name, item_path
   parent :root
 end
+
+crumb :individual do |user|
+  link user.nickname, individual_user_path(current_user)
+  parent :root
+end
+
+crumb :following do
+  link "フォロー"
+  parent :root
+end
+
+crumb :followers do
+  link "フォロワー"
+  parent :root
+end
+
+
 
 # categories#show
 # メンズ、レディース等の大カテゴリ

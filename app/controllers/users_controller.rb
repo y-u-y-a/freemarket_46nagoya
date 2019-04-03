@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
-
   require 'payjp'
 
-  before_action :authenticate_user!, only: [:payment_method, :card_registration, :indentification, :card_create, :card_delete]
+  before_action :authenticate_user!
 
-  before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :notification, :todo]
+  before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :notification, :todo, :individual,:following,:followers]
   # ヘッダーに使うカテゴリを読み込む
   before_action :set_user
   # , only: [:trading, :purchased,:index,:show,:update]
@@ -115,6 +114,22 @@ class UsersController < ApplicationController
     redirect_to action: :index
   end
 
+  def individual
+    @user = User.find(current_user)
+    @page_user = User.includes(:items).find(params[:id])
+  end
+
+  def following
+    @user  = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
+  end
+
+  def followers
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follower'
+  end
 
   private
 

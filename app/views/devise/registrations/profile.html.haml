@@ -11,7 +11,7 @@
           会員情報
           .progress-status
         %li.phone-page
-          電話番号認証
+          プロフィール入力
           .progress-status
         %li.address-page.active
           お届け先住所入力
@@ -34,12 +34,12 @@
         .l-single-content
           .form-group
             = f.label :お名前
-            %span.form-require 任意
+            %span.form-optional 任意
             = f.text_field :first_name, placeholder: "例) 山田", class: 'input-default'
             = f.text_field :last_name, placeholder: "例) 彩", class: 'input-default'
           .form-group
             = f.label :お名前カナ
-            %span.form-require 任意
+            %span.form-optional 任意
             = f.text_field :first_name_kana, placeholder: "例) ヤマダ", class: 'input-default'
             = f.text_field :last_name_kana, placeholder: "例) アヤ", class: 'input-default'
           .form-group
@@ -60,7 +60,7 @@
             = f.text_field :town,required: "required", placeholder: "例) 青山1-1-1", class: 'input-default'
           .form-group
             = f.label :建物名
-            %span.form-require 任意
+            %span.form-optional 任意
             = f.text_field :building, placeholder: "例) 柳ビル103", class: 'input-default'
           .form-group
             = f.label :電話

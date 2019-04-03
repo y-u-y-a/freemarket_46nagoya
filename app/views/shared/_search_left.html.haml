@@ -20,20 +20,28 @@
           %label
             = fa_icon 'list'
             %span カテゴリーを選択する
-          .select-wrap.select-category{'data-search' => 'parent'}
-            = f.select :category_id_eq, @category.map{|cate| [cate.name, cate.id]},{:include_blank => "すべて"}, {class: "search_parent_box"}
+          .select-wrap.select-category
+            = f.select :category_id_eq, @category.map{ |category| [category.name, category.id, {class: "#{category.id}"} ] }, {:include_blank => '---'}, id: "category1-select"
+            = fa_icon "angle-down"
+          .select-wrap.child-category#category2.hidden
+            = f.select :child_category_id_eq, @category2.map{ |category| [category.name, category.id, {class: "#{category.main_category_id}"} ] }, {include_blank: '---'}, id: "category2-select"
+            = fa_icon "angle-down"
+          .select-wrap.grand-child-category#category3.hidden
+            = f.select :grand_child_category_id_eq, @category3.map{ |category| [category.name, category.id, {class: "#{category.sub_category_id}"} ] }, {include_blank: '---'}, id: "category3-select"
+            = fa_icon "angle-down"
+
 
             = fa_icon "angle-down"
           .select-wrap.select-child-category
           .select-wrap.select-grand-child-category
 
-        .search-dropdown__form-group.brand
+        .search-dropdown__form-group.brand.form-group.brand_field
           %label
             = fa_icon "tag"
             %span ブランド名から探す
-            %input{type: "text",value: "",name: "brand_name",placeholder: "例 シャネル",class: "input-default","data-search" => "brand"}
-            %input{type: "hidden",name: "brand_id",value: ""}
-            %ul{"data-search" => "brand-dom"}
+            = f.text_field :brand_id_eq, placeholder: "例) シャネル", autocomplete: 'off',value: "", class: "input-default", id: "brand_search"
+            %div
+              %ul#brand_result
         .search-dropdown__form-group
           %label
             = fa_icon "square"

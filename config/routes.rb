@@ -5,23 +5,23 @@ Rails.application.routes.draw do
   get 'likes/create'
   get 'likes/destroy'
 
-  post 'users/card_create' => 'users#card_create'
-  delete 'users/card_delete' => 'users#card_delete'
+  post 'users/card_create',   to: 'users#card_create'
+  delete 'users/card_delete', to: 'users#card_delete'
 
-  match 'category_select', to: 'items#category_select', via: [:get, :post]
+  match 'category_select',       to: 'items#category_select',       via: [:get, :post]
   match 'child_category_select', to: 'items#child_category_select', via: [:get, :post]
 
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    sessions: 'users/sessions',
+    registrations:      'users/registrations',
+    sessions:           'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
   devise_scope :user do
-    get  'to_signup' => 'users/registrations#to_signup'
-    post 'signup/profile' => 'users/registrations#profile'
-    post 'signup/address' => 'users/registrations#address'
-    post 'signup/credit' => 'users/registrations#credit'
+    get  'to_signup',      to: 'users/registrations#to_signup'
+    post 'signup/profile', to: 'users/registrations#profile'
+    post 'signup/address', to: 'users/registrations#address'
+    post 'signup/credit',  to: 'users/registrations#credit'
   end
 
   resources :users,except: :show do
@@ -36,7 +36,11 @@ Rails.application.routes.draw do
     get :sold_page,            on: :collection
     get :notification,         on: :collection
     get :todo,                 on: :collection
+    get :individual,           on: :member
     resources :addresses, only: [:edit, :update]
+    member do
+     get :following, :followers
+    end
   end
 
   scope :profiels do
@@ -49,8 +53,6 @@ Rails.application.routes.draw do
     get  :item_search_result,   on: :collection
     get  :buy,                  on: :member
     post :pay,                  on: :member
-    resources :comments, only: [:create, :destroy]
-    resources :likes, only: [:create, :destroy]
     get :buy,                  on: :collection
     get :all_brands_show,      on: :collection
     get :all_categories_show,  on: :collection
@@ -61,6 +63,8 @@ Rails.application.routes.draw do
     post :trading_page,        on: :member
     post :message,             on: :member
     post :late,                on: :member
+    resources :comments, only: [:create, :destroy]
+    resources :likes,    only: [:create, :destroy]
   end
 
   resources :categories, only: :show do
@@ -68,11 +72,10 @@ Rails.application.routes.draw do
     get :grand_child_category, on: :collection
   end
 
-  resources :mypages do
-  end
-
   resources :brands, only: :show do
     get :brand_show,          on: :member
   end
+
+  resources :relationships, only: [:create, :destroy]
 
 end

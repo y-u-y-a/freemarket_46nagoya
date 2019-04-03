@@ -23,6 +23,12 @@ ja:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
     attributes:
+      address:
+        phone_number: 電話番号
+        prefecture_id: 都道府県
+        post_number: 郵便番号
+        city: 市町村
+        town: 番地
       temporary:
         nickname: ニックネーム
         phone_number: 電話番号
