@@ -13,7 +13,7 @@ crumb :all_categories_show do
 end
 
 crumb :all_brands_show do
-  link 'ブランド一覧', all_brands_show_items_path
+  link 'ブランド一覧', brand_path(1)
   parent :root
 end
 
