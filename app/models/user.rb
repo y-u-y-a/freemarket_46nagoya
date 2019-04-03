@@ -47,10 +47,18 @@ class User < ApplicationRecord
         nickname:     auth.info.name,
         email:    auth.info.email,
         token:    auth.credentials.token,
-        password: Devise.friendly_token[0, 20]
+        password: Devise.friendly_token[0, 20],
+      )
+
+      address = Address.new(
+        user_id:        user.id,
+      )
+      address.save!(validate: false)
+      Profile.create(
+        user_id:         user.id,
       )
     end
-    user
+    # user
   end
 
   def follow(other_user)

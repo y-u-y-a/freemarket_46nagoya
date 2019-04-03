@@ -11,16 +11,6 @@
           = render partial: "shared/errors_messages",locals: {temporary: @address}
 
         .l-single-content
-          / .form-group
-          /   = f.label :お名前
-          /   %span.form-require 必須
-          /   = f.text_field :first_name, placeholder: "例) 山田", class: 'input-default'
-          /   = f.text_field :last_name, placeholder: "例) 彩", class: 'input-default'
-          / .form-group
-          /   = f.label :お名前カナ
-          /   %span.form-require 必須
-          /   = f.text_field :first_name_kana, placeholder: "例) ヤマダ", class: 'input-default'
-          /   = f.text_field :last_name_kana, placeholder: "例) アヤ", class: 'input-default'
           .form-group
             = f.label :郵便番号
             %span.form-require 必須
