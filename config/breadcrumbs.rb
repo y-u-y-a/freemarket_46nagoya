@@ -27,6 +27,11 @@ crumb :logout do
   parent :users
 end
 
+crumb :address_edit do
+  link "発送元・お届け先住所変更", edit_user_address_path(current_user,current_user&.address)
+  parent :users
+end
+
 
 crumb :user do
   link 'プロフィール', user_path(current_user)
@@ -55,6 +60,16 @@ end
 
 crumb :purchased do
   link '購入した商品-過去の取引', purchased_users_path(current_user)
+  parent :users
+end
+
+crumb :lates do
+  link '評価一覧', user_lates_path(current_user)
+  parent :users
+end
+
+crumb :likes do
+  link 'いいね! 一覧', user_likes_path(current_user)
   parent :users
 end
 

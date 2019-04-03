@@ -17,6 +17,8 @@ class UsersController < ApplicationController
 
   def index
     @items = Item.where(user_id: current_user)
+    @trading_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 2)
+    @old_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 3)
   end
 
   def show
@@ -38,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def todo
-    @items = Item.where(user_id: current_user)
+    @trading_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 2)
   end
 
   def payment_method
@@ -72,6 +74,10 @@ class UsersController < ApplicationController
 
   def purchased
     @item = Item.where(business_stats: 3).where(buyer_id: current_user.id)
+  end
+
+  def transaction_page
+    @item = @user.items.find(params[:id])
   end
 
   def card_create
