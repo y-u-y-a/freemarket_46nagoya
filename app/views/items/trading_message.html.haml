@@ -109,11 +109,11 @@
         = form_for [@late], url: trading_page_item_path(@item.id), method: :post, html: {class: 'form transact-form-review'} do |f|
           %input{:name => "__csrf_value", :type => "hidden", :value => "548b8672d0a5998354cfac5c0af6823e6a1fd351fdac08492995fc979a866428bcdf5275bb3e1f5dce8399036f2f3b1d2edc82e5c7f7b893ca0525ae979de99fc"}/
           .checkbox-default
-            %input#transaction_delivered{:name => "", :type => "checkbox", :value => "1"}/
+            %input#transaction_delivered{:name => "", :type => "checkbox", :value => "1",required: "required"}/
             %label{:for => "transaction_delivered"} 商品の中身を確認しました。
           %ul.transact-review-list.clearfix
             %li
-              = f.radio_button :late, 1
+              = f.radio_button :late, 1, required: "required"
               良い
             %li
               = f.radio_button :late, 2
@@ -122,7 +122,7 @@
               = f.radio_button :late, 3
               悪い
           %p 評価のコメントを記入しましょう。
-          = f.text_area :text, class: 'message', placeholder: 'コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。'
+          = f.text_area :text, class: 'message', placeholder: 'コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。',required: "required"
           = f.submit "評価を投稿する", data: { disable_with: "送信中..." },class: 'button btn-default btn-red'
 
 
@@ -130,27 +130,27 @@
         = form_for [@late], url: pay_item_path(@item.id), method: :post, html: {class: 'form transact-form-review'} do |f|
           %input{:name => "__csrf_value", :type => "hidden", :value => "548b8672d0a5998354cfac5c0af6823e6a1fd351fdac08492995fc979a866428bcdf5275bb3e1f5dce8399036f2f3b1d2edc82e5c7f7b893ca0525ae979de99fc"}/
           .checkbox-default
-            %input#transaction_delivered{:name => "", :type => "checkbox", :value => "1"}/
+            %input#transaction_delivered{:name => "", :type => "checkbox", :value => "1",required: "required"}/
             %label{:for => "transaction_delivered"} 商品の中身を確認しました。
           %ul.transact-review-list.clearfix
             %li
-              = f.radio_button :late, 1
+              = f.radio_button :late, 1, required: "required"
               良い
             %li
-              = f.radio_button :late, value: :'2'
+              = f.radio_button :late, 2
               普通
             %li
-              = f.radio_button :late, value: :'3'
+              = f.radio_button :late, 3
               悪い
           %p 評価のコメントを記入しましょう。
-          = f.text_area :text, class: 'message', placeholder: 'コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。'
+          = f.text_area :text, class: 'message', placeholder: 'コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。',required: "required"
           = f.submit "評価を投稿する", data: { disable_with: "送信中..." },class: 'button btn-default btn-red'
 
 
 
       - if @item.delivery_status == 0 && @item.user_id == current_user.id
         .transact-button
-          = link_to "商品の発送をしたので、発送通知をする", late_item_path(@item.id), method: :post, class:"button btn-default btn-red"
+          = link_to "商品の発送をしたので、発送通知をする", trading_page_item_path(@item.id), method: :post, class:"button btn-default btn-red"
 
       // 取引メッセージ
       .message-container
@@ -163,7 +163,7 @@
           .message-form
             %p 取引メッセージの内容は、必要に応じて事務局で確認しています
             = form_for [@item,@message], url: message_item_path(@item.id) do |f|
-              = f.text_area :text, class: 'textarea-default'
+              = f.text_area :text, class: 'textarea-default',required: "required"
               = f.submit "取引メッセージを送る", data: { disable_with: "送信中..." },class: 'message-submit btn-default btn-gray',id: "new-comment-submit"
         %aside.modal{"data-close" => "modal", "data-modal" => "delete-comment"}
           .modal-inner.modal-banner
@@ -255,7 +255,10 @@
         %a.transaction-user-icon{:href => "#"}
           %figure
             %div.image-box
-              %img{:alt => "", :src => "//static.mercdn.net/images/member_photo_noimage_thumb.png", :width => "40"}/
+              - if @item.user.persisted? && @item.user.avatar?
+                = image_tag @item.user.avatar.to_s, class: 'avatar_present_img'
+              - else
+                = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: ""
             %figcaption.bold
               .transact-user-name
                 #{@item.user.nickname}
