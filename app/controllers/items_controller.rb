@@ -187,6 +187,7 @@ class ItemsController < ApplicationController
 
   def trading_message
     @item = Item.find(params[:id])
+    @user = User.find(@item.user_id)
     @buyer = User.find(@item.buyer_id)
     @address = Address.find_by(user_id: @item.buyer_id)
     @prefecture = Prefecture.find(@address.prefecture_id)
