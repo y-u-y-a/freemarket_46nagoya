@@ -1,0 +1,43 @@
+- messages.each do |message|
+  %ul.message-items
+    - if message.user_id != current_user.id
+      %li.message-left
+        %a.message-user{:href => ""}
+          %figure
+            %div
+              - if message.user.persisted? && message.user.avatar?
+                = image_tag message.user.avatar.to_s, class: 'avatar_present_img'
+              - else
+                = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: ""
+            %figcaption.bold
+              = message.user.nickname
+        .message-body
+          .message-body-text
+            = message.text
+          .message-icons.clearfix
+            %time.message-icon-left
+              %i.fa.fa-clock-o
+              %span
+                = time_ago_in_words(message.created_at)+"前"
+          %i.fa.fa-caret-down
+
+    - elsif message.user_id == current_user.id
+      %li.message-right
+        %a.message-user{:href => ""}
+          %figure
+            %div
+              - if message.user.persisted? && message.user.avatar?
+                = image_tag message.user.avatar.to_s, class: 'avatar_present_img'
+              - else
+                = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: ""
+            %figcaption.bold
+              = current_user.nickname
+        .message-body
+          .message-body-text
+            = message.text
+          .message-icons.clearfix
+            %time.message-icon-left
+              %i.fa.fa-clock-o
+              %span
+                = time_ago_in_words(message.created_at)+"前"
+          %i.fa.fa-caret-down

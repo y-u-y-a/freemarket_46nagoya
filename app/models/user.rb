@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_one :address
   has_one :profile
   has_many :comments ,dependent: :delete_all
+  has_many :messages, dependent: :delete_all
+  has_many :lates, dependent: :delete_all
 
 
   has_many :active_relationships,class_name:  "Relationship", foreign_key: "follower_id", dependent: :destroy

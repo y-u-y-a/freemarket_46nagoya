@@ -124,6 +124,15 @@
       border-collapse: collapse;
       border: 1px solid #f5f5f5;
       border-spacing: 0;
+      .icon-good {
+        color: #ef5185;
+      }
+      .icon-normal {
+        color: #fba933;
+      }
+      .icon-bad {
+        color: #6ab5d8;
+      }
       th {
         vertical-align: middle;
         padding: 8px;
@@ -227,7 +236,7 @@
       .vertical-like {
         border: 1px solid #f5f5f5;
         background: #f5f5f5;
-        padding: 5px 16px;
+        padding: 8px 16px;
         vertical-align: middle;
         display: inline-block;
         border-radius: 40px;
@@ -506,7 +515,7 @@
       text-decoration: none;
       i {
         font-size: 25px;
-        font-weight: 400;
+        font-weight: 900;
       }
       .fa-angle-left {
         left: 0;
