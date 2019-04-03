@@ -40,7 +40,6 @@ class UsersController < ApplicationController
   end
 
   def todo
-    # @items = Item.where(user_id: current_user)
     @trading_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 2)
   end
 
