@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
   before_action :set_search
 
-  before_action :set_late_count ,only: [:individual]
+  before_action :user_late_count ,only: [:individual]
 
   protect_from_forgery :except => [ :card_create, :card_delete, :payment_method, :card_registration]
   # 外部からのAPIを受ける特定アクションのみ除外
