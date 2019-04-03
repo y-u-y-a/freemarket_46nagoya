@@ -7,16 +7,18 @@ class UsersController < ApplicationController
   # ヘッダーに使うカテゴリを読み込む
   before_action :set_user
   # , only: [:trading, :purchased,:index,:show,:update]
-
   before_action :set_payjp_user ,only: [:card_delete, :card_create, :payment_method, :card_registration]
 
   before_action :set_search
+
+  before_action :set_late_count ,only: [:individual]
 
   protect_from_forgery :except => [ :card_create, :card_delete, :payment_method, :card_registration]
   # 外部からのAPIを受ける特定アクションのみ除外
 
   def index
     @items = Item.where(user_id: current_user)
+    @user = User.find(current_user.id)
     @trading_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 2)
     @old_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 3)
   end
@@ -40,7 +42,6 @@ class UsersController < ApplicationController
   end
 
   def todo
-    # @items = Item.where(user_id: current_user)
     @trading_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 2)
   end
 
@@ -118,7 +119,7 @@ class UsersController < ApplicationController
   end
 
   def individual
-    @user = User.find(current_user)
+    @user = User.find(current_user.id)
     @page_user = User.includes(:items).find(params[:id])
   end
 

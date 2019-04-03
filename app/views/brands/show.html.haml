@@ -36,8 +36,9 @@
                   .brand-name__box--left
                     = link_to brand_show_brand_path(brand.id), class: "brand-name-link" do
                       .brand-name
-                        %p
-                        = brand.name
+                        %div
+                          %p
+                            = brand.name
 
 = render 'shared/footer'
 

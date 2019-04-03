@@ -39,14 +39,17 @@
                 = @item.user.nickname
               %div
                 .item-user-ratings
-                  %i.fa.fa-facebook-square
-                  %span 873
+                  %i.fa.fa-grin.icon-good
+                  %span
+                    = @good_count
                 .item-user-ratings
-                  %i.fa.fa-twitter
-                  %span 26
+                  %i.fa.fa-meh.icon-normal
+                  %span
+                    = @normal_count
                 .item-user-ratings
-                  %i.fa.fa-apple
-                  %span 3
+                  %i.fa.fa-frown.icon-bad
+                  %span
+                    = @bad_count
 
           %tr
             %th カテゴリー
