@@ -1,6 +1,15 @@
 .l-content {
   width: 700px;
   float: right;
+  .icon-good {
+    color: #ef5185;
+  }
+  .icon-normal {
+    color: #fba933;
+  }
+  .icon-bad {
+    color: #6ab5d8;
+  }
   .mypage-user-icon {
     background-image: image-url("mypage.jpg");
     padding: 20px;
@@ -79,11 +88,21 @@
       .three-tabs {
         width: 33.3%;
       }
-      .two-tabs,.three-tabs {
+      .four-tabs {
+        width: 25%;
+        i {
+          display: inline-block;
+          font-size: 16px;
+          line-height: 72px;
+          margin-right: 3px;
+        }
+      }
+      .two-tabs,.three-tabs,.four-tabs {
         display: inline-block;
         text-align: center;
         vertical-align: top;
         h3 {
+          display: inline-block;
           font-size: 22px;
           a, span {
             display: block;
@@ -111,6 +130,15 @@
         min-height: 80px;
         padding: 16px;
         color: $light_black;
+        position: relative;
+        .angle {
+          font-size: 25px;
+          position: absolute;
+          top: 50%;
+          right: 16px;
+          -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+        }
         figure {
           position: relative;
           overflow: hidden;
@@ -182,6 +210,11 @@
       line-height: 72px;
       font-weight: bold;
     }
+    .likes-page {
+      font-weight: bold;
+      text-align: center;
+      font-size: 25px;
+    }
     .tab-content {
       .mypage-item-list {
         .mypage-item-lists:hover {
@@ -235,6 +268,9 @@
               max-height: 4.4em;
               text-overflow: ellipsis;
               line-height: 1.5;
+              .icon-time {
+                margin-right: 4px;
+              }
             }
           }
           &__status {
