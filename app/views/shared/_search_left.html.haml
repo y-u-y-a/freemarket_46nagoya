@@ -52,7 +52,7 @@
             %div{"data-search" => "child"}
         .search-dropdown__form-group
           %label
-            = fa_icon "bitcoin"
+            %i.fab.fa-bitcoin
             %span 価格
           .select-wrap{'data-search' => 'price'}
             = f.collection_select :price_cont , PriceSearch.all, :id, :name, {} ,{class: "select-default"}

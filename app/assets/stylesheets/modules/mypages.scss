@@ -130,6 +130,15 @@
         min-height: 80px;
         padding: 16px;
         color: $light_black;
+        position: relative;
+        .angle {
+          font-size: 25px;
+          position: absolute;
+          top: 50%;
+          right: 16px;
+          -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+        }
         figure {
           position: relative;
           overflow: hidden;
@@ -200,6 +209,11 @@
       font-size: 16px;
       line-height: 72px;
       font-weight: bold;
+    }
+    .likes-page {
+      font-weight: bold;
+      text-align: center;
+      font-size: 25px;
     }
     .tab-content {
       .mypage-item-list {
