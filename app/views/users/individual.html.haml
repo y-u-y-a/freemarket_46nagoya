@@ -14,7 +14,8 @@
 
     .user-details__profile-box__score
       %span
-        評価数 0
+        評価数
+        = @user.late_count
       %span
         出品数
         = @page_user.items.count
@@ -31,18 +32,21 @@
     .white__users-ratings
       .white__users-ratings__div
         .white__users-ratings__div__detail.clearfix
-          %i.fab.fa-facebook-square
-          .white__users-ratings__div__detail__score 0
+          %i.fa.fa-grin.icon-good
+          .white__users-ratings__div__detail__score
+            = @good_count
 
       .white__users-ratings__div
         .white__users-ratings__div__detail.clearfix
-          %i.fab.fa-twitter
-          .white__users-ratings__div__detail__score 0
+          %i.fa.fa-meh.icon-normal
+          .white__users-ratings__div__detail__score
+            = @normal_count
 
       .white__users-ratings__div
         .white__users-ratings__div__detail.clearfix
-          %i.fab.fa-apple
-          .white__users-ratings__div__detail__score 0
+          %i.fa.fa-frown.icon-bad
+          .white__users-ratings__div__detail__score
+            = @bad_count
 
     .white__description_box
       - if @page_user.profile_text.present?
@@ -63,7 +67,8 @@
           %i.fab.fa-twitter
       %li
         = link_to '#', class: 'share-btn' do
-          %i.fab.fa-apple
+          %i.fab.fa-line
+
 
   - if @page_user.items.present?
     %section.items-box-container.clearfix

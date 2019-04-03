@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
   before_action :set_payjp_user ,       only: [:buy, :pay]
   before_action :set_search
   before_action :set_searches ,         only: [:item_search_result]
+  before_action :set_late_count ,       only: [:show]
   before_action :category_in_brand ,    only: [:all_brands_show]
   before_action :set_user,              only: [:index,:show]
   before_action :get_category,          only: [:show, :edit]
@@ -141,12 +142,6 @@ class ItemsController < ApplicationController
     @region = Prefecture.find(@item.region)
   end
 
-  def all_brands_show
-    @category_index = Category.find(1)
-    @brands = @category_index.brands
-    @initials = @brands.pluck(:initial).uniq
-  end
-
   def all_categories_show
   end
 
@@ -221,27 +216,6 @@ class ItemsController < ApplicationController
     @message = Message.new(message_params)
     @message.save
     redirect_to trading_message_item_path
-  end
-
-  def late
-    @item = Item.find(params[:id])
-    @buyer = User.find(@item.buyer_id)
-    @seller = User.find(@item.user_id)
-    if @item.user_id == current_user.id
-      @late = Late.new(late_seller_params)
-      @late.user_id = @item.buyer_id
-      @buyer.late_count += 1
-      @buyer.save
-      @late.save
-      redirect_to pay_item_path
-    else
-      @late = Late.new(late_buyer_params)
-      @late.user_id = @item.user_id
-      @seller.late_count += 1
-      @seller.save
-      @late.save
-      redirect_to trading
-    end
   end
 
   private

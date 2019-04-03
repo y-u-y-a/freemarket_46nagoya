@@ -11,8 +11,8 @@
 
     %ul.header-mypage-box__state__listing
       %li.header-mypage-box__state__listing__li
-        = link_to '評価: 0','#'
-
+        = link_to user_lates_path(current_user) do
+          評価: #{@user.late_count}
       %li.header-mypage-box__state__listing__li
         = link_to exhibition_users_path(current_user) do
           出品数: #{@user&.items&.count}
