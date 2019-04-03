@@ -1,0 +1,27 @@
+%section.items-boxes
+  %h3.items-boxes__category.text-center
+    = link_to "#{category.name} 新着アイテム",category_path(category.id), class: "new-item"
+  .items-boxes__lists
+    - item.each do |item|
+      %section.items-card
+        = link_to item_path(item), class: "item-link" do
+          %figure.items-card__photo
+            = image_tag item.item_images.first.image
+          - if item.business_stats == 3
+            .items-card__sold-out
+              %div SOLD
+          .items-card-intro
+            %h3.items-card-intro__item-name
+              = item.name
+            .items-card-num
+              .items-card-num__price
+                = "¥ #{thousands_separator(item.price)}"
+              - if item.likes_count != 0
+                .items-card-num__likes
+                  %i.fa.fa-heart
+                  %span
+                    = item.likes_count
+            %p.items-card-intro__tax
+              (税込)
+  .items-boxes__view-all.l-right
+    = link_to "すべての商品を見る",category_path(category.id)

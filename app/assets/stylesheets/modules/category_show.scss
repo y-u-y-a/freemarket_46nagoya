@@ -1,0 +1,174 @@
+// アイテム一覧
+.lists-container {
+  @include clearfix;
+  margin: 40px auto 0;
+  width: 1020px;
+  padding: 0 0 40px;
+  display: block;
+  &__full-width {
+    width: 100%;
+    float: right;
+    .category-links {
+      @include clearfix;
+      margin: 0;
+      li {
+        float: left;
+        margin: 16px 16px 0 0;
+        a:hover {
+          text-decoration: underline;
+          opacity: 0.7;
+        }
+      }
+    }
+    .item-lists {
+      &__title {
+        margin: 24px 0 8px;
+        font-size: 22px;
+        line-height: 1.4;
+        font-weight: bold;
+      }
+      &__item-container {
+        @include clearfix;
+        .item-boxes {
+          @include clearfix;
+          width: auto;
+          margin: 0 auto;
+          .item-box:nth-child(5n+1) {
+            margin-left: 0;
+          }
+          .item-box:nth-child(odd) {
+            margin: 0 0 20px 20px;
+          }
+          .item-box:nth-child(5n) {
+            margin-right: 0;
+          }
+          .item-box {
+            &__link {
+              display: block;
+              color: #333;
+              width: 188px;
+              margin: 0 0 20px 20px;
+              position: relative;
+              float: left;
+              background: #fff;
+            }
+            &__photo {
+              width: 188px;
+              height: 188px;
+              overflow: hidden;
+              position: relative;
+              padding: 0 0 100%;
+              img {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 1;
+                width: 100%;
+                height: 100%;
+                opacity: 1;
+                transition: opacity .3s;
+              }
+            }
+            &__sold-out {
+              div {
+                position: absolute;
+                left: 3px;
+                z-index: 10;
+                color: $white;
+                transform: rotate(-45deg);
+                letter-spacing: 2px;
+                font-weight: 600;
+                top: 18px;
+                font-size: 16px;
+                font-family: inherit;
+              }
+            }
+            &__sold-out:after {
+              border-width: 80px 80px 0 0;
+              border-color: #ea352d transparent;
+              display: block;
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              z-index: 1;
+              width: 0;
+              height: 0;
+              border-style: solid;
+            }
+            .item-box-intro {
+              padding: 16px;
+              height: 110px;
+              &__tax {
+                font-size: 10px;
+                clear: both;
+              }
+              &__item-name {
+                overflow: hidden;
+                position: relative;
+                font-weight: 400;
+                height: 3em;
+                line-height: 1.5;
+                word-break: break-word;
+                white-space: normal;
+                font-size: 16px;
+                color: #333;
+              }
+              .item-box-num {
+                @include clearfix;
+                margin: 8px 0 0;
+                &__price {
+                  font-size: 20px;
+                  float: left;
+                  font-weight: 600;
+                  color: #333;
+                }
+                &__likes {
+                  float: right;
+                  font-size: 16px;
+                  font-weight: 400;
+                  color: #333;
+                  i {
+                    margin: 0 4px 0 0;
+                    vertical-align: middle;
+                  }
+                  span {
+                    display: inline-block;
+                    margin: 1px 0 0;
+                    vertical-align: middle;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// カテゴリ説明文
+.spacial-description {
+  width: 1020px;
+  overflow: hidden;
+  border-radius: 4px;
+  margin: 30px auto;
+  &__title {
+    text-align: center;
+    background-color: #ea352d;
+    h3 {
+      padding: 16px 8px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+  &__text {
+    padding: 30px;
+    background-color: #fff;
+    p {
+      line-height: 1.6em;
+    }
+  }
+}

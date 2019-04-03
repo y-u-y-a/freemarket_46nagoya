@@ -1,0 +1,22 @@
+%section.mypage-tab-container-bottom
+  %h2.mypage-tab-container-bottom__head
+    購入した商品
+
+  %ul.mypage-tab-container__tabs
+    %li.two-tabs.active
+      %h3
+        %span{id: 'mypage-tab-transaction-now','data-toggle':'tab'} 取引中
+
+    %li.two-tabs
+      %h3
+        %span{id: 'mypage-tab-transaction-old','data-toggle':'tab'} 過去の取引
+
+  .tab-content
+
+    %ul#tab-transaction-now.mypage-item-list.tab-pane
+      %li.mypage-item-not-found.bold
+        取引中の商品がありません
+
+    %ul#tab-transaction-old.mypage-item-list.tab-pane.tab-hidden
+      %li.mypage-item-not-found.bold
+        過去に取引した商品はありません

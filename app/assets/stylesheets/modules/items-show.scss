@@ -227,7 +227,7 @@
       .vertical-like {
         border: 1px solid #f5f5f5;
         background: #f5f5f5;
-        padding: 5px 16px;
+        padding: 8px 16px;
         vertical-align: middle;
         display: inline-block;
         border-radius: 40px;
@@ -425,9 +425,20 @@
               }
               .message-icon-right {
                 float: right;
+                form {
+                  float: left;
+                }
                 button {
                   border: none;
                   .fa-flag {
+                    color: #aaa;
+                    background: #eef0f4;
+                  }
+                }
+                .delete-comment {
+                  float: right;
+                  margin: 0 0 0 8px;
+                  i {
                     color: #aaa;
                     background: #eef0f4;
                   }
@@ -444,7 +455,7 @@
           }
         }
       }
-      .message-form {
+      .new_comment {
         p {
           padding: 8px;
           font-size: 14px;
@@ -473,12 +484,9 @@
         .message-submit {
           width: 100%;
           margin: 8px 0 0;
-          font-size: 0;
           text-align: center;
-          span {
-            font-size: 14px;
-            vertical-align: middle;
-          }
+          font-size: 14px;
+          color: $white;
         }
       }
     }
@@ -574,119 +582,6 @@
             color: $white;
             background: #aa262a;
             font-size: 22px;
-          }
-        }
-      }
-    }
-  }
-}
-
-.items-in-user-profile {
-  width: 700px;
-  margin: 0 auto;
-  .items-box-overflow {
-    overflow: hidden;
-    &:last-of-type {
-      margin-bottom: 40px;
-    }
-    .item-box-head {
-      margin: 24px 0 8px;
-      font-size: 22px;
-      line-height: 1.4;
-      a {
-        color: #0099e8;
-        text-decoration: none;
-      }
-    }
-    .items-box-content {
-      margin: 0 auto;
-      @include clearfix;
-      padding: 0;
-      width: auto;
-      overflow-x: auto;
-      overflow-y: hidden;
-      white-space: nowrap;
-      .items-box:nth-child(3n+1) {
-        margin: 0 0 20px;
-        float: left;
-        display: block;
-        max-width: 220px;
-        width: 220px;
-        vertical-align: inherit;
-      }
-      .items-box {
-        margin: 0 0 20px 20px;
-        float: left;
-        display: block;
-        max-width: 220px;
-        width: 220px;
-        vertical-align: inherit;
-        a {
-          display: block;
-          color: $light_black;
-          figure {
-            width: 220px;
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-            padding: 0 0 100px;
-            img {
-              width: 220px;
-              position:absolute;
-              top: 0;
-              right: 0;
-              bottom: 0;
-              left: 0;
-              z-index: 1;
-              vertical-align: middle;
-            }
-          }
-          .items-box-body {
-            padding: 16px;
-            height: 110px;
-            background: $white;
-            .items-box-name {
-              overflow: hidden;
-              position:relative;
-              font-weight: 400;
-              height: 3em;
-              line-height: 1.5;
-              word-break: break-word;
-              white-space: normal;
-              font-size: 16px;
-              color: $light_black;
-            }
-            .items-box-num {
-              @include clearfix;
-              margin: 8px 0 0;
-              .items-box-price {
-                font-size: 20px;
-                float: left;
-                font-weight: 600;
-                color: $light_black;
-                vertical-align: middle;
-              }
-              .items-box-likes {
-                float: right;
-                font-size: 16px;
-                font-weight: 400;
-                color: $light_black;
-                .icon-like-border {
-                  margin: 0 4px 0 0;
-                  vertical-align: middle;
-                  color: #ccc;
-                }
-                span {
-                  vertical-align: middle;
-                  display: inline-block;
-                  margin: 1px 0 0;
-                }
-              }
-              .items-box-tax {
-                font-size: 10px;
-                clear: both;
-              }
-            }
           }
         }
       }

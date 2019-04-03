@@ -19,10 +19,10 @@
                         = render 'shared/card-images'
                       .users-card__num
                         = "************" + @card.last4
-                      .users-card__exp
-                        = link_to users_card_delete_path, method: :delete,class: "a" do
-                          クレジットカードを削除する
                       = "0#{@card.exp_month} / #{@card.exp_year.to_s.slice(0..1).to_i}"
+                      .users-card__exp
+                        = link_to users_card_delete_path, method: :delete do
+                          削除する
               - else
                 .right-single-content
                   = link_to card_registration_users_path,class: "btn-default btn-red add-credit-card__link" do

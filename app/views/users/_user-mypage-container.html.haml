@@ -1,0 +1,97 @@
+%section.mypage-tab-container
+  %ul.mypage-tab-container__tabs
+    %li.two-tabs.active
+      %h3
+        %span{id: "mypage-tab-notification",'data-toggle':'tab'} お知らせ
+
+    %li.two-tabs
+      %h3
+        %span{id: "mypage-tab-todo",'data-toggle':'tab'} やることリスト
+
+  .tab-content
+    %ul.tab-content__mypage-item.tab-name.notification-lists
+      %li
+        = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+          %i.fa.fa-angle-right
+          %figure
+            = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+          .tab-content__mypage-item__link__body
+            .tab-content__mypage-item__link__body__text
+              明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+            %time
+              %i.fa.fa-clock-o
+              %span
+                1 時間前
+      %li
+        = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+          %i.fa.fa-angle-right
+          %figure
+            = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+          .tab-content__mypage-item__link__body
+            .tab-content__mypage-item__link__body__text
+              明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+            %time
+              %i.fa.fa-clock-o
+              %span
+                1 時間前
+
+      %li
+        = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+          %i.fa.fa-angle-right
+          %figure
+            = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+          .tab-content__mypage-item__link__body
+            .tab-content__mypage-item__link__body__text
+              明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+            %time
+              %i.fa.fa-clock-o
+              %span
+                1 時間前
+
+      %li
+        = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+          %i.fa.fa-angle-right
+          %figure
+            = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+          .tab-content__mypage-item__link__body
+            .tab-content__mypage-item__link__body__text
+              明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+            %time
+              %i.fa.fa-clock-o
+              %span
+                1 時間前
+
+      %li
+        = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+          %i.fa.fa-angle-right
+          %figure
+            = image_tag "//static.mercdn.net/images/mercari_profile.png",alt: ""
+          .tab-content__mypage-item__link__body
+            .tab-content__mypage-item__link__body__text
+              明日、¥600割引お得チケットの有効期限が切れます！タップして詳細を確認しましょう。
+            %time
+              %i.fa.fa-clock-o
+              %span
+                1 時間前
+
+      %li.mypage-go-list
+        = link_to '一覧を見る',notification_users_path
+
+    %ul.tab-content__mypage-item.tab-name.todo-lists
+      - @items.first(6).each do |item|
+        %li
+          = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+            %i.fa.fa-angle-right
+            %figure
+              = image_tag item.item_images.first.image,alt: ""
+            .tab-content__mypage-item__link__body
+              .tab-content__mypage-item__link__body__text
+                取引相手から「#{item.name}」の取引メッセージがあります。返信をお願いします
+              %time
+                %i.fa.fa-clock-o
+                %span
+                  1 時間前
+
+
+      %li.mypage-go-list
+        = link_to '一覧を見る',todo_users_path

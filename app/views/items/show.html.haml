@@ -12,21 +12,21 @@
         .owl-carousel.owl-loaded.owl-drag
           .owl-stage-outer
             .owl-stage{ style: 'left:0px',width: '900px'}
-              - if @images.present?
-                - @images.each do |image|
+              - @item.item_images.each do |i|
+                - if i.image.present?
                   .owl-item{ style: 'width:300px'}
                     .owl-item__inner.is-higher-width
-                      = image_tag image.image
+                      = image_tag i.image
 
           .owl-dots
-            - if @images.present?
-              - @images.each do |image|
+            - if @item.item_images.present?
+              - @item.item_images.each do |i|
                 .owl-dot
                   %span
                   .owl-dot-inner
-                    = image_tag image.image
+                    = image_tag i.image
 
-          - if @item.business_stats == 3
+          - if @item.business_stats != 1
             .item-sold-out-badge
               %div SOLD
 
@@ -35,7 +35,7 @@
           %tr
             %th 出品者
             %td
-              = link_to '#' do
+              = link_to individual_user_path(@item.user) do
                 = @item.user.nickname
               %div
                 .item-user-ratings
@@ -51,22 +51,27 @@
           %tr
             %th カテゴリー
             %td
-              = link_to '#' do
-                %div 果物
-              = link_to '#' do
-                .item-detail-table-sub-category
-                  = fa_icon 'angle-right'
-                  フルーツ
-              = link_to '#' do
-                .item-detail-table-sub-sub-category
-                  = fa_icon 'angle-right'
-                  果物
+              = link_to category_path(@parent_category.id) do
+                %div
+                  = @parent_category.name
+              - if @child_category
+                = link_to category_path(@children_category.id) do
+                  .item-detail-table-sub-category
+                    = fa_icon 'angle-right'
+                    = @children_category.name
+              - if @grand_category
+                = link_to category_path(@grand_category.id) do
+                  .item-detail-table-sub-sub-category
+                    = fa_icon 'angle-right'
+                    = @grand_category.name
+
 
           %tr
             %th ブランド
             %td
               = link_to '#' do
-                %div コーチ
+                %div
+                  = @item.brand.name if @item.brand
 
           %tr
             %th 商品の状態
@@ -99,11 +104,11 @@
       %span.item-tax          (税込)
       %span.item-shipping-fee 送料込み
 
-    - if @item.business_stats == 3
+    - if @item.business_stats != 1
       .item-buy-btn.disabled
         売り切れました
 
-    - if current_user.id != @item.user_id
+    - elsif @item.user_id != current_user&.id && @item.business_stats == 1
       = link_to buy_item_path(@item) , class: 'item-btn-client item-buy-btn' do
         %div{"data-client":"visible"} 購入画面に進む
 
@@ -125,7 +130,7 @@
           %i.fa.fa-unlock
           %span あんしん・あんぜんへの取り組み
 
-  - if @item.user_id == current_user.id
+  - if @item.user_id == current_user&.id
     .listening-item-change-box
       = link_to '商品の編集',edit_item_path(@item),class: 'btn-default btn-red'
       %p.text-center or
@@ -136,19 +141,22 @@
 
   .item-detail-message
     .message-container
-      .message-content
-        %ul.message-items
-          = render 'user_comments'
+      - if @comments.present?
+        .message-content
+          %ul.message-items
+            = render partial: 'user_comments',locals: { item: @item, comments: @comments}
 
-
-      .message-content
-        %form.message-form
+      - if user_signed_in?
+        .message-content
           %p 相手のことを考え丁寧なコメントを心がけましょう。不快な言葉遣いなどは利用制限や退会処分となることがあります。
-          %input{ type: 'hidden',name: 'item_id',value: ''}
-          %input{ type: 'hidden',name: 'redirect_url_key',value: '',class: 'item_detail'}
-          %textarea{ type: 'text',name: 'body',class: 'textarea-default disabled'}
-          %button{ type: 'submit', class: 'message-submit btn-default btn-gray'}
-            %span 売り切れのためコメントできません
+          = form_for [@item, @comment] do |c|
+            - if @item.business_stats == 1
+              = c.text_area :text,required: "required", class: 'textarea-default'
+              = c.submit "コメントする", data: { disable_with: "送信中..." },class: 'message-submit btn-default btn-gray',id: "new-comment-submit"
+            - else
+              = c.text_area :text, class: 'textarea-default disabled'
+              = c.submit "売り切れのためコメントできません",:disabled => true, class: 'message-submit btn-default btn-gray'
+
 
   %ul.nav-item-link-prev-next.clearfix
     %li.nav-item-link-prev
@@ -173,18 +181,25 @@
             %i.fa.fa-google.icon-google
 
   .items-in-user-profile
-    %section.items-box-container.items-box-overflow.items-in-user-profile.clearfix
-      %h2.item-box-head
-        = link_to @item.user.nickname, users_path
-      .items-box-content.clearfix
-        = render 'user_items'
+    - if @user_items.present?
+      %section.items-box-container.items-box-overflow.items-in-user-profile.clearfix
+        %h2.item-box-head
+          = link_to "#{@item.user.nickname}さんのその他の出品", users_path
+        .items-box-content.clearfix
+          = render 'user_others_items'
 
     %section.items-box-container.items-box-overflow.items-in-user-profile.clearfix
       %h2.item-box-head
-        = link_to 'コーチのショルダーバッグ その他の商品','#'
-      .items-box-content.clearfix
-        = render 'other_items'
+        //ブランドがあり孫あり(優先)
+        - if @grand_category_items
+          = link_to "ブランドの#{@grand_category.name}その他の商品", category_path(@grand_category)
+        //ブランドがあり孫なし
+        - if @child_category_items
+          = link_to "ブランドの#{@children_category.name}その他の商品", category_path(@children_category)
 
+
+      .items-box-content.clearfix
+        = render 'other_category_items'
 
 
   = render 'shared/footer'

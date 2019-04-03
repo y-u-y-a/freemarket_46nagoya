@@ -1,0 +1,17 @@
+- @user_items.each do |item|
+  %section.items-box
+    = link_to item_path(item) do
+      %figure.items-box-photo
+        = image_tag item.item_images.first.image
+      .items-box-body
+        %h3.items-box-name
+          = item.name
+        .items-box-num.clearfix
+          .items-box-price
+            = "¥ #{thousands_separator(item.price)}"
+          .items-box-likes
+            %i.fa.fa-heart.icon-like-border
+            %span
+              = item.likes.count
+          %p.items-box-tax (税込)
+

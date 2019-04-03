@@ -1,5 +1,17 @@
 ---
 ja:
+  activemodel:
+    models:
+      inquiry:
+    attributes:
+    errors:
+      format: '%{attribute} %{message}'
+      messages:
+        blank: を入力して下さい。
+        too_long: は%{count}文字以内で入力して下さい。
+        not_a_number: は半角数字で入力して下さい。
+        invalid: は不正な値です。
+
   recaptcha:
     errors:
       verification_failed: 'reCAPTCHA認証に失敗しました。'
@@ -10,6 +22,30 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    attributes:
+      address:
+        phone_number: 電話番号
+        prefecture_id: 都道府県
+        post_number: 郵便番号
+        city: 市町村
+        town: 番地
+      temporary:
+        nickname: ニックネーム
+        phone_number: 電話番号
+        email: メールアドレス
+        first_name: 姓(全角)
+        last_name: 名(全角)
+        first_name_kana: 姓カナ(全角)
+        last_name_kana: 名カナ(全角)
+        birth_year: 生年月日の年
+        birth_month: 生年月日の月
+        birth_day: 生年月日の日
+        prefecture_id: 都道府県
+        post_number: 郵便番号
+        city: 市町村
+        town: 番地
+        password: パスワード
+        password_confirmation: パスワード(確認用)
   date:
     abbr_day_names:
     - 日
@@ -208,3 +244,10 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  views:
+    pagination:
+      first: "«"
+      last: "»"
+      previous: "‹"
+      next: "›"
+      truncate: "…"

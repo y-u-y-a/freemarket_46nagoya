@@ -1,28 +1,30 @@
 class UsersController < ApplicationController
-
   require 'payjp'
 
-  before_action :authenticate_user!, only: [:payment_method, :card_registration, :indentification, :card_create, :card_delete]
+  before_action :authenticate_user!
 
-  before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page]
+  before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :notification, :todo, :individual,:following,:followers]
   # ヘッダーに使うカテゴリを読み込む
-  before_action :set_user, only: [:trading, :purchased,:index,:show,:update]
+  before_action :set_user
+  # , only: [:trading, :purchased,:index,:show,:update]
 
   before_action :set_payjp_user ,only: [:card_delete, :card_create, :payment_method, :card_registration]
+
+  before_action :set_search
 
   protect_from_forgery :except => [ :card_create, :card_delete, :payment_method, :card_registration]
   # 外部からのAPIを受ける特定アクションのみ除外
 
   def index
+    @items = Item.where(user_id: current_user)
   end
 
   def show
-
   end
 
   def update
     if @user.id == current_user.id
-      current_user.update!(update_params)
+      current_user.update(update_params)
       redirect_to users_path
     else
       render_to :edit
@@ -30,6 +32,13 @@ class UsersController < ApplicationController
   end
 
   def logout
+  end
+
+  def notification
+  end
+
+  def todo
+    @items = Item.where(user_id: current_user)
   end
 
   def payment_method
@@ -70,6 +79,7 @@ class UsersController < ApplicationController
   end
 
   def card_create
+    #顧客の作成
     card = Payjp::Token.create({
       card: {
         number: params[:number],
@@ -82,6 +92,7 @@ class UsersController < ApplicationController
       }
     )
     #顧客の作成
+    # card: params["payjpToken"]
     customer = Payjp::Customer.create(
       email: @user.email,
       card: card
@@ -103,11 +114,27 @@ class UsersController < ApplicationController
     redirect_to action: :index
   end
 
+  def individual
+    @user = User.find(current_user)
+    @page_user = User.includes(:items).find(params[:id])
+  end
+
+  def following
+    @user  = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
+  end
+
+  def followers
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follower'
+  end
 
   private
 
   def set_user
-    @user = User.find(current_user)
+    @user = User.includes(:items).find(current_user)
   end
 
   def set_payjp_user
@@ -116,7 +143,7 @@ class UsersController < ApplicationController
   end
 
   def update_params
-    params.require(:user).permit(:nickname,:profile_text)
+    params.require(:user).permit(:nickname, :profile_text, :avatar, :avatar_cache, :remove_avatar)
   end
 
 end

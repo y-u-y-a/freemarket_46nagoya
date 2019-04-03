@@ -111,6 +111,11 @@
         .l-single-content {
           max-width: 320px;
           margin: 0 auto;
+          .form-group{
+            label{
+              font-weight:bold;
+            }
+          }
           .l-chapter-sub-head {
             font-size: 16px;
             font-weight: bold;
@@ -143,8 +148,21 @@
               -moz-appearance: none;
             }
           }
-          span {
+          .form-require {
             margin-left: 10px;
+            background-color:#ea352d;
+            color:white;
+            padding: 2px;
+            border-radius:2px;
+            font-size:13px;
+          }
+          .form-optional {
+            margin-left: 10px;
+            background-color:gray;
+            color:white;
+            padding: 2px;
+            border-radius:2px;
+            font-size:13px;
           }
         }
         .form-info-text {

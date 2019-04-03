@@ -3,10 +3,8 @@ $(document).on('turbolinks:load', function() {  //出品ページに遷移後リ
    $(document).on('change', 'input[type="file"]', function(event) { //画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録
     $preview_new = $(this).parent(); //fileの親要素を$preview_newに代入
     previewfile(event,$preview_new) //プレビューを生成
-    $(this).parent().addClass("box-display-none-new");
     $(this).parent().parent().parent().addClass("box-display-none-new"); //dropbox非表示
     $(this).parent().parent().parent().next('.form-mask-image-new').removeClass("box-display-none-new"); //次のdropbox表示
-    $(this).parent().parent().parent().next('.form-mask-image-new').children().children().removeClass("box-display-none");
   })
   function previewfile(e,$preview_new) {
     var file = e.target.files[0],
@@ -51,11 +49,9 @@ $(document).on('turbolinks:load', function() {  //出品ページに遷移後リ
           c.val('');
           $(this).parent().parent().prev().children().children().children("").replaceWith(c);//１つ前のfileにクローンを置き換える
           c.remove() //クローンを削除
-          $(this).parent().parent().prev().addClass("box-display-none-new");
           $(this).parent().parent().prev().appendTo('.sell-form__dropbox-container');
           $(this).parent().parent().remove(); //削除ボタンを押したimage-box-1削除
           $(".image-box-1-new:last").next(".form-mask-image-new").removeClass("box-display-none-new");//完全に消えたdropboxを復活させる
-          $(".image-box-1-new:last").next(".form-mask-image-new").children().children().removeClass("box-display-none-new");
           var deleteCount = $('.preview').length; //previewの数によってdropboxのwidthを変更
           if (deleteCount == 0 || deleteCount == 5){
             $('.form-mask-image-new').width(618);

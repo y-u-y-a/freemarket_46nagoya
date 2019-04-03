@@ -1,0 +1,33 @@
+$(document).on('turbolinks:load', function() {
+  $('.todo-lists').hide();
+  $('#tab-transaction-old').hide();
+  //お知らせをクリックしたらお知らせ用のview出現
+  $('#mypage-tab-notification').click(function(){
+    $('#mypage-tab-todo').parent().parent().removeClass('active');
+    $(this).parent().parent().addClass('active');
+    $('.notification-lists').show();
+    $('.todo-lists').hide();
+  });
+  //やる事リストをクリックしたらやる事用のview出現
+  $('#mypage-tab-todo').click(function(){
+    $('#mypage-tab-notification').parent().parent().removeClass('active');
+    $(this).parent().parent().addClass('active');
+    $('.todo-lists').show();
+    $('.notification-lists').hide();
+  });
+
+  //購入した商品をクリックしたら購入用のviewが出現
+  $('#mypage-tab-transaction-now').on('click',function(){
+    $('#mypage-tab-transaction-old').parent().parent().removeClass('active');
+    $(this).parent().parent().addClass('active');
+    $('#tab-transaction-now').show();
+    $('#tab-transaction-old').hide();
+  });
+  //過去の取引をクリックしたら過去用のviewが出現
+  $('#mypage-tab-transaction-old').on('click',function(){
+    $('#mypage-tab-transaction-now').parent().parent().removeClass('active');
+    $(this).parent().parent().addClass('active');
+    $('#tab-transaction-old').show();
+    $('#tab-transaction-now').hide();
+  });
+});
