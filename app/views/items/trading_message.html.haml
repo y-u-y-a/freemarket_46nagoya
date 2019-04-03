@@ -1,0 +1,266 @@
+
+= render 'shared/header'
+
+%nav.bread-crumbs
+  %ul
+    %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
+      = link_to 'メルカリ', root_path
+      = fa_icon 'angle-right'
+    %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
+      = link_to 'マイページ', users_path
+      = fa_icon 'angle-right'
+    %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
+      = link_to "購入した商品 - 取引中", trading_users_path
+      = fa_icon 'angle-right'
+    %li{:itemscope => "", :itemtype => "http://data-vocabulary.org/Breadcrumb"}
+      %span{:itemprop => "title"} 取引画面
+%main.l-container.clearfix
+  .l-content
+    %section.l-chapter-container
+      %h2.l-chapter-head 取引画面
+      .transact-attention
+        - if @item.user_id == current_user.id
+          - if @item.delivery_status == 0
+            %h3
+              %i.fa.fa-truck
+              %span 発送をしてください
+            %p 商品が購入され支払いされました。商品の発送を行ってください。
+          - elsif @item.delivery_status == 1
+            %h3
+              %i.fa.fa-check
+              %span 商品の発送を通知しました
+            %p 購入者の受取確認と評価をしばらくお待ち下さい
+          - elsif @item.delivery_status == 2
+            %h3
+              %i.fa.fa-user-circle
+              %span 購入者の評価をしてください
+            %p 受け取りが完了しました。購入者の評価が終わると取引完了となります。
+          - elsif @item.delivery_status == 3
+            %h3
+              %i.fa.fa-check
+              %span 取引が完了しました
+            %p この度はメルカリのご利用ありがとうございました。
+        - else
+          - if @item.delivery_status == 0
+            %h3
+              %i.fa.fa-clock-o
+              %span 発送をお待ちください
+            %p 出品者からの発送通知をお待ちください。
+          - elsif @item.delivery_status == 1
+            %h3
+              %i.fa.fa-user-circle
+              %span 受取評価をしてください
+            %p 商品が発送されました。商品が到着したら、出品者の評価をしてください。
+          - elsif @item.delivery_status == 2
+            %h3
+              %i.fa.fa-check
+              %span 受取評価をしました
+            %p 出品者からの評価が終わると取引完了となります。しばらくお待ちください。
+          - elsif @item.delivery_status == 3
+            %h3
+              %i.fa.fa-check
+              %span 取引が完了しました
+            %p この度はメルカリのご利用ありがとうございました。
+      %ul.transact-guide.text-right
+        %li
+          %a{:href => "/jp/help_center/category/5/", :target => "_blank"}
+            - if @item.user_id == current_user.id
+              %span 商品が売れた後の流れ
+              %i.fa.fa-angle-right
+            - else
+              %span 購入した後の流れ
+              %i.fa.fa-angle-right
+        %li
+          %a{:href => "/jp/help_center/category/5/", :target => "_blank"}
+            - if @item.user_id == current_user.id
+              %span 出品者のよくある質問
+              %i.fa.fa-angle-right
+            - else
+              %span 購入者のよくある質問
+              %i.fa.fa-angle-right
+
+      - if @item.delivery_status == 1
+        %section.l-single-inner.yuuyuu-content
+          %h3 配送状況
+          %nav.progress-bar
+            %ol.clearfix
+              %li.active
+                発送済み
+                .progress-status
+              %li
+                輸送中
+                .progress-status
+              %li
+                配達中
+                .progress-status
+              %li
+                受取
+                .progress-status
+          %p 引受
+          %p
+            %span.bold
+              ※ゆうゆうメルカリ便に関するお問い合わせは
+              %a{:href => "https://www.mercari.com/jp/mypage/support/"}> こちら
+              よりお願いします
+            %br/
+            （日本郵便には、直接お問い合わせされないようお願いします）
+
+      - if @item.delivery_status == 1 && @item.buyer_id == current_user.id
+        = form_for [@late], url: trading_page_item_path(@item.id), method: :post, html: {class: 'form transact-form-review'} do |f|
+          %input{:name => "__csrf_value", :type => "hidden", :value => "548b8672d0a5998354cfac5c0af6823e6a1fd351fdac08492995fc979a866428bcdf5275bb3e1f5dce8399036f2f3b1d2edc82e5c7f7b893ca0525ae979de99fc"}/
+          .checkbox-default
+            %input#transaction_delivered{:name => "", :type => "checkbox", :value => "1"}/
+            %label{:for => "transaction_delivered"} 商品の中身を確認しました。
+          %ul.transact-review-list.clearfix
+            %li
+              = f.radio_button :late, 1
+              良い
+            %li
+              = f.radio_button :late, 2
+              普通
+            %li
+              = f.radio_button :late, 3
+              悪い
+          %p 評価のコメントを記入しましょう。
+          = f.text_area :text, class: 'message', placeholder: 'コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。'
+          = f.submit "評価を投稿する", data: { disable_with: "送信中..." },class: 'button btn-default btn-red'
+
+
+      - if @item.delivery_status == 2 && @item.user_id == current_user.id
+        = form_for [@late], url: pay_item_path(@item.id), method: :post, html: {class: 'form transact-form-review'} do |f|
+          %input{:name => "__csrf_value", :type => "hidden", :value => "548b8672d0a5998354cfac5c0af6823e6a1fd351fdac08492995fc979a866428bcdf5275bb3e1f5dce8399036f2f3b1d2edc82e5c7f7b893ca0525ae979de99fc"}/
+          .checkbox-default
+            %input#transaction_delivered{:name => "", :type => "checkbox", :value => "1"}/
+            %label{:for => "transaction_delivered"} 商品の中身を確認しました。
+          %ul.transact-review-list.clearfix
+            %li
+              = f.radio_button :late, 1
+              良い
+            %li
+              = f.radio_button :late, value: :'2'
+              普通
+            %li
+              = f.radio_button :late, value: :'3'
+              悪い
+          %p 評価のコメントを記入しましょう。
+          = f.text_area :text, class: 'message', placeholder: 'コメントはなくても構いませんが、お礼のメッセージなどを書くと喜ばれます。'
+          = f.submit "評価を投稿する", data: { disable_with: "送信中..." },class: 'button btn-default btn-red'
+
+
+
+      - if @item.delivery_status == 0 && @item.user_id == current_user.id
+        .transact-button
+          = link_to "商品の発送をしたので、発送通知をする", late_item_path(@item.id), method: :post, class:"button btn-default btn-red"
+
+      // 取引メッセージ
+      .message-container
+        .message-content1
+          .notification.notification-success
+            %i.icon-close
+          = render partial: 'shared/messages',locals: { item: @item, messages: @messages}
+
+        .message-content2
+          .message-form
+            %p 取引メッセージの内容は、必要に応じて事務局で確認しています
+            = form_for [@item,@message], url: message_item_path(@item.id) do |f|
+              = f.text_area :text, class: 'textarea-default'
+              = f.submit "取引メッセージを送る", data: { disable_with: "送信中..." },class: 'message-submit btn-default btn-gray',id: "new-comment-submit"
+        %aside.modal{"data-close" => "modal", "data-modal" => "delete-comment"}
+          .modal-inner.modal-banner
+            .modal-body
+              .modal-head.bold 確認
+              %div{"data-comment" => "body"}
+              %br/
+              本当にこのコメントを削除してよろしいですか？
+            %form{:action => "https://www.mercari.com/jp/comment/delete/", :method => "POST"}
+              .clearfix
+                .modal-btn.modal-btn-cancel{"data-close" => "modal"} キャンセル
+                %button.modal-btn.modal-btn-submit{:type => "submit"}
+                  削除する
+              %input{:name => "item_id", :type => "hidden", :value => "m18251864076"}/
+              %input{:name => "comment_id", :type => "hidden", :value => ""}/
+              %input{:name => "__csrf_value", :type => "hidden", :value => "a50969b0ebdc51fb05cb19bc49a1e9db2011786b93ef65c6eb24ee21407267529e12152d425a4ff8c7423eab9d587880161901ad69b4c4d8c5c9808af854f5dd6"}/
+      .message-content3
+        ※お困りの際は
+        %a{:href => "/jp/help_center/category/1/", :target => "_blank"}> よくある質問
+        をご確認ください。
+    %aside.modal{"data-close" => "modal", "data-modal" => "seller-cancel"}
+      .modal-inner.modal-banner
+        .modal-body
+          .modal-head.bold 取引をキャンセルしますか？
+          キャンセル後、商品は出品停止状態になりますので、再度出品をお願いいたします
+        .clearfix
+          .modal-btn.modal-btn-cancel{"data-close" => "modal"} いいえ
+          %form{:action => "/jp/transaction/seller_cancel/done/m18251864076/", :method => "POST", :novalidate => "novalidate"}
+            %input{:name => "__csrf_value", :type => "hidden", :value => "a50969b0ebdc51fb05cb19bc49a1e9db2011786b93ef65c6eb24ee21407267529e12152d425a4ff8c7423eab9d587880161901ad69b4c4d8c5c9808af854f5dd6"}/
+            %button.modal-btn.modal-btn-submit{:type => "submit"} はい
+    %aside.modal{"data-close" => "modal", "data-modal" => "buyer-cancel"}
+      .modal-inner.modal-banner
+        .modal-body
+          .modal-head.bold 取引キャンセルを依頼しますか
+          事務局にて取引内容を確認後、対応してまいります
+        .clearfix
+          .modal-btn.modal-btn-cancel{"data-close" => "modal"} キャンセル
+          %form{:action => "/jp/transaction/buyer_cancel/done/m18251864076/", :method => "POST", :novalidate => "novalidate"}
+            %input{:name => "__csrf_value", :type => "hidden", :value => "a50969b0ebdc51fb05cb19bc49a1e9db2011786b93ef65c6eb24ee21407267529e12152d425a4ff8c7423eab9d587880161901ad69b4c4d8c5c9808af854f5dd6"}/
+            %button.modal-btn.modal-btn-submit{:type => "submit"} はい
+
+
+  .l-side
+    %section.l-side-container
+      %h3.transact-info-head 取引情報
+      .transact-info-inner
+        %ul.transact-info-table
+          %li.transact-info-table-row
+            %span.transact-info-table-cell 商品
+            %ul.transact-info-table-cell
+              %li
+                = image_tag @item.item_images.first.image, class: 'img lazyloaded'
+                .transact-info-item.bold
+                  #{@item.name}
+                  %br/
+                  ¥#{@item.price}
+          %li.transact-info-table-row
+            %span.transact-info-table-cell 送料
+            %ul.transact-info-table-cell
+              %li
+                - if @item.postage == 1
+                  送料込み(出品者負担)
+                - else
+                  着払い(購入者負担)
+          %li.transact-info-table-row
+            %span.transact-info-table-cell 購入日時
+            %ul.transact-info-table-cell
+              %li #{@item.created_at.strftime("%m月%d日 %H:%M")}
+          %li.transact-info-table-row
+            %span.transact-info-table-cell 商品ID
+            %ul.transact-info-table-cell
+              %li #{@item.id}
+          %li.transact-info-table-row
+            %span.transact-info-table-cell お届け先
+            %ul.transact-info-table-cell
+              %li
+                %p
+                  = "〒 #{zip_code(@address.post_number)}"
+                %p
+                  = "#{@prefecture.name} #{@address.city} #{@address.town} #{@address.building}"
+                %p
+                  %span.buyer-name
+                    = @buyer.nickname
+                  %span.sama
+                    様
+    %section.l-side-container
+      %h3.transact-info-head 出品者情報
+      .transact-info-inner
+        %a.transaction-user-icon{:href => "#"}
+          %figure
+            %div.image-box
+              %img{:alt => "", :src => "//static.mercdn.net/images/member_photo_noimage_thumb.png", :width => "40"}/
+            %figcaption.bold
+              .transact-user-name
+                #{@item.user.nickname}
+          %i.fa.fa-angle-right
+
+
+
+= render 'shared/footer'
