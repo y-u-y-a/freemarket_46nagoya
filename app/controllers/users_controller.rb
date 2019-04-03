@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def index
     @items = Item.where(user_id: current_user)
+    @user = User.find(current_user.id)
   end
 
   def show
@@ -115,7 +116,7 @@ class UsersController < ApplicationController
   end
 
   def individual
-    @user = User.find(current_user)
+    @user = User.find(current_user.id)
     @page_user = User.includes(:items).find(params[:id])
     @good = Late.where(user_id: current_user.id).where(late: 1)
     @good_count = @good.length
