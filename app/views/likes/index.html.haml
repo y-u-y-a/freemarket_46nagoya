@@ -1,0 +1,26 @@
+- breadcrumb :likes
+= render 'shared/header'
+
+%main.l-container
+  = render 'shared/l-side'
+  .l-content
+    %section.mypage-tab-container-bottom
+      %h2.mypage-tab-container-bottom__head.likes-page
+        いいね！一覧
+      .tab-content
+        %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
+          - if @items.present?
+            - @items.each do |item|
+              %li.mypage-item-lists
+                = link_to item_path(item.id),class: 'mypage-item-lists__link' do
+                  %figure
+                    = image_tag item.item_images.first.image
+                  .mypage-item-lists__body
+                    .mypage-item-lists__body--text
+                      = item.name
+                    .mypage-item-lists__body--text
+                      = "¥"+"#{item.price.to_s(:delimited, delimiter: ',')}"
+                  %i.fa.fa-angle-right.mypage-item-lists-icon
+
+= render 'shared/sell-button'
+= render 'shared/footer'
