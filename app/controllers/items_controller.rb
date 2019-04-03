@@ -7,6 +7,7 @@ class ItemsController < ApplicationController
   before_action :set_payjp_user ,       only: [:buy, :pay]
   before_action :set_search
   before_action :set_searches ,         only: [:item_search_result]
+  before_action :set_late_count ,       only: [:show]
   before_action :category_in_brand ,    only: [:all_brands_show]
   before_action :set_user,              only: [:index,:show]
   before_action :get_category,          only: [:show, :edit]
@@ -76,12 +77,6 @@ class ItemsController < ApplicationController
     @user_items = Item.where(user_id: @item.user.id).where.not(id: params[:id]).limit(6)
     @comment = Comment.new
     @comments = @item.comments
-    @good = Late.where(user_id: current_user.id).where(late: 1)
-    @good_count = @good.length
-    @normal = Late.where(user_id: current_user.id).where(late: 2)
-    @normal_count = @normal.length
-    @bad = Late.where(user_id: current_user.id).where(late: 3)
-    @bad_count = @bad.length
     if @grand_category == nil
       @child_category_items = Item.where(child_category_id: @children_category.id).where.not(user_id: @item.user.id).all
     else
