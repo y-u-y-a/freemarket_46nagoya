@@ -42,14 +42,16 @@ Things you may want to cover:
 |user_id|integer|null: false|
 |buyer_id|integer||
 |business_stats|integer|null: false|
+|delivery_status|integer|null: false|
 
 ### Association
 - has_many   comments    ,dependent: :delete_all
 - belongs_to category
 - belongs_to user
 - belongs_to brand
-- has_many   messages
+- has_many   messages,dependent: :delete_all
 - has_many   item_images ,dependent: :destroy_all
+- has_one    late
 
 
 ## item_imagesテーブル
@@ -71,12 +73,14 @@ Things you may want to cover:
 |nickname|string|null: false,index: true|   <!-- ニックネーム -->
 |avatar|string||                            <!-- ユーザー画像 -->
 |profile_text|text||                        <!-- 自己紹介文 -->
+|late_count|integer||
 
 ### Association
 - has_many  items,    dependent: :destroy
 - has_many  comments  dependent: :destroy
 - has_many  lates     dependent: :destroy
 - has_many  messages  dependent: :destroy
+- has_many  lates     dependent: :delete_all
 - has_one   address   dependent: :destroy
 - has_one   profiels  dependent: :delete
 - has_one   socialprofiles dependent: :delete
@@ -118,12 +122,12 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false|
-|text|text||
-|evalution|integer||              <!-- 評価 -->
-|item_id|integer|null: false|
+|text|text||　　　　　　　　　　<!-- 評価 -->
+|late|integer|
 
 ### Association
 - belongs_to  user
+- belongs_to  item
 
 
 ## brandsテーブル   <!-- ブランドテーブル -->
@@ -167,7 +171,7 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false|
-|buyer_id|integer|null: false|
+|item_id|integer|null: false|
 |text|text|null: false|
 
 ### Association

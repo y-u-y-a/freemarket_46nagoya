@@ -16,7 +16,7 @@
           - if @item.present?
             - @item.each do |item|
               %li.mypage-item-lists
-                = link_to item_path(item),class: 'mypage-item-lists__link' do
+                = link_to trading_message_item_path(item.id),class: 'mypage-item-lists__link' do
                   %figure
                     = image_tag item.item_images.first.image
                   .mypage-item-lists__body
