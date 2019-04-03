@@ -54,18 +54,12 @@ Rails.application.routes.draw do
   end
 
   resources :items do
-    get  :all_brands_show,      on: :collection
-    get  :all_categories_show,  on: :collection
-    get  :item_search_result,   on: :collection
-    get  :buy,                  on: :member
-    post :pay,                  on: :member
-    get :buy,                  on: :collection
-    get :all_brands_show,      on: :collection
-    get :all_categories_show,  on: :collection
-    get :item_search_result,   on: :collection
-    get :buy,                  on: :member
+    get  :buy,                 on: :collection
+    get  :all_categories_show, on: :collection
+    get  :item_search_result,  on: :collection
+    get  :buy,                 on: :member
     post :pay,                 on: :member
-    get :trading_message,      on: :member
+    get  :trading_message,     on: :member
     post :trading_page,        on: :member
     post :message,             on: :member
     post :late,                on: :member

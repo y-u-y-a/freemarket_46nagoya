@@ -11,6 +11,7 @@
     }
   }
   .category-container{
+    @include clearfix;
     a{
       border-radius:4px;
       display:block;
@@ -31,17 +32,22 @@
     }
   }
   .brand-initial-container{
-    clear:both;
+    @include clearfix;
     display:block;
-    padding: 25px 0px 25px 0px;
-    font-size: 15px;
+    padding: 10px 0 35px 0;
     .initial__box{
-      padding-right:17px;
       float:left;
+      padding: 5px 0;
+      a {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+    }
+    .initial__box:after{
+      content: '|';
     }
   }
   .brand-name-container{
-    padding-top:40px;
     .category-name{
       border-top-left-radius:4px;
       border-top-right-radius:4px;
@@ -65,12 +71,26 @@
       }
       .brand-name__wrapper{
         @include clearfix;
-        display:inline;
-        .brand-name__box--left{
-          width:50%;
-          float:left;
-          padding:25px 40px;
-          font-size:18px;
+        padding: 10px 50px;
+        a {
+          float: left;
+          width: 50%;
+          padding: 6px 20px 0 0;
+          border: 0;
+          display: block;
+          .brand-name {
+            @include clearfix;
+            padding: 6px 20px 0 0;
+            border-bottom: none;
+            div:first-child {
+              float: left;
+            }
+            p {
+              margin-top: 6px;
+              margin-bottom: 6px;
+              font-size: 16px;
+            }
+          }
         }
         .brand-name__box--right{
           width:50%;
