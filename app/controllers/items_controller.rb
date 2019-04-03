@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   require 'payjp'
 
   before_action :authenticate_user! ,   only: [:new ,:buy, :pay]
-  before_action :set_category,          only: [ :index, :new, :edit, :create, :update, :all_brands_show, :all_categories_show, :show, :item_search_result]
+  before_action :set_category,          only: [ :index, :new, :edit, :create, :update, :all_brands_show, :all_categories_show, :show, :item_search_result,:trading_message]
   before_action :set_item,              only: [:show ,:edit, :update, :destroy, :buy]
   before_action :set_payjp_user ,       only: [:buy, :pay]
   before_action :set_search
@@ -187,6 +187,7 @@ class ItemsController < ApplicationController
 
   def trading_message
     @item = Item.find(params[:id])
+    @user = User.find(@item.user_id)
     @buyer = User.find(@item.buyer_id)
     @address = Address.find_by(user_id: @item.buyer_id)
     @prefecture = Prefecture.find(@address.prefecture_id)
@@ -219,7 +220,7 @@ class ItemsController < ApplicationController
   def message
     @message = Message.new(message_params)
     @message.save
-    redirect_to trading_page_item_path
+    redirect_to trading_message_item_path
   end
 
   def late
