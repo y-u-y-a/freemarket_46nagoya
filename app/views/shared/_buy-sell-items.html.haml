@@ -44,6 +44,15 @@
                       - if url.match('sold_page')
                         .mypage-item-lists__status.done
                           売却済
+                      - if item.business_stats == 2 && item.delivery_status == 0
+                        .mypage-item-lists__status.trading
+                          発送待ち
+                      - if item.business_stats == 2 && item.delivery_status == 1
+                        .mypage-item-lists__status.trading
+                          受取評価待ち
+                      - if item.business_stats == 2 && item.delivery_status == 2
+                        .mypage-item-lists__status.trading
+                          出品者評価待ち
                     %i.fa.fa-angle-right.mypage-item-lists-icon
 
           - else
