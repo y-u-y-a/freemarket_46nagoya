@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
   before_action :set_user,              only: [:index,:show]
   before_action :get_category,          only: [:show, :edit]
   before_action :set_price,             only: [:index, :new, :edit, :create, :update, :all_brands_show, :all_categories_show, :show, :item_search_result, :trading_message]
+  before_action :set_late_count ,       only: :show
 
   def index
     @lady_items = Item.where(category_id: 1).where.not(business_stats: 2).limit(4).order(id: "DESC")
