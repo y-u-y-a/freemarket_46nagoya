@@ -3,6 +3,9 @@
     = link_to item_path(item) do
       %figure.items-box-photo
         = image_tag item.item_images.first.image
+        - if item.business_stats != 1
+          .item-sold-out-badge
+            %div SOLD
       .items-box-body
         %h3.items-box-name
           = item.name

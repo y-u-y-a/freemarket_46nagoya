@@ -8,8 +8,6 @@
       %section.l-single-container
         %h2.l-single-head メール/パスワード
         = form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :patch, class: 'l-single-inner'}) do |f|
-          / - if @address&.errors.present?
-          /   = render partial: "shared/errors_messages",locals: {temporary: @address}
 
           .l-single-content
             .form-group
