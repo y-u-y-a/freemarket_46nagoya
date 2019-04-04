@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   before_action :set_price, only: [:index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :notification, :todo, :individual,:following,:followers]
   before_action :user_late_count ,only: [:individual]
 
-
   protect_from_forgery :except => [ :card_create, :card_delete, :payment_method, :card_registration]
   # 外部からのAPIを受ける特定アクションのみ除外
 
@@ -25,6 +24,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(current_user)
   end
 
   def update
@@ -57,6 +57,7 @@ class UsersController < ApplicationController
   end
 
   def indentification
+    @user = User.find(current_user)
   end
 
   def exhibition
@@ -120,7 +121,6 @@ class UsersController < ApplicationController
   end
 
   def individual
-    # @page_user = User.includes(:items).find(params[:id])
   end
 
   def following
