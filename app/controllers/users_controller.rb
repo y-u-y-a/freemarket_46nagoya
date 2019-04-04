@@ -11,14 +11,12 @@ class UsersController < ApplicationController
 
   before_action :set_search
 
-  before_action :set_late_count ,only: [:individual]
+  before_action :set_price, only: [:index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :notification, :todo, :individual,:following,:followers]
 
   protect_from_forgery :except => [ :card_create, :card_delete, :payment_method, :card_registration]
   # 外部からのAPIを受ける特定アクションのみ除外
 
   def index
-    @price = Item.where(user_id: current_user.id).where(business_stats: 3)
-    @total_price = @price.sum(:price)
     @items = Item.where(user_id: current_user)
     @user = User.find(current_user.id)
     @trading_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 2)
@@ -121,6 +119,12 @@ class UsersController < ApplicationController
   end
 
   def individual
+    @good = Late.where(user_id: current_user.id).where(late: 1)
+    @good_count = @good.length
+    @normal = Late.where(user_id: current_user.id).where(late: 2)
+    @normal_count = @normal.length
+    @bad = Late.where(user_id: current_user.id).where(late: 3)
+    @bad_count = @bad.length
     @user = User.find(current_user.id)
     @page_user = User.includes(:items).find(params[:id])
   end

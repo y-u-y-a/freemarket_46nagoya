@@ -20,13 +20,9 @@ class ApplicationController < ActionController::Base
     @categories = Category.find(1,2,3,4,490,334,7,681,9,899,1235,738,1207,1272,1200,1201)
   end
 
-  def set_late_count
-    @good = Late.where(user_id: current_user.id).where(late: 1)
-    @good_count = @good.length
-    @normal = Late.where(user_id: current_user.id).where(late: 2)
-    @normal_count = @normal.length
-    @bad = Late.where(user_id: current_user.id).where(late: 3)
-    @bad_count = @bad.length
+  def set_price
+    @price = Item.where(user_id: current_user.id).where(business_stats: 3)
+    @total_price = @price.sum(:price)
   end
 
   def after_sign_in_path_for(resource)
