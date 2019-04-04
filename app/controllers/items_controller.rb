@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   require 'payjp'
 
   before_action :authenticate_user! ,   only: [:new ,:buy, :pay]
+ before_action  :address_create,        only: [:buy, :pay]
   before_action :set_category,          only: [ :index, :new, :edit, :create, :update, :all_brands_show, :all_categories_show, :show, :item_search_result, :trading_message]
   before_action :set_item,              only: [:show ,:edit, :update, :destroy, :buy, :message]
   before_action :set_payjp_user ,       only: [:buy, :pay]
@@ -216,6 +217,10 @@ class ItemsController < ApplicationController
     @message = Message.new(message_params)
     @message.save
     redirect_to trading_message_item_path
+  end
+
+  def address_create
+    redirect_to edit_user_address_path(current_user,current_user&.address) if current_user.address.town.nil?
   end
 
   private
