@@ -22,7 +22,7 @@
         = link_to '#', class: "clearfix" do
           .left 売上金
           .right
-            ¥ 0
+            = "¥#{thousands_separator(@total_price)}"
             = fa_icon 'angle-right',class: 'mypage-nav-icon'
 
       %li.header-mypage-box__state__points__li
