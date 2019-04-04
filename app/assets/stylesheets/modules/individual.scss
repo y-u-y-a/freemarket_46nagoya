@@ -203,7 +203,6 @@
             height: 220px;
             overflow: hidden;
             position: relative;
-            // padding: 0 0 100%;
             img {
               position: absolute;
               top: 0;
@@ -214,6 +213,33 @@
               right: auto;
               height: 100%;
               transform: translate(-50%, 0);
+            }
+            .item-sold-out-badge {
+              div {
+                position: absolute;
+                left: 0;
+                z-index: 2;
+                color: #fff;
+                transform: rotate(-45deg);
+                letter-spacing: 2px;
+                font-weight: 600;
+                top: 24px;
+                font-size: 22px;
+                font-family: inherit;
+              }
+              &::after {
+                display: block;
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                width: 0;
+                height: 0;
+                border-style: solid;
+                border-color: $red transparent;
+                border-width: 100px 100px 0 0;
+              }
             }
           }
         }
