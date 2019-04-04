@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190403103327) do
+ActiveRecord::Schema.define(version: 20190404034457) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "prefecture_id"
-    t.integer  "post_number"
+    t.string   "post_number"
     t.string   "city"
     t.string   "town"
     t.string   "building"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.bigint   "phone_number"
+    t.string   "phone_number"
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
@@ -164,11 +164,11 @@ ActiveRecord::Schema.define(version: 20190403103327) do
     t.integer  "birth_month"
     t.integer  "birth_day"
     t.integer  "prefecture_id"
-    t.integer  "post_number"
+    t.string   "post_number"
     t.string   "city"
     t.string   "town"
     t.string   "building"
-    t.bigint   "phone_number"
+    t.string   "phone_number"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end

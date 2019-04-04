@@ -4,7 +4,7 @@ class Address < ApplicationRecord
 
   belongs_to :user
 
-  PHONE_NUMBER      = /\A\d{10}$|^\d{11}\z/
+  PHONE_NUMBER      = /\A\d{10}\z|\A\d{11}\z/
   POST_NUMBER       = /\A\d{3}[-]\d{4}\z|^\d{3}[-]\d{2}\z|^\d{3}\z|^\d{5}\z|^\d{7}\z/
 
   validates :post_number,     presence: true, format: { with: POST_NUMBER }
