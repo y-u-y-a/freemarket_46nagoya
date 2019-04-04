@@ -56,9 +56,7 @@ namespace :deploy do
   end
   before :starting, 'deploy:upload'
   after :finishing, 'deploy:cleanup'
-end
 
-namespace :deploy do
   desc 'db_seed'
   task :db_seed do
     on roles(:db) do |host|
@@ -70,3 +68,4 @@ namespace :deploy do
     end
   end
 end
+
