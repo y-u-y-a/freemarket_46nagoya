@@ -114,7 +114,7 @@ crumb :item_show do |item|
 end
 
 crumb :individual do |user|
-  link user.nickname, individual_user_path(current_user)
+  link user.nickname, individual_user_path(user)
   parent :root
 end
 

@@ -34,7 +34,7 @@
 
   %ul.header-mypage-box__list
     %li
-      = link_to '#',class: "link-item" do
+      = link_to user_likes_path(current_user),class: "link-item" do
         いいね！一覧
 
         = fa_icon 'angle-right',class: 'mypage-nav-icon'

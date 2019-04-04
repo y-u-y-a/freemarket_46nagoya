@@ -5,8 +5,8 @@
   .user-details__profile-box
     = link_to '#',class: 'user-details__profile-box__link' do
       .user-details__profile-box__link__photo
-        - if current_user.persisted? && current_user.avatar?
-          = image_tag current_user.avatar.to_s, class: 'user-details__profile-box__link__photo__image'
+        - if @page_user.persisted? && @page_user.avatar?
+          = image_tag @page_user.avatar.to_s, class: 'user-details__profile-box__link__photo__image'
         - else
           = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", class: 'user-details__profile-box__link__photo__image'
       %h2.user-details__profile-box__link__title
@@ -15,7 +15,7 @@
     .user-details__profile-box__score
       %span
         評価数
-        = @user.late_count
+        = @page_user.late_count
       %span
         出品数
         = @page_user.items.count

@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   require 'payjp'
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:buy, :pay]
 
   before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :notification, :todo, :individual,:following,:followers]
   # ヘッダーに使うカテゴリを読み込む
-  before_action :set_user
+  # before_action :set_user
   # , only: [:trading, :purchased,:index,:show,:update]
   before_action :set_payjp_user ,only: [:card_delete, :card_create, :payment_method, :card_registration]
 
@@ -123,13 +123,6 @@ class UsersController < ApplicationController
   end
 
   def individual
-    @good = Late.where(user_id: current_user.id).where(late: 1)
-    @good_count = @good.length
-    @normal = Late.where(user_id: current_user.id).where(late: 2)
-    @normal_count = @normal.length
-    @bad = Late.where(user_id: current_user.id).where(late: 3)
-    @bad_count = @bad.length
-    @user = User.find(current_user.id)
     @page_user = User.includes(:items).find(params[:id])
   end
 
@@ -146,10 +139,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def set_user
-    @user = User.includes(:items).find(current_user)
-  end
 
   def set_payjp_user
     @user = User.find(current_user)
