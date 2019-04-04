@@ -151,7 +151,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       customer = Payjp::Customer.create(
         email: session[:email],
         card: card
-        )
+      )
       # userの正規登録
       @user = User.new(
         nickname:              session[:nickname],
@@ -243,6 +243,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def check_cvc(cvc)
     return "セキュリティコードの桁数が違います" if (cvc.length < 3) || (cvc.length > 4)
+    return "セキュリティコードは数字のみで入力してください" unless cvc.match(/[0-9]/)
   end
 
 end
