@@ -1,6 +1,7 @@
 var secondHtml = `<div class="sell-upload-items second">
                     <ul class="pictures"></ul>
                   </div>`
+i = 0;
   //出品ページに遷移後リロード
 $(document).on('change', 'input[type="file"]', function(e) { //fileを選択時に発火
   e.preventDefault();
@@ -15,20 +16,16 @@ function previewFile(e,$preview) {
   }
   reader.onload = (function(file) {
     return function(e){
+      var htmlWhole = `<li class="sell-upload-item">
+                          <figure class="sell-upload-figure landscape">
+                            <img class="preview" style="vertical-align:middle" src="${e.target.result}" style={"width":100%}>
+                          </figure>
+                          <div class="sell-upload-button">
+                            <a href="#" class="sell-upload-edit">編集</a>
+                            <a href="#" id="sell-upload-delete${i}">削除</a>
+                          </div>
+                        </li>`
 
-      for(i=0;i < 10; i++) {
-        var htmlWhole = `<li class="sell-upload-item">
-                            <figure class="sell-upload-figure landscape">
-                              <img class="preview" style="vertical-align:middle" src="${e.target.result}" style={"width":100%}>
-                            </figure>
-                            <div class="sell-upload-button">
-                              <a href="#" class="sell-upload-edit">編集</a>
-                              <a href="#" id="sell-upload-delete${i}">削除</a>
-                            </div>
-                          </li>`
-      }
-
-      console.log(htmlWhole);
       var preView = $('.preview').length;
       if(preView <= 4){
         $('.pictures').append(htmlWhole);
@@ -44,6 +41,7 @@ function previewFile(e,$preview) {
       var currentId = document.getElementById("item_item_images_attributes_" + num + "_image");
       $(currentId).parent().parent().next().show();
       $(currentId).parent().parent().hide();
+
       num += 1;
 
       if (previewCount == 1 || previewCount == 6){
@@ -60,14 +58,15 @@ function previewFile(e,$preview) {
         $('.sell-upload-drop-box').css('display','none');
       }
 
-      $('#sell-upload-delete').click(function(){
-        var c = $(this).parent().parent().prev().children().children().clone();
+      $("#sell-upload-delete" + i).click(function(){
+        var c = $(this).parent().parent().prev().children().children()
         c.val('');
         $(this).parent().parent().prev().children().children().replaceWith(c);
-        c.remove();
-        $(this).parent().parent().prev().addClass("box-display-none")
+        $(this).parent().parent().prev().hide();
         $(this).parent().parent().prev().appendTo('.sell-dropbox-container');
+        c.remove();
       });
+      i += 1;
     };
   })(file);
   reader.readAsDataURL(file);
