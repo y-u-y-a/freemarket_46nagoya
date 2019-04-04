@@ -3,8 +3,7 @@
     .footer-sell-btn__text
       出品
     %i.fa.fa-camera.icon-camera
-
-- if (request.path_info == '/items/all_categories_show') || (request.path_info == '/items/all_brands_show')
+- if (request.path_info == '/items/all_categories_show') || (request.path_info.gsub("/","") =~ /brands\d{4}/)
   = link_to "#0", class: "top-scroll-btn__link" do
     .top-scroll-btn
       %i.fa.fa-angle-up.icon-up

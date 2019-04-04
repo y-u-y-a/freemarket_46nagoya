@@ -13,7 +13,7 @@ crumb :all_categories_show do
 end
 
 crumb :all_brands_show do
-  link 'ブランド一覧', all_brands_show_items_path
+  link 'ブランド一覧', brand_path(1)
   parent :root
 end
 
@@ -81,6 +81,16 @@ end
 crumb :payment_method do
   link "支払い方法", payment_method_users_path
   parent :users
+end
+
+crumb :trading_message_buy do
+  link '取引画面', trading_message_item_path
+  parent :trading
+end
+
+crumb :trading_message_sell do
+  link '取引画面', trading_message_item_path
+  parent :seller_trading
 end
 
 crumb :card_registration do

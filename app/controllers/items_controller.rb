@@ -2,11 +2,13 @@ class ItemsController < ApplicationController
   require 'payjp'
 
   before_action :authenticate_user! ,   only: [:new ,:buy, :pay]
+ before_action  :address_create,        only: [:buy, :pay]
   before_action :set_category,          only: [ :index, :new, :edit, :create, :update, :all_brands_show, :all_categories_show, :show, :item_search_result, :trading_message]
   before_action :set_item,              only: [:show ,:edit, :update, :destroy, :buy, :message]
   before_action :set_payjp_user ,       only: [:buy, :pay]
   before_action :set_search
   before_action :set_searches ,         only: [:item_search_result]
+  before_action :set_late_count ,       only: [:show]
   before_action :category_in_brand ,    only: [:all_brands_show]
   before_action :set_user,              only: [:index,:show]
   before_action :get_category,          only: [:show, :edit]
@@ -141,12 +143,6 @@ class ItemsController < ApplicationController
     @region = Prefecture.find(@item.region)
   end
 
-  def all_brands_show
-    @category_index = Category.find(1)
-    @brands = @category_index.brands
-    @initials = @brands.pluck(:initial).uniq
-  end
-
   def all_categories_show
   end
 
@@ -223,25 +219,8 @@ class ItemsController < ApplicationController
     redirect_to trading_message_item_path
   end
 
-  def late
-    @item = Item.find(params[:id])
-    @buyer = User.find(@item.buyer_id)
-    @seller = User.find(@item.user_id)
-    if @item.user_id == current_user.id
-      @late = Late.new(late_seller_params)
-      @late.user_id = @item.buyer_id
-      @buyer.late_count += 1
-      @buyer.save
-      @late.save
-      redirect_to pay_item_path
-    else
-      @late = Late.new(late_buyer_params)
-      @late.user_id = @item.user_id
-      @seller.late_count += 1
-      @seller.save
-      @late.save
-      redirect_to trading
-    end
+  def address_create
+    redirect_to edit_user_address_path(current_user,current_user&.address) if current_user.address.town.nil?
   end
 
   private
