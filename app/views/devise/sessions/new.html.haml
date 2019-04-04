@@ -15,11 +15,11 @@
         %button#facebook-login.btn-sns.btn-facebook
           = link_to user_facebook_omniauth_authorize_path do
             %span Facebookで登録
-            = fa_icon "facebook-square lg", class: "icon-facebook"
+            %i.fab.fa-facebook-square.fa-lg.icon-facebook
 
         %button#google-login.btn-sns.btn-google
           = link_to user_google_oauth2_omniauth_authorize_path do
-            = fa_icon 'google',class: "icon-google"
+            %i.fab.fa-google.icon-google
             %span Googleで登録
 
 
