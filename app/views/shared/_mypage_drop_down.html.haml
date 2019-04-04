@@ -7,15 +7,15 @@
         - else
           = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: ""
       %figcaption
-        = @user&.nickname
+        = current_user&.nickname
 
     %ul.header-mypage-box__state__listing
       %li.header-mypage-box__state__listing__li
         = link_to user_lates_path(current_user) do
-          評価: #{@user.late_count}
+          評価: #{current_user&.late_count}
       %li.header-mypage-box__state__listing__li
         = link_to exhibition_users_path(current_user) do
-          出品数: #{@user&.items&.count}
+          出品数: #{current_user&.items&.count}
 
     %ul.header-mypage-box__state__points
       %li.header-mypage-box__state__points__li
