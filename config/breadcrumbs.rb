@@ -114,7 +114,7 @@ crumb :item_show do |item|
 end
 
 crumb :individual do |user|
-  link user.nickname, individual_user_path(current_user)
+  link user.nickname, individual_user_path(user)
   parent :root
 end
 
@@ -128,7 +128,10 @@ crumb :followers do
   parent :root
 end
 
-
+crumb :brand_show do
+  link "#{Brand.find_by(id: params[:id]).name}",brand_show_brand_path(params[:id])
+  parent :all_brands_show
+end
 
 # categories#show
 # メンズ、レディース等の大カテゴリ
