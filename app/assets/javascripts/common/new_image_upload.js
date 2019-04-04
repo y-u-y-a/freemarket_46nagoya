@@ -1,7 +1,6 @@
 $(document).on('turbolinks:load', function() {  //出品ページに遷移後リロード
   var path = location.pathname;
   if(path == "/items/new"){
-    console.log("出品");
     $('.form-mask-image-new:first').removeClass('box-display-none-new') //最初のdropbox以外を非表示
      $(document).on('change', 'input[type="file"]', function(event) { //画像ファイルプレビュー表示のイベント追加 fileを選択時に発火するイベントを登録
       $preview_new = $(this).parent(); //fileの親要素を$preview_newに代入
