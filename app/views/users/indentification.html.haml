@@ -18,17 +18,20 @@
               %i.fa.fa-angle-right.l-chapter-container__inner--icon
         .form-group
           %label お名前
-          %p 山田 太郎
+          %p
+            = "#{@user.profile.first_name} #{@user.profile.last_name}"
         .form-group
           %label お名前カナ
-          %p ヤマダ タロウ
+          %p
+            = "#{@user.profile.first_name_kana} #{@user.profile.last_name_kana}"
         .form-group
           %label{for: "birthday"} 生年月日
-          %p 1993/12/24
+          %p
+            = "#{@user.profile.birth_year}/#{@user.profile.birth_month}/#{@user.profile.birth_day}"
         .form-group
           %label{for: "zip_code"} 郵便番号
           %span.form-group__arbitrary 任意
-          %input.input-default{name: "zip_code", placeholder: "例）1234567", type: "text", value: "4460073"}/
+          %input.input-default{name: "zip_code", placeholder: "例）1234567", type: "text", value: "#{@user.address.post_number}",required: "required"}/
         .form-group
           %label{for: "prefecture"} 都道府県
           %span.form-group__arbitrary 任意
@@ -38,16 +41,16 @@
         .form-group
           %label{for: "city"} 市区町村
           %span.form-group__arbitrary 任意
-          %input.input-default{name: "city", placeholder: "例) 横浜市緑区", type: "text", value: "名古屋市"}/
+          %input.input-default{name: "city", placeholder: "例) 横浜市緑区", type: "text", value: "#{@user.address.city}"}/
         .form-group
           %label{for: "address1_label"} 番地
           %span.form-group__arbitrary 任意
-          %input.input-default{name: "address1", placeholder: "例) 青山1−1−1", type: "text", value: "栄町3丁目-9"}/
+          %input.input-default{name: "town", placeholder: "例) 青山1−1−1", type: "text", value: "#{@user.address.town}"}/
         .form-group
           %label{for: "address2_label"} 建物名
           %span.form-group__arbitrary 任意
-          %input.input-default{name: "address2", placeholder: "例) 柳ビル103", type: "text", value: "イーストクライム302"}
-        %button.l-chapter-container__btn{type:"submit"} 登録する
+          %input.input-default{name: "building", placeholder: "例) 柳ビル103", type: "text", value: "#{@user.address&.building}"}
+        %button.l-chapter-container__btn{type:"submit",disabled: true} 登録する
         .form-group.text-right
           %p.l-chapter-container__inner--right
             %a{href: "/jp/help_center/article/423/", target: "_blank",class: "l-chapter-container__inner--text"}

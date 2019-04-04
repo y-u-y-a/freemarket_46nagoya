@@ -1,24 +1,24 @@
-- breadcrumb :individual, @page_user
+- breadcrumb :individual, @user
 = render 'shared/header'
 
 %section.user-details
   .user-details__profile-box
     = link_to '#',class: 'user-details__profile-box__link' do
       .user-details__profile-box__link__photo
-        - if @page_user.persisted? && @page_user.avatar?
-          = image_tag @page_user.avatar.to_s, class: 'user-details__profile-box__link__photo__image'
+        - if @user.persisted? && @user.avatar?
+          = image_tag @user.avatar.to_s, class: 'user-details__profile-box__link__photo__image'
         - else
           = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", class: 'user-details__profile-box__link__photo__image'
       %h2.user-details__profile-box__link__title
-        = @page_user.nickname
+        = @user.nickname
 
     .user-details__profile-box__score
       %span
         評価数
-        = @page_user.late_count
+        = @user.late_count
       %span
         出品数
-        = @page_user.items.count
+        = @user.items.count
 
       %span
         %section.follow-stats
@@ -49,9 +49,9 @@
             = @bad_count
 
     .white__description_box
-      - if @page_user.profile_text.present?
+      - if @user.profile_text.present?
         %p.font-2
-          = @page_user.profile_text
+          = @user.profile_text
 
       - else
         %p.font-2
@@ -70,16 +70,19 @@
           %i.fab.fa-line
 
 
-  - if @page_user.items.present?
+  - if @user.items.present?
     %section.items-box-container.clearfix
       %h2.items-box-head この出品者の商品
       .items-box-container__content.clearfix
-        - @page_user.items.each do |item|
+        - @user.items.each do |item|
           %section.items-box
             = link_to item_path(item), class: 'items-box__link' do
               %figure.items-box__link__photo
                 - if item.item_images
                   = image_tag item.item_images.first.image
+                  - if item.business_stats != 1
+                    .item-sold-out-badge
+                      %div SOLD
               .items-box__body
                 %h3.items-box__body__name.font-2
                   = item.name

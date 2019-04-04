@@ -4,7 +4,7 @@ class Temporary < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   ZENKAKU_MOJI      = /\A[ぁ-んァ-ン一-龥]/
   ZENKAKU_KANA      = /\A([ァ-ン]|ー)+\z/
-  PHONE_NUMBER      = /\A\d{10}$|^\d{11}\z/
+  PHONE_NUMBER      = /\A\d{10}\z|\A\d{11}\z/
   POST_NUMBER       = /\A\d{3}[-]\d{4}\z|^\d{3}[-]\d{2}\z|^\d{3}\z|^\d{5}\z|^\d{7}\z/
 
   validates :nickname,        presence: true, length: { in: 1..20 }, uniqueness: true,on: :new_user

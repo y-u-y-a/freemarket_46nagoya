@@ -128,7 +128,10 @@ crumb :followers do
   parent :root
 end
 
-
+crumb :brand_show do
+  link "#{Brand.find_by(id: params[:id]).name}",brand_show_brand_path(params[:id])
+  parent :all_brands_show
+end
 
 # categories#show
 # メンズ、レディース等の大カテゴリ
