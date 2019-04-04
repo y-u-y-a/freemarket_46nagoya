@@ -8,12 +8,9 @@ class UsersController < ApplicationController
   # before_action :set_user
   # , only: [:trading, :purchased,:index,:show,:update]
   before_action :set_payjp_user ,only: [:card_delete, :card_create, :payment_method, :card_registration]
-
+  before_action :set_user, only: [:show,:update,:transaction_page,:card_create,:card_delete,:following,:followers,:individual]
   before_action :set_search
-
-
   before_action :set_price, only: [:index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :notification, :todo, :individual,:following,:followers]
-
   before_action :user_late_count ,only: [:individual]
 
 
@@ -22,7 +19,7 @@ class UsersController < ApplicationController
 
   def index
     @items = Item.where(user_id: current_user)
-    @user = User.find(current_user.id)
+    @user = User.find(current_user)
     @trading_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 2)
     @old_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 3)
   end
@@ -123,22 +120,24 @@ class UsersController < ApplicationController
   end
 
   def individual
-    @page_user = User.includes(:items).find(params[:id])
+    # @page_user = User.includes(:items).find(params[:id])
   end
 
   def following
-    @user  = User.find(params[:id])
     @users = @user.following
     render 'show_follow'
   end
 
   def followers
-    @user  = User.find(params[:id])
     @users = @user.followers
     render 'show_follower'
   end
 
   private
+
+  def set_user
+    @user = User.includes(:items).find(params[:id])
+  end
 
   def set_payjp_user
     @user = User.find(current_user)
