@@ -1,4 +1,6 @@
 = form_tag("card_create", method: :post, class: "right-container__inner", id: "charge-form") do
+  - if @error&.present?
+    = render partial: "shared/unique_error",locals: {errors: @error}
   %span.charge-errors
     .credit-form-content
       .card-form
