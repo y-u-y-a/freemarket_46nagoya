@@ -17,14 +17,14 @@ class ItemsController < ApplicationController
     @man_items = Item.where(category_id: 2).where.not(business_stats: 2).limit(4).order(id: "DESC")
     @kids_items = Item.where(category_id: 3).where.not(business_stats: 2).limit(4).order(id: "DESC")
     @cosmetic_items = Item.where(category_id: 6).where.not(business_stats: 2).limit(4).order(id: "DESC")
-    @chanel_items = Item.where(brand_id: 1).where.not(business_stats: 2).limit(4).order(id: "DESC")
-    @nike_items = Item.where(brand_id: 2).where.not(business_stats: 2).limit(4).order(id: "DESC")
-    @vuitton_items = Item.where(brand_id: 3).where.not(business_stats: 2).limit(4).order(id: "DESC")
-    @supreme_items = Item.where(brand_id: 4).where.not(business_stats: 2).limit(4).order(id: "DESC")
+    @chanel_items = Item.where(brand_id: 2447).where.not(business_stats: 2).limit(4).order(id: "DESC")
+    @nike_items = Item.where(brand_id: 3813).where.not(business_stats: 2).limit(4).order(id: "DESC")
+    @vuitton_items = Item.where(brand_id: 6155).where.not(business_stats: 2).limit(4).order(id: "DESC")
+    @supreme_items = Item.where(brand_id: 8413).where.not(business_stats: 2).limit(4).order(id: "DESC")
 
     @chanel = 'シャネル'
     @nike = 'ナイキ'
-    @vuitton = 'ヴィトン'
+    @vuitton = 'ルイ ヴィトン'
     @supreme = 'シュプリーム'
 
     @category_name = []
