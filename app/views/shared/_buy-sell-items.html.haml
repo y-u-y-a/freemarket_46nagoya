@@ -16,27 +16,44 @@
           - if @item.present?
             - @item.each do |item|
               %li.mypage-item-lists
-                = link_to item_path(item),class: 'mypage-item-lists__link' do
-                  %figure
-                    = image_tag item.item_images.first.image
-                  .mypage-item-lists__body
-                    .mypage-item-lists__body--text
-                      - url = request.path_info
-                      - if url.match('purchased')
-                        = "「#{item.name}」を購入しました。取引が完了しました。"
-                      - else
+                - if url.match('exhibition')
+                  = link_to item_path(item.id),class: 'mypage-item-lists__link' do
+                    %figure
+                      = image_tag item.item_images.first.image
+                    .mypage-item-lists__body
+                      .mypage-item-lists__body--text
                         = item.name
-                    - url = request.path_info
-                    - if url.match('purchased')
-                      .mypage-item-lists__status.done
-                        取引完了
-                    - if url.match('sold_page')
-                      .mypage-item-lists__status.done
-                        売却済
-                    - if url.match('exhibition')
                       .mypage-item-lists__status.awaiting
                         出品中
-                  %i.fa.fa-angle-right.mypage-item-lists-icon
+                    %i.fa.fa-angle-right.mypage-item-lists-icon
+                - else
+                  = link_to trading_message_item_path(item.id),class: 'mypage-item-lists__link' do
+                    %figure
+                      = image_tag item.item_images.first.image
+                    .mypage-item-lists__body
+                      .mypage-item-lists__body--text
+                        - url = request.path_info
+                        - if url.match('purchased')
+                          = "「#{item.name}」を購入しました。取引が完了しました。"
+                        - else
+                          = item.name
+                      - url = request.path_info
+                      - if url.match('purchased')
+                        .mypage-item-lists__status.done
+                          取引完了
+                      - if url.match('sold_page')
+                        .mypage-item-lists__status.done
+                          売却済
+                      - if item.business_stats == 2 && item.delivery_status == 0
+                        .mypage-item-lists__status.trading
+                          発送待ち
+                      - if item.business_stats == 2 && item.delivery_status == 1
+                        .mypage-item-lists__status.trading
+                          受取評価待ち
+                      - if item.business_stats == 2 && item.delivery_status == 2
+                        .mypage-item-lists__status.trading
+                          出品者評価待ち
+                    %i.fa.fa-angle-right.mypage-item-lists-icon
 
           - else
             %li.mypage-item-not-found.bold

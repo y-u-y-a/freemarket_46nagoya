@@ -1,26 +1,28 @@
 class UsersController < ApplicationController
-
   require 'payjp'
 
-  before_action :authenticate_user!, only: [:payment_method, :card_registration, :indentification, :card_create, :card_delete]
+  before_action :authenticate_user!, only: [:buy, :pay]
 
-  before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :notification, :todo, :individual,:following,:followers]
+  before_action :set_category, only: [ :index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :notification, :todo, :individual,:following,:followers, :card_create]
   # ヘッダーに使うカテゴリを読み込む
-  before_action :set_user
-  # , only: [:trading, :purchased,:index,:show,:update]
-
   before_action :set_payjp_user ,only: [:card_delete, :card_create, :payment_method, :card_registration]
-
+  before_action :set_user, only: [:show,:update,:transaction_page,:following,:followers,:individual]
   before_action :set_search
+  before_action :set_price, only: [:index, :show, :logout, :payment_method, :card_registration, :indentification, :purchased, :trading, :exhibition, :seller_trading, :sold_page, :notification, :todo, :individual,:following,:followers]
+  before_action :user_late_count ,only: [:individual]
 
   protect_from_forgery :except => [ :card_create, :card_delete, :payment_method, :card_registration]
   # 外部からのAPIを受ける特定アクションのみ除外
 
   def index
     @items = Item.where(user_id: current_user)
+    @user = User.find(current_user)
+    @trading_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 2)
+    @old_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 3)
   end
 
   def show
+    @user = User.find(current_user)
   end
 
   def update
@@ -39,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   def todo
-    @items = Item.where(user_id: current_user)
+    @trading_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 2)
   end
 
   def payment_method
@@ -53,6 +55,7 @@ class UsersController < ApplicationController
   end
 
   def indentification
+    @user = User.find(current_user)
   end
 
   def exhibition
@@ -75,30 +78,58 @@ class UsersController < ApplicationController
     @item = Item.where(business_stats: 3).where(buyer_id: current_user.id)
   end
 
+  def transaction_page
+    @item = @user.items.find(params[:id])
+  end
+
   def card_create
-    #顧客の作成
-    card = Payjp::Token.create({
-      card: {
-        number: params[:number],
-        cvc: params[:cvc],
-        exp_month: params[:exp_month],
-        exp_year: params[:exp_year]
-      }},
-      {
-        'X-Payjp-Direct-Token-Generate': 'true'
-      }
-    )
-    #顧客の作成
-    # card: params["payjpToken"]
-    customer = Payjp::Customer.create(
-      email: @user.email,
-      card: card
-    )
-    #トークンとアプリのユーザーの紐付け
-    if @user.update_attribute(:customer_id, customer.id)
-      redirect_to payment_method_users_path, success: "登録ができました"
+    check = true
+
+    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+
+    begin
+      Payjp::Token.create({
+        card: {
+          number: params[:number].gsub("-",""),
+          cvc: params[:cvc],
+          exp_month: params[:exp_month],
+          exp_year: params[:exp_year]
+        }},
+        {
+          "X-Payjp-Direct-Token-Generate": "true"
+        })
+    rescue
+      check = false
+      @error = []
+      @error << "カードの登録に失敗しました"
+      @error << check_number(params[:number].gsub("-",""))
+      @error << check_select(params[:exp_year], params[:exp_month])
+      @error << check_cvc(params[:cvc])
+      @error = @error.compact
+    end
+
+    if check == true
+      card = Payjp::Token.create({
+        card: {
+          number: params[:number].gsub("-",""),
+          cvc: params[:cvc],
+          exp_month: params[:exp_month],
+          exp_year: params[:exp_year]
+        }},
+        {
+          "X-Payjp-Direct-Token-Generate": "true"
+        })
+      customer = Payjp::Customer.create(
+        email: @user.email,
+        card: card
+      )
+      if @user.update_attribute(:customer_id, customer.id)
+        redirect_to payment_method_users_path, success: "登録ができました"
+      else
+        redirect_to root_path
+      end
     else
-      redirect_to root_path
+      render :card_registration
     end
   end
 
@@ -112,18 +143,14 @@ class UsersController < ApplicationController
   end
 
   def individual
-    @user = User.find(current_user)
-    @page_user = User.includes(:items).find(params[:id])
   end
 
   def following
-    @user  = User.find(params[:id])
     @users = @user.following
     render 'show_follow'
   end
 
   def followers
-    @user  = User.find(params[:id])
     @users = @user.followers
     render 'show_follower'
   end
@@ -131,7 +158,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.includes(:items).find(current_user)
+    @user = User.includes(:items).find(params[:id])
   end
 
   def set_payjp_user
@@ -141,6 +168,24 @@ class UsersController < ApplicationController
 
   def update_params
     params.require(:user).permit(:nickname, :profile_text, :avatar, :avatar_cache, :remove_avatar)
+  end
+
+  def check_number(number)
+    return "カードナンバーは14桁から17桁で入力してください" if (number.length < 14) || (number.length > 17)
+  end
+
+  def check_select(exp_year, exp_month)
+    date = Date.today
+    date = "#{date.year}#{date.month}".to_i
+    exp_select = "#{exp_year}#{exp_month}".to_i
+    error = "有効期限が切れています" if exp_select < date
+    error = "カードの有効期限を選択してください" if (exp_year == "2019") && (exp_month == "1")
+    return error
+  end
+
+  def check_cvc(cvc)
+    return "セキュリティコードの桁数が違います" if (cvc.length < 3) || (cvc.length > 4)
+    return "セキュリティコードは数字のみで入力してください" unless cvc.match(/[0-9]/)
   end
 
 end

@@ -22,6 +22,5 @@
 /public/uploads/tmp
 /public/uploads/user
 .env.swp
-.env
 /config/initializers/settings.rb
 .env

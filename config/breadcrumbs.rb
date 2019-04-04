@@ -13,7 +13,7 @@ crumb :all_categories_show do
 end
 
 crumb :all_brands_show do
-  link 'ブランド一覧', all_brands_show_items_path
+  link 'ブランド一覧', brand_path(1)
   parent :root
 end
 
@@ -24,6 +24,11 @@ end
 
 crumb :logout do
   link 'ログアウト', logout_users_path
+  parent :users
+end
+
+crumb :address_edit do
+  link "発送元・お届け先住所変更", edit_user_address_path(current_user,current_user&.address)
   parent :users
 end
 
@@ -58,6 +63,16 @@ crumb :purchased do
   parent :users
 end
 
+crumb :lates do
+  link '評価一覧', user_lates_path(current_user)
+  parent :users
+end
+
+crumb :likes do
+  link 'いいね! 一覧', user_likes_path(current_user)
+  parent :users
+end
+
 crumb :indentification do
   link "本人情報の登録", indentification_users_path
   parent :users
@@ -66,6 +81,16 @@ end
 crumb :payment_method do
   link "支払い方法", payment_method_users_path
   parent :users
+end
+
+crumb :trading_message_buy do
+  link '取引画面', trading_message_item_path
+  parent :trading
+end
+
+crumb :trading_message_sell do
+  link '取引画面', trading_message_item_path
+  parent :seller_trading
 end
 
 crumb :card_registration do
@@ -89,7 +114,7 @@ crumb :item_show do |item|
 end
 
 crumb :individual do |user|
-  link user.nickname, individual_user_path(current_user)
+  link user.nickname, individual_user_path(user)
   parent :root
 end
 
@@ -103,7 +128,10 @@ crumb :followers do
   parent :root
 end
 
-
+crumb :brand_show do
+  link "#{Brand.find_by(id: params[:id]).name}",brand_show_brand_path(params[:id])
+  parent :all_brands_show
+end
 
 # categories#show
 # メンズ、レディース等の大カテゴリ

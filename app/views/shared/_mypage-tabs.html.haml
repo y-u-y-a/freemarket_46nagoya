@@ -47,3 +47,20 @@
   %li.three-tabs
     %h3
       = link_to '売却済み',sold_page_users_path(current_user),id: 'mypage-tab-transaction-old','data-toggle':'tab'
+
+- if url.match('lates')
+  %li.four-tabs.all
+    %h3
+      = link_to 'すべて',user_lates_path(current_user),id: 'mypage-tab-transaction-now','data-toggle':'tab'
+  %li.four-tabs.good
+    %i.fa.fa-grin.icon-good
+    %h3
+      = link_to '良い',great_user_lates_path(current_user),id: 'mypage-tab-transaction-now','data-toggle':'tab'
+  %li.four-tabs.normal
+    %i.fa.fa-meh.icon-normal
+    %h3
+      = link_to '普通',good_user_lates_path(current_user),id: 'mypage-tab-transaction-old','data-toggle':'tab'
+  %li.four-tabs.bad
+    %i.fa.fa-frown.icon-bad
+    %h3
+      = link_to '悪い',poor_user_lates_path(current_user),id: 'mypage-tab-transaction-old','data-toggle':'tab'

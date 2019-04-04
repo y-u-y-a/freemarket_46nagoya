@@ -17,13 +17,13 @@
           %div
             評価
             %span.bold
-              0
+              = @user.late_count
           %div
             出品数
             %span.bold
               = @user.items.count
 
-    = render 'user-mypage-container.html.haml'
+    = render 'user-mypage-container'
 
     = render 'user-item-status'
 

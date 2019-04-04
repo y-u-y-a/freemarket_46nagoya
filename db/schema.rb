@@ -10,27 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190401100445) do
+ActiveRecord::Schema.define(version: 20190404042504) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "prefecture_id"
-    t.integer  "post_number"
+    t.string   "post_number"
     t.string   "city"
     t.string   "town"
     t.string   "building"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.bigint   "phone_number"
+    t.string   "phone_number"
     t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
   create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.text     "initial",    limit: 65535
+    t.string   "initial"
     t.text     "intro",      limit: 65535
     t.string   "name"
+    t.index ["initial"], name: "index_brands_on_initial", using: :btree
+    t.index ["name"], name: "index_brands_on_name", using: :btree
   end
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -92,11 +94,20 @@ ActiveRecord::Schema.define(version: 20190401100445) do
     t.integer  "child_category_id"
     t.integer  "grand_child_category_id"
     t.integer  "likes_count",                           default: 0
+    t.integer  "delivery_status",                       default: 0
     t.index ["category_id"], name: "index_items_on_category_id", using: :btree
     t.index ["child_category_id"], name: "index_items_on_child_category_id", using: :btree
     t.index ["grand_child_category_id"], name: "index_items_on_grand_child_category_id", using: :btree
     t.index ["name"], name: "index_items_on_name", using: :btree
     t.index ["price"], name: "index_items_on_price", using: :btree
+  end
+
+  create_table "lates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.text     "text",       limit: 65535
+    t.integer  "late"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -106,6 +117,14 @@ ActiveRecord::Schema.define(version: 20190401100445) do
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_likes_on_item_id", using: :btree
     t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
+  end
+
+  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "text",       limit: 65535
+    t.integer  "user_id"
+    t.integer  "item_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "profiles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -146,11 +165,11 @@ ActiveRecord::Schema.define(version: 20190401100445) do
     t.integer  "birth_month"
     t.integer  "birth_day"
     t.integer  "prefecture_id"
-    t.integer  "post_number"
+    t.string   "post_number"
     t.string   "city"
     t.string   "town"
     t.string   "building"
-    t.bigint   "phone_number"
+    t.string   "phone_number"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
   end
@@ -171,6 +190,7 @@ ActiveRecord::Schema.define(version: 20190401100445) do
     t.string   "provider"
     t.string   "uid"
     t.string   "token"
+    t.integer  "late_count",                           default: 0
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

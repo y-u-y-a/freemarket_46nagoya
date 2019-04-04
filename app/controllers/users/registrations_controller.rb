@@ -4,9 +4,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   require "date"
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, expect: :credit
 
-  prepend_before_action :check_captcha, only: [:create, :credit]
+  before_action :set_search,   only: [:edit]
+  before_action :set_category, only: [:edit]
+
+  prepend_before_action :check_captcha, only: :create
   prepend_before_action :customize_sign_up_params, only: [:create, :credit]
   protect_from_forgery except: [ :card_create, :card_delete, :payment_method, :card_registration]
 
@@ -72,12 +75,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def address
     check = true
 
-    session[:post_number]   = params[:session][:post_number]
+    session[:post_number]   = params[:session][:post_number].gsub("-","")
     session[:prefecture_id] = params[:session][:prefecture_id]
     session[:city]          = params[:session][:city]
     session[:town]          = params[:session][:town]
     session[:building]      = params[:session][:building]
-    session[:phone_number]  = params[:session][:phone_number]
+    session[:phone_number]  = params[:session][:phone_number].gsub("-","")
 
     @error = []
     @error << check_phone(session[:phone_number])
@@ -106,7 +109,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def credit
     check = true
 
-    session[:number]    = params[:session][:number]
+    session[:number]    = params[:session][:number].gsub("-","")
     session[:exp_month] = params[:session][:exp_month]
     session[:exp_year]  = params[:session][:exp_year]
     session[:cvc]       = params[:session][:cvc]
@@ -148,7 +151,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       customer = Payjp::Customer.create(
         email: session[:email],
         card: card
-        )
+      )
       # userの正規登録
       @user = User.new(
         nickname:              session[:nickname],
@@ -240,6 +243,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def check_cvc(cvc)
     return "セキュリティコードの桁数が違います" if (cvc.length < 3) || (cvc.length > 4)
+    return "セキュリティコードは数字のみで入力してください" unless cvc.match(/[0-9]/)
   end
 
 end

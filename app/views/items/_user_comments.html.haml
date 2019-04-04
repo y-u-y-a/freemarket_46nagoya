@@ -1,7 +1,22 @@
 - comments.each_with_index do |comment, i|
   = render partial: 'delete-comment-overlay',locals: {item: item, comment: comment}
-  - if comment.no_comment == 1
-    %li.clearfix
+  - if comment.no_comment == 1 && comment.user_id != item.user_id
+    %li.message-left
+      .message-user
+        %figure
+          .message-user-unknown
+            = image_tag '//www-mercari-jp.akamaized.net/assets/img/common/common/user-icon.svg?2845599746'
+          %figcaption.bold
+      .message-body
+        .message-body-text{id: "comment_id_#{i}"} 出品者がコメントを削除しました
+        .message-icons.clearfix
+          %time.message-icon-left
+            %i.fa.fa-clock-o
+            %span
+              = time_ago_in_words(comment.created_at)+"前"
+        %i.fa.fa-caret-left
+  - elsif comment.no_comment == 1 && comment.user_id == item.user_id
+    %li.message-right
       .message-user
         %figure
           .message-user-unknown
@@ -18,7 +33,7 @@
 
   - else
     - if comment.user_id != item.user_id
-      %li.clearfix
+      %li.message-left
         = link_to '#', class: 'message-user' do
           %figure
             %div
@@ -47,7 +62,7 @@
           %i.fa.fa-caret-left
 
     - else
-      %li.clearfix
+      %li.message-right
         = link_to '#', class: 'message-user' do
           %figure
             %div

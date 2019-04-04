@@ -1,0 +1,38 @@
+- breadcrumb :lates
+= render 'shared/header'
+
+%main.l-container
+  = render 'shared/l-side'
+  .l-content
+    %section.mypage-tab-container-bottom
+      %h2.mypage-tab-container-bottom__head
+        評価一覧
+
+      %ul.mypage-tab-container__tabs
+        = render 'shared/mypage-tabs'
+      .tab-content
+        %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
+          - if @lates.present?
+            - @lates.each do |late|
+              %li.mypage-item-lists
+                = link_to individual_user_path(late.user.id),class: 'mypage-item-lists__link' do
+                  %figure
+                    = image_tag late.user.avatar
+                  .mypage-item-lists__body
+                    .mypage-item-lists__body--text
+                      %i.fa.fa-grin.icon-good
+                      %span
+                        購入者
+                    .mypage-item-lists__body--text
+                      = late.user.nickname
+                    .mypage-item-lists__body--text
+                      - if late.text?
+                        = late.text
+                    .mypage-item-lists__body--text.time
+                      %i.fa.fa-clock-o.icon-time
+                      %span
+                        = late.created_at.strftime('%Y年%m月%d日 %H時%M分')
+                  %i.fa.fa-angle-right.mypage-item-lists-icon
+
+= render 'shared/sell-button'
+= render 'shared/footer'

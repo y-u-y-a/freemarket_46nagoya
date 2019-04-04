@@ -1,31 +1,32 @@
 class ItemsController < ApplicationController
   require 'payjp'
 
-  before_action :authenticate_user! , only: [:new ,:buy, :pay]
-  before_action :set_category,     only: [ :index, :new, :edit, :create, :all_brands_show, :all_categories_show, :show, :item_search_result]
-  before_action :set_item,         only: [:show ,:edit, :update, :destroy, :buy]
-  before_action :set_payjp_user ,  only: [:buy, :pay]
+  before_action :authenticate_user! ,   only: [:new ,:buy, :pay]
+ before_action  :address_create,        only: [:buy, :pay]
+  before_action :set_category,          only: [ :index, :new, :edit, :create, :update, :all_brands_show, :all_categories_show, :show, :item_search_result, :trading_message]
+  before_action :set_item,              only: [:show ,:edit, :update, :destroy, :buy, :message]
+  before_action :set_payjp_user ,       only: [:buy, :pay]
   before_action :set_search
-  before_action :set_searches ,    only: [:item_search_result]
+  before_action :set_searches ,         only: [:item_search_result]
   before_action :category_in_brand ,    only: [:all_brands_show]
-
-
-  before_action :set_user, only: [:index,:show]
-  before_action :get_category, only: [:show,:edit]
+  before_action :set_user,              only: [:index,:show]
+  before_action :get_category,          only: [:show, :edit]
+  before_action :set_price,             only: [:index, :new, :edit, :create, :update, :all_brands_show, :all_categories_show, :show, :item_search_result, :trading_message]
+  before_action :set_late_count ,       only: :show
 
   def index
     @lady_items = Item.where(category_id: 1).where.not(business_stats: 2).limit(4).order(id: "DESC")
     @man_items = Item.where(category_id: 2).where.not(business_stats: 2).limit(4).order(id: "DESC")
     @kids_items = Item.where(category_id: 3).where.not(business_stats: 2).limit(4).order(id: "DESC")
     @cosmetic_items = Item.where(category_id: 6).where.not(business_stats: 2).limit(4).order(id: "DESC")
-    @chanel_items = Item.where(brand_id: 1).where.not(business_stats: 2).limit(4).order(id: "DESC")
-    @nike_items = Item.where(brand_id: 2).where.not(business_stats: 2).limit(4).order(id: "DESC")
-    @vuitton_items = Item.where(brand_id: 3).where.not(business_stats: 2).limit(4).order(id: "DESC")
-    @supreme_items = Item.where(brand_id: 4).where.not(business_stats: 2).limit(4).order(id: "DESC")
+    @chanel_items = Item.where(brand_id: 2447).where.not(business_stats: 2).limit(4).order(id: "DESC")
+    @nike_items = Item.where(brand_id: 3813).where.not(business_stats: 2).limit(4).order(id: "DESC")
+    @vuitton_items = Item.where(brand_id: 6155).where.not(business_stats: 2).limit(4).order(id: "DESC")
+    @supreme_items = Item.where(brand_id: 8413).where.not(business_stats: 2).limit(4).order(id: "DESC")
 
     @chanel = 'シャネル'
     @nike = 'ナイキ'
-    @vuitton = 'ヴィトン'
+    @vuitton = 'ルイ ヴィトン'
     @supreme = 'シュプリーム'
 
     @category_name = []
@@ -40,7 +41,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item = Item.create(price: 0)
+    @item = Item.new
     30.times {@item.item_images.build}
     @brands = Brand.where('name LIKE(?)', "%#{params[:keyword]}%")
     respond_to do |format|
@@ -68,9 +69,9 @@ class ItemsController < ApplicationController
       check_way(@item.shipping_way)
       t = 30 - @item.item_images.length
       t.times {@item.item_images.build}
+      @item.valid?
       render new_item_path
     end
-
   end
 
   def show
@@ -107,6 +108,8 @@ class ItemsController < ApplicationController
       check_way(@item.shipping_way)
       t = 20 - @item.item_images.length
       t.times {@item.item_images.build}
+      @child_category = Category.where.not(main_category_id: nil).where(sub_category_id: nil)
+      @grand_child_category = Category.where.not(main_category_id: nil).where.not(sub_category_id: nil)
       render :edit
     end
   end
@@ -141,12 +144,6 @@ class ItemsController < ApplicationController
     @region = Prefecture.find(@item.region)
   end
 
-  def all_brands_show
-    @category_index = Category.find(1)
-    @brands = @category_index.brands
-    @initials = @brands.pluck(:initial).uniq
-  end
-
   def all_categories_show
   end
 
@@ -161,6 +158,7 @@ class ItemsController < ApplicationController
 
   def pay
     @item = Item.find(params[:id])
+    @buyer = User.find(@item.buyer_id)
     if @user.customer_id == nil
       redirect_to payment_method_users_path
     else
@@ -169,14 +167,61 @@ class ItemsController < ApplicationController
         :customer => @user.customer_id,
         :currency => 'jpy',
       )
-      @item.buyer_id = current_user.id
+      @item.delivery_status = '3'
       @item.business_stats = '3'
-      if @item.save
-        redirect_to root_path, notice: '購入しました'
+      @late = Late.new(late_params)
+      @late.user_id = @item.buyer_id
+      @buyer.late_count += 1
+      @buyer.save(validate: false)
+      @late.save(validate: false)
+      if @item.save(validate: false)
+        redirect_to trading_message_item_path, notice: '購入しました'
       else
         render :buy, notice: '購入出来ませんでした'
       end
     end
+  end
+
+  def trading_message
+    @item = Item.find(params[:id])
+    @user = User.find(current_user)
+    @buyer = User.find(@item.buyer_id)
+    @address = Address.find_by(user_id: @item.buyer_id)
+    @prefecture = Prefecture.find(@address.prefecture_id)
+    @message = Message.new
+    @messages = Message.where(item_id: @item.id)
+    @late = Late.new
+  end
+
+  def trading_page
+    @item = Item.find(params[:id])
+    @seller = User.find(@item.user_id)
+    if @item.delivery_status == 1
+      @late = Late.new(late_params)
+      @late.user_id = @item.user_id
+      @seller.late_count += 1
+      @seller.save(validate: false)
+      @late.save(validate: false)
+    end
+    if @item.business_stats == 1
+      @item.buyer_id = current_user.id
+      @item.business_stats = 2
+      @item.save(validate: false)
+    else
+      @item.delivery_status += 1
+      @item.save(validate: false)
+    end
+    redirect_to trading_message_item_path
+  end
+
+  def message
+    @message = Message.new(message_params)
+    @message.save
+    redirect_to trading_message_item_path
+  end
+
+  def address_create
+    redirect_to edit_user_address_path(current_user,current_user&.address) if current_user.address.town.nil?
   end
 
   private
@@ -190,6 +235,14 @@ class ItemsController < ApplicationController
 
   def pay_item_params
     params.permit(:item_id)
+  end
+
+  def message_params
+    params.require(:message).permit(:text).merge(user_id: current_user.id, item_id: params[:id])
+  end
+
+  def late_params
+    params.require(:late).permit(:text, :late)
   end
 
   def get_category
