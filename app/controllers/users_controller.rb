@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(current_user)
   end
 
   def update
@@ -57,6 +58,7 @@ class UsersController < ApplicationController
   end
 
   def indentification
+    @user = User.find(current_user)
   end
 
   def exhibition
@@ -120,7 +122,6 @@ class UsersController < ApplicationController
   end
 
   def individual
-    # @page_user = User.includes(:items).find(params[:id])
   end
 
   def following

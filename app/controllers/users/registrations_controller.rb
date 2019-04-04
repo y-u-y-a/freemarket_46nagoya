@@ -75,12 +75,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def address
     check = true
 
-    session[:post_number]   = params[:session][:post_number]
+    session[:post_number]   = params[:session][:post_number].gsub("-","")
     session[:prefecture_id] = params[:session][:prefecture_id]
     session[:city]          = params[:session][:city]
     session[:town]          = params[:session][:town]
     session[:building]      = params[:session][:building]
-    session[:phone_number]  = params[:session][:phone_number]
+    session[:phone_number]  = params[:session][:phone_number].gsub("-","")
 
     @error = []
     @error << check_phone(session[:phone_number])
@@ -109,7 +109,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def credit
     check = true
 
-    session[:number]    = params[:session][:number]
+    session[:number]    = params[:session][:number].gsub("-","")
     session[:exp_month] = params[:session][:exp_month]
     session[:exp_year]  = params[:session][:exp_year]
     session[:cvc]       = params[:session][:cvc]
