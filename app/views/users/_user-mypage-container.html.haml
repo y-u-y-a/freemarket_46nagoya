@@ -91,7 +91,7 @@
                 %time
                   %i.fa.fa-clock-o
                   %span
-                    - item.messages.first(1).each do |message|
+                    - item.messages.last(1).each do |message|
                       = "#{time_ago_in_words(message.created_at)}前"
               - else
                 メッセージはありません。
