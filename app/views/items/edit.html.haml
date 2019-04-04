@@ -1,4 +1,3 @@
-= javascript_include_tag 'edit_preview.js'
 .single-container
   = render 'users/user_header'
   %main.single-main
@@ -17,14 +16,14 @@
                   .sell-upload-items-container
                     .sell-upload-items
                       %ul.pictures
-                        - @item.item_images.each do |i|
+                        - @item.item_images.each_with_index do |i,index|
                           - if i.image.present?
-                            %li.sell-upload-item
+                            %li.sell-upload-item{id: "pre#{index}"}
                               %figure.sell-upload-figure.landscape
                                 = image_tag i.image,class: "preview"
                               .sell-upload-button
                                 = link_to '編集','#', class: 'sell-upload-edit'
-                                = link_to '削除','#',id: "sell-upload-delete"
+                                = link_to '削除','#',id: "sell-upload-delete#{index}"
 
                     = f.fields_for :item_images do |image|
                       = image.label :image, class: 'form-mask-image box-display-none' do
@@ -34,10 +33,10 @@
                             ドラッグアンドドロップ
                             またはクリックしてファイルをアップロード
 
-                  - if flash[:image]
-                    %ul.has-error-text
-                      %li
-                        = flash[:image]
+              - if flash[:image]
+                %ul.has-error-text
+                  %li
+                    = flash[:image]
 
 
               .sell-content

@@ -80,6 +80,9 @@
               %figure.items-box__link__photo
                 - if item.item_images
                   = image_tag item.item_images.first.image
+                  - if item.business_stats != 1
+                    .item-sold-out-badge
+                      %div SOLD
               .items-box__body
                 %h3.items-box__body__name.font-2
                   = item.name
