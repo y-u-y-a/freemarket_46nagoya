@@ -17,7 +17,10 @@
               %li.mypage-item-lists
                 = link_to individual_user_path(late.user.id),class: 'mypage-item-lists__link' do
                   %figure
-                    = image_tag late.user.avatar
+                    - if late.user.persisted? && late.user.avatar?
+                      = image_tag late.user.avatar
+                    - else
+                      = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: ""
                   .mypage-item-lists__body
                     .mypage-item-lists__body--text
                       %i.fa.fa-grin.icon-good
