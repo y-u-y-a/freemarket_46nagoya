@@ -60,7 +60,7 @@ class User < ApplicationRecord
         user_id:         user.id,
       )
     end
-    # user
+    user
   end
 
   def follow(other_user)

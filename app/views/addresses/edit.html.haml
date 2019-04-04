@@ -10,7 +10,7 @@
         = form_for(@address, url: user_address_path, method: :patch,  html: {class: 'l-single-inner'}) do |f|
           - if @address&.errors.present?
             = render partial: "shared/errors_messages",locals: {temporary: @address}
-            
+
           .l-single-content
             .form-group
               = f.label :郵便番号
