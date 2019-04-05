@@ -13,7 +13,7 @@
       .tab-content
         %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
           - if @lates.present?
-            - @lates.each do |late|
+            - @lates.zip(@text).each do |late,text|
               %li.mypage-item-lists
                 = link_to individual_user_path(late.user.id),class: 'mypage-item-lists__link' do
                   %figure
@@ -34,8 +34,7 @@
                     .mypage-item-lists__body--text
                       = late.user.nickname
                     .mypage-item-lists__body--text
-                      - if late.text?
-                        = late.text
+                      = text.text
                     .mypage-item-lists__body--text.time
                       %i.fa.fa-clock-o.icon-time
                       %span
