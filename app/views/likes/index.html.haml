@@ -15,6 +15,10 @@
                 = link_to item_path(item.id),class: 'mypage-item-lists__link' do
                   %figure
                     = image_tag item.item_images.first.image
+                  %figcaption
+                    - if item.business_stats == 3
+                      .item-sold-out-badge
+                        %div SOLD
                   .mypage-item-lists__body
                     .mypage-item-lists__body--text
                       = item.name

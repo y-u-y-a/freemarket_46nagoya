@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
 
   def set_search
     @search = Item.ransack(params[:q]) #ransackメソッド推奨
-    @search_items = @search.result(distinct: true).page(params[:page]).per(8)
+    @search_items = @search.result(distinct: true).page(params[:page]).per(8).order(id: "DESC")
   end
 
   def set_searches
@@ -70,7 +70,7 @@ class ApplicationController < ActionController::Base
     params[:q]["s"]["0"]["dir"]  = set_sort_dir(params[:q]["id"]) if params[:q]["id"] != nil
 
     @searches = Item.ransack(params[:q]) #ransackメソッド推奨
-    @search_items = @searches.result(distinct: true).page(params[:page]).per(8)
+    @search_items = @searches.result(distinct: true).page(params[:page]).per(8).order(id: "DESC")
     @searches.build_sort if @searches.sorts.empty?
   end
 
