@@ -32,10 +32,6 @@ $(document).on('turbolinks:load', function() {
     }
   }
 
-  $('#sell-upload-delete').click(function(){
-    $(this).parents(".sell-upload-item").remove();
-  });
-
   $('.box-display-none').hide();
 
   for(num=0;num < previewCount; num++) {

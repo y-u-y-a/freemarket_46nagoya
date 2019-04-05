@@ -23,7 +23,7 @@
                                 = image_tag i.image,class: "preview"
                               .sell-upload-button
                                 = link_to '編集','#', class: 'sell-upload-edit'
-                                = link_to '削除','#',id: "sell-upload-delete#{index}"
+                                = link_to '削除','#',id: "sell-upload-delete"
 
                     = f.fields_for :item_images do |image|
                       = image.label :image, class: 'form-mask-image box-display-none' do
@@ -185,7 +185,7 @@
 
 
               .sell-content.sell-btn-box
-                = f.submit '変更する',class: 'btn-default btn-red'
+                = f.submit '変更する',class: 'btn-default btn-red',data: { disable_with: "更新中..." }
                 = link_to 'キャンセル',item_path(@item),class: 'btn-default btn-gray'
 
   = render 'users/user_footer'

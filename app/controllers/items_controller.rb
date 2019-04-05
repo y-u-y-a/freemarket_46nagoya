@@ -171,6 +171,7 @@ class ItemsController < ApplicationController
       @item.business_stats = '3'
       @late = Late.new(late_params)
       @late.user_id = @item.buyer_id
+      @late.late_user = @item.user_id
       @buyer.late_count += 1
       @buyer.save(validate: false)
       @late.save(validate: false)
@@ -199,6 +200,7 @@ class ItemsController < ApplicationController
     if @item.delivery_status == 1
       @late = Late.new(late_params)
       @late.user_id = @item.user_id
+      @late.late_user = @item.buyer_id
       @seller.late_count += 1
       @seller.save(validate: false)
       @late.save(validate: false)

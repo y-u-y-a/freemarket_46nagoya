@@ -183,7 +183,7 @@
                     %span.black-font また、出品をもちまして
                     %span.blue-font 加盟店規約
                     %span.black-font に同意したことになります
-                = f.submit '出品する', class: 'btn-default btn-red'
+                = f.submit '出品する', class: 'btn-default btn-red',data: { disable_with: "送信中..." }
                 %figure.btn-default.btn-gray
                   = link_to "もどる", root_path, class: "btn-gray"
             .overlay
