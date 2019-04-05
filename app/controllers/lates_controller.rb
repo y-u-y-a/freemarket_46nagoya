@@ -2,6 +2,7 @@ class LatesController < ApplicationController
   before_action :set_user
   before_action :set_search
   before_action :set_category
+  before_action :set_text
 
   def index
     @lates = Late.where(late_user: @user.id).order(id: "DESC")
@@ -23,6 +24,10 @@ class LatesController < ApplicationController
 
   def set_user
     @user = User.find(current_user)
+  end
+
+  def set_text
+    @text = @user.lates.all
   end
 
 end
