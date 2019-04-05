@@ -120,8 +120,6 @@
         = form_for [@late], url: pay_item_path(@item.id), method: :post, html: {class: 'form transact-form-review'} do |f|
           %input{:name => "__csrf_value", :type => "hidden", :value => "548b8672d0a5998354cfac5c0af6823e6a1fd351fdac08492995fc979a866428bcdf5275bb3e1f5dce8399036f2f3b1d2edc82e5c7f7b893ca0525ae979de99fc"}/
           .checkbox-default
-            %input#transaction_delivered{:name => "", :type => "checkbox", :value => "1",required: "required"}/
-            %label{:for => "transaction_delivered"} 商品の中身を確認しました。
           %ul.transact-review-list.clearfix
             %li
               = f.radio_button :late, 1, required: "required"
