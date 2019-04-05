@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   require 'payjp'
 
   before_action :authenticate_user! ,   only: [:new ,:buy, :pay]
- before_action  :address_create,        only: [:buy, :pay]
+  before_action :address_create,        only: [:buy, :pay]
   before_action :set_category,          only: [ :index, :new, :edit, :create, :update, :all_brands_show, :all_categories_show, :show, :item_search_result, :trading_message]
   before_action :set_item,              only: [:show ,:edit, :update, :destroy, :buy, :message]
   before_action :set_payjp_user ,       only: [:buy, :pay]
@@ -232,7 +232,7 @@ class ItemsController < ApplicationController
   end
 
   def update_params
-    params.require(:item).permit( :name, :price, :explain, :postage, :region, :state, :shipping_date, :shipping_way,:size,:brand_id, :category_id, :child_category_id, :grand_child_category_id, item_images_attributes: [:id,:image,:_destroy]).merge(user_id: current_user.id, business_stats: '1')
+    params.require(:item).permit( :name, :price, :explain, :postage, :region, :state, :shipping_date, :shipping_way,:size,:brand_id, :category_id, :child_category_id, :grand_child_category_id, item_images_attributes: [:id,:image,:_destroy]).merge(user_id: current_user.id)
   end
 
   def pay_item_params
