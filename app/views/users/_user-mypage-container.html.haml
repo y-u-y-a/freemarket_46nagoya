@@ -96,8 +96,8 @@
                         = "#{time_ago_in_words(message.created_at)}前"
                 - else
                   メッセージはありません。
-          %li.mypage-go-list
-            = link_to '一覧を見る',todo_users_path
+        %li.mypage-go-list
+          = link_to '一覧を見る',todo_users_path
 
       - else
         %li.mypage-item-not-found.bold
