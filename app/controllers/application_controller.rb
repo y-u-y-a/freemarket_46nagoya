@@ -27,21 +27,21 @@ class ApplicationController < ActionController::Base
 
   def set_late_count
     item = Item.find(params[:id])
-    @good = Late.where(user_id: item.user.id).where(late: 1)
+    @good = Late.where(late_user: item.user.id).where(late: 1)
     @good_count = @good.length
-    @normal = Late.where(user_id: item.user.id).where(late: 2)
+    @normal = Late.where(late_user: item.user.id).where(late: 2)
     @normal_count = @normal.length
-    @bad = Late.where(user_id: item.user.id).where(late: 3)
+    @bad = Late.where(late_user: item.user.id).where(late: 3)
     @bad_count = @bad.length
   end
 
   def user_late_count
     user = User.find(params[:id])
-    @good = Late.where(user_id: user.id).where(late: 1)
+    @good = Late.where(late_user: user.id).where(late: 1)
     @good_count = @good.length
-    @normal = Late.where(user_id: user.id).where(late: 2)
+    @normal = Late.where(late_user: user.id).where(late: 2)
     @normal_count = @normal.length
-    @bad = Late.where(user_id: user.id).where(late: 3)
+    @bad = Late.where(late_user: user.id).where(late: 3)
     @bad_count = @bad.length
   end
 
