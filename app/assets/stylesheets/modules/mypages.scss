@@ -118,6 +118,17 @@
   .tab-content {
     &__mypage-item {
       display: block;
+      .mypage-item-not-found {
+        padding: 160px 0 60px;
+        background: url("https://www.mercari.com/jp/assets/img/common/common/logo-gray-icon.svg?82208132");
+        background-repeat: no-repeat;
+        background-position: center 40px;
+        background-size: 78px 85px;
+        text-align: center;
+        font-size: 16px;
+        color: #ccc;
+        font-weight: bold;
+      }
       li {
         position: relative;
         border-bottom: $border_light_gray;

@@ -78,24 +78,27 @@
         = link_to '一覧を見る',notification_users_path
 
     %ul.tab-content__mypage-item.tab-name.todo-lists
-      - @trading_items.first(6).each do |item|
-        %li
-          = link_to trading_message_item_path(item),class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
-            %i.fa.fa-angle-right
-            %figure
-              = image_tag item.item_images.first.image,alt: ""
-            .tab-content__mypage-item__link__body
-              - if item.messages.present?
-                .tab-content__mypage-item__link__body__text
-                  「#{item.name}」の取引メッセージがあります。
-                %time
-                  %i.fa.fa-clock-o
-                  %span
-                    - item.messages.last(1).each do |message|
-                      = "#{time_ago_in_words(message.created_at)}前"
-              - else
-                メッセージはありません。
+      - if @todo_items.present?
+        - @todo_items.first(6).each do |item|
+          %li
+            = link_to trading_message_item_path(item),class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+              %i.fa.fa-angle-right
+              %figure
+                = image_tag item.item_images.first.image,alt: ""
+              .tab-content__mypage-item__link__body
+                - if item.messages.present?
+                  .tab-content__mypage-item__link__body__text
+                    「#{item.name}」の取引メッセージがあります。
+                  %time
+                    %i.fa.fa-clock-o
+                    %span
+                      - item.messages.last(1).each do |message|
+                        = "#{time_ago_in_words(message.created_at)}前"
+                - else
+                  メッセージはありません。
+        %li.mypage-go-list
+          = link_to '一覧を見る',todo_users_path
 
-
-      %li.mypage-go-list
-        = link_to '一覧を見る',todo_users_path
+      - else
+        %li.mypage-item-not-found.bold
+          現在、やることリストはありません。

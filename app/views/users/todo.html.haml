@@ -8,24 +8,28 @@
 
       .tab-content
         %ul.tab-content__mypage-item.tab-name
-          - @trading_items.first(6).each do |item|
-            %li
-              = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
-                %i.fa.fa-angle-right
-                %figure
-                  = image_tag item.item_images.first.image,alt: ""
-                .tab-content__mypage-item__link__body
-                  - if item.messages.present?
-                    .tab-content__mypage-item__link__body__text
-                      取引相手から「#{item.name}」の取引メッセージがあります。返信をお願いします
-                    %time
-                      %i.fa.fa-clock-o
-                      %span
-                        - item.messages.last(1).each do |message|
-                          = "#{time_ago_in_words(message.created_at)}前"
+          - if @todo_items.present?
+            - @todo_items.first(6).each do |item|
+              %li
+                = link_to trading_message_item_path(item),class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+                  %i.fa.fa-angle-right
+                  %figure
+                    = image_tag item.item_images.first.image,alt: ""
+                  .tab-content__mypage-item__link__body
+                    - if item.messages.present?
+                      .tab-content__mypage-item__link__body__text
+                        取引相手から「#{item.name}」の取引メッセージがあります。返信をお願いします
+                      %time
+                        %i.fa.fa-clock-o
+                        %span
+                          - item.messages.last(1).each do |message|
+                            = "#{time_ago_in_words(message.created_at)}前"
 
-                  - else
-                    取引メッセージはありません。
+                    - else
+                      取引メッセージはありません。
+          - else
+            %li.mypage-item-not-found.bold
+              現在、やることリストはありません。
 
 = render 'shared/footer'
 
