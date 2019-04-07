@@ -23,12 +23,7 @@
                       = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: ""
                   .mypage-item-lists__body
                     .mypage-item-lists__body--text
-                      - if late&.late == 1
-                        %i.fa.fa-grin.icon-good
-                      - elsif late&.late == 2
-                        %i.fa.fa-meh.icon-normal
-                      - else
-                        %i.fa.fa-frown.icon-bad
+                      %i.fa.fa-frown.icon-bad
                       %span
                         購入者
                     .mypage-item-lists__body--text
