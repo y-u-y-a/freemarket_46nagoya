@@ -41,7 +41,7 @@
       - if @old_items.present?
         - @old_items.each do |item|
           %li
-            = link_to '#',class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
+            = link_to item_path(item),class: 'tab-content__mypage-item__link','data-open':'modal','data-modal':'banner' do
               = fa_icon 'angle-right',class: 'angle'
               %figure
                 = image_tag item.item_images.first.image,alt: ""
