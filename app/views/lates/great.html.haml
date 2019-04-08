@@ -13,7 +13,7 @@
       .tab-content
         %ul#mypage-tab-transaction-now.mypage-item-list.tab-pane.active
           - if @lates.present?
-            - @lates.zip(@text).each do |late,text|
+            - @lates.each do |late|
               %li.mypage-item-lists
                 = link_to individual_user_path(late.user.id),class: 'mypage-item-lists__link' do
                   %figure
@@ -23,18 +23,13 @@
                       = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: ""
                   .mypage-item-lists__body
                     .mypage-item-lists__body--text
-                      - if text&.late == 1
-                        %i.fa.fa-grin.icon-good
-                      - elsif text&.late == 2
-                        %i.fa.fa-meh.icon-normal
-                      - else
-                        %i.fa.fa-frown.icon-bad
+                      %i.fa.fa-grin.icon-good
                       %span
                         購入者
                     .mypage-item-lists__body--text
                       = late.user.nickname
                     .mypage-item-lists__body--text
-                      = text&.text
+                      = late&.text
                     .mypage-item-lists__body--text.time
                       %i.fa.fa-clock-o.icon-time
                       %span
