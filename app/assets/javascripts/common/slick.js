@@ -24,6 +24,11 @@ $(document).on('turbolinks:load', function() {
     index = $('.owl-dot').index(this);
     slickObj = $('.owl-stage').slick('getSlick');
     slickObj.slickGoTo(index);    // アニメーション中でも切り替える
-  })
+  });
+
+  if($('.owl-dot').length > 4) {
+    $('.owl-dot').css({'width':'60px','height':'60px'});
+    console.log($('.owl-dot').length);
+  }
 });
 
