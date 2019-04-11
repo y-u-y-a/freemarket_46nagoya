@@ -15,10 +15,10 @@ class UsersController < ApplicationController
   # 外部からのAPIを受ける特定アクションのみ除外
 
   def index
-    @items = Item.where(user_id: current_user)
     @user = User.find(current_user)
-    @trading_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 2)
-    @old_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 3)
+    @todo_items = Item.includes(:messages,:item_images).where(user_id: current_user).where(business_stats: 2)
+    @trading_items = Item.includes(:messages,:item_images).where(buyer_id: current_user).where(business_stats: 2)
+    @old_items = Item.includes(:messages,:item_images).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 3)
   end
 
   def show
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   def todo
-    @trading_items = Item.includes(:messages).order(updated_at: :desc).where(buyer_id: current_user).where(business_stats: 2)
+    @todo_items = Item.includes(:messages,:item_images).order(updated_at: :desc).where(user_id: current_user).where(business_stats: 2)
   end
 
   def payment_method

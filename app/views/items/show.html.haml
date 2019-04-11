@@ -22,7 +22,6 @@
             - if @item.item_images.present?
               - @item.item_images.each do |i|
                 .owl-dot
-                  %span
                   .owl-dot-inner
                     = image_tag i.image
 
@@ -187,7 +186,7 @@
     - if @user_items.present?
       %section.items-box-container.items-box-overflow.items-in-user-profile.clearfix
         %h2.item-box-head
-          = link_to "#{@item.user.nickname}さんのその他の出品", users_path
+          = link_to "#{@item.user.nickname}さんのその他の出品", individual_user_path(@item.user)
         .items-box-content.clearfix
           = render 'user_others_items'
 

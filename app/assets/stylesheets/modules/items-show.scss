@@ -65,23 +65,17 @@
             height: 75px;
             opacity: 0.4;
             cursor: pointer;
-            span {
-              display: none;
-            }
             .owl-dot-inner {
               overflow: hidden;
               position: static;
               width: auto;
-              height: auto;
+              height: 100%;
               padding: 0;
               pointer-events: none;
               img {
                 height: 100%;
                 width: 100%;
                 vertical-align: bottom;
-              }
-              .white {
-                opacity: .4;
               }
             }
           }

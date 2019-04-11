@@ -23,9 +23,9 @@
                       = image_tag "//static.mercdn.net/images/member_photo_noimage_thumb.png", alt: ""
                   .mypage-item-lists__body
                     .mypage-item-lists__body--text
-                      - if late.late == 1
+                      - if late&.late == 1
                         %i.fa.fa-grin.icon-good
-                      - elsif late.late == 2
+                      - elsif late&.late == 2
                         %i.fa.fa-meh.icon-normal
                       - else
                         %i.fa.fa-frown.icon-bad
@@ -34,8 +34,7 @@
                     .mypage-item-lists__body--text
                       = late.user.nickname
                     .mypage-item-lists__body--text
-                      - if late.text?
-                        = late.text
+                      = late&.text
                     .mypage-item-lists__body--text.time
                       %i.fa.fa-clock-o.icon-time
                       %span
